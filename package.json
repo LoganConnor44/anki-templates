@@ -1,0 +1,5 @@
+{
+    "scripts": {
+        "test": "mocha -r ts-node/register ./tests/chinese-template-tests.ts"
+    }
+}

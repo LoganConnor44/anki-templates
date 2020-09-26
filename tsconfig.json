@@ -1,0 +1,7 @@
+{
+  "files": ["src/chinese-template.ts"],
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "target": "es2015"
+  },
+}
