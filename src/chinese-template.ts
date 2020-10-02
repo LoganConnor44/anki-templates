@@ -613,7 +613,7 @@ class Zhuyin extends Phonetic {
 
 const isPinyin = (value: string): boolean => toBoolean(value.search(/^[a-zA-Z0-9\s]*$/));
 const containsNumerics = (value: string): boolean => toBoolean(value.search(/\d/));
-const parseTone = (value: string) => value === ' ' ? 5 : parseInt(value);
+const parseTone = (value: string) => value === ' ' || value === '' ? 5 : parseInt(value);
 const toBoolean = (value: number): boolean => value >= 0 ? true : false;
 
 const replaceVowelWithAccentedVowel = (value: string, accentedVowel: Vowel): string => {
@@ -669,26 +669,36 @@ const replaceNumberWithAccentedVowel = (value: string, toneNumber: number): stri
     return replaceVowelWithAccentedVowel(value, vowelAccented);
 };
 
-const replaceNumberedRomanLettersWithZhuyin = (pinyin: string, tone: number): string => {
+/**
+ * Sets the tone for a syllable even if a light tone syllable is right up against another valid toned syllable.
+ * 
+ * @param phonic Zhuyin The new zhuyin character converted from pinyin. 
+ * @param letters string The remaining pinyin letters after the zhuyin has been created.
+ * @param tone number The extracted tone number that should only be applied to the last zhuyin.
+ */
+const setToneWithPossibleMalformedPinyinHandling = (phonic: Zhuyin, letters: string, tone: number) => {
+    if (letters === '') {
+        phonic.setTone(tone);
+    } else {
+        phonic.setTone(5);
+    }
+};
+
+const replaceNumberedRomanLettersWithZhuyin = (letters: string, tone: number): string => {
     let returnValue: string = '';
     const maxIterations = 25;
     let iterationCounter = 1;
-    while (pinyin !== '' && iterationCounter < maxIterations) {
-        for (let i = pinyin.length; i > -1; i--) {
-            const phonic = new Zhuyin(pinyin.substring(0, i).toLowerCase());
+    while (letters !== '' && iterationCounter < maxIterations) {
+        for (let i = letters.length; i > -1; i--) {
+            const phonic = new Zhuyin(letters.substring(0, i).toLowerCase());
             if (phonic.getCharacter() !== undefined) {
-                pinyin = pinyin.substring(phonic.getPinyin().length);
-                if (pinyin === '') {
-                    phonic.setTone(tone);
-                } else {
-                    phonic.setTone(5);
-                }
+                letters = letters.substring(phonic.getPinyin().length);
+                setToneWithPossibleMalformedPinyinHandling(phonic, letters, tone);
                 returnValue += phonic.getCharacterWithTone();
                 break;
             }
         }
         iterationCounter++;
-        console.log(pinyin);
     }
     return returnValue;
 };
@@ -705,7 +715,7 @@ const convertNumberedPinyinTo = (phoneticType: PhoneticType, value: string) => {
     );
     let results: RegExpExecArray;
     while ((results = finalRegEx.exec(value)) !== null) {
-        value = value.substr(results.index + results[0].length);
+        value = value.substring(results.index + results[0].length);
         const originalText: string = results[0];
         const romanLetters: string = results[1];
         const tone: number = parseTone(results[2]);
@@ -729,13 +739,21 @@ const processNumberedPinyin = (phoneticType: PhoneticType, value: string): strin
 
 const hanziToPhoneticCharacters = (phoneticType: PhoneticType, value: string): string => {
     let result: string = '';
-    if (isPinyin(value) && containsNumerics(value)) {
+    if (isPinyin(value)) {
         result = processNumberedPinyin(phoneticType, value);
     }
     return result;
 };
 
 // exports for unit tests
-// export default {
-//     hanziToPhoneticCharacters,
-// };
+export default {
+    hanziToPhoneticCharacters,
+    containsNumerics,
+    isPinyin,
+    parseTone,
+    processNumberedPinyin,
+    convertNumberedPinyinTo,
+    replaceNumberedRomanLettersWithZhuyin,
+    setToneWithPossibleMalformedPinyinHandling,
+    Zhuyin
+};
