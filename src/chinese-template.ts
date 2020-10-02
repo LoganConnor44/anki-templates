@@ -613,7 +613,7 @@ class Zhuyin extends Phonetic {
 
 const isPinyin = (value: string): boolean => toBoolean(value.search(/^[a-zA-Z0-9\s]*$/));
 const containsNumerics = (value: string): boolean => toBoolean(value.search(/\d/));
-const parseTone = (value: string) => value === ' ' || value === '' ? 5 : parseInt(value);
+const parseTone = (value: string): number => value === ' ' || value === '' ? 5 : parseInt(value);
 const toBoolean = (value: number): boolean => value >= 0 ? true : false;
 
 const replaceVowelWithAccentedVowel = (value: string, accentedVowel: Vowel): string => {
@@ -676,7 +676,7 @@ const replaceNumberWithAccentedVowel = (value: string, toneNumber: number): stri
  * @param letters string The remaining pinyin letters after the zhuyin has been created.
  * @param tone number The extracted tone number that should only be applied to the last zhuyin.
  */
-const setToneWithPossibleMalformedPinyinHandling = (phonic: Zhuyin, letters: string, tone: number) => {
+const setToneWithPossibleMalformedPinyinHandling = (phonic: Zhuyin, letters: string, tone: number): void => {
     if (letters === '') {
         phonic.setTone(tone);
     } else {
@@ -703,7 +703,7 @@ const replaceNumberedRomanLettersWithZhuyin = (letters: string, tone: number): s
     return returnValue;
 };
 
-const convertNumberedPinyinTo = (phoneticType: PhoneticType, value: string) => {
+const convertNumberedPinyinTo = (phoneticType: PhoneticType, value: string): string => {
     let convertedValue: string = '';
     const minimumOneLetterCaseInsensitive: RegExp = new RegExp(/([a-zA-Z]{1,})/);
     const numbersOneThroughFiveOrSpaceIndicatingLightTone: RegExp = new RegExp(/([1-5]|\s*)/);
