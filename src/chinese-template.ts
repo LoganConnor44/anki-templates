@@ -4,6 +4,11 @@ enum HanziType {
     SIMPLIFIED_AND_TRADITIONAL
 }
 
+enum PhoneticType {
+    PINYIN,
+    ZHUYIN
+}
+
 enum Tone {
     FIRST,
     SECOND,
@@ -150,13 +155,16 @@ class Vowel extends Phonetic {
     }
 }
 
-class Zhuyin extends Phonetic{
+class Zhuyin extends Phonetic {
     private pinyin: string;
     private character: string;
     constructor(pinyin: string) {
         super();
         this.pinyin = pinyin;
         this.setCharacter();
+    }
+    public getPinyin(): string {
+        return this.pinyin;
     }
     public getCharacter(): string {
         return this.character;
@@ -603,15 +611,39 @@ class Zhuyin extends Phonetic{
     }
 }
 
-
-
 const isPinyin = (value: string): boolean => toBoolean(value.search(/^[a-zA-Z0-9\s]*$/));
 const containsNumerics = (value: string): boolean => toBoolean(value.search(/\d/));
+const parseTone = (value: string) => value === ' ' ? 5 : parseInt(value);
 const toBoolean = (value: number): boolean => value >= 0 ? true : false;
 
-const processPinyin = (value: string): string => {
-    value = value.trim();
-    return convertNumberedPinyinToAccented(value);
+const replaceVowelWithAccentedVowel = (value: string, accentedVowel: Vowel): string => {
+    const valueReversed: string = value.split('').reverse().join('');
+    const valueWithAccentReversed: string = valueReversed.replace(
+        accentedVowel.getVowel(),
+        accentedVowel.getVowelWithTone()
+    );
+    return valueWithAccentReversed.split('').reverse().join('');
+};
+
+const createAppropriateVowelWithAccent = (valueArray: Array<string>, toneNumber: number): Vowel => {
+    let vowels: Vowel[] = new Array<Vowel>();
+    vowels[0] = new Vowel('a');
+    vowels[1] = new Vowel('e');
+    vowels[2] = new Vowel('i');
+    vowels[3] = new Vowel('o');
+    vowels[4] = new Vowel('u');
+
+    let vowelToBeAccented: string = '';
+    vowels.forEach(vowel => {
+        valueArray.forEach((x: string) => {
+            if (x === vowel.getVowel() && vowelToBeAccented === '') {
+                vowelToBeAccented = vowel.getVowel();
+            }
+        });
+    });
+    const accentedVowel = new Vowel(vowelToBeAccented);
+    accentedVowel.setTone(toneNumber);
+    return accentedVowel;
 };
 
 const retrieveVowelsBeforeNumber = (value: string): Array<string> => {
@@ -631,77 +663,79 @@ const retrieveVowelsBeforeNumber = (value: string): Array<string> => {
     return vowelsPresent.reverse();
 };
 
-const createAppropriateVowelWitchAccent = (valueArray: Array<string>, toneNumber: number): Vowel => {
-    let vowels: Vowel[] = new Array<Vowel>();
-    vowels[0] = new Vowel('a');
-    vowels[1] = new Vowel('e');
-    vowels[2] = new Vowel('i');
-    vowels[3] = new Vowel('o');
-    vowels[4] = new Vowel('u');
-    
-    let vowelToBeAccented: string = '';
-    vowels.forEach(vowel => {
-        valueArray.forEach((x: string) => {
-            if (x === vowel.getVowel() && vowelToBeAccented === '') {
-                vowelToBeAccented = vowel.getVowel();
-            }
-        });
-    });
-    const accentedVowel = new Vowel(vowelToBeAccented);
-    accentedVowel.setTone(toneNumber);
-    return accentedVowel;
-};
-
-const replaceVowelWithAccentedVowel = (value: string, accentedVowel: Vowel): string => {
-    const valueReversed: string = value.split('').reverse().join('');
-    const valueWithAccentReversed: string = valueReversed.replace(
-        accentedVowel.getVowel(),
-        accentedVowel.getVowelWithTone()
-    );
-    return valueWithAccentReversed.split('').reverse().join('');
-};
-
 const replaceNumberWithAccentedVowel = (value: string, toneNumber: number): string => {
     const vowelsImmediatelyBeforeNumber: Array<string> = retrieveVowelsBeforeNumber(value);
-    const vowelAccented: Vowel = createAppropriateVowelWitchAccent(vowelsImmediatelyBeforeNumber, toneNumber);
+    const vowelAccented: Vowel = createAppropriateVowelWithAccent(vowelsImmediatelyBeforeNumber, toneNumber);
     return replaceVowelWithAccentedVowel(value, vowelAccented);
 };
 
-const convertNumberedPinyinToAccented = (value: string): string => {
+const replaceNumberedRomanLettersWithZhuyin = (pinyin: string, tone: number): string => {
+    let returnValue: string = '';
+    const maxIterations = 25;
+    let iterationCounter = 1;
+    while (pinyin !== '' && iterationCounter < maxIterations) {
+        for (let i = pinyin.length; i > -1; i--) {
+            const phonic = new Zhuyin(pinyin.substring(0, i).toLowerCase());
+            if (phonic.getCharacter() !== undefined) {
+                pinyin = pinyin.substring(phonic.getPinyin().length);
+                if (pinyin === '') {
+                    phonic.setTone(tone);
+                } else {
+                    phonic.setTone(5);
+                }
+                returnValue += phonic.getCharacterWithTone();
+                break;
+            }
+        }
+        iterationCounter++;
+        console.log(pinyin);
+    }
+    return returnValue;
+};
+
+const convertNumberedPinyinTo = (phoneticType: PhoneticType, value: string) => {
     let convertedValue: string = '';
-    const minimumOneOrMaxSixLettersCaseInsensitive: RegExp = new RegExp(/([a-zA-Z]{1,6})/);
-    const numbersOneThroughFive: RegExp = new RegExp(/([1-5])/);
-    const zeroOrOneSpaceCharacter: RegExp = new RegExp(/(\s*)/);
+    const minimumOneLetterCaseInsensitive: RegExp = new RegExp(/([a-zA-Z]{1,})/);
+    const numbersOneThroughFiveOrSpaceIndicatingLightTone: RegExp = new RegExp(/([1-5]|\s*)/);
+    const zeroOrOneSpaceCharacterNonToneRelated: RegExp = new RegExp(/(\s*)/);
     const finalRegEx: RegExp = new RegExp(
-        minimumOneOrMaxSixLettersCaseInsensitive.source +
-        numbersOneThroughFive.source +
-        zeroOrOneSpaceCharacter.source
+        minimumOneLetterCaseInsensitive.source +
+        numbersOneThroughFiveOrSpaceIndicatingLightTone.source +
+        zeroOrOneSpaceCharacterNonToneRelated.source
     );
     let results: RegExpExecArray;
     while ((results = finalRegEx.exec(value)) !== null) {
         value = value.substr(results.index + results[0].length);
         const originalText: string = results[0];
         const romanLetters: string = results[1];
-        const tone: number = parseInt(results[2]);
+        const tone: number = parseTone(results[2]);
         const spaceCharacter: string = results[3];
-        const accentedSyllable: string = replaceNumberWithAccentedVowel(romanLetters, tone);
-        convertedValue += accentedSyllable + spaceCharacter;
+        let phonic: Zhuyin | string;
+        if (phoneticType === PhoneticType.ZHUYIN) {
+            phonic = replaceNumberedRomanLettersWithZhuyin(romanLetters, tone);
+        }
+        if (phoneticType === PhoneticType.PINYIN) {
+            phonic = replaceNumberWithAccentedVowel(romanLetters, tone);
+        }
+        convertedValue += phonic + spaceCharacter;
     }
     return convertedValue;
 };
 
-const hanziToPhoneticCharacters = (value: string): string => {
+const processNumberedPinyin = (phoneticType: PhoneticType, value: string): string => {
+    value = value.trim();
+    return convertNumberedPinyinTo(phoneticType, value);
+};
+
+const hanziToPhoneticCharacters = (phoneticType: PhoneticType, value: string): string => {
     let result: string = '';
     if (isPinyin(value) && containsNumerics(value)) {
-        result = processPinyin(value);
-    } else {
-
+        result = processNumberedPinyin(phoneticType, value);
     }
     return result;
 };
 
 // exports for unit tests
-export default {
-    hanziToPhoneticCharacters,
-    processPinyin
-};
+// export default {
+//     hanziToPhoneticCharacters,
+// };
