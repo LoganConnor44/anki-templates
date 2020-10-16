@@ -682,13 +682,3 @@ document.getElementsByClassName('phonetic')[0].innerHTML=toPhonetic('cmn', '{{Pi
 document.getElementsByClassName('meaning')[0].innerHTML=toMeaning('cmn', '{{Meaning}}', false);
 
 
-
-
-
-
-
-
-
-
-
-

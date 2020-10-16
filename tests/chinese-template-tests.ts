@@ -52,6 +52,12 @@ describe('Testing Main Method hanziToPhoneticCharacters() Can Process Pinyin Wit
         const result: string = chineseTemplate.default.hanziToPhoneticCharacters(0, 'hui2 jia1');
         expect(result).to.equal('huí jiā');
     });
+
+    const iamhisfriend = 'Wǒ shì tā de péngyou';
+    it('should return ' + iamhisfriend, () => {
+        const result: string = chineseTemplate.default.hanziToPhoneticCharacters(0, 'Wo3 shi4 ta1 de peng2you');
+        expect(result).to.equal(iamhisfriend);
+    });
 });
 
 describe('Testing Main Method hanziToPhoneticCharacters() Can Process Zhuyin With No Spaces', () => {
@@ -109,6 +115,18 @@ describe('Testing Main Method hanziToPhoneticCharacters() Can Process Zhuyin Wit
     it('should return ' + hui2_jia1, () => {
         const result: string = chineseTemplate.default.hanziToPhoneticCharacters(1, 'hui2 jia1');
         expect(result).to.equal(hui2_jia1);
+    });
+
+    const iamhisfriend = 'ㄨㄛˇ ㄕˋ ㄊㄚ ㄉㄜ˙ ㄆㄥˊ ㄧㄡ˙';
+    it('should return ' + iamhisfriend, () => {
+        const result: string = chineseTemplate.default.hanziToPhoneticCharacters(1, 'Wo3 shi4 ta1 de peng2you');
+        expect(result).to.equal(iamhisfriend);
+    });
+
+    const pleaseTellMeTheAnswer = 'ㄑㄧㄥˇ ㄍㄠˋㄙㄨ˙ㄨㄛˇ ㄉㄚˊㄢˋ';
+    it('should return ' + pleaseTellMeTheAnswer, () => {
+        const result: string = chineseTemplate.default.hanziToPhoneticCharacters(1, "Qing3 gao4su wo3 da2'an4.");
+        expect(result).to.equal(pleaseTellMeTheAnswer);
     });
 });
 

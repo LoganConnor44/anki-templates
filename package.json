@@ -1,5 +1,29 @@
 {
-    "scripts": {
-        "test": "mocha -r ts-node/register ./tests/chinese-template-tests.ts"
-    }
+  "scripts": {
+    "test": "mocha -r ts-node/register ./tests/chinese-template-tests.ts"
+  },
+  "name": "anki-templates",
+  "version": "1.0.0",
+  "main": "index.html",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "typescript": "^4.0.3"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-typescript": "^6.0.0-alpha.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LoganConnor44/anki-templates.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LoganConnor44/anki-templates/issues"
+  },
+  "homepage": "https://github.com/LoganConnor44/anki-templates#readme",
+  "description": ""
 }
