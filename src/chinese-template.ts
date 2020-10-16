@@ -733,17 +733,191 @@ const convertNumberedPinyinTo = (phoneticType: PhoneticType, value: string): str
 };
 
 const processNumberedPinyin = (phoneticType: PhoneticType, value: string): string => {
-    value = value.trim();
     return convertNumberedPinyinTo(phoneticType, value);
 };
 
 const hanziToPhoneticCharacters = (phoneticType: PhoneticType, value: string): string => {
     let result: string = '';
+    value = value.trim();
+    value = value.replace(/['.!?]/g, '');
     if (isPinyin(value)) {
         result = processNumberedPinyin(phoneticType, value);
     }
     return result;
 };
+
+const conditionallyRenderColourSchemes = (questionType: string): void => {
+    let body: HTMLElement = document.body;
+    let card: HTMLElement = document.getElementsByClassName('chinese-card').item(0) as HTMLElement;
+    let cardType: HTMLElement = document.getElementsByClassName('chinese-card-type').item(0) as HTMLElement;
+    let cardContent: HTMLElement = document.getElementsByClassName('chinese-card-content').item(0) as HTMLElement;
+
+	switch (questionType) {
+
+		case 'traditional':
+			var darkest = '#264653';
+			var darker = '#2A9D8F';
+			var neutral = '#E76F51';
+			var brighter = '#F4A261';
+			var brightest = '#E9C46A';
+
+            body.style.backgroundColor = darker;
+
+            card.style.color = darkest;
+            card.style.backgroundColor = brightest;
+            card.style.boxShadow = '0px 0px 30px ' + darkest;
+
+            cardType.style.color = brightest;
+            cardType.style.backgroundColor = neutral;
+
+            cardContent.style.textShadow = '2px 2px ' + brighter;
+
+            break;
+
+		case 'tones':
+            var darkest = '#073B4C';
+            var darkestRBG = 'rgb(7, 59, 76, 0.2)';
+			var darker = '#118AB2';
+			var neutral = '#EF476F';
+			var brighter = '#06D6A0';
+			var brightest = '#FFD166';
+			var brightestRBG = 'rgb(255, 209, 102, 0.5)';
+
+            body.style.backgroundColor = darker;
+
+            card.style.color = darkest;
+            card.style.backgroundColor = brighter;
+            card.style.boxShadow = '0px 0px 30px ' + darkest;
+
+            cardType.style.color = brightest;
+            cardType.style.backgroundColor = neutral;
+
+            cardContent.style.textShadow = '2px 2px ' + darkestRBG;
+
+            break;
+        
+        case 'writing':
+            var darkest = '#3A0CA3';
+            var darkestRBG = 'rgb(58, 12, 163, 0.3)';
+            var darker = '#7209B7';
+            var neutral = '#4361EE';
+            var brighter = '#4CC9F0';
+            var brightest = '#F72585';
+
+            body.style.backgroundColor = darker;
+
+            card.style.color = brighter;
+            card.style.backgroundColor = brightest;
+            card.style.boxShadow = '0px 0px 30px ' + darkest;
+
+            cardType.style.color = brighter;
+            cardType.style.backgroundColor = neutral;
+
+            cardContent.style.textShadow = '2px 2px ' + darkestRBG;
+
+            break;
+        case 'recognition':
+            var darkest = '#1D3557';
+            var darkestRGB = 'rgb(29, 53, 87, 0.3)'
+            var darker = '#E63946';
+            var neutral = '#457B9D';
+            var brighter = '#A8DADC';
+            var brightest = '#F1FAEE';
+
+            body.style.backgroundColor = neutral;
+
+            card.style.color = brighter;
+            card.style.backgroundColor = darker;
+            card.style.boxShadow = '0px 0px 30px ' + darkest;
+
+            cardType.style.color = darkest;
+            cardType.style.backgroundColor = brighter;
+
+            cardContent.style.textShadow = '2px 2px ' + darkestRGB;
+
+            break;
+        case 'meaning':
+            var darkest = '#555B6E';
+            var darker = '#89B0AE';
+            var neutral = '#FFD6BA';
+            var brighter = '#BEE3DB';
+            var brightest = '#FAF9F9';
+            var brightestRGB = 'rgb(250, 249, 249, 0.5)';
+
+            body.style.backgroundColor = darker;
+
+            card.style.color = darkest;
+            card.style.backgroundColor = neutral;
+            card.style.boxShadow = '0px 0px 30px ' + darkest;
+
+            cardType.style.color = brightest;
+            cardType.style.backgroundColor = darkest;
+
+            cardContent.style.textShadow = '2px 2px ' + brightestRGB
+
+            break;
+	}
+};
+
+declare var HanziWriter: any;
+const createStrokeOrderCharacter = () => {
+    let delayBetweenAnimations: number = 500;
+    let charactersValue: string = document.getElementById('character-value').innerHTML;
+    let characters: Array<string> = charactersValue.split('');
+    let drawingArea: HTMLElement = document.getElementById('stroke-order');
+    let strokeOrderCharacters: Array<any> = [];
+
+    for (var i = 0; i < characters.length; i++) {
+        let idName = 'character-' + i;
+        let node = document.createElement('div');
+        node.id = idName;
+        drawingArea.appendChild(node);
+
+        let strokeOrderCharacter = HanziWriter.create(
+            idName,
+            characters[i], {
+                strokeColor: '#000000',
+                width: 50,
+                height: 50, 
+                padding: 1,
+                delayBetweenStrokes: 500,
+            }
+        );
+        strokeOrderCharacters.push(strokeOrderCharacter);
+    }
+
+    const animateFirstCharacterOnly = () => {
+        for (var i = 0; i < 1; i++) {
+            let currentCharacter: any = strokeOrderCharacters[i];
+            let nextCharacter: any = strokeOrderCharacters[i + 1];
+    
+            currentCharacter.animateCharacter({
+                onComplete: function() {
+                    if (nextCharacter !== undefined) {
+                        setTimeout(function() {
+                            nextCharacter.animateCharacter();
+                        }, delayBetweenAnimations);
+                    }
+                }
+            });
+        }
+    };
+
+    setTimeout(() => {
+        animateFirstCharacterOnly()
+    }, delayBetweenAnimations + delayBetweenAnimations);
+};
+
+const loadHanziWriter = () => {
+    let script: HTMLScriptElement = document.createElement('script');
+    script.setAttribute('type', 'text/javascript');
+    script.setAttribute('src', 'https://cdn.jsdelivr.net/npm/hanzi-writer@2.2/dist/hanzi-writer.min.js');
+    script.addEventListener('load', () => {
+        createStrokeOrderCharacter();
+    });
+    document.body.appendChild(script);
+};
+
 
 // exports for unit tests
 export default {
@@ -755,5 +929,6 @@ export default {
     convertNumberedPinyinTo,
     replaceNumberedRomanLettersWithZhuyin,
     setToneWithPossibleMalformedPinyinHandling,
-    Zhuyin
+    Zhuyin,
+    PhoneticType
 };
