@@ -144,7 +144,7 @@ The available attributes are as followed for the custom html element.
 2. Ease-in animation and a dark background could be added so users don't occasionally see a flash of default background colour when the application is loading.
 3. A skeleton card could be created (skeleton cards are essentially a newer version of a loading screen). But, the actual delay is minimal at the moment. This is a feature that would be better suited after the move to a cloud host is done.
 
-##### Full Code Example
+# Full Code Example
 
 ```html
 <beautify-chinese-study style="display: flex; flex-grow: 1; height: 100vh"
