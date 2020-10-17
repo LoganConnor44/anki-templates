@@ -114,7 +114,7 @@ The available attributes are as followed for the custom html element.
     * Used To Pass In The Pronunciation Of The Given Hanzi
         * `Most Numbered Pinyin Accepted`
 * cardType
-    * Used To Define The Desired Question Type
+    * Used To Define The Desired Card Type
     * Accepted values:
         * `recognition`
         * `meaning`
