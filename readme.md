@@ -17,7 +17,7 @@ This codebase is a solution for making Chinese study, through Anki, more enjoyab
 This project can make your chinese cards look cool by copying/pasting code into your Anki template. To do this follow the guide below:
 1. Copy the contents of [this file](https://raw.githubusercontent.com/LoganConnor44/anki-templates/master/dist/BeautifyChineseStudy.js)
 2. Paste the data into the front and back of your Anki card template.
-3. Define the card you want. Example is as followed:
+3. Define the card you want on the front and back for your Anki card template. Example is as followed:
 ```html
 <style>
     /*desktop anki*/
