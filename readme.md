@@ -57,6 +57,14 @@ While this project handles most of the styling for the user, there is styling th
     * Numbered Pinyin
 * Have the Anki knowledge to set up Card Types (Notes) for the different cards they would like to utilize for their study.
 
+# Features
+
+Aside from making your flashcards look pretty, this project has two note-worthy features:
+1. Stroke Order Animation
+    * On the answer side of the writing cards, the hanzi will animate the stroke order by default.
+2. Pleco Integration
+    * At any time, the user can click the hanzi they are shown and the card will automatically open Pleco (very popular dictionary mobile application).
+
 # beautify-chinese-study API
     
 The available attributes are as followed for the custom html element.
