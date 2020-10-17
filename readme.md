@@ -40,7 +40,7 @@ This project can make your chinese cards look cool by copying/pasting code into 
 
 <!--some code omitted-->
 ```
-Click [here](#####Full-Code-Example) to see the full example)
+Click [here](#Full-Code-Example) to see the full example)
 
 # How
 
