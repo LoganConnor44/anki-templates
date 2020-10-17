@@ -112,7 +112,7 @@ class BeautifyChineseStudy extends HTMLElement {
 				}
 				
 				#chinese-card-content > p {
-					font-size: xxx-large;
+					font-size: xx-large;
 				}
 				
 				#chinese-card-content > #english-meaning {
@@ -299,25 +299,40 @@ class BeautifyChineseStudy extends HTMLElement {
 				}
 				break;
 			case 'writing':
-				if (this.cardOrientation === 'answer') {
+				if (this.cardOrientation === 'question') {
 					template = `
 						<div id='anki-background'>
 							<div id='chinese-card'>
 							<div id='chinese-card-content'>
-								<p>
-									<a href="plecoapi://x-callback-url/df?hw=${this.simplified}">
-										<div id='stroke-order'></div>
-									</a>
-									<br>
-									<br>
+								<p id='phonetic-zhuyin'>
+									${this.zhuyin}
 								</p>
-							</div>
+								</div>
 							<div id='chinese-card-type'>
 								<p id='colour-scheme'>${this.cardType.toUpperCase()}</p>
 							</div>
 							</div>
 						</div>
-						<div id='character-value' hidden>${this.simplified}</div>
+					`;
+				}
+				if (this.cardOrientation === 'answer') {
+					template = `
+						<div id='anki-background'>
+							<div id='chinese-card'>
+								<div id='chinese-card-content'>
+									<p>
+										<a href="plecoapi://x-callback-url/df?hw=${this.simplified}">
+											<div id='stroke-order'></div>
+										</a>
+										<br>
+										<br>
+									</p>
+								</div>
+								<div id='chinese-card-type'>
+									<p id='colour-scheme'>${this.cardType.toUpperCase()}</p>
+								</div>
+							</div>
+						</div>
 					`;
 				}
 				break;
@@ -1194,8 +1209,7 @@ class BeautifyChineseStudy extends HTMLElement {
 
 	createStrokeOrderCharacter() {
 		let delayBetweenAnimations: number = 500;
-		let charactersValue: string = this.shadowRoot.querySelector('#character-value').innerHTML;
-		let characters: Array<string> = charactersValue.split('');
+		let characters: Array<string> = this.simplified.split('');
 		let drawingArea: HTMLElement = this.shadowRoot.querySelector('#stroke-order');
 		let strokeOrderCharacters: Array<any> = [];
 
@@ -1265,4 +1279,9 @@ class BeautifyChineseStudy extends HTMLElement {
 	};
 }
 
-customElements.define('beautify-chinese-study', BeautifyChineseStudy);
+
+const beautifyChineseStudy = customElements.get('beautify-chinese-study');
+
+if (!beautifyChineseStudy) {
+	customElements.define('beautify-chinese-study', BeautifyChineseStudy);
+}
