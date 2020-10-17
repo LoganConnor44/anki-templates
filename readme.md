@@ -12,6 +12,33 @@ This codebase is a solution for making Chinese study, through Anki, more enjoyab
 | <img src="./images/tones-question.png" alt="Tones Question" width="200"/> | <img src="./images/tones-answer.png" alt="Tones Answer" width="200"/> |
 | <img src="./images/writing-question.png" alt="Writing Question" width="200"/> | <img src="./images/writing-answer.gif" alt="Writing Answer" width="200"/> |
 
+# tl;dr
+
+This project can make your chinese cards look cool by copying/pasting code into your Anki template. To do this follow the guide below:
+1. Copy the contents of [this file](https://raw.githubusercontent.com/LoganConnor44/anki-templates/master/dist/BeautifyChineseStudy.js)
+2. Paste the data into the front and back of your Anki card template.
+3. Define the card you want. Example is as followed:
+```html
+<style>
+    /*desktop anki*/
+    body {
+        margin: 0;
+    }
+
+    /*ankidroid*/
+    #content {
+        margin: 0;
+    }
+</style>
+<beautify-chinese-study style="display: flex; flex-grow: 1; height: 100vh"
+	simplified='{{text:Simplified}}'
+    traditional='{{text:Traditional}}'
+    numberedPinyin='{{text:Pinyin}}'
+    meaning='{{text:Meaning}}'
+    cardType='tones'
+    cardOrientation='question' />
+```
+
 # How
 
 Anki utilizes web technologies to generate its flashcards. This codebase is using a web technology called Web Components that will allow users to only write[*](##Caveat) a single html tag in their Anki card templates. An example of this is as followed:
@@ -64,6 +91,8 @@ Aside from making your flashcards look pretty, this project has two note-worthy 
     * On the answer side of the writing cards, the hanzi will animate the stroke order by default.
 2. Pleco Integration
     * At any time, the user can click the hanzi they are shown and the card will automatically open Pleco (very popular dictionary mobile application).
+3. Zhuyin Characters
+    * The project can convert your numbered pinyin into zhuyin characters.
 
 # beautify-chinese-study API
     
@@ -103,7 +132,8 @@ The available attributes are as followed for the custom html element.
 # Current Issues
 
 1. Code needs to be copy/pasted into each Card Type (Note). There is a plan to host the web component on a cloud platform that will enable users to pull it in via `<link>`.
-2. Writing Card Types (Notes) - if it is a single character, it will animate twice. Currently, I'm writing this off as a feature because it's an easy issue to fix but don't mind the repeat.
+2. Accented pinyin has not been tested. I plan to add this because I'm sure most users have accented pinyin, rather than numbered, but this is something I don't have with my decks and haven't spent time on yet.
+3. Writing Card Types (Notes) - if it is a single character, it will animate twice. Currently, I'm writing this off as a feature because it's an easy issue to fix but don't mind the repeat.
 
 # Improvements
 
