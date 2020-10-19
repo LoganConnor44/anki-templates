@@ -150,7 +150,7 @@ This project uses Typescript, which means that any code found in the `bundle` or
 
 # Improvements
 
-1. I'm currently separating the logic (see additional branch on repo) so this repo isn't just one monolith. After separating the files, I'm having some issues with the transpiling and bundling step from our Typescript files to a working Web Component. I think it has to do with small inconsistencies with Typescript, ES, ES2015, and Web Components. Because of this - I'm probably also going to begin using StencilJs to handle the component creation for me, instead of doing it all without a library.
+1. I'm currently separating the logic (see branch `separating-logic-and-adding-bundler`) so this repo isn't just one monolith. After separating the files, I'm having some issues with the transpiling and bundling step from our Typescript files to a working Web Component. I think it has to do with small inconsistencies with Typescript, ES, ES2015, and Web Components. Because of this - I'm probably also going to begin using StencilJs to handle the component creation for me, instead of doing it all without a library.
     * I could be running into [this issue.](https://github.com/microsoft/TypeScript/issues/12949) After moving past this error I figured I should just let a library handle creating the Web Component (along with the transpiling and bundling) to make my life easier.
     * Separating the logic will be really helpful if some contributer wants to update or enhance the css. Currently it's inline in the Typescript and this alone would discourage someone from taking the effort to make a change.
 2. A `typing` type card is being developed utilizing Anki's `{{type:FIELD_NAME_HERE}}` functionality.
