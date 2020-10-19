@@ -58,11 +58,11 @@ Anki utilizes web technologies to generate its flashcards. This codebase is usin
     }
 </style>
 <beautify-chinese-study style="display: flex; flex-grow: 1; height: 100vh;"
-    simplified='天气'
-    traditional='天氣'
-    numberedPinyin='tian1qi4'
-    cardType='recognition'
-    meaning='weather'
+    simplified='{{text:Simplified}}'
+    traditional='{{text:Traditional}}'
+    numberedPinyin='{{text:Pinyin}}'
+    meaning='{{text:Meaning}}'
+    cardType='tones'
     cardOrientation='question'
     preferredPhonic='zhuyin' />
 ```
@@ -163,12 +163,12 @@ This project uses Typescript, which means that any code found in the `bundle` or
 ```html
 <beautify-chinese-study style="display: flex; flex-grow: 1; height: 100vh"
 	simplified='{{text:Simplified}}'
-            traditional='{{text:Traditional}}'
-            numberedPinyin='{{text:Pinyin}}'
-            cardType='tones'
-            meaning='{{text:Meaning}}'
-            cardOrientation='question'
-						preferredPhonic='zhuyin' />
+    traditional='{{text:Traditional}}'
+    numberedPinyin='{{text:Pinyin}}'
+    cardType='tones'
+    meaning='{{text:Meaning}}'
+    cardOrientation='question'
+    preferredPhonic='zhuyin' />
 
 <script>
 
