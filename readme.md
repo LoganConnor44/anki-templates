@@ -136,6 +136,8 @@ The available attributes are as followed for the custom html element.
 
 Please feel free to make any improvements to the project as you see fit by creating a Pull Request with a detailed description about the `issue` or `enhancement` that your PR will be adding to the project. Please also be sure to add a `how` section that gives a brief overview of how the `issue` or `enhancement` is being done.
 
+If you want to get an idea of what I am thinking of for improvements to the repo, please head over to the [#Improvements] section. It's, roughly, listed from most important to least important.
+
 ## Please Notice
 
 This project uses Typescript, which means that any code found in the `bundle` or `dist` directories are computer generated and will be trashed and recreated each time the Typescript files are transpiled. If you are new to Typescript please familarize yourself with [the basics](https://code.tutsplus.com/tutorials/typescript-for-beginners-getting-started--cms-29329). I'd hate for someone to spend a long time on a great contribution but be unaware that the Javascript code is computer generated.
@@ -154,6 +156,7 @@ This project uses Typescript, which means that any code found in the `bundle` or
 2. A `typing` type card is being developed utilizing Anki's `{{type:FIELD_NAME_HERE}}` functionality.
 3. Ease-in animation and a dark background could be added so users don't occasionally see a flash of default background colour when the application is loading.
 4. A skeleton card could be created (skeleton cards are essentially a newer version of a loading screen). But, the actual delay is minimal at the moment. This is a feature that would be better suited after the move to a cloud host is done.
+5. A colour scheme for the web components may be a nice addition. Currently, the colour schemes are defined by question (Anki verbiage is card type or note type) types. Yet, adding a new attribute to define the colour scheme may be a worthwhile feature.
 
 # Full Code Example
 
