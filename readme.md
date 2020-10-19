@@ -136,7 +136,7 @@ The available attributes are as followed for the custom html element.
 
 Please feel free to make any improvements to the project as you see fit by creating a Pull Request with a detailed description about the `issue` or `enhancement` that your PR will be adding to the project. Please also be sure to add a `how` section that gives a brief overview of how the `issue` or `enhancement` is being done.
 
-If you want to get an idea of what I am thinking of for improvements to the repo, please head over to the [#Improvements] section. It's, roughly, listed from most important to least important.
+If you want to get an idea of what I am thinking of for improvements to the repo, please head over to the [Improvements](#Improvements) section. It's, roughly, listed from most important to least important.
 
 ## Please Notice
 
