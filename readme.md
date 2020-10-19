@@ -138,7 +138,7 @@ Please feel free to make any improvements to the project as you see fit by creat
 
 ## Please Notice
 
-This project uses Typescript, which means that any code found in the `bundle` or `dist` directories are computer generated and will be trashed and recreated each time the Typescript files are transpiled. If you are new to Typescript please familarize yourself with [the basics](https://code.tutsplus.com/tutorials/typescript-for-beginners-getting-started--cms-29329). I'd hate for someone to spend a long time on great contribution but be unaware that the Javascript code is computer generated.
+This project uses Typescript, which means that any code found in the `bundle` or `dist` directories are computer generated and will be trashed and recreated each time the Typescript files are transpiled. If you are new to Typescript please familarize yourself with [the basics](https://code.tutsplus.com/tutorials/typescript-for-beginners-getting-started--cms-29329). I'd hate for someone to spend a long time on a great contribution but be unaware that the Javascript code is computer generated.
 
 # Current Issues
 
