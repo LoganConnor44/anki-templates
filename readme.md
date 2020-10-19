@@ -132,6 +132,14 @@ The available attributes are as followed for the custom html element.
         * `pinyin`
         * `zhuyin`
 
+# Contributing
+
+Please feel free to make any improvements to the project as your see fit by creating a Pull Request with a detailed description about the `issue` or `enhancement` that your PR will be adding to the project. Please also be sure to add a `how` section that gives a brief overview of how the `issue` or `enhancement` is being done.
+
+## Please Notice
+
+This project uses Typescript, which means that any code found in the `bundle` or `dist` directories are computer generated and will be trashed and recreated each time the Typescript files are transpiled. If you are new to Typescript please familarize yourself with [the basics](https://code.tutsplus.com/tutorials/typescript-for-beginners-getting-started--cms-29329). I'd hate for someone to spend a long time on great contribution but be unaware that the Javascript code is is computer generated.
+
 # Current Issues
 
 1. Code needs to be copy/pasted into each Card Type (Note). There is a plan to host the web component on a cloud platform that will enable users to pull it in via `<link>`.
@@ -140,9 +148,11 @@ The available attributes are as followed for the custom html element.
 
 # Improvements
 
-1. A `typing` type card is being developed utilizing Anki's `{{type:FIELD_NAME_HERE}}` functionality.
-2. Ease-in animation and a dark background could be added so users don't occasionally see a flash of default background colour when the application is loading.
-3. A skeleton card could be created (skeleton cards are essentially a newer version of a loading screen). But, the actual delay is minimal at the moment. This is a feature that would be better suited after the move to a cloud host is done.
+1. I'm currently separating the logic so this repo isn't just one monolith. After separating the files, I'm having some issues with the transpiling and bundling step from our Typescript files to a working Web Component. I think it has to do with small inconsistencies with Typescript, ES, ES2015, and Web Components. Because of this - I'm probably also going to begin using StencilJs to handle the component creation for me, instead of doing it all without a library.
+    * I could be running into [this issue.](https://github.com/microsoft/TypeScript/issues/12949) After moving past this error I figured I should just let a library handle creating the Web Component (along with the transpiling and bundling) to make my life easier.
+2. A `typing` type card is being developed utilizing Anki's `{{type:FIELD_NAME_HERE}}` functionality.
+3. Ease-in animation and a dark background could be added so users don't occasionally see a flash of default background colour when the application is loading.
+4. A skeleton card could be created (skeleton cards are essentially a newer version of a loading screen). But, the actual delay is minimal at the moment. This is a feature that would be better suited after the move to a cloud host is done.
 
 # Full Code Example
 
