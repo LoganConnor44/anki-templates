@@ -38,7 +38,7 @@ This project can make your Chinese cards look nice by copying/pasting code into 
     cardType='tones'
     cardOrientation='question' />
 
-<!--some code omitted-->
+<!--remainder of code omitted-->
 ```
 Click [here](#Full-Code-Example) to see the full example)
 
