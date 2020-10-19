@@ -681,10 +681,10 @@ class BeautifyChineseStudy extends HTMLElement {
         return phonic;
     }
     get pinyin() {
-        return this.damn(PhoneticType.PINYIN, this.numberedPinyin);
+        return this.createPhonic(PhoneticType.PINYIN, this.numberedPinyin);
     }
     get zhuyin() {
-        return this.damn(PhoneticType.ZHUYIN, this.numberedPinyin);
+        return this.createPhonic(PhoneticType.ZHUYIN, this.numberedPinyin);
     }
     createStyles() {
         return `
@@ -1033,7 +1033,7 @@ class BeautifyChineseStudy extends HTMLElement {
         }
     }
     ;
-    damn(phonicType, fuckIt) {
+    createPhonic(phonicType, phonicValue) {
         const isPinyin = (value) => toBoolean(value.search(/^[a-zA-Z0-9\s]*$/));
         const containsNumerics = (value) => toBoolean(value.search(/\d/));
         const parseTone = (value) => value === ' ' || value === '' ? 5 : parseInt(value);
@@ -1154,7 +1154,7 @@ class BeautifyChineseStudy extends HTMLElement {
             }
             return result;
         };
-        return hanziToPhoneticCharacters(phonicType, fuckIt);
+        return hanziToPhoneticCharacters(phonicType, phonicValue);
     }
     createStrokeOrderCharacter() {
         let delayBetweenAnimations = 500;

@@ -704,11 +704,11 @@ class BeautifyChineseStudy extends HTMLElement {
 	}
 
 	get pinyin() {
-		return this.damn(PhoneticType.PINYIN, this.numberedPinyin);
+		return this.createPhonic(PhoneticType.PINYIN, this.numberedPinyin);
 	}
 
 	get zhuyin() {
-		return this.damn(PhoneticType.ZHUYIN, this.numberedPinyin);
+		return this.createPhonic(PhoneticType.ZHUYIN, this.numberedPinyin);
 	}
 
 	private createStyles() {
@@ -1092,7 +1092,7 @@ class BeautifyChineseStudy extends HTMLElement {
 		}
 	};
 
-	private damn(phonicType: PhoneticType, fuckIt: string) {
+	private createPhonic(phonicType: PhoneticType, phonicValue: string) {
 		const isPinyin = (value: string): boolean => toBoolean(value.search(/^[a-zA-Z0-9\s]*$/));
 		const containsNumerics = (value: string): boolean => toBoolean(value.search(/\d/));
 		const parseTone = (value: string): number => value === ' ' || value === '' ? 5 : parseInt(value);
@@ -1229,7 +1229,7 @@ class BeautifyChineseStudy extends HTMLElement {
 		};
 
 
-		return hanziToPhoneticCharacters(phonicType, fuckIt);
+		return hanziToPhoneticCharacters(phonicType, phonicValue);
 	}
 
 	createStrokeOrderCharacter() {
