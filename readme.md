@@ -134,7 +134,7 @@ The available attributes are as followed for the custom html element.
 
 # Contributing
 
-Please feel free to make any improvements to the project as your see fit by creating a Pull Request with a detailed description about the `issue` or `enhancement` that your PR will be adding to the project. Please also be sure to add a `how` section that gives a brief overview of how the `issue` or `enhancement` is being done.
+Please feel free to make any improvements to the project as you see fit by creating a Pull Request with a detailed description about the `issue` or `enhancement` that your PR will be adding to the project. Please also be sure to add a `how` section that gives a brief overview of how the `issue` or `enhancement` is being done.
 
 ## Please Notice
 
