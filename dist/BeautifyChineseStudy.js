@@ -754,7 +754,7 @@ class BeautifyChineseStudy extends HTMLElement {
 						<div id='anki-background'>
 							<div id='chinese-card'>
 								<div id='chinese-card-content'>
-									<p>${this.simplified}</p>
+									<p>${this.traditional}</p>
 								</div>
 								<div id='chinese-card-type'>
 									<p id='colour-scheme'>${this.cardType.toUpperCase()}</p>
