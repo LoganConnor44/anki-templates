@@ -16,8 +16,8 @@ This codebase is a solution for making Chinese study, through Anki, more enjoyab
 
 This project can make your Chinese cards look nice by copying/pasting a few lines of code into your Anki template. To do this follow the guide below:
 1. Copy the `script` tag below and paste it into your Anki template.
-    * `<script type="module" 
-    src="https://cdn.jsdelivr.net/npm/beautify-chinese-study@1.0.0/dist/beautify-chinese-study/beautify-chinese-study.esm.js"></script>`
+    * `<script>var script = document.createElement('script');script.setAttribute('type', 'module');script.setAttribute('src', 'https://cdn.jsdelivr.net/npm/beautify-chinese-study@1.0.0/dist/beautify-chinese-study/beautify-chinese-study.esm.js');document.body.appendChild(script);</script>`
+        * Normally, this script tag would be shorter, but Anki's Web Viewer doesn't handle scripts the way other browsers does.
 2. Copy the `style` tag below and paste it into your template OR paste it the styling section of your Anki Card.
     * `<style> /*desktop anki*/body {margin: 0;}/*ankidroid*/#content {margin: 0;}</style>`
 3. Copy the below `material-beautify-chinese-study` tag and paste it into your Anki card. Be sure to input your own Anki Field name.
@@ -43,8 +43,12 @@ A full example is found below:
         margin: 0;
     }
 </style>
-<script type="module" 
-    src="https://cdn.jsdelivr.net/npm/beautify-chinese-study@latest/dist/beautify-chinese-study/beautify-chinese-study.esm.js"></script>
+<script>
+    var script = document.createElement('script');
+    script.setAttribute('type', 'module');
+    script.setAttribute('src', 'https://cdn.jsdelivr.net/npm/beautify-chinese-study@1.0.0/dist/beautify-chinese-study/beautify-chinese-study.esm.js');
+    document.body.appendChild(script);
+</script>
 <material-beautify-chinese-study simplified='{{text:Simplified}}'
     traditional='{{text:Traditional}}'
     numbered-pinyin='{{text:Pinyin}}'
