@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+    <title>Stencil Component Starter</title>
+
+    <script type="module" src="/build/beautify-chinese-study.esm.js"></script>
+    <script nomodule src="/build/beautify-chinese-study.js"></script>
+  </head>
+  <body>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+    </style>
+    <material-beautify-chinese-study simplified='天气'
+      traditional='天氣'
+      numbered-pinyin='tian1qi4'
+      card-type='writing'
+      meaning='weather'
+      card-orientation='answer'
+      preferred-phonic='zhuyin' />
+  </body>
+</html>

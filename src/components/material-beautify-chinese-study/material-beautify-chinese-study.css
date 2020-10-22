@@ -1,0 +1,65 @@
+:host {
+  display: flex; 
+  flex-grow: 1; 
+  height: 100vh;
+  background-color: black;
+}
+
+#anki-background {
+  display: flex;
+  flex-grow: 1;
+  padding-left: 3em;
+  padding-right: 3em;	
+}
+
+#chinese-card {
+  display: flex;
+  flex: 1;
+  height: 65vh;
+  align-items: center;
+  align-self: center;
+  flex-flow: row nowrap;
+  border-radius: 15px;
+  padding: 1em;
+}
+
+#chinese-card-content {
+  flex: 100 0 0;
+  text-align: center;
+}
+
+#chinese-card-type {
+  flex: 0 10 0;
+  align-self: flex-start;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  padding: 0.5em;
+  font-family: "Courier New", Courier, monospace;
+  overflow-wrap: break-word;
+  border-radius: 3px;
+  opacity: 50%;
+}
+
+#chinese-card-content > p {
+  font-size: xx-large;
+}
+
+#chinese-card-content > #english-meaning {
+  font-size: smaller
+}
+
+#chinese-card-type > p {
+  font-size: large;
+  margin: 0;
+  padding: 0;
+}
+
+#chinese-card-content > p > ruby > a {
+  text-decoration: none; 
+  color: inherit;
+}
+
+#chinese-card-content > p > a {
+  text-decoration: none; 
+  color: inherit;
+}
