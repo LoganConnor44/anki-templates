@@ -33,15 +33,15 @@ This project can make your Chinese cards look nice by copying/pasting a few line
 A full example is found below:
 ```html
 <style>
-    /*desktop anki*/
-    body {
-        margin: 0;
-    }
+	/*desktop anki*/
+	body {
+		margin: 0;
+	}
 
-    /*ankidroid*/
-    #content {
-        margin: 0;
-    }
+	/*ankidroid*/
+	#content {
+		margin: 0;
+	}
 </style>
 <script>
 	if (!document.querySelector('#import-script')) {
@@ -53,12 +53,12 @@ A full example is found below:
 	}
 </script>
 <material-beautify-chinese-study simplified='{{text:Simplified}}'
-    traditional='{{text:Traditional}}'
-    numbered-pinyin='{{text:Pinyin}}'
-    meaning='{{text:Meaning}}'
-    card-type='tones'
-    card-orientation='question' 
-    preferred-phonic='zhuyin' />
+	traditional='{{text:Traditional}}'
+	numbered-pinyin='{{text:Pinyin}}'
+	meaning='{{text:Meaning}}'
+	card-type='tones'
+	card-orientation='question' 
+	preferred-phonic='zhuyin' />
 ```
 
 # How
