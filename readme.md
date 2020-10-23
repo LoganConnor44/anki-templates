@@ -86,7 +86,7 @@ While this project handles most of the styling for the user, there is styling th
 
 # Features
 
-Aside from making your flashcards look pretty, this project has three note-worthy features:
+Aside from making your flashcards look beautiful, this project has three note-worthy features:
 1. Stroke Order Animation
     * On the answer side of the writing cards, the hanzi will animate the stroke order by default.
 2. Pleco Integration
