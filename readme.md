@@ -98,6 +98,20 @@ Aside from making your flashcards look beautiful, this project has three note-wo
 3. Zhuyin Characters
     * The project can convert your numbered pinyin into zhuyin characters.
 
+# Contributing
+
+Please feel free to make any improvements to the project as you see fit by creating a Pull Request with a detailed description about the `issue` or `enhancement` that your PR will be adding to the project. Please also be sure to add a `how` section that gives a brief overview of how the `issue` or `enhancement` is being done.
+
+If you want to get an idea of what I am thinking of for improvements to the repo, please head over to the [Improvements](#Improvements) section. It's, roughly, listed from most important to least important.
+
+## Please Notice
+
+This project uses Typescript, which means that any code found in the `dist` directory is computer generated and will be trashed and recreated each time the Typescript files are transpiled. If you are new to Typescript please familarize yourself with [the basics](https://code.tutsplus.com/tutorials/typescript-for-beginners-getting-started--cms-29329). I'd hate for someone to spend a long time on a great contribution but be unaware that the Javascript code is computer generated.
+
+## StencilJs
+
+This project is leveraging the StencilJs library to create Web Components in Typescript.
+
 # Current Issues
 
 1. Accented pinyin has not been tested. I plan to add this because I'm sure most users have accented pinyin, rather than numbered, but this is something I don't have with my decks and haven't spent time on yet.
@@ -107,7 +121,8 @@ Aside from making your flashcards look beautiful, this project has three note-wo
 
 1. A `typing` type card is being developed utilizing Anki's `{{type:FIELD_NAME_HERE}}` functionality.
 2. Ease-in animation and a dark background could be added so users don't occasionally see a flash of default background colour when the application is loading.
-3. A skeleton card could be created (skeleton cards are essentially a newer version of a loading screen). But, the actual delay is minimal at the moment.
+3. A skeleton card could be created (skeleton cards are essentially a newer version of a loading screen). But, the actual delay is minimal at the moment. 
+5. A colour scheme for the web components may be a nice addition. Currently, the colour schemes are defined by question (Anki verbiage is card type or note type) types. Yet, adding a new attribute to define the colour scheme may be a worthwhile feature. This could be achieved, while also having a default scheme for each question type so if the user is okay with the default scheme no additional attributes would need to be set.
 
 ----------------
 # StencilJs Document That Is Helpful
