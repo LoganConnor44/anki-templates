@@ -14,7 +14,7 @@ This codebase is a solution for making Chinese study, through Anki, more enjoyab
 
 # tl;dr
 
-This project can make your Chinese cards look nice by copying/pasting a few lines of code into your Anki template. To do this follow the guide below:
+This project can make your Chinese cards look nice in three easy steps by copying/pasting a few lines of code into your Anki template. To do this follow the guide below:
 1. Copy the `script` tag below and paste it into your Anki template.
     * `<script>if (!document.querySelector('#import-script')) {var script = document.createElement('script');script.setAttribute('id', 'import-script');script.setAttribute('type', 'module');script.setAttribute('src', 'https://cdn.jsdelivr.net/npm/beautify-chinese-study@1.0.0/dist/beautify-chinese-study/beautify-chinese-study.esm.js');document.body.appendChild(script);}</script>`
         * Normally, this script tag would be shorter, but Anki's Web Viewer doesn't handle scripts like other Web Viewers / browsers.
