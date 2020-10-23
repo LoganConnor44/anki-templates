@@ -1,6 +1,6 @@
 # Purpose
 
-This codebase is a solution for making Chinese study, through Anki, more enjoyable by making the flashcards more presentable.
+This codebase is a solution for making Chinese study, through Anki, more enjoyable by making the flashcards beautiful.
 
 # Available Card Types And Styling
 
