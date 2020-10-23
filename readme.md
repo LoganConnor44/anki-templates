@@ -89,7 +89,7 @@ While this project handles most of the styling for the user, there is styling th
 Aside from making your flashcards look beautiful, this project has three note-worthy features:
 1. Stroke Order Animation
     * On the answer side of the writing cards, the hanzi will animate the stroke order by default.
-2. Pleco Integration
+2. Pleco Integration - mobile only
     * At any time, the user can click the hanzi they are shown and the card will automatically open Pleco (very popular dictionary mobile application).
 3. Zhuyin Characters
     * The project can convert your numbered pinyin into zhuyin characters.
