@@ -44,12 +44,12 @@ A full example is found below:
     }
 </style>
 <script>
-	if (!document.querySelector('#import-script')) {
-        var script = document.createElement('script');
-        script.setAttribute('id', 'import-script');
-        script.setAttribute('type', 'module');
-        script.setAttribute('src', 'https://cdn.jsdelivr.net/npm/beautify-chinese-study@1.0.0/dist/beautify-chinese-study/beautify-chinese-study.esm.js');
-        document.body.appendChild(script);
+    if (!document.querySelector('#import-script')) {
+		var script = document.createElement('script');
+		script.setAttribute('id', 'import-script');
+		script.setAttribute('type', 'module');
+		script.setAttribute('src', 'https://cdn.jsdelivr.net/npm/beautify-chinese-study@1.0.0/dist/beautify-chinese-study/beautify-chinese-study.esm.js');
+		document.body.appendChild(script);
     }
 </script>
 <material-beautify-chinese-study simplified='{{text:Simplified}}'
