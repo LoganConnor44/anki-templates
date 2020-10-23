@@ -63,7 +63,7 @@ A full example is found below:
 
 # How
 
-Anki utilizes web technologies to generate its flashcards. This codebase is using a technology called Web Components that will allow users to only add three html tags to their Anki card templates, and the rest will handled automatically.
+Anki utilizes web technologies to generate its flashcards. This codebase is using a technology called Web Components that will allow users to only add three html tags to their Anki card templates, and the rest is handled automatically.
 * `style`
     * Used to override some top level styling by Anki Desktop and AnkiDroid.
 * `script`
