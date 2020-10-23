@@ -20,7 +20,7 @@ This project can make your Chinese cards look nice by copying/pasting a few line
         * Normally, this script tag would be shorter, but Anki's Web Viewer doesn't handle scripts like other Web Viewers / browsers.
 2. Copy the `style` tag below and paste it into your template OR paste it the styling section of your Anki Card.
     * `<style> /*desktop anki*/body {margin: 0;}/*ankidroid*/#content {margin: 0;}</style>`
-3. Copy the below `material-beautify-chinese-study` tag and paste it into your Anki card. Be sure to input your own Anki Field names and take note of the card type that you are creating.
+3. Copy the below `material-beautify-chinese-study` tag and paste it into your Anki card. Be sure to input your own Anki Field names and take note of the card type that you are creating. Please remember to visit the api documentation [here](./src/components/material-beautify-chinese-study/readme.md) to better understand this element.
     ```html
     <material-beautify-chinese-study simplified='{{text:Simplified}}'
         traditional='{{text:Traditional}}'
@@ -29,7 +29,6 @@ This project can make your Chinese cards look nice by copying/pasting a few line
         card-type='tones'
         card-orientation='question' />
     ```
-	* Please remember to visit the api documentation [here](./src/components/material-beautify-chinese-study/readme.md) for a full understanding of this element.
 
 A full example is found below:
 ```html
