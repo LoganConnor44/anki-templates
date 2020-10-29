@@ -9,7 +9,9 @@
   display: flex;
   flex-grow: 1;
   padding-left: 3em;
-  padding-right: 3em;	
+  padding-right: 3em;
+  transition: background-color 500ms linear;
+	-webkit-transition: background-color 500ms linear;
 }
 
 #chinese-card {
@@ -21,11 +23,17 @@
   flex-flow: row nowrap;
   border-radius: 15px;
   padding: 1em;
+  transition: background-color 500ms linear;
+	-webkit-transition: background-color 500ms linear;
 }
 
 #chinese-card-content {
   flex: 100 0 0;
   text-align: center;
+  transition: all 500ms linear;
+  -webkit-transition: all 500ms linear;
+  animation: fadeIn 500ms linear;
+  -webkit-animation: fadeIn 500ms linear;
 }
 
 #chinese-card-type {
@@ -38,28 +46,52 @@
   overflow-wrap: break-word;
   border-radius: 3px;
   opacity: 50%;
-}
-
-#chinese-card-content > p {
-  font-size: xx-large;
-}
-
-#chinese-card-content > #english-meaning {
-  font-size: smaller
+  transition: all 500ms linear;
+  -webkit-transition: all 500ms linear;
+  animation: fadeIn 500ms linear;
+  -webkit-animation: fadeIn 500ms linear;
 }
 
 #chinese-card-type > p {
   font-size: large;
   margin: 0;
   padding: 0;
+  transition: all 500ms linear;
+	-webkit-transition: all 500ms linear;
 }
 
-#chinese-card-content > p > ruby > a {
+#english-meaning {
+  font-size: smaller;
+}
+
+#simplified-hanzi-primary {
+  font-size: xx-large;
   text-decoration: none; 
   color: inherit;
 }
 
-#chinese-card-content > p > a {
+#traditional-hanzi-primary {
+  font-size: xx-large;
   text-decoration: none; 
   color: inherit;
+}
+
+#phonetic {
+  font-size: medium;
+}
+
+#pleco-link {
+  font-size: xx-large;
+  text-decoration: none; 
+  color: inherit;
+}
+
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+@-webkit-keyframes fadeIn {
+	0% {opacity: 0;}
+  100% {opacity: 1;}
 }

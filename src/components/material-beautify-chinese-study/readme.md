@@ -9,6 +9,7 @@
 
 | Property          | Attribute          | Description                                                                                | Type     | Default     |
 | ----------------- | ------------------ | ------------------------------------------------------------------------------------------ | -------- | ----------- |
+| `ankiDroidJs`     | `anki-droid-js`    |                                                                                            | `string` | `undefined` |
 | `cardOrientation` | `card-orientation` | Recognized card orientations: `question` \| `answer`                                       | `string` | `undefined` |
 | `cardType`        | `card-type`        | Recognized card types: `recognition` \| `traditional` \| `tones` \| `writing` \| `meaning` | `string` | `undefined` |
 | `meaning`         | `meaning`          | All English language words allowed                                                         | `string` | `undefined` |

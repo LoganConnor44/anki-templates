@@ -16,13 +16,29 @@
             min-height: 100vh;
             flex-direction: column;
         }
+        @keyframes fade-out {
+          from {opacity: 1}
+          to {opacity: 0}
+        }
     </style>
-    <material-beautify-chinese-study simplified='天气'
+    <material-beautify-chinese-study id='asdf'
+      simplified='天气'
       traditional='天氣'
       numbered-pinyin='tian1qi4'
-      card-type='writing'
+      card-type='traditional'
       meaning='weather'
-      card-orientation='answer'
+      card-orientation='question'
       preferred-phonic='zhuyin' />
+
+      <script>
+        //setTimeout(function(){ document.querySelector('material-beautify-chinese-study').setAttribute('card-orientation', 'answer') }, 3000);
+      </script>
+
+  <script>
+    window.onhashchange = () => {
+      document.body.style.animation = 'fade-out';
+      console.log('asdf');
+    }
+  </script>
   </body>
 </html>

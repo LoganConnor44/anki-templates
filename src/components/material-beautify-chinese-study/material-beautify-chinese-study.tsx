@@ -4,12 +4,26 @@ import Vowel from '../../phonetics/Vowel';
 import Zhuyin from '../../phonetics/Zhuyin';
 import HanziWriter  from 'hanzi-writer';
 
+interface api {
+	buttonAnswerEase1: Function,
+	buttonAnswerEase2: Function,
+	buttonAnswerEase3: Function,
+	buttonAnswerEase4: Function,
+	buttonAnswerEase5: Function
+};
+
 @Component({
 	tag: 'material-beautify-chinese-study',
 	styleUrl: 'material-beautify-chinese-study.css',
 	shadow: true,
 })
 export class MaterialBeautifyChineseStudy {
+
+	
+	private _ankiApi: api;
+
+	@Prop()
+	ankiDroidJs: string;
 
 	/**
 	 *	Recognized card types: `recognition` | `traditional` | `tones` | `writing` | `meaning`
@@ -49,6 +63,16 @@ export class MaterialBeautifyChineseStudy {
 
 	@Element()
 	element: HTMLElement;
+
+	get ankiApi(): any {
+		return this._ankiApi;
+	}
+
+	set ankiApi(value: any) {
+		if (this.ankiDroidJs !== null) {
+			this._ankiApi = JSON.parse(value);
+		} 
+	}
 
 	getCardType(): string {
 		if (this.cardType !== null) {
@@ -118,13 +142,13 @@ export class MaterialBeautifyChineseStudy {
 		return phonic;
 	}
 	
-	private setColourSchemes (questionType: string): void {
+	private setColourSchemes (): void {
 		let body: HTMLElement = this.element.shadowRoot.querySelector('#anki-background');
 		let card: HTMLElement = this.element.shadowRoot.querySelector('#chinese-card');
 		let cardType: HTMLElement = this.element.shadowRoot.querySelector('#chinese-card-type');
 		let cardContent: HTMLElement = this.element.shadowRoot.querySelector('#chinese-card-content');
 	
-		switch (questionType) {
+		switch (this.getCardType()) {
 	
 			case 'traditional':
 				var darkest = '#264653';
@@ -229,6 +253,137 @@ export class MaterialBeautifyChineseStudy {
 	
 				cardContent.style.textShadow = '2px 2px ' + brightestRGB
 	
+				break;
+		}
+	};
+
+	private setTonesDivsToInvisible(): void {
+		let traditionalHanziPrimary: HTMLElement = this.element.shadowRoot.querySelector('#traditional-hanzi-primary');
+		let traditionalHanziSecondary: HTMLElement = this.element.shadowRoot.querySelector('#traditional-hanzi-secondary');
+		let meaning: HTMLElement = this.element.shadowRoot.querySelector('#english-meaning');
+		let simplifiedHanziSecondary: HTMLElement = this.element.shadowRoot.querySelector('#simplified-hanzi-secondary');
+		let phonetic: HTMLElement = this.element.shadowRoot.querySelector('#phonetic');
+
+		traditionalHanziPrimary.style.display = 'none';
+		simplifiedHanziSecondary.style.display = 'none';
+		traditionalHanziSecondary.style.display = 'none';
+		meaning.style.display = 'none';
+
+		if (this.getCardOrientation() === 'question') {
+			phonetic.style.display = 'none';
+		}
+		if (this.getCardOrientation() === 'answer') {
+			phonetic.style.display = 'block';
+		}
+	}
+
+	private setRecognitionDivsToInvisible(): void {
+		let traditionalHanziPrimary: HTMLElement = this.element.shadowRoot.querySelector('#traditional-hanzi-primary');
+		let traditionalHanziSecondary: HTMLElement = this.element.shadowRoot.querySelector('#traditional-hanzi-secondary');
+		let meaning: HTMLElement = this.element.shadowRoot.querySelector('#english-meaning');
+		let simplifiedHanziSecondary: HTMLElement = this.element.shadowRoot.querySelector('#simplified-hanzi-secondary');
+		let phonetic: HTMLElement = this.element.shadowRoot.querySelector('#phonetic');
+
+		traditionalHanziPrimary.style.display = 'none';
+		simplifiedHanziSecondary.style.display = 'none';
+		traditionalHanziSecondary.style.display = 'none';
+
+		if (this.getCardOrientation() === 'question') {
+			phonetic.style.display = 'none';
+			meaning.style.display = 'none';
+		}
+		if (this.getCardOrientation() === 'answer') {
+			phonetic.style.display = 'block';
+			meaning.style.display = 'block';
+		}
+	}
+
+	private setWritingDivsToInvisible(): void {
+		let traditionalHanziPrimary: HTMLElement = this.element.shadowRoot.querySelector('#traditional-hanzi-primary');
+		let simplifiedHanziPrimary: HTMLElement = this.element.shadowRoot.querySelector('#simplified-hanzi-primary');
+		let traditionalHanziSecondary: HTMLElement = this.element.shadowRoot.querySelector('#traditional-hanzi-secondary');
+		let meaning: HTMLElement = this.element.shadowRoot.querySelector('#english-meaning');
+		let simplifiedHanziSecondary: HTMLElement = this.element.shadowRoot.querySelector('#simplified-hanzi-secondary');
+		let phonetic: HTMLElement = this.element.shadowRoot.querySelector('#phonetic');
+
+		simplifiedHanziPrimary.style.display = 'none';
+		traditionalHanziPrimary.style.display = 'none';
+		meaning.style.display = 'none';
+		traditionalHanziSecondary.style.display = 'none';
+		simplifiedHanziSecondary.style.display = 'none';
+
+		if (this.getCardOrientation() === 'question') {
+			phonetic.style.fontSize = 'xx-large';
+		}
+		if (this.getCardOrientation() === 'answer') {
+			phonetic.style.display = 'none';
+		}
+	}
+
+	private setTraditionalDivsToInvisible(): void {
+		let simplifiedHanziPrimary: HTMLElement = this.element.shadowRoot.querySelector('#simplified-hanzi-primary');
+		let traditionalHanziSecondary: HTMLElement = this.element.shadowRoot.querySelector('#traditional-hanzi-secondary');
+		let meaning: HTMLElement = this.element.shadowRoot.querySelector('#english-meaning');
+		let simplifiedHanziSecondary: HTMLElement = this.element.shadowRoot.querySelector('#simplified-hanzi-secondary');
+		let phonetic: HTMLElement = this.element.shadowRoot.querySelector('#phonetic');
+
+		simplifiedHanziPrimary.style.display = 'none';
+		meaning.style.display = 'none';
+		traditionalHanziSecondary.style.display = 'none';
+		
+		if (this.getCardOrientation() === 'question') {
+			phonetic.style.display = 'none';
+			meaning.style.display = 'none';
+			traditionalHanziSecondary.style.display = 'none';
+			simplifiedHanziSecondary.style.display = 'none';
+		}
+		if (this.getCardOrientation() === 'answer') {
+			phonetic.style.display = 'block';
+			simplifiedHanziSecondary.style.display = 'block';
+		}
+	}
+
+	private setMeaningDivsToInvisible(): void {
+		let traditionalHanziPrimary: HTMLElement = this.element.shadowRoot.querySelector('#traditional-hanzi-primary');
+		let traditionalHanziSecondary: HTMLElement = this.element.shadowRoot.querySelector('#traditional-hanzi-secondary');
+		let meaning: HTMLElement = this.element.shadowRoot.querySelector('#english-meaning');
+		let simplifiedHanziSecondary: HTMLElement = this.element.shadowRoot.querySelector('#simplified-hanzi-secondary');
+		let phonetic: HTMLElement = this.element.shadowRoot.querySelector('#phonetic');
+
+		traditionalHanziPrimary.style.display = 'none';
+		simplifiedHanziSecondary.style.display = 'none';
+		traditionalHanziSecondary.style.display = 'none';
+
+		if (this.getCardOrientation() === 'question') {
+			phonetic.style.display = 'none';
+			meaning.style.display = 'none';
+		}
+		if (this.getCardOrientation() === 'answer') {
+			phonetic.style.display = 'block';
+			meaning.style.display = 'block';
+		}
+	}
+
+	private setDivsThatNeedToBeInvisible(): void {
+		switch (this.getCardType()) {
+			case 'traditional':
+				this.setTraditionalDivsToInvisible();
+				break;
+	
+			case 'tones':
+				this.setTonesDivsToInvisible();
+				break;
+			
+			case 'writing':
+				this.setWritingDivsToInvisible();
+				break;
+
+			case 'recognition':
+				this.setRecognitionDivsToInvisible();
+				break;
+
+			case 'meaning':
+				this.setMeaningDivsToInvisible();
 				break;
 		}
 	};
@@ -436,21 +591,12 @@ export class MaterialBeautifyChineseStudy {
 	createTonesCardType(): HTMLElement {
 		let template: HTMLElement;
 		const type: string = this.getCardType().toUpperCase();
-		const simplified: string = this.getSimplified();
-		const phonic: string = this.getPhonic();
-		const plecoLink: string = `plecoapi://x-callback-url/df?hw=${simplified}`;
 
 		if (this.cardOrientation === 'question') {
 			template =
 				<div id='anki-background'>
 					<div id='chinese-card'>
-						<div id='chinese-card-content'>
-							<p>
-								<ruby>
-									{simplified}
-								</ruby>
-							</p>
-						</div>
+						{this.createCardContent()}
 						<div id='chinese-card-type'>
 							<p id='colour-scheme'>{type}</p>
 						</div>
@@ -462,18 +608,7 @@ export class MaterialBeautifyChineseStudy {
 			template =
 				<div id='anki-background'>
 					<div id='chinese-card'>
-						<div id='chinese-card-content'>
-							<p>
-								<ruby>
-									<a href={plecoLink}>
-										{simplified}
-									</a>
-									<rt id='phonetic-zhuyin'>
-										{phonic}
-									</rt>
-								</ruby>
-							</p>
-						</div>
+						{this.createCardContent()}
 						<div id='chinese-card-type'>
 							<p id='colour-scheme'>{type}</p>
 						</div>
@@ -487,19 +622,12 @@ export class MaterialBeautifyChineseStudy {
 	createTraditionalCardType(): HTMLElement {
 		let template: HTMLElement;
 		const type: string = this.getCardType().toUpperCase();
-		const simplified: string = this.getSimplified();
-		const traditional: string = this.getTraditional();
-		const phonic: string = this.getPhonic();
-		const plecoLink: string = `plecoapi://x-callback-url/df?hw=${traditional}`;
-
 
 		if (this.cardOrientation === 'question') {
 			template =
 				<div id='anki-background'>
 					<div id='chinese-card'>
-						<div id='chinese-card-content'>
-							<p>{traditional}</p>
-						</div>
+						{this.createCardContent()}
 						<div id='chinese-card-type'>
 							<p id='colour-scheme'>{type}</p>
 						</div>
@@ -511,19 +639,7 @@ export class MaterialBeautifyChineseStudy {
 			template =
 				<div id='anki-background'>
 					<div id='chinese-card'>
-						<div id='chinese-card-content'>
-							<p>
-								<ruby>
-									<a href={plecoLink}>
-										{traditional}
-									</a>
-									<rt id='phonetic-zhuyin'>
-										{phonic}
-									</rt>
-								</ruby>
-							</p>
-							<p>{simplified}</p>
-						</div>
+						{this.createCardContent()}
 						<div id='chinese-card-type'>
 							<p id="colour-scheme">{type}</p>
 						</div>
@@ -537,17 +653,12 @@ export class MaterialBeautifyChineseStudy {
 	createWritingCardType(): HTMLElement {
 		let template: HTMLElement;
 		const type: string = this.getCardType().toUpperCase();
-		const simplified: string = this.getSimplified();
-		const phonic: string = this.getPhonic();
-		const plecoLink: string = `plecoapi://x-callback-url/df?hw=${simplified}`;
 
 		if (this.cardOrientation === 'question') {
 			template =
 				<div id='anki-background'>
 					<div id='chinese-card'>
-						<div id='chinese-card-content'>
-							<p id='phonetic-zhuyin'>{phonic}</p>
-						</div>
+						{this.createCardContent()}
 						<div id='chinese-card-type'>
 							<p id='colour-scheme'>{type}</p>
 						</div>
@@ -559,15 +670,7 @@ export class MaterialBeautifyChineseStudy {
 			template =
 				<div id='anki-background'>
 					<div id='chinese-card'>
-						<div id='chinese-card-content'>
-							<p>
-								<a href={plecoLink}>
-									<div id='stroke-order'></div>
-								</a>
-								<br />
-								<br />
-							</p>
-						</div>
+						{this.createCardContent()}
 						<div id='chinese-card-type'>
 							<p id='colour-scheme'>{type}</p>
 						</div>
@@ -581,17 +684,12 @@ export class MaterialBeautifyChineseStudy {
 	createMeaningCardType(): HTMLElement {
 		let template: HTMLElement;
 		const type: string = this.getCardType().toUpperCase();
-		const simplified: string = this.getSimplified();
-		const meaning: string = this.getMeaning();
-		const plecoLink: string = `plecoapi://x-callback-url/df?hw=${simplified}`;
 
 		if (this.cardOrientation === 'question') {
 			template =
 				<div id='anki-background'>
 					<div id='chinese-card'>
-						<div id='chinese-card-content'>
-							<p>{simplified}</p>
-						</div>
+						{this.createCardContent()}
 						<div id='chinese-card-type'>
 							<p id='colour-scheme'>{type}</p>
 						</div>
@@ -603,16 +701,7 @@ export class MaterialBeautifyChineseStudy {
 			template =
 				<div id='anki-background'>
 					<div id='chinese-card'>
-						<div id='chinese-card-content'>
-							<p>
-								<a href={plecoLink}>
-									{simplified}
-								</a>
-								<br />
-								<br />
-								<p id='english-meaning'>{meaning}</p>
-							</p>
-						</div>
+						{this.createCardContent()}
 						<div id='chinese-card-type'>
 							<p id='colour-scheme'>{type}</p>
 						</div>
@@ -626,18 +715,12 @@ export class MaterialBeautifyChineseStudy {
 	createRegonitionCardType(): HTMLElement {
 		let template: HTMLElement;
 		const type: string = this.getCardType().toUpperCase();
-		const simplified: string = this.getSimplified();
-		const phonic: string = this.getPhonic();
-		const meaning: string = this.getMeaning();
-		const plecoLink: string = `plecoapi://x-callback-url/df?hw=${simplified}`;
 
 		if (this.cardOrientation === 'question') {
 			template = 
 				<div id='anki-background'>
 					<div id='chinese-card'>
-						<div id='chinese-card-content'>
-							<p>{simplified}</p>
-						</div>
+						{this.createCardContent()}
 						<div id='chinese-card-type'>
 							<p id='colour-scheme'>{type}</p>
 						</div>
@@ -649,19 +732,7 @@ export class MaterialBeautifyChineseStudy {
 			template =
 				<div id='anki-background'>
 					<div id='chinese-card'>
-						<div id='chinese-card-content'>
-							<p>
-								<ruby>
-									<a href={plecoLink}>
-										{simplified}
-									</a>
-									<rt class='phonetic-zhuyin'>
-										{phonic}
-									</rt>
-								</ruby>
-							</p>
-							<p id="english-meaning">{meaning}</p>
-						</div>
+						{this.createCardContent()}
 						<div id='chinese-card-type'>
 							<p id="colour-scheme">{type}</p>
 						</div>
@@ -672,9 +743,77 @@ export class MaterialBeautifyChineseStudy {
 		return template;
 	}
 
+	createAnswerButtons(): HTMLElement {
+		const buttons: HTMLElement = 
+			<div id='beautify-buttons'>
+				<button id='beautify-again'>again</button>
+				<button id='beautify-hard'>hard</button>
+				<button id='beautify-good'>good</button>
+				<button id='beautify-easy'>easy</button>
+			</div>
+		;
+		return buttons;
+	}
+
+	createCardContent(): HTMLElement {
+		const plecoLink: string = `plecoapi://x-callback-url/df?hw=${this.getSimplified()}`;
+
+		const content: HTMLElement = 
+			<div id='chinese-card-content'>
+				<p>
+					<ruby>
+						<a id='pleco-link' href={plecoLink}>
+							<div id='simplified-hanzi-primary'>{this.getSimplified()}</div>
+							<div id='traditional-hanzi-primary'>{this.getTraditional()}</div>
+						</a>
+						<rt id='phonetic'>
+							{this.getPhonic()}
+						</rt>
+					</ruby>
+				</p>
+				<p id='english-meaning'>{this.getMeaning()}</p>
+				<div id='stroke-order'></div>
+				<div id='simplified-hanzi-secondary'>{this.getSimplified()}</div>
+				<div id='traditional-hanzi-secondary'>{this.getTraditional()}</div>
+			</div>
+		;
+		return content;
+	}
+
+	defineCustomButtons() {
+		if (this.cardOrientation === 'answer') {
+			let beautifyAgain = this.element.shadowRoot.querySelector('#beautify-again');
+			beautifyAgain.setAttribute('onclick', 'buttonAnswerEase1()');
+
+			let beautifyHard = this.element.shadowRoot.querySelector('#beautify-hard');
+			beautifyHard.setAttribute('onclick', 'buttonAnswerEase2()');
+
+			let beautifyGood = this.element.shadowRoot.querySelector('#beautify-good');
+			beautifyGood.setAttribute('onclick', 'buttonAnswerEase3()');
+
+			let beautifyEasy = this.element.shadowRoot.querySelector('#beautify-easy');
+			beautifyEasy.setAttribute('onclick', 'buttonAnswerEase4()');
+		}
+	}
+
 	componentDidLoad() {
-		this.setColourSchemes(this.getCardType());
-		this.createStrokeOrderCharacter();
+		this.setColourSchemes();
+		if (this.getCardType() === 'writing' && this.getCardOrientation() == 'answer') {
+			this.createStrokeOrderCharacter();
+		}
+		if (this.ankiDroidJs !== undefined) {
+			this.ankiApi = this.ankiDroidJs;
+			//this.defineCustomButtons();
+		} else {
+			console.log('ankidriodjs is null');
+		}
+	}
+
+	componentDidRender() {
+		this.setDivsThatNeedToBeInvisible();
+		if (this.getCardType() === 'writing' && this.getCardOrientation() == 'answer') {
+			this.createStrokeOrderCharacter();
+		}
 	}
 
 	render() {
@@ -696,7 +835,6 @@ export class MaterialBeautifyChineseStudy {
 			case 'writing' :
 				template = this.createWritingCardType();
 				break;
-			
 		}
 		
 		return (
