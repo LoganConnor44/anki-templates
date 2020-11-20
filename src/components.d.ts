@@ -29,13 +29,25 @@ export namespace Components {
          */
         "preferredPhonic": string;
         /**
+          * Most forms of numbered pinyin allowed
+         */
+        "sentenceNumberedPinyin": string;
+        /**
           * All characters allowed
          */
         "simplified": string;
         /**
           * All characters allowed
          */
+        "simplifiedSentence": string;
+        /**
+          * All characters allowed
+         */
         "traditional": string;
+        /**
+          * All characters allowed
+         */
+        "traditionalSentence": string;
     }
 }
 declare global {
@@ -73,13 +85,25 @@ declare namespace LocalJSX {
          */
         "preferredPhonic"?: string;
         /**
+          * Most forms of numbered pinyin allowed
+         */
+        "sentenceNumberedPinyin"?: string;
+        /**
           * All characters allowed
          */
         "simplified"?: string;
         /**
           * All characters allowed
          */
+        "simplifiedSentence"?: string;
+        /**
+          * All characters allowed
+         */
         "traditional"?: string;
+        /**
+          * All characters allowed
+         */
+        "traditionalSentence"?: string;
     }
     interface IntrinsicElements {
         "material-beautify-chinese-study": MaterialBeautifyChineseStudy;
