@@ -44,6 +44,16 @@ export class MaterialBeautifyChineseStudy {
 	 * All characters allowed
 	 */
 	@Prop() 
+	simplifiedSentence: string;
+	/**
+	 * All characters allowed
+	 */
+	@Prop() 
+	traditionalSentence: string;
+	/**
+	 * All characters allowed
+	 */
+	@Prop() 
 	traditional: string;
 	/**
 	 * All English language words allowed
@@ -55,6 +65,11 @@ export class MaterialBeautifyChineseStudy {
 	 */
 	@Prop()
 	numberedPinyin: string;
+	/**
+	 * Most forms of numbered pinyin allowed
+	 */
+	@Prop()
+	sentenceNumberedPinyin: string;
 	/**
 	 * Recognized phonics: `pinyin` | `zhuyin`
 	 */
@@ -69,55 +84,76 @@ export class MaterialBeautifyChineseStudy {
 	}
 
 	set ankiApi(value: any) {
-		if (this.ankiDroidJs !== null) {
+		if (this.ankiDroidJs !== null && this.ankiDroidJs !== undefined) {
 			this._ankiApi = JSON.parse(value);
 		} 
 	}
 
 	getCardType(): string {
-		if (this.cardType !== null) {
+		if (this.cardType !== null && this.cardType !== undefined) {
 			this.cardType = this.cardType.toLowerCase().trim();
 		}
 		return this.cardType;
 	}
 
 	getCardOrientation() {
-		if (this.cardOrientation !== null) {
+		if (this.cardOrientation !== null && this.cardOrientation !== undefined) {
 			this.cardOrientation = this.cardOrientation.toLowerCase().trim();
 		}
 		return this.cardOrientation;
 	}
 
 	getSimplified() {
-		if (this.simplified !== null) {
+		if (this.simplified !== null && this.simplified !== undefined) {
 			this.simplified.trim();
 		}
 		return this.simplified;
 	}
 
+	getSimplifiedSentence() {
+		if (this.simplifiedSentence !== null && this.simplifiedSentence !== undefined) {
+			this.simplifiedSentence.trim();
+		}
+		return this.simplifiedSentence;
+	}
+
+	getTraditionalSentence() {
+		if (this.traditionalSentence !== null && this.traditionalSentence !== undefined) {
+			this.traditionalSentence.trim();
+		}
+		return this.traditionalSentence;
+	}
+
 	getTraditional() {
-		if (this.traditional !== null) {
+		if (this.traditional !== null && this.traditional !== undefined) {
 			this.traditional.trim();
 		}
 		return this.traditional;
 	}
 
 	getMeaning() {
-		if (this.meaning !== null) {
+		if (this.meaning !== null && this.meaning !== undefined) {
 			this.meaning.trim();
 		}
 		return this.meaning;
 	}
 
 	getNumberedPinyin() {
-		if (this.numberedPinyin !== null) {
+		if (this.numberedPinyin !== null && this.numberedPinyin !== undefined) {
 			this.numberedPinyin.trim();
 		}
 		return this.numberedPinyin;
 	}
 
+	getSentenceNumberedPinyin() {
+		if (this.sentenceNumberedPinyin !== null && this.sentenceNumberedPinyin !== undefined) {
+			this.sentenceNumberedPinyin.trim();
+		}
+		return this.sentenceNumberedPinyin;
+	}
+
 	getPreferredPhonic() {
-		if (this.preferredPhonic !== null) {
+		if (this.preferredPhonic !== null && this.preferredPhonic !== undefined) {
 			this.preferredPhonic.trim();
 		}
 		return this.preferredPhonic;
@@ -127,17 +163,17 @@ export class MaterialBeautifyChineseStudy {
 		return this.createPhonic(PhoneticType.PINYIN, this.numberedPinyin);
 	}
 
-	getZhuyin() {
-		return this.createPhonic(PhoneticType.ZHUYIN, this.numberedPinyin);
+	getZhuyin(value: string) {
+		return this.createPhonic(PhoneticType.ZHUYIN, value);
 	}
 
-	getPhonic() {
+	getPhonic(value: string) {
 		let phonic;
 		if (this.preferredPhonic === 'pinyin') {
 			phonic = this.getPinyin();
 		}
 		if (this.preferredPhonic === 'zhuyin') {
-			phonic = this.getZhuyin();
+			phonic = this.getZhuyin(value);
 		}
 		return phonic;
 	}
@@ -263,6 +299,7 @@ export class MaterialBeautifyChineseStudy {
 		let meaning: HTMLElement = this.element.shadowRoot.querySelector('#english-meaning');
 		let simplifiedHanziSecondary: HTMLElement = this.element.shadowRoot.querySelector('#simplified-hanzi-secondary');
 		let phonetic: HTMLElement = this.element.shadowRoot.querySelector('#phonetic');
+		let sentencePhonetic: HTMLElement = this.element.shadowRoot.querySelector('#sentence-phonetic');
 
 		traditionalHanziPrimary.style.display = 'none';
 		simplifiedHanziSecondary.style.display = 'none';
@@ -271,6 +308,7 @@ export class MaterialBeautifyChineseStudy {
 
 		if (this.getCardOrientation() === 'question') {
 			phonetic.style.display = 'none';
+			sentencePhonetic.style.display = 'none'
 		}
 		if (this.getCardOrientation() === 'answer') {
 			phonetic.style.display = 'block';
@@ -283,6 +321,7 @@ export class MaterialBeautifyChineseStudy {
 		let meaning: HTMLElement = this.element.shadowRoot.querySelector('#english-meaning');
 		let simplifiedHanziSecondary: HTMLElement = this.element.shadowRoot.querySelector('#simplified-hanzi-secondary');
 		let phonetic: HTMLElement = this.element.shadowRoot.querySelector('#phonetic');
+		let sentencePhonetic: HTMLElement = this.element.shadowRoot.querySelector('#sentence-phonetic');
 
 		traditionalHanziPrimary.style.display = 'none';
 		simplifiedHanziSecondary.style.display = 'none';
@@ -290,6 +329,7 @@ export class MaterialBeautifyChineseStudy {
 
 		if (this.getCardOrientation() === 'question') {
 			phonetic.style.display = 'none';
+			sentencePhonetic.style.display = 'none'
 			meaning.style.display = 'none';
 		}
 		if (this.getCardOrientation() === 'answer') {
@@ -305,18 +345,24 @@ export class MaterialBeautifyChineseStudy {
 		let meaning: HTMLElement = this.element.shadowRoot.querySelector('#english-meaning');
 		let simplifiedHanziSecondary: HTMLElement = this.element.shadowRoot.querySelector('#simplified-hanzi-secondary');
 		let phonetic: HTMLElement = this.element.shadowRoot.querySelector('#phonetic');
+		let sentencePhonetic: HTMLElement = this.element.shadowRoot.querySelector('#sentence-phonetic');
+		let simplifiedSentence: HTMLElement = this.element.shadowRoot.querySelector('#simplified-hanzi-sentence');
+		let traditionalSentence: HTMLElement = this.element.shadowRoot.querySelector('#traditional-hanzi-sentence');
 
 		simplifiedHanziPrimary.style.display = 'none';
 		traditionalHanziPrimary.style.display = 'none';
 		meaning.style.display = 'none';
 		traditionalHanziSecondary.style.display = 'none';
 		simplifiedHanziSecondary.style.display = 'none';
+		simplifiedSentence.style.display = 'none';
+		traditionalSentence.style.display = 'none';
 
 		if (this.getCardOrientation() === 'question') {
 			phonetic.style.fontSize = 'xx-large';
 		}
 		if (this.getCardOrientation() === 'answer') {
 			phonetic.style.display = 'none';
+			sentencePhonetic.style.display = 'none';
 		}
 	}
 
@@ -349,6 +395,7 @@ export class MaterialBeautifyChineseStudy {
 		let meaning: HTMLElement = this.element.shadowRoot.querySelector('#english-meaning');
 		let simplifiedHanziSecondary: HTMLElement = this.element.shadowRoot.querySelector('#simplified-hanzi-secondary');
 		let phonetic: HTMLElement = this.element.shadowRoot.querySelector('#phonetic');
+		let sentencePhonetic: HTMLElement = this.element.shadowRoot.querySelector('#sentence-phonetic');
 
 		traditionalHanziPrimary.style.display = 'none';
 		simplifiedHanziSecondary.style.display = 'none';
@@ -356,6 +403,7 @@ export class MaterialBeautifyChineseStudy {
 
 		if (this.getCardOrientation() === 'question') {
 			phonetic.style.display = 'none';
+			sentencePhonetic.style.display = 'none';
 			meaning.style.display = 'none';
 		}
 		if (this.getCardOrientation() === 'answer') {
@@ -516,7 +564,7 @@ export class MaterialBeautifyChineseStudy {
 		
 		const hanziToPhoneticCharacters = (phoneticType: PhoneticType, value: string): string => {
 			let result: string = '';
-			value = value.trim();
+			value = value.trim().toLowerCase();
 			value = value.replace(/['.!?]/g, '');
 			if (isPinyin(value)) {
 				result = processNumberedPinyin(phoneticType, value);
@@ -767,10 +815,17 @@ export class MaterialBeautifyChineseStudy {
 							<div id='traditional-hanzi-primary'>{this.getTraditional()}</div>
 						</a>
 						<rt id='phonetic'>
-							{this.getPhonic()}
+							{this.getPhonic(this.getNumberedPinyin())}
 						</rt>
 					</ruby>
 				</p>
+				<div id='sentence'>
+					<ruby>
+						<div id='simplified-hanzi-sentence'>{this.getSimplifiedSentence()}</div>
+						<div id='traditional-hanzi-sentence'>{this.getTraditionalSentence()}</div>
+						<rt id='sentence-phonetic'>{this.getPhonic(this.getSentenceNumberedPinyin())}</rt>
+					</ruby>
+				</div>
 				<p id='english-meaning'>{this.getMeaning()}</p>
 				<div id='stroke-order'></div>
 				<div id='simplified-hanzi-secondary'>{this.getSimplified()}</div>
