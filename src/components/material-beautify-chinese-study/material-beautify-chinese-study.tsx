@@ -300,11 +300,13 @@ export class MaterialBeautifyChineseStudy {
 		let simplifiedHanziSecondary: HTMLElement = this.element.shadowRoot.querySelector('#simplified-hanzi-secondary');
 		let phonetic: HTMLElement = this.element.shadowRoot.querySelector('#phonetic');
 		let sentencePhonetic: HTMLElement = this.element.shadowRoot.querySelector('#sentence-phonetic');
+		let traditionalSentence: HTMLElement = this.element.shadowRoot.querySelector('#traditional-hanzi-sentence');
 
 		traditionalHanziPrimary.style.display = 'none';
 		simplifiedHanziSecondary.style.display = 'none';
 		traditionalHanziSecondary.style.display = 'none';
 		meaning.style.display = 'none';
+		traditionalSentence.style.display = 'none';
 
 		if (this.getCardOrientation() === 'question') {
 			phonetic.style.display = 'none';
@@ -322,10 +324,12 @@ export class MaterialBeautifyChineseStudy {
 		let simplifiedHanziSecondary: HTMLElement = this.element.shadowRoot.querySelector('#simplified-hanzi-secondary');
 		let phonetic: HTMLElement = this.element.shadowRoot.querySelector('#phonetic');
 		let sentencePhonetic: HTMLElement = this.element.shadowRoot.querySelector('#sentence-phonetic');
+		let traditionalSentence: HTMLElement = this.element.shadowRoot.querySelector('#traditional-hanzi-sentence');
 
 		traditionalHanziPrimary.style.display = 'none';
 		simplifiedHanziSecondary.style.display = 'none';
 		traditionalHanziSecondary.style.display = 'none';
+		traditionalSentence.style.display = 'none';
 
 		if (this.getCardOrientation() === 'question') {
 			phonetic.style.display = 'none';
@@ -372,10 +376,19 @@ export class MaterialBeautifyChineseStudy {
 		let meaning: HTMLElement = this.element.shadowRoot.querySelector('#english-meaning');
 		let simplifiedHanziSecondary: HTMLElement = this.element.shadowRoot.querySelector('#simplified-hanzi-secondary');
 		let phonetic: HTMLElement = this.element.shadowRoot.querySelector('#phonetic');
+		let sentencePhonetic: HTMLElement = this.element.shadowRoot.querySelector('#sentence-phonetic');
+		let simplifiedSentence: HTMLElement = this.element.shadowRoot.querySelector('#simplified-hanzi-sentence');
+		let traditionalSentence: HTMLElement = this.element.shadowRoot.querySelector('#traditional-hanzi-sentence');
+		const doesTradSentHaveValue: boolean = traditionalSentence.innerHTML !== '';
+
+		if (doesTradSentHaveValue) {
+			simplifiedSentence.style.display = 'none';
+		}
 
 		simplifiedHanziPrimary.style.display = 'none';
 		meaning.style.display = 'none';
 		traditionalHanziSecondary.style.display = 'none';
+		sentencePhonetic.style.display = 'none';
 		
 		if (this.getCardOrientation() === 'question') {
 			phonetic.style.display = 'none';
@@ -396,10 +409,12 @@ export class MaterialBeautifyChineseStudy {
 		let simplifiedHanziSecondary: HTMLElement = this.element.shadowRoot.querySelector('#simplified-hanzi-secondary');
 		let phonetic: HTMLElement = this.element.shadowRoot.querySelector('#phonetic');
 		let sentencePhonetic: HTMLElement = this.element.shadowRoot.querySelector('#sentence-phonetic');
+		let traditionalSentence: HTMLElement = this.element.shadowRoot.querySelector('#traditional-hanzi-sentence');
 
 		traditionalHanziPrimary.style.display = 'none';
 		simplifiedHanziSecondary.style.display = 'none';
 		traditionalHanziSecondary.style.display = 'none';
+		traditionalSentence.style.display = 'none';
 
 		if (this.getCardOrientation() === 'question') {
 			phonetic.style.display = 'none';
