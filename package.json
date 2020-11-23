@@ -1,6 +1,6 @@
 {
   "name": "beautify-chinese-study",
-  "version": "1.1.31",
+  "version": "1.1.33",
   "description": "A package for making Chinese study more beautiful.",
   "repository": {
     "type": "git",
@@ -14,11 +14,11 @@
     "url": "https://github.com/LoganConnor44/anki-templates/issues"
   },
   "keywords": [
-    "anki", 
-    "chinese", 
-    "material design", 
-    "flash", 
-    "cards", 
+    "anki",
+    "chinese",
+    "material design",
+    "flash",
+    "cards",
     "flashcards"
   ],
   "main": "dist/index.cjs.js",
