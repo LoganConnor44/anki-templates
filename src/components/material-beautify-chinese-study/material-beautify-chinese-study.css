@@ -23,17 +23,13 @@
   flex-flow: row nowrap;
   border-radius: 15px;
   padding: 1em;
-  transition: background-color 500ms linear;
-	-webkit-transition: background-color 500ms linear;
+  animation: fadeIn 500ms linear;
+  -webkit-animation: fadeIn 500ms linear;
 }
 
 #chinese-card-content {
   flex: 100 0 0;
   text-align: center;
-  transition: all 500ms linear;
-  -webkit-transition: all 500ms linear;
-  animation: fadeIn 500ms linear;
-  -webkit-animation: fadeIn 500ms linear;
 }
 
 #chinese-card-type {
