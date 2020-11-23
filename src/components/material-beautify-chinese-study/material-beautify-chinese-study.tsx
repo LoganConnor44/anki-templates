@@ -229,23 +229,41 @@ export class MaterialBeautifyChineseStudy {
 				break;
 			
 			case 'writing':
-				var darkest = '#3A0CA3';
-				var darkestRBG = 'rgb(58, 12, 163, 0.3)';
-				var darker = '#7209B7';
-				var neutral = '#4361EE';
-				var brighter = '#4CC9F0';
-				var brightest = '#F72585';
+				// var darkest = '#3A0CA3';
+				// var darkestRBG = 'rgb(58, 12, 163, 0.3)';
+				// var darker = '#7209B7';
+				// var neutral = '#4361EE';
+				// var brighter = '#4CC9F0';
+				// var brightest = '#F72585';
+	
+				// body.style.backgroundColor = darker;
+	
+				// card.style.color = brighter;
+				// card.style.backgroundColor = brightest;
+				// card.style.boxShadow = '0px 0px 30px ' + darkest;
+	
+				// cardType.style.color = brighter;
+				// cardType.style.backgroundColor = neutral;
+	
+				// cardContent.style.textShadow = '2px 2px ' + darkestRBG;
+
+				var darkest = '#0B132B';
+				var darkestRBG = 'rgb(11, 19, 43, 0.3)';
+				var darker = '#1C2541';
+				var neutral = '#3A506B';
+				var brighter = '#5BC0BE';
+				var brightest = '#6FFFE9';
 	
 				body.style.backgroundColor = darker;
 	
-				card.style.color = brighter;
+				card.style.color = darker;
 				card.style.backgroundColor = brightest;
 				card.style.boxShadow = '0px 0px 30px ' + darkest;
 	
 				cardType.style.color = brighter;
 				cardType.style.backgroundColor = neutral;
 	
-				cardContent.style.textShadow = '2px 2px ' + darkestRBG;
+				cardContent.style.textShadow = '1.5px 1.5px ' + darkestRBG;
 	
 				break;
 
