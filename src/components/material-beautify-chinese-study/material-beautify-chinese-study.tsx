@@ -563,6 +563,10 @@ export class MaterialBeautifyChineseStudy {
 		};
 		
 		const hanziToPhoneticCharacters = (phoneticType: PhoneticType, value: string): string => {
+			if (value === undefined || value === null || value === '') {
+				return '';
+			}
+			
 			let result: string = '';
 			value = value.trim().toLowerCase();
 			value = value.replace(/['.!?]/g, '');
