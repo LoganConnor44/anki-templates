@@ -324,6 +324,30 @@ export class MaterialBeautifyChineseStudy {
 				cardContent.style.textShadow = '2px 2px ' + darkestRBG;
 		
 				break;
+
+			case 'audio':
+				var black = '#000000';
+				var blackRgb = 'rgb(0, 0, 0, 0.8)';
+				var darkest = '#352D39';
+				var darkestRBG = 'rgb(53, 45, 57, 0.3)';
+				var darker = '#6D435A';
+				var neutral = '#FF6978';
+				var brighter = '#B1EDE8';
+				var brighterRgb = 'rgb(177, 237, 232, 0.3)';
+				var brightest = '#FFFCF9';
+	
+				body.style.backgroundColor = darkest;
+	
+				card.style.color = darkest;
+				card.style.backgroundColor = neutral;
+				card.style.boxShadow = '0px 0px 30px ' + blackRgb;
+	
+				cardType.style.color = brightest;
+				cardType.style.backgroundColor = darker;
+	
+				cardContent.style.textShadow = '2px 2px ' + brighterRgb;
+		
+				break;
 		}
 	};
 
@@ -492,6 +516,54 @@ export class MaterialBeautifyChineseStudy {
 		}
 	}
 
+	private setAudioDivsToInvisible(): void {
+		let traditionalHanziPrimary: HTMLElement = this.element.shadowRoot.querySelector('#traditional-hanzi-primary');
+		let simplifiedHanziPrimary: HTMLElement = this.element.shadowRoot.querySelector('#simplified-hanzi-primary');
+		let traditionalHanziSecondary: HTMLElement = this.element.shadowRoot.querySelector('#traditional-hanzi-secondary');
+		let wordMeaning: HTMLElement = this.element.shadowRoot.querySelector('#single-word-meaning');
+		let sentenceMeaning: HTMLElement = this.element.shadowRoot.querySelector('#sentence-meaning');
+		let simplifiedHanziSecondary: HTMLElement = this.element.shadowRoot.querySelector('#simplified-hanzi-secondary');
+		let phonetic: HTMLElement = this.element.shadowRoot.querySelector('#phonetic');
+		let sentencePhonetic: HTMLElement = this.element.shadowRoot.querySelector('#sentence-phonetic');
+		let traditionalSentence: HTMLElement = this.element.shadowRoot.querySelector('#traditional-hanzi-sentence');
+		let simplifiedSentence: HTMLElement = this.element.shadowRoot.querySelector('#simplified-hanzi-sentence');
+		let audioAnimation: HTMLElement = this.element.shadowRoot.querySelector('#audio');
+
+		traditionalHanziPrimary.style.display = 'none';
+		simplifiedHanziPrimary.style.display = 'none';
+		simplifiedHanziSecondary.style.display = 'none';
+		traditionalHanziSecondary.style.display = 'none';
+		traditionalSentence.style.display = 'none';
+		simplifiedSentence.style.display = 'none';
+		wordMeaning.style.display = 'none';
+		phonetic.style.display = 'none';
+		sentencePhonetic.style.display = 'none';
+		sentenceMeaning.style.display = 'none';
+
+		if (this.getCardOrientation() === 'question') {
+			const availableAnimations: string[] = [
+				'echo-spinner',
+				'audio-line-spinner'
+			];
+			const randomAnimation: string = availableAnimations[Math.floor(Math.random() * availableAnimations.length)];
+			console.log(randomAnimation);
+			if (randomAnimation === 'audio-line-spinner') {
+				for (var i = 1; i <=5; i++) {
+					let rectangle = document.createElement('div');
+					rectangle.classList.add('rect' + i);
+					audioAnimation.appendChild(rectangle);
+				}
+			}
+			audioAnimation.className = randomAnimation;
+		}
+		if (this.getCardOrientation() === 'answer') {
+			sentencePhonetic.style.display = 'block';
+			simplifiedSentence.style.display = 'block';
+			simplifiedSentence.style.fontSize = 'x-large';
+			sentenceMeaning.style.display = 'block';
+		}
+	}
+
 	private setDivsThatNeedToBeInvisible(): void {
 		switch (this.getCardType()) {
 			case 'traditional':
@@ -516,6 +588,10 @@ export class MaterialBeautifyChineseStudy {
 
 			case 'sentence':
 				this.setSentenceDivsToInvisible();
+				break;
+
+			case 'audio':
+				this.setAudioDivsToInvisible();
 				break;
 		}
 	};
@@ -848,6 +924,37 @@ export class MaterialBeautifyChineseStudy {
 		return template;
 	}
 
+	createAudioCardType(): HTMLElement {
+		let template: HTMLElement;
+		const type: string = this.getCardType().toUpperCase();
+
+		if (this.cardOrientation === 'question') {
+			template =
+				<div id='anki-background'>
+					<div id='chinese-card'>
+						{this.createCardContent()}
+						<div id='chinese-card-type'>
+							<p id='colour-scheme'>{type}</p>
+						</div>
+					</div>
+				</div>
+			;
+		}
+		if (this.cardOrientation === 'answer') {
+			template =
+				<div id='anki-background'>
+					<div id='chinese-card'>
+						{this.createCardContent()}
+						<div id='chinese-card-type'>
+							<p id='colour-scheme'>{type}</p>
+						</div>
+					</div>
+				</div>
+			;
+		}
+		return template;
+	}
+
 	createMeaningCardType(): HTMLElement {
 		let template: HTMLElement;
 		const type: string = this.getCardType().toUpperCase();
@@ -952,6 +1059,7 @@ export class MaterialBeautifyChineseStudy {
 				<div id='stroke-order'></div>
 				<div id='simplified-hanzi-secondary'>{this.getSimplified()}</div>
 				<div id='traditional-hanzi-secondary'>{this.getTraditional()}</div>
+				<div id='audio'></div>
 			</div>
 		;
 		return content;
@@ -1014,6 +1122,9 @@ export class MaterialBeautifyChineseStudy {
 				break;
 			case 'sentence' :
 				template = this.createSentenceCardType();
+				break;
+			case 'audio' :
+				template = this.createAudioCardType();
 				break;
 		}
 		
