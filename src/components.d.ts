@@ -7,7 +7,6 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface MaterialBeautifyChineseStudy {
-        "ankiDroidJs": string;
         /**
           * Recognized card orientations: `question` | `answer`
          */
@@ -67,7 +66,6 @@ declare global {
 }
 declare namespace LocalJSX {
     interface MaterialBeautifyChineseStudy {
-        "ankiDroidJs"?: string;
         /**
           * Recognized card orientations: `question` | `answer`
          */
