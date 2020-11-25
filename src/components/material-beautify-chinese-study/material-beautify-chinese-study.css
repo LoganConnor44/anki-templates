@@ -56,8 +56,8 @@
 	-webkit-transition: all 500ms linear;
 }
 
-#english-meaning {
-  font-size: smaller;
+#english {
+  font-size: small;
 }
 
 #simplified-hanzi-primary {
@@ -70,6 +70,14 @@
   font-size: xx-large;
   text-decoration: none; 
   color: inherit;
+}
+
+#sentence {
+  font-size: medium;
+}
+
+#sentence-phonetic {
+  font-size: small;
 }
 
 #phonetic {

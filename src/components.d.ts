@@ -29,6 +29,10 @@ export namespace Components {
          */
         "preferredPhonic": string;
         /**
+          * All English language words allowed
+         */
+        "sentenceMeaning": string;
+        /**
           * Most forms of numbered pinyin allowed
          */
         "sentenceNumberedPinyin": string;
@@ -84,6 +88,10 @@ declare namespace LocalJSX {
           * Recognized phonics: `pinyin` | `zhuyin`
          */
         "preferredPhonic"?: string;
+        /**
+          * All English language words allowed
+         */
+        "sentenceMeaning"?: string;
         /**
           * Most forms of numbered pinyin allowed
          */

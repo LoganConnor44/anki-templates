@@ -15,6 +15,7 @@
 | `meaning`                | `meaning`                  | All English language words allowed                                                         | `string` | `undefined` |
 | `numberedPinyin`         | `numbered-pinyin`          | Most forms of numbered pinyin allowed                                                      | `string` | `undefined` |
 | `preferredPhonic`        | `preferred-phonic`         | Recognized phonics: `pinyin` \| `zhuyin`                                                   | `string` | `'pinyin'`  |
+| `sentenceMeaning`        | `sentence-meaning`         | All English language words allowed                                                         | `string` | `undefined` |
 | `sentenceNumberedPinyin` | `sentence-numbered-pinyin` | Most forms of numbered pinyin allowed                                                      | `string` | `undefined` |
 | `simplified`             | `simplified`               | All characters allowed                                                                     | `string` | `undefined` |
 | `simplifiedSentence`     | `simplified-sentence`      | All characters allowed                                                                     | `string` | `undefined` |
