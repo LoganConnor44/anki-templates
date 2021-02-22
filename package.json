@@ -14,11 +14,11 @@
     "url": "https://github.com/LoganConnor44/anki-templates/issues"
   },
   "keywords": [
-    "anki", 
-    "chinese", 
-    "material design", 
-    "flash", 
-    "cards", 
+    "anki",
+    "chinese",
+    "material design",
+    "flash",
+    "cards",
     "flashcards"
   ],
   "main": "dist/index.cjs.js",
@@ -42,7 +42,9 @@
   },
   "dependencies": {
     "@stencil/core": "^2.0.1",
-    "hanzi-writer": "^2.3.0"
+    "hanzi-writer": "^2.3.0",
+    "opencc": "^1.1.1",
+    "rollup-plugin-node-polyfills": "^0.2.1"
   },
   "license": "MIT"
 }
