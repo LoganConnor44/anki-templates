@@ -16,29 +16,22 @@
             min-height: 100vh;
             flex-direction: column;
         }
-        @keyframes fade-out {
-          from {opacity: 1}
-          to {opacity: 0}
-        }
     </style>
     <material-beautify-chinese-study id='asdf'
       simplified='天气'
+      simplified-sentence='今天天气很好'
+      traditional-sentence='今天天氣很好'
       traditional='天氣'
       numbered-pinyin='tian1qi4'
-      card-type='traditional'
+      sentence-numbered-pinyin='Jin1tian1 tian1qi4 hen3 hao3'
+      card-type='audio'
       meaning='weather'
-      card-orientation='question'
+      sentence-meaning='The weather is nice today.'
+      card-orientation='answer'
       preferred-phonic='zhuyin' />
 
       <script>
         //setTimeout(function(){ document.querySelector('material-beautify-chinese-study').setAttribute('card-orientation', 'answer') }, 3000);
-      </script>
-
-  <script>
-    window.onhashchange = () => {
-      document.body.style.animation = 'fade-out';
-      console.log('asdf');
-    }
-  </script>
+      </script>  
   </body>
 </html>

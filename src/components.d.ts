@@ -7,7 +7,6 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface MaterialBeautifyChineseStudy {
-        "ankiDroidJs": string;
         /**
           * Recognized card orientations: `question` | `answer`
          */
@@ -29,13 +28,29 @@ export namespace Components {
          */
         "preferredPhonic": string;
         /**
+          * All English language words allowed
+         */
+        "sentenceMeaning": string;
+        /**
+          * Most forms of numbered pinyin allowed
+         */
+        "sentenceNumberedPinyin": string;
+        /**
           * All characters allowed
          */
         "simplified": string;
         /**
           * All characters allowed
          */
+        "simplifiedSentence": string;
+        /**
+          * All characters allowed
+         */
         "traditional": string;
+        /**
+          * All characters allowed
+         */
+        "traditionalSentence": string;
     }
 }
 declare global {
@@ -51,7 +66,6 @@ declare global {
 }
 declare namespace LocalJSX {
     interface MaterialBeautifyChineseStudy {
-        "ankiDroidJs"?: string;
         /**
           * Recognized card orientations: `question` | `answer`
          */
@@ -73,13 +87,29 @@ declare namespace LocalJSX {
          */
         "preferredPhonic"?: string;
         /**
+          * All English language words allowed
+         */
+        "sentenceMeaning"?: string;
+        /**
+          * Most forms of numbered pinyin allowed
+         */
+        "sentenceNumberedPinyin"?: string;
+        /**
           * All characters allowed
          */
         "simplified"?: string;
         /**
           * All characters allowed
          */
+        "simplifiedSentence"?: string;
+        /**
+          * All characters allowed
+         */
         "traditional"?: string;
+        /**
+          * All characters allowed
+         */
+        "traditionalSentence"?: string;
     }
     interface IntrinsicElements {
         "material-beautify-chinese-study": MaterialBeautifyChineseStudy;

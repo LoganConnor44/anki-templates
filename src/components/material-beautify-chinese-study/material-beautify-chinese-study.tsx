@@ -4,14 +4,6 @@ import Vowel from '../../phonetics/Vowel';
 import Zhuyin from '../../phonetics/Zhuyin';
 import HanziWriter  from 'hanzi-writer';
 
-interface api {
-	buttonAnswerEase1: Function,
-	buttonAnswerEase2: Function,
-	buttonAnswerEase3: Function,
-	buttonAnswerEase4: Function,
-	buttonAnswerEase5: Function
-};
-
 @Component({
 	tag: 'material-beautify-chinese-study',
 	styleUrl: 'material-beautify-chinese-study.css',
@@ -20,10 +12,7 @@ interface api {
 export class MaterialBeautifyChineseStudy {
 
 	
-	private _ankiApi: api;
 
-	@Prop()
-	ankiDroidJs: string;
 
 	/**
 	 *	Recognized card types: `recognition` | `traditional` | `tones` | `writing` | `meaning`
@@ -44,6 +33,16 @@ export class MaterialBeautifyChineseStudy {
 	 * All characters allowed
 	 */
 	@Prop() 
+	simplifiedSentence: string;
+	/**
+	 * All characters allowed
+	 */
+	@Prop() 
+	traditionalSentence: string;
+	/**
+	 * All characters allowed
+	 */
+	@Prop() 
 	traditional: string;
 	/**
 	 * All English language words allowed
@@ -51,10 +50,20 @@ export class MaterialBeautifyChineseStudy {
 	@Prop()
 	meaning: string;
 	/**
+	 * All English language words allowed
+	 */
+	@Prop()
+	sentenceMeaning: string;
+	/**
 	 * Most forms of numbered pinyin allowed
 	 */
 	@Prop()
 	numberedPinyin: string;
+	/**
+	 * Most forms of numbered pinyin allowed
+	 */
+	@Prop()
+	sentenceNumberedPinyin: string;
 	/**
 	 * Recognized phonics: `pinyin` | `zhuyin`
 	 */
@@ -64,60 +73,90 @@ export class MaterialBeautifyChineseStudy {
 	@Element()
 	element: HTMLElement;
 
-	get ankiApi(): any {
-		return this._ankiApi;
-	}
-
-	set ankiApi(value: any) {
-		if (this.ankiDroidJs !== null) {
-			this._ankiApi = JSON.parse(value);
-		} 
-	}
+	private getTraditionalHanziPrimaryElement = (): HTMLElement => this.element.shadowRoot.querySelector('#traditional-hanzi-primary');
+	private getSimplifiedHanziPrimaryElement = (): HTMLElement => this.element.shadowRoot.querySelector('#simplified-hanzi-primary');
+	private getTraditionalHanziSecondaryElement = (): HTMLElement => this.element.shadowRoot.querySelector('#traditional-hanzi-secondary');
+	private getSimplifiedHanziSecondaryElement = (): HTMLElement => this.element.shadowRoot.querySelector('#simplified-hanzi-secondary');
+	private getWordMeaningElement = (): HTMLElement => this.element.shadowRoot.querySelector('#single-word-meaning');
+	private getSentenceMeaningElement = (): HTMLElement => this.element.shadowRoot.querySelector('#sentence-meaning');
+	private getPhoneticElement = (): HTMLElement => this.element.shadowRoot.querySelector('#phonetic');
+	private getSentencePhoneticElement = (): HTMLElement => this.element.shadowRoot.querySelector('#sentence-phonetic');
+	private getTraditionalSentenceElement = (): HTMLElement => this.element.shadowRoot.querySelector('#traditional-hanzi-sentence');
+	private getSimplifiedSentenceElement = (): HTMLElement => this.element.shadowRoot.querySelector('#simplified-hanzi-sentence');
+	private getAudioAnimationElement = (): HTMLElement => this.element.shadowRoot.querySelector('#audio');
 
 	getCardType(): string {
-		if (this.cardType !== null) {
+		if (this.cardType !== null && this.cardType !== undefined) {
 			this.cardType = this.cardType.toLowerCase().trim();
 		}
 		return this.cardType;
 	}
 
 	getCardOrientation() {
-		if (this.cardOrientation !== null) {
+		if (this.cardOrientation !== null && this.cardOrientation !== undefined) {
 			this.cardOrientation = this.cardOrientation.toLowerCase().trim();
 		}
 		return this.cardOrientation;
 	}
 
 	getSimplified() {
-		if (this.simplified !== null) {
+		if (this.simplified !== null && this.simplified !== undefined) {
 			this.simplified.trim();
 		}
 		return this.simplified;
 	}
 
+	getSimplifiedSentence() {
+		if (this.simplifiedSentence !== null && this.simplifiedSentence !== undefined) {
+			this.simplifiedSentence.trim();
+		}
+		return this.simplifiedSentence;
+	}
+
+	getTraditionalSentence() {
+		if (this.traditionalSentence !== null && this.traditionalSentence !== undefined) {
+			this.traditionalSentence.trim();
+		}
+		return this.traditionalSentence;
+	}
+
 	getTraditional() {
-		if (this.traditional !== null) {
+		if (this.traditional !== null && this.traditional !== undefined) {
 			this.traditional.trim();
 		}
 		return this.traditional;
 	}
 
 	getMeaning() {
-		if (this.meaning !== null) {
+		if (this.meaning !== null && this.meaning !== undefined) {
 			this.meaning.trim();
 		}
 		return this.meaning;
 	}
 
+	getSentenceMeaning() {
+		if (this.sentenceMeaning !== null && this.sentenceMeaning !== undefined) {
+			this.sentenceMeaning.trim();
+		}
+		return this.sentenceMeaning;
+	}
+
 	getNumberedPinyin() {
-		if (this.numberedPinyin !== null) {
+		if (this.numberedPinyin !== null && this.numberedPinyin !== undefined) {
 			this.numberedPinyin.trim();
 		}
 		return this.numberedPinyin;
 	}
 
+	getSentenceNumberedPinyin() {
+		if (this.sentenceNumberedPinyin !== null && this.sentenceNumberedPinyin !== undefined) {
+			this.sentenceNumberedPinyin.trim();
+		}
+		return this.sentenceNumberedPinyin;
+	}
+
 	getPreferredPhonic() {
-		if (this.preferredPhonic !== null) {
+		if (this.preferredPhonic !== null && this.preferredPhonic !== undefined) {
 			this.preferredPhonic.trim();
 		}
 		return this.preferredPhonic;
@@ -127,17 +166,17 @@ export class MaterialBeautifyChineseStudy {
 		return this.createPhonic(PhoneticType.PINYIN, this.numberedPinyin);
 	}
 
-	getZhuyin() {
-		return this.createPhonic(PhoneticType.ZHUYIN, this.numberedPinyin);
+	getZhuyin(value: string) {
+		return this.createPhonic(PhoneticType.ZHUYIN, value);
 	}
 
-	getPhonic() {
+	getPhonic(value: string) {
 		let phonic;
 		if (this.preferredPhonic === 'pinyin') {
 			phonic = this.getPinyin();
 		}
 		if (this.preferredPhonic === 'zhuyin') {
-			phonic = this.getZhuyin();
+			phonic = this.getZhuyin(value);
 		}
 		return phonic;
 	}
@@ -193,23 +232,23 @@ export class MaterialBeautifyChineseStudy {
 				break;
 			
 			case 'writing':
-				var darkest = '#3A0CA3';
-				var darkestRBG = 'rgb(58, 12, 163, 0.3)';
-				var darker = '#7209B7';
-				var neutral = '#4361EE';
-				var brighter = '#4CC9F0';
-				var brightest = '#F72585';
+				var darkest = '#0B132B';
+				var darkestRBG = 'rgb(11, 19, 43, 0.3)';
+				var darker = '#1C2541';
+				var neutral = '#3A506B';
+				var brighter = '#5BC0BE';
+				var brightest = '#6FFFE9';
 	
 				body.style.backgroundColor = darker;
 	
-				card.style.color = brighter;
+				card.style.color = darker;
 				card.style.backgroundColor = brightest;
 				card.style.boxShadow = '0px 0px 30px ' + darkest;
 	
 				cardType.style.color = brighter;
 				cardType.style.backgroundColor = neutral;
 	
-				cardContent.style.textShadow = '2px 2px ' + darkestRBG;
+				cardContent.style.textShadow = '1.5px 1.5px ' + darkestRBG;
 	
 				break;
 
@@ -254,88 +293,169 @@ export class MaterialBeautifyChineseStudy {
 				cardContent.style.textShadow = '2px 2px ' + brightestRGB
 	
 				break;
+
+			case 'sentence':
+				var black = '#000000';
+				var darkest = '#3A0CA3';
+				var darkestRBG = 'rgb(58, 12, 163, 0.3)';
+				var darker = '#7209B7';
+				var neutral = '#4361EE';
+				var brighter = '#4CC9F0';
+				var brightest = '#F72585';
+	
+				body.style.backgroundColor = darker;
+	
+				card.style.color = black;
+				card.style.backgroundColor = brightest;
+				card.style.boxShadow = '0px 0px 30px ' + darkest;
+	
+				cardType.style.color = brightest;
+				cardType.style.backgroundColor = neutral;
+	
+				cardContent.style.textShadow = '2px 2px ' + darkestRBG;
+		
+				break;
+
+			case 'audio':
+				var black = '#000000';
+				var blackRgb = 'rgb(0, 0, 0, 0.8)';
+				var darkest = '#352D39';
+				var darkestRBG = 'rgb(53, 45, 57, 0.3)';
+				var darker = '#6D435A';
+				var neutral = '#FF6978';
+				var brighter = '#B1EDE8';
+				var brighterRgb = 'rgb(177, 237, 232, 0.3)';
+				var brightest = '#FFFCF9';
+	
+				body.style.backgroundColor = darkest;
+	
+				card.style.color = darkest;
+				card.style.backgroundColor = neutral;
+				card.style.boxShadow = '0px 0px 30px ' + blackRgb;
+	
+				cardType.style.color = brightest;
+				cardType.style.backgroundColor = darker;
+	
+				cardContent.style.textShadow = '2px 2px ' + brighterRgb;
+		
+				break;
+			
+			default:
+				break;
 		}
 	};
 
-	private setTonesDivsToInvisible(): void {
-		let traditionalHanziPrimary: HTMLElement = this.element.shadowRoot.querySelector('#traditional-hanzi-primary');
-		let traditionalHanziSecondary: HTMLElement = this.element.shadowRoot.querySelector('#traditional-hanzi-secondary');
-		let meaning: HTMLElement = this.element.shadowRoot.querySelector('#english-meaning');
-		let simplifiedHanziSecondary: HTMLElement = this.element.shadowRoot.querySelector('#simplified-hanzi-secondary');
-		let phonetic: HTMLElement = this.element.shadowRoot.querySelector('#phonetic');
+	private processTonesCardType(): void {
+		let traditionalHanziPrimary: HTMLElement = this.getTraditionalHanziPrimaryElement();
+		let traditionalHanziSecondary: HTMLElement = this.getTraditionalHanziSecondaryElement();
+		let wordMeaning: HTMLElement = this.getWordMeaningElement();
+		let simplifiedHanziSecondary: HTMLElement = this.getSimplifiedHanziSecondaryElement();
+		let phonetic: HTMLElement = this.getPhoneticElement();
+		let sentencePhonetic: HTMLElement = this.getSentencePhoneticElement();
+		let traditionalSentence: HTMLElement = this.getTraditionalSentenceElement();
+		let sentenceMeaning: HTMLElement = this.getSentenceMeaningElement();
 
 		traditionalHanziPrimary.style.display = 'none';
 		simplifiedHanziSecondary.style.display = 'none';
 		traditionalHanziSecondary.style.display = 'none';
-		meaning.style.display = 'none';
+		wordMeaning.style.display = 'none';
+		traditionalSentence.style.display = 'none';
+		sentenceMeaning.style.display = 'none';
 
 		if (this.getCardOrientation() === 'question') {
 			phonetic.style.display = 'none';
+			sentencePhonetic.style.display = 'none'
 		}
 		if (this.getCardOrientation() === 'answer') {
 			phonetic.style.display = 'block';
 		}
 	}
 
-	private setRecognitionDivsToInvisible(): void {
-		let traditionalHanziPrimary: HTMLElement = this.element.shadowRoot.querySelector('#traditional-hanzi-primary');
-		let traditionalHanziSecondary: HTMLElement = this.element.shadowRoot.querySelector('#traditional-hanzi-secondary');
-		let meaning: HTMLElement = this.element.shadowRoot.querySelector('#english-meaning');
-		let simplifiedHanziSecondary: HTMLElement = this.element.shadowRoot.querySelector('#simplified-hanzi-secondary');
-		let phonetic: HTMLElement = this.element.shadowRoot.querySelector('#phonetic');
+	private processRecognitionCardType(): void {
+		let traditionalHanziPrimary: HTMLElement = this.getTraditionalHanziPrimaryElement();
+		let traditionalHanziSecondary: HTMLElement = this.getTraditionalHanziSecondaryElement();
+		let wordMeaning: HTMLElement = this.getWordMeaningElement();
+		let simplifiedHanziSecondary: HTMLElement = this.getSimplifiedHanziSecondaryElement();
+		let phonetic: HTMLElement = this.getPhoneticElement();
+		let sentencePhonetic: HTMLElement = this.getSentencePhoneticElement();
+		let traditionalSentence: HTMLElement = this.getTraditionalSentenceElement();
+		let sentenceMeaning: HTMLElement = this.getSentenceMeaningElement();
 
 		traditionalHanziPrimary.style.display = 'none';
 		simplifiedHanziSecondary.style.display = 'none';
 		traditionalHanziSecondary.style.display = 'none';
+		traditionalSentence.style.display = 'none';
+		sentenceMeaning.style.display = 'none';
 
 		if (this.getCardOrientation() === 'question') {
 			phonetic.style.display = 'none';
-			meaning.style.display = 'none';
+			sentencePhonetic.style.display = 'none'
+			wordMeaning.style.display = 'none';
 		}
 		if (this.getCardOrientation() === 'answer') {
 			phonetic.style.display = 'block';
-			meaning.style.display = 'block';
+			wordMeaning.style.display = 'block';
 		}
 	}
 
-	private setWritingDivsToInvisible(): void {
-		let traditionalHanziPrimary: HTMLElement = this.element.shadowRoot.querySelector('#traditional-hanzi-primary');
-		let simplifiedHanziPrimary: HTMLElement = this.element.shadowRoot.querySelector('#simplified-hanzi-primary');
-		let traditionalHanziSecondary: HTMLElement = this.element.shadowRoot.querySelector('#traditional-hanzi-secondary');
-		let meaning: HTMLElement = this.element.shadowRoot.querySelector('#english-meaning');
-		let simplifiedHanziSecondary: HTMLElement = this.element.shadowRoot.querySelector('#simplified-hanzi-secondary');
-		let phonetic: HTMLElement = this.element.shadowRoot.querySelector('#phonetic');
+	private processWritingCardType(): void {
+		let traditionalHanziPrimary: HTMLElement = this.getTraditionalHanziPrimaryElement();
+		let simplifiedHanziPrimary: HTMLElement = this.getSimplifiedHanziPrimaryElement();
+		let traditionalHanziSecondary: HTMLElement = this.getTraditionalHanziSecondaryElement();
+		let wordMeaning: HTMLElement = this.getWordMeaningElement();
+		let simplifiedHanziSecondary: HTMLElement = this.getSimplifiedHanziSecondaryElement();
+		let phonetic: HTMLElement = this.getPhoneticElement();
+		let sentencePhonetic: HTMLElement = this.getSentencePhoneticElement();
+		let traditionalSentence: HTMLElement = this.getTraditionalSentenceElement();
+		let sentenceMeaning: HTMLElement = this.getSentenceMeaningElement();
+		let simplifiedSentence: HTMLElement = this.getSimplifiedSentenceElement();
 
 		simplifiedHanziPrimary.style.display = 'none';
 		traditionalHanziPrimary.style.display = 'none';
-		meaning.style.display = 'none';
+		wordMeaning.style.display = 'none';
 		traditionalHanziSecondary.style.display = 'none';
 		simplifiedHanziSecondary.style.display = 'none';
+		simplifiedSentence.style.display = 'none';
+		traditionalSentence.style.display = 'none';
+		sentenceMeaning.style.display = 'none';
 
 		if (this.getCardOrientation() === 'question') {
 			phonetic.style.fontSize = 'xx-large';
 		}
 		if (this.getCardOrientation() === 'answer') {
 			phonetic.style.display = 'none';
+			sentencePhonetic.style.display = 'none';
 		}
 	}
 
-	private setTraditionalDivsToInvisible(): void {
-		let simplifiedHanziPrimary: HTMLElement = this.element.shadowRoot.querySelector('#simplified-hanzi-primary');
-		let traditionalHanziSecondary: HTMLElement = this.element.shadowRoot.querySelector('#traditional-hanzi-secondary');
-		let meaning: HTMLElement = this.element.shadowRoot.querySelector('#english-meaning');
-		let simplifiedHanziSecondary: HTMLElement = this.element.shadowRoot.querySelector('#simplified-hanzi-secondary');
-		let phonetic: HTMLElement = this.element.shadowRoot.querySelector('#phonetic');
+	private processTraditionalCardType(): void {
+		let simplifiedHanziPrimary: HTMLElement = this.getSimplifiedHanziPrimaryElement();
+		let traditionalHanziSecondary: HTMLElement = this.getTraditionalHanziSecondaryElement();
+		let wordMeaning: HTMLElement = this.getWordMeaningElement();
+		let simplifiedHanziSecondary: HTMLElement = this.getSimplifiedHanziSecondaryElement();
+		let phonetic: HTMLElement = this.getPhoneticElement();
+		let sentencePhonetic: HTMLElement = this.getSentencePhoneticElement();
+		let traditionalSentence: HTMLElement = this.getTraditionalSentenceElement();
+		let sentenceMeaning: HTMLElement = this.getSentenceMeaningElement();
+		let simplifiedSentence: HTMLElement = this.getSimplifiedSentenceElement();
+
+		const doesTradSentHaveValue: boolean = traditionalSentence.innerHTML !== '';
+
+		if (doesTradSentHaveValue) {
+			simplifiedSentence.style.display = 'none';
+		}
 
 		simplifiedHanziPrimary.style.display = 'none';
-		meaning.style.display = 'none';
+		wordMeaning.style.display = 'none';
 		traditionalHanziSecondary.style.display = 'none';
+		sentencePhonetic.style.display = 'none';
 		
 		if (this.getCardOrientation() === 'question') {
 			phonetic.style.display = 'none';
-			meaning.style.display = 'none';
+			wordMeaning.style.display = 'none';
 			traditionalHanziSecondary.style.display = 'none';
 			simplifiedHanziSecondary.style.display = 'none';
+			sentenceMeaning.style.display = 'none';
 		}
 		if (this.getCardOrientation() === 'answer') {
 			phonetic.style.display = 'block';
@@ -343,52 +463,145 @@ export class MaterialBeautifyChineseStudy {
 		}
 	}
 
-	private setMeaningDivsToInvisible(): void {
-		let traditionalHanziPrimary: HTMLElement = this.element.shadowRoot.querySelector('#traditional-hanzi-primary');
-		let traditionalHanziSecondary: HTMLElement = this.element.shadowRoot.querySelector('#traditional-hanzi-secondary');
-		let meaning: HTMLElement = this.element.shadowRoot.querySelector('#english-meaning');
-		let simplifiedHanziSecondary: HTMLElement = this.element.shadowRoot.querySelector('#simplified-hanzi-secondary');
-		let phonetic: HTMLElement = this.element.shadowRoot.querySelector('#phonetic');
-
+	private processMeaningCardType(): void {
+		let traditionalHanziPrimary: HTMLElement = this.getTraditionalHanziPrimaryElement();
+		let traditionalHanziSecondary: HTMLElement = this.getTraditionalHanziSecondaryElement();
+		let wordMeaning: HTMLElement = this.getWordMeaningElement();
+		let simplifiedHanziSecondary: HTMLElement = this.getSimplifiedHanziSecondaryElement();
+		let phonetic: HTMLElement = this.getPhoneticElement();
+		let sentencePhonetic: HTMLElement = this.getSentencePhoneticElement();
+		let traditionalSentence: HTMLElement = this.getTraditionalSentenceElement();
+		let sentenceMeaning: HTMLElement = this.getSentenceMeaningElement();
+		
 		traditionalHanziPrimary.style.display = 'none';
 		simplifiedHanziSecondary.style.display = 'none';
 		traditionalHanziSecondary.style.display = 'none';
+		traditionalSentence.style.display = 'none';
 
 		if (this.getCardOrientation() === 'question') {
 			phonetic.style.display = 'none';
-			meaning.style.display = 'none';
+			sentencePhonetic.style.display = 'none';
+			wordMeaning.style.display = 'none';
+			sentenceMeaning.style.display = 'none';
 		}
 		if (this.getCardOrientation() === 'answer') {
 			phonetic.style.display = 'block';
-			meaning.style.display = 'block';
+			wordMeaning.style.display = 'block';
 		}
 	}
 
-	private setDivsThatNeedToBeInvisible(): void {
+	private processSentenceCardType(): void {
+		let traditionalHanziPrimary: HTMLElement = this.getTraditionalHanziPrimaryElement();
+		let simplifiedHanziPrimary: HTMLElement = this.getSimplifiedHanziPrimaryElement();
+		let traditionalHanziSecondary: HTMLElement = this.getTraditionalHanziSecondaryElement();
+		let wordMeaning: HTMLElement = this.getWordMeaningElement();
+		let sentenceMeaning: HTMLElement = this.getSentenceMeaningElement();
+		let simplifiedHanziSecondary: HTMLElement = this.getSimplifiedHanziSecondaryElement();
+		let phonetic: HTMLElement = this.getPhoneticElement();
+		let sentencePhonetic: HTMLElement = this.getSentencePhoneticElement();
+		let traditionalSentence: HTMLElement = this.getTraditionalSentenceElement();
+		let simplifiedSentence: HTMLElement = this.getSimplifiedSentenceElement();
+
+		traditionalHanziPrimary.style.display = 'none';
+		simplifiedHanziPrimary.style.display = 'none';
+		simplifiedHanziSecondary.style.display = 'none';
+		traditionalHanziSecondary.style.display = 'none';
+		traditionalSentence.style.display = 'none';
+		simplifiedSentence.style.fontSize = 'xx-large';
+		wordMeaning.style.display = 'none';
+		phonetic.style.display = 'none';
+
+		if (this.getCardOrientation() === 'question') {
+			sentencePhonetic.style.display = 'none';
+			sentenceMeaning.style.display = 'none';
+		}
+		if (this.getCardOrientation() === 'answer') {
+			sentencePhonetic.style.display = 'block';
+			sentenceMeaning.style.display = 'block';
+		}
+	}
+
+	private processAudioCardType(): void {
+		let traditionalHanziPrimary: HTMLElement = this.getTraditionalHanziPrimaryElement();
+		let simplifiedHanziPrimary: HTMLElement = this.getSimplifiedHanziPrimaryElement();
+		let traditionalHanziSecondary: HTMLElement = this.getTraditionalHanziSecondaryElement();
+		let wordMeaning: HTMLElement = this.getWordMeaningElement();
+		let sentenceMeaning: HTMLElement = this.getSentenceMeaningElement();
+		let simplifiedHanziSecondary: HTMLElement = this.getSimplifiedHanziSecondaryElement();
+		let phonetic: HTMLElement = this.getPhoneticElement();
+		let sentencePhonetic: HTMLElement = this.getSentencePhoneticElement();
+		let traditionalSentence: HTMLElement = this.getTraditionalSentenceElement();
+		let simplifiedSentence: HTMLElement = this.getSimplifiedSentenceElement();
+		let audioAnimation: HTMLElement = this.getAudioAnimationElement();
+
+		traditionalHanziPrimary.style.display = 'none';
+		simplifiedHanziPrimary.style.display = 'none';
+		simplifiedHanziSecondary.style.display = 'none';
+		traditionalHanziSecondary.style.display = 'none';
+		traditionalSentence.style.display = 'none';
+		simplifiedSentence.style.display = 'none';
+		wordMeaning.style.display = 'none';
+		phonetic.style.display = 'none';
+		sentencePhonetic.style.display = 'none';
+		sentenceMeaning.style.display = 'none';
+
+		if (this.getCardOrientation() === 'question') {
+			const availableAnimations: string[] = [
+				'echo-spinner',
+				'audio-line-spinner'
+			];
+			const randomAnimation: string = availableAnimations[Math.floor(Math.random() * availableAnimations.length)];
+			console.log(randomAnimation);
+			if (randomAnimation === 'audio-line-spinner') {
+				for (var i = 1; i <=5; i++) {
+					let rectangle = document.createElement('div');
+					rectangle.classList.add('rect' + i);
+					audioAnimation.appendChild(rectangle);
+				}
+			}
+			audioAnimation.className = randomAnimation;
+		}
+		if (this.getCardOrientation() === 'answer') {
+			sentencePhonetic.style.display = 'block';
+			simplifiedSentence.style.display = 'block';
+			simplifiedSentence.style.fontSize = 'x-large';
+			sentenceMeaning.style.display = 'block';
+		}
+	}
+
+	private processCardContentByCardType(): void {
 		switch (this.getCardType()) {
 			case 'traditional':
-				this.setTraditionalDivsToInvisible();
+				this.processTraditionalCardType();
 				break;
 	
 			case 'tones':
-				this.setTonesDivsToInvisible();
+				this.processTonesCardType();
 				break;
 			
 			case 'writing':
-				this.setWritingDivsToInvisible();
+				this.processWritingCardType();
 				break;
 
 			case 'recognition':
-				this.setRecognitionDivsToInvisible();
+				this.processRecognitionCardType();
 				break;
 
 			case 'meaning':
-				this.setMeaningDivsToInvisible();
+				this.processMeaningCardType();
+				break;
+
+			case 'sentence':
+				this.processSentenceCardType();
+				break;
+
+			case 'audio':
+				this.processAudioCardType();
 				break;
 		}
 	};
 
-	private createPhonic(phonicType: PhoneticType, phonicValue: string) {
+	private createPhonic(phonicType: PhoneticType, phonicValue: string): string {
 		const isPinyin = (value: string): boolean => toBoolean(value.search(/^[a-zA-Z0-9\s]*$/));
 		//const containsNumerics = (value: string): boolean => toBoolean(value.search(/\d/));
 		const parseTone = (value: string): number => value === ' ' || value === '' ? 5 : parseInt(value);
@@ -515,8 +728,12 @@ export class MaterialBeautifyChineseStudy {
 		};
 		
 		const hanziToPhoneticCharacters = (phoneticType: PhoneticType, value: string): string => {
+			if (value === undefined || value === null || value === '') {
+				return '';
+			}
+			
 			let result: string = '';
-			value = value.trim();
+			value = value.trim().toLowerCase();
 			value = value.replace(/['.!?]/g, '');
 			if (isPinyin(value)) {
 				result = processNumberedPinyin(phoneticType, value);
@@ -588,131 +805,7 @@ export class MaterialBeautifyChineseStudy {
 		}, delayBetweenAnimations + delayBetweenAnimations);
 	};
 
-	createTonesCardType(): HTMLElement {
-		let template: HTMLElement;
-		const type: string = this.getCardType().toUpperCase();
-
-		if (this.cardOrientation === 'question') {
-			template =
-				<div id='anki-background'>
-					<div id='chinese-card'>
-						{this.createCardContent()}
-						<div id='chinese-card-type'>
-							<p id='colour-scheme'>{type}</p>
-						</div>
-					</div>
-				</div>
-			;
-		}
-		if (this.cardOrientation === 'answer') {
-			template =
-				<div id='anki-background'>
-					<div id='chinese-card'>
-						{this.createCardContent()}
-						<div id='chinese-card-type'>
-							<p id='colour-scheme'>{type}</p>
-						</div>
-					</div>
-				</div>
-			;
-		}
-		return template;
-	}
-
-	createTraditionalCardType(): HTMLElement {
-		let template: HTMLElement;
-		const type: string = this.getCardType().toUpperCase();
-
-		if (this.cardOrientation === 'question') {
-			template =
-				<div id='anki-background'>
-					<div id='chinese-card'>
-						{this.createCardContent()}
-						<div id='chinese-card-type'>
-							<p id='colour-scheme'>{type}</p>
-						</div>
-					</div>
-				</div>
-			;
-		}
-		if (this.cardOrientation === 'answer') {
-			template =
-				<div id='anki-background'>
-					<div id='chinese-card'>
-						{this.createCardContent()}
-						<div id='chinese-card-type'>
-							<p id="colour-scheme">{type}</p>
-						</div>
-					</div>
-				</div>
-			;
-		}
-		return template;
-	}
-
-	createWritingCardType(): HTMLElement {
-		let template: HTMLElement;
-		const type: string = this.getCardType().toUpperCase();
-
-		if (this.cardOrientation === 'question') {
-			template =
-				<div id='anki-background'>
-					<div id='chinese-card'>
-						{this.createCardContent()}
-						<div id='chinese-card-type'>
-							<p id='colour-scheme'>{type}</p>
-						</div>
-					</div>
-				</div>
-			;
-		}
-		if (this.cardOrientation === 'answer') {
-			template =
-				<div id='anki-background'>
-					<div id='chinese-card'>
-						{this.createCardContent()}
-						<div id='chinese-card-type'>
-							<p id='colour-scheme'>{type}</p>
-						</div>
-					</div>
-				</div>
-			;
-		}
-		return template;
-	}
-
-	createMeaningCardType(): HTMLElement {
-		let template: HTMLElement;
-		const type: string = this.getCardType().toUpperCase();
-
-		if (this.cardOrientation === 'question') {
-			template =
-				<div id='anki-background'>
-					<div id='chinese-card'>
-						{this.createCardContent()}
-						<div id='chinese-card-type'>
-							<p id='colour-scheme'>{type}</p>
-						</div>
-					</div>
-				</div>
-			;
-		}
-		if (this.cardOrientation === 'answer') {
-			template =
-				<div id='anki-background'>
-					<div id='chinese-card'>
-						{this.createCardContent()}
-						<div id='chinese-card-type'>
-							<p id='colour-scheme'>{type}</p>
-						</div>
-					</div>
-				</div>
-			;
-		}
-		return template;
-	}
-
-	createRegonitionCardType(): HTMLElement {
+	createCard(): HTMLElement {
 		let template: HTMLElement;
 		const type: string = this.getCardType().toUpperCase();
 
@@ -743,18 +836,6 @@ export class MaterialBeautifyChineseStudy {
 		return template;
 	}
 
-	createAnswerButtons(): HTMLElement {
-		const buttons: HTMLElement = 
-			<div id='beautify-buttons'>
-				<button id='beautify-again'>again</button>
-				<button id='beautify-hard'>hard</button>
-				<button id='beautify-good'>good</button>
-				<button id='beautify-easy'>easy</button>
-			</div>
-		;
-		return buttons;
-	}
-
 	createCardContent(): HTMLElement {
 		const plecoLink: string = `plecoapi://x-callback-url/df?hw=${this.getSimplified()}`;
 
@@ -767,33 +848,28 @@ export class MaterialBeautifyChineseStudy {
 							<div id='traditional-hanzi-primary'>{this.getTraditional()}</div>
 						</a>
 						<rt id='phonetic'>
-							{this.getPhonic()}
+							{this.getPhonic(this.getNumberedPinyin())}
 						</rt>
 					</ruby>
 				</p>
-				<p id='english-meaning'>{this.getMeaning()}</p>
+				<div id='sentence'>
+					<ruby>
+						<div id='simplified-hanzi-sentence'>{this.getSimplifiedSentence()}</div>
+						<div id='traditional-hanzi-sentence'>{this.getTraditionalSentence()}</div>
+						<rt id='sentence-phonetic'>{this.getPhonic(this.getSentenceNumberedPinyin())}</rt>
+					</ruby>
+				</div>
+				<div id='english'>
+					<p id='single-word-meaning'>{this.getMeaning()}</p>
+					<p id='sentence-meaning'>{this.getSentenceMeaning()}</p>
+				</div>
 				<div id='stroke-order'></div>
 				<div id='simplified-hanzi-secondary'>{this.getSimplified()}</div>
 				<div id='traditional-hanzi-secondary'>{this.getTraditional()}</div>
+				<div id='audio'></div>
 			</div>
 		;
 		return content;
-	}
-
-	defineCustomButtons() {
-		if (this.cardOrientation === 'answer') {
-			let beautifyAgain = this.element.shadowRoot.querySelector('#beautify-again');
-			beautifyAgain.setAttribute('onclick', 'buttonAnswerEase1()');
-
-			let beautifyHard = this.element.shadowRoot.querySelector('#beautify-hard');
-			beautifyHard.setAttribute('onclick', 'buttonAnswerEase2()');
-
-			let beautifyGood = this.element.shadowRoot.querySelector('#beautify-good');
-			beautifyGood.setAttribute('onclick', 'buttonAnswerEase3()');
-
-			let beautifyEasy = this.element.shadowRoot.querySelector('#beautify-easy');
-			beautifyEasy.setAttribute('onclick', 'buttonAnswerEase4()');
-		}
 	}
 
 	componentDidLoad() {
@@ -801,42 +877,18 @@ export class MaterialBeautifyChineseStudy {
 		if (this.getCardType() === 'writing' && this.getCardOrientation() == 'answer') {
 			this.createStrokeOrderCharacter();
 		}
-		if (this.ankiDroidJs !== undefined) {
-			this.ankiApi = this.ankiDroidJs;
-			//this.defineCustomButtons();
-		} else {
-			console.log('ankidriodjs is null');
-		}
 	}
 
 	componentDidRender() {
-		this.setDivsThatNeedToBeInvisible();
+		this.processCardContentByCardType();
 		if (this.getCardType() === 'writing' && this.getCardOrientation() == 'answer') {
 			this.createStrokeOrderCharacter();
 		}
 	}
 
 	render() {
-		let template: HTMLElement;
-		
-		switch(this.getCardType()) {
-			case 'recognition' :
-				template = this.createRegonitionCardType();
-				break;
-			case 'traditional' :
-				template = this.createTraditionalCardType();
-				break;
-			case 'tones' : 
-				template = this.createTonesCardType();
-				break;
-			case 'meaning' :
-				template = this.createMeaningCardType();
-				break;
-			case 'writing' :
-				template = this.createWritingCardType();
-				break;
-		}
-		
+		const template: HTMLElement = this.createCard();
+
 		return (
 			<Host>
 				{template}
