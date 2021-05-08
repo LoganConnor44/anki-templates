@@ -135,6 +135,14 @@ There are three strategies we recommend for using web components built with Sten
 
 The first step for all three of these strategies is to [publish to NPM](https://docs.npmjs.com/getting-started/publishing-npm-packages).
 
+### Quick Guide For Publishing
+
+Assuming you are already logged in, the steps are below:
+1. ```bash npm version MANUALLY-INCREMENT-VERSION-NUMBER```
+	* Update will be seen in the `package.json` file
+2. ```bash npm publish --access public```
+	* Verify on npm
+
 ### Script tag
 
 - Put a script tag similar to this `<script src='https://unpkg.com/my-component@0.0.1/dist/mycomponent.js'></script>` in the head of your index.html
