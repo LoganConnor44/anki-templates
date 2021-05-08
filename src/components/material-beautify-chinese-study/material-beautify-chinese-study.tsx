@@ -2,7 +2,8 @@ import { Component, Host, h, Prop, Element } from '@stencil/core';
 import PhoneticType from '../../enums/PhoneticType';
 import Vowel from '../../phonetics/Vowel';
 import Zhuyin from '../../phonetics/Zhuyin';
-import HanziWriter  from 'hanzi-writer';
+import HanziWriter from 'hanzi-writer';
+import * as OpenCC from 'opencc-js';
 
 @Component({
 	tag: 'material-beautify-chinese-study',
@@ -11,11 +12,8 @@ import HanziWriter  from 'hanzi-writer';
 })
 export class MaterialBeautifyChineseStudy {
 
-	
-
-
 	/**
-	 *	Recognized card types: `recognition` | `traditional` | `tones` | `writing` | `meaning`
+	 *	Recognized card types: `recognition` | `traditional` | `tones` | `writing` | `meaning` | `traditional-sentence` | `audio`
 	 */
 	@Prop() 
 	cardType: string;
@@ -84,79 +82,89 @@ export class MaterialBeautifyChineseStudy {
 	private getTraditionalSentenceElement = (): HTMLElement => this.element.shadowRoot.querySelector('#traditional-hanzi-sentence');
 	private getSimplifiedSentenceElement = (): HTMLElement => this.element.shadowRoot.querySelector('#simplified-hanzi-sentence');
 	private getAudioAnimationElement = (): HTMLElement => this.element.shadowRoot.querySelector('#audio');
+	private hasValue = (value: String): Boolean => value !== null && value !== undefined;
+	private isEmptyStringNullOrUndefined = (value: String): Boolean => value === null || value === undefined || value === "";
 
 	getCardType(): string {
-		if (this.cardType !== null && this.cardType !== undefined) {
+		if (this.hasValue(this.cardType)) {
 			this.cardType = this.cardType.toLowerCase().trim();
 		}
 		return this.cardType;
 	}
 
 	getCardOrientation() {
-		if (this.cardOrientation !== null && this.cardOrientation !== undefined) {
+		if (this.hasValue(this.cardOrientation)) {
 			this.cardOrientation = this.cardOrientation.toLowerCase().trim();
 		}
 		return this.cardOrientation;
 	}
 
 	getSimplified() {
-		if (this.simplified !== null && this.simplified !== undefined) {
+		if (this.hasValue(this.simplified)) {
 			this.simplified.trim();
 		}
 		return this.simplified;
 	}
 
 	getSimplifiedSentence() {
-		if (this.simplifiedSentence !== null && this.simplifiedSentence !== undefined) {
+		if (this.hasValue(this.simplifiedSentence)) {
 			this.simplifiedSentence.trim();
 		}
 		return this.simplifiedSentence;
 	}
 
 	getTraditionalSentence() {
-		if (this.traditionalSentence !== null && this.traditionalSentence !== undefined) {
+		if (this.hasValue(this.traditionalSentence)) {
 			this.traditionalSentence.trim();
+		}
+		if (this.isEmptyStringNullOrUndefined(this.traditionalSentence)) {
+			const converter = OpenCC.Converter({ from: 'cn', to: 'tw' });
+			this.traditionalSentence = converter(this.getSimplifiedSentence());
 		}
 		return this.traditionalSentence;
 	}
 
 	getTraditional() {
-		if (this.traditional !== null && this.traditional !== undefined) {
+		if (this.hasValue(this.traditional)) {
 			this.traditional.trim();
+		}
+		if (this.isEmptyStringNullOrUndefined(this.traditional)) {
+			const converter = OpenCC.Converter({ from: 'cn', to: 'tw' });
+			this.traditional = converter(this.getSimplified());
 		}
 		return this.traditional;
 	}
 
 	getMeaning() {
-		if (this.meaning !== null && this.meaning !== undefined) {
+		if (this.hasValue(this.meaning)) {
 			this.meaning.trim();
 		}
 		return this.meaning;
 	}
 
 	getSentenceMeaning() {
-		if (this.sentenceMeaning !== null && this.sentenceMeaning !== undefined) {
+		if (this.hasValue(this.sentenceMeaning)) {
 			this.sentenceMeaning.trim();
 		}
 		return this.sentenceMeaning;
 	}
 
 	getNumberedPinyin() {
-		if (this.numberedPinyin !== null && this.numberedPinyin !== undefined) {
+		if (this.hasValue(this.numberedPinyin)) {
 			this.numberedPinyin.trim();
 		}
 		return this.numberedPinyin;
 	}
 
 	getSentenceNumberedPinyin() {
-		if (this.sentenceNumberedPinyin !== null && this.sentenceNumberedPinyin !== undefined) {
+		if (this.hasValue(this.sentenceNumberedPinyin)) {
 			this.sentenceNumberedPinyin.trim();
 		}
 		return this.sentenceNumberedPinyin;
 	}
 
 	getPreferredPhonic() {
-		if (this.preferredPhonic !== null && this.preferredPhonic !== undefined) {
+		if (this.hasValue(this.preferredPhonic)) {
 			this.preferredPhonic.trim();
 		}
 		return this.preferredPhonic;
@@ -188,8 +196,8 @@ export class MaterialBeautifyChineseStudy {
 		let cardContent: HTMLElement = this.element.shadowRoot.querySelector('#chinese-card-content');
 	
 		switch (this.getCardType()) {
-	
 			case 'traditional':
+			case 'traditional-sentence':
 				var darkest = '#264653';
 				var darker = '#2A9D8F';
 				var neutral = '#E76F51';
@@ -463,6 +471,38 @@ export class MaterialBeautifyChineseStudy {
 		}
 	}
 
+	private processTraditionalSentenceCardType(): void {
+		let traditionalHanziPrimary: HTMLElement = this.getTraditionalHanziPrimaryElement();
+		let simplifiedHanziPrimary: HTMLElement = this.getSimplifiedHanziPrimaryElement();
+		let traditionalHanziSecondary: HTMLElement = this.getTraditionalHanziSecondaryElement();
+		let wordMeaning: HTMLElement = this.getWordMeaningElement();
+		let sentenceMeaning: HTMLElement = this.getSentenceMeaningElement();
+		let simplifiedHanziSecondary: HTMLElement = this.getSimplifiedHanziSecondaryElement();
+		let phonetic: HTMLElement = this.getPhoneticElement();
+		let sentencePhonetic: HTMLElement = this.getSentencePhoneticElement();
+		let traditionalSentence: HTMLElement = this.getTraditionalSentenceElement();
+		let simplifiedSentence: HTMLElement = this.getSimplifiedSentenceElement();
+
+		traditionalHanziPrimary.style.display = 'none';
+		simplifiedHanziPrimary.style.display = 'none';
+		simplifiedHanziSecondary.style.display = 'none';
+		traditionalHanziSecondary.style.display = 'none';
+		traditionalSentence.style.fontSize = 'xx-large';
+		simplifiedSentence.style.display = 'none';
+		wordMeaning.style.display = 'none';
+		phonetic.style.display = 'none';
+
+		if (this.getCardOrientation() === 'question') {
+			sentencePhonetic.style.display = 'none';
+			sentenceMeaning.style.display = 'none';
+		}
+		if (this.getCardOrientation() === 'answer') {
+			sentencePhonetic.style.display = 'block';
+			sentenceMeaning.style.display = 'block';
+			simplifiedSentence.style.display = 'block';
+		}
+	}
+
 	private processMeaningCardType(): void {
 		let traditionalHanziPrimary: HTMLElement = this.getTraditionalHanziPrimaryElement();
 		let traditionalHanziSecondary: HTMLElement = this.getTraditionalHanziSecondaryElement();
@@ -574,27 +614,24 @@ export class MaterialBeautifyChineseStudy {
 			case 'traditional':
 				this.processTraditionalCardType();
 				break;
-	
+			case 'traditional-sentence':
+				this.processTraditionalSentenceCardType();
+				break;
 			case 'tones':
 				this.processTonesCardType();
 				break;
-			
 			case 'writing':
 				this.processWritingCardType();
 				break;
-
 			case 'recognition':
 				this.processRecognitionCardType();
 				break;
-
 			case 'meaning':
 				this.processMeaningCardType();
 				break;
-
 			case 'sentence':
 				this.processSentenceCardType();
 				break;
-
 			case 'audio':
 				this.processAudioCardType();
 				break;
@@ -874,14 +911,14 @@ export class MaterialBeautifyChineseStudy {
 
 	componentDidLoad() {
 		this.setColourSchemes();
-		if (this.getCardType() === 'writing' && this.getCardOrientation() == 'answer') {
+		if (this.getCardType() === 'writing' && this.getCardOrientation() === 'answer') {
 			this.createStrokeOrderCharacter();
 		}
 	}
 
 	componentDidRender() {
 		this.processCardContentByCardType();
-		if (this.getCardType() === 'writing' && this.getCardOrientation() == 'answer') {
+		if (this.getCardType() === 'writing' && this.getCardOrientation() === 'answer') {
 			this.createStrokeOrderCharacter();
 		}
 	}
