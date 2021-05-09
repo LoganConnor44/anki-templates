@@ -9,8 +9,11 @@ This codebase is a solution for making Chinese study, through Anki, more enjoyab
 | <img src="./images/recognition-question.png" alt="Recognition Question" width="200"/> | <img src="./images/recognition-answer.png" alt="Recognition Answer" width="200"/> |
 | <img src="./images/meaning-question.png" alt="Meaning Question" width="200"/> | <img src="./images/meaning-answer.png" alt="Meaning Answer" width="200"/> |
 | <img src="./images/traditional-question.png" alt="Traditional Question" width="200"/> | <img src="./images/traditional-answer.png" alt="Traditional Answer" width="200"/> |
+| <img src="./images/traditional-sentence-question.png" alt="Traditional Sentence Question" width="200"/> | <img src="./images/traditional-sentence-answer.gif" alt="Traditional Sentence Answer" width="200"/> |
 | <img src="./images/tones-question.png" alt="Tones Question" width="200"/> | <img src="./images/tones-answer.png" alt="Tones Answer" width="200"/> |
 | <img src="./images/writing-question.png" alt="Writing Question" width="200"/> | <img src="./images/writing-answer.gif" alt="Writing Answer" width="200"/> |
+| <img src="./images/audio-question-1.png" alt="Audio 1 Question" width="200"/> | <img src="./images/audio-answer.gif" alt="Audio Answer" width="200"/> |
+| <img src="./images/audio-question-2.png" alt="Audio 2 Question" width="200"/> | <img src="./images/audio-answer.gif" alt="Audio Answer" width="200"/> |
 
 # tl;dr
 
