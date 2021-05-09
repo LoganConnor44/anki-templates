@@ -158,7 +158,7 @@ A full example of the Back of a recognition card is found below:
 <div style="display:none;">{{Audio}}{{SentenceAudio}}</div>
 ```
 
-# What Is Happening In The Above Code Snippet?
+## What Is Happening In The Above Code Snippet?
 
 The logic attempts to make custom styling and additional logic work the same across Desktop Anki and Anki Droid (ios anki not tested). The [above code snippets](#Code%20Snippets) contain inline comments to address what is being done, but an explanation is also below.
 
