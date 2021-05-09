@@ -79,7 +79,7 @@ A full example of the Back of the card is found below:
 	/*ankidroid*/
 	#content {
 		margin: 0;
-		}
+	}
 </style>
 
 <script>
