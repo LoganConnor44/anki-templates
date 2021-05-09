@@ -19,6 +19,8 @@ This codebase is a solution for making Chinese study, through Anki, more enjoyab
 
 This project can make your Chinese flashcards look nice by copying/pasting a few lines of logic in your Anki template.
 
+## Front
+
 A full example of the Front of the card is found below:
 ```html
 <!--Styling may be placed in the Styling Anki tab - but for ease of use let's add it here only-->
@@ -79,6 +81,8 @@ A full example of the Front of the card is found below:
 <!--Always add audio and keep it invisible-->
 <div style="display:none;">{{Audio}}{{SentenceAudio}}</div>
 ```
+
+## Back
 
 A full example of the Back of the card is found below:
 ```html
