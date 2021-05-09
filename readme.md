@@ -17,7 +17,7 @@ This codebase is a solution for making Chinese study, through Anki, more enjoyab
 
 # tl;dr
 
-This project can make your Chinese flashcards look nice by copying/pasting a few lines of logic in your Anki template. Copy and paste the below code snippets into their respective card templates. Once you've done that  and exchange the default value of `YOUR_FIELD_NAME` with the names defined in your deck (see {{text:YOUR_FIELD_NAME}}). The last step is to decide which card type you want to create and update that attribute value as well.
+This project can make your Chinese flashcards look nice by copying/pasting [a few lines of logic](#Code%20Snippets) in your Anki template. Copy and paste the below code snippets into their respective card templates. Once you've done that  and exchange the default value of `YOUR_FIELD_NAME` with the names defined in your deck (see {{text:YOUR_FIELD_NAME}}). The last step is to decide which card type you want to create and update that attribute value as well.
 
 # Code Snippets
 
@@ -160,9 +160,9 @@ A full example of the Back of a recognition card is found below:
 
 # What Is Happening In The Above Code Snippet?
 
-The logic attempts to make custom styling and additional logic work the same across Desktop Anki and Anki Droid (ios anki not tested). The above code snippets contains inline comments to address what is being done, but an explanation is also below.
+The logic attempts to make custom styling and additional logic work the same across Desktop Anki and Anki Droid (ios anki not tested). The [above code snippets](#Code%20Snippets) contain inline comments to address what is being done, but an explanation is also below.
 
-* Front
+* [Front](##Front)
 	1. Check if the Web View contains logic to *create* our custom element, material-beautify-chinese-study
 		* If it does move on
 		* If it does not, programmatically create the import script tag and pull it in from cdn so the Web View will have the ability to create it
@@ -171,20 +171,20 @@ The logic attempts to make custom styling and additional logic work the same acr
 			* Depending on which Anki client is being used, the Web View may retain data from prior sessions
 	3. Programmatically create the material-beautify-chinese-study element and define the attribute values with your personal Anki field names
 	4. Add audio to the card, but make it invisible
-* Back
+* [Back](##Back)
 	1. Check if the Web View contains logic to *create* our custom element, material-beautify-chinese-study
 		* If it does move on
 		* If it does not, programmatically create the import script tag and pull it in from cdn so the Web View will have the ability to create it
 	2. Check if the Web View's DOM already contains our element, material-beautify-chinese-study
 		* If it does, redefine the card orientation to answer
 			* We also redefine the card type - from memory I don't remember the exact use case for this - but it doesn't hurt to do this - so we keep it for now
-		* If it does, we are most likely on Anki Droid and need to recreate the element entirely
+		* If it does not, we are most likely on Anki Droid and need to recreate the element entirely
 	3. Add audio to the card, but make it invisible
 
 
 # How Is This Possible?
 
-Anki utilizes web technologies to generate its flashcards. This codebase is using a technology called Web Components that will allow users to add ~~three html tags~~(due to different behaviours between Anki Clients we have to add some logic as a workaround for Anki's inconsistent behaviour) the above logic to their Anki card templates, and the rest is handled automatically by the web component.
+Anki utilizes web technologies to generate its flashcards. This codebase is using a technology called Web Components that will allow users to add ~~three html tags~~(due to different behaviours between Anki Clients we have to add some logic as a workaround for Anki's inconsistent behaviour) [the above logic](#Code%20Snippets) to their Anki card templates, and the rest is handled automatically by the web component.
 
 ## Styling
 
@@ -233,7 +233,7 @@ This project is leveraging the StencilJs library to create Web Components in Typ
 
 1. Inputting *accented* pinyin into the *numbered* pinyin attribute has not been tested. I plan to add this because I'm sure most users have accented pinyin, rather than numbered, but this is something I don't have with my decks and haven't spent time on yet.
 	* This fix would be simple. Just regex for an accented vowel and if one exists pass the translation logic and output the already accented pinyin to the html.
-2. Writing Card Types (Notes) - if it is a single character, it will animate twice. Currently, I'm writing this off as a feature because it's an easy issue to fix but don't mind the repeat.
+2. Writing Card Types (Notes) - if it is a single character, it will animate twice and create the character twice. Currently, I'm not using this writing card.
 	* Click event on the characters would be nice to restart animations.
 
 # Improvements
