@@ -125,7 +125,7 @@ A full example of the Back of the card is found below:
 		document.body.appendChild(beautify);
 	} else {
 		// element already exist
-		// redefine verify the card type just for safe keeping
+		// redefine the card type just for safe keeping
 		// redefine the card orientation to display the answer logic
 		beautify.setAttribute('card-type', 'recognition');
 		beautify.setAttribute('card-orientation', 'answer');
