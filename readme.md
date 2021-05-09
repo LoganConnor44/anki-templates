@@ -17,51 +17,102 @@ This codebase is a solution for making Chinese study, through Anki, more enjoyab
 
 # tl;dr
 
-This project can make your Chinese cards look nice in three steps by copying/pasting a few lines of code into your Anki template. To do this follow the guide below:
-1. Copy the `script` tag below and paste it into your Anki template.
-    * `<script>if (!document.querySelector('#import-script')) {var script = document.createElement('script');script.setAttribute('id', 'import-script');script.setAttribute('type', 'module');script.setAttribute('src', 'https://cdn.jsdelivr.net/npm/beautify-chinese-study@1.0.0/dist/beautify-chinese-study/beautify-chinese-study.esm.js');document.body.appendChild(script);}</script>`
-        * Normally, this script tag would be shorter, but Anki's Web Viewer doesn't handle scripts like other Web Viewers / browsers.
-2. Copy the `style` tag below and paste it into your template OR paste it the styling section of your Anki Card.
-    * `<style> /*desktop anki*/body {margin: 0;}/*ankidroid*/#content {margin: 0;}</style>`
-3. Copy the below `material-beautify-chinese-study` tag and paste it into your Anki card. Be sure to input your own Anki Field names and take note of the card type that you are creating. Please remember to visit the api documentation [here](./src/components/material-beautify-chinese-study/readme.md) to better understand this element.
-    ```html
-    <material-beautify-chinese-study simplified='{{text:Simplified}}'
-        traditional='{{text:Traditional}}'
-        numbered-pinyin='{{text:Pinyin}}'
-        meaning='{{text:Meaning}}'
-        card-type='tones'
-        card-orientation='question' />
-    ```
+This project can make your Chinese flashcards look nice by copying/pasting a few lines of logic in your Anki template.
 
-A full example is found below:
+A full example of the Front of the card is found below:
 ```html
 <style>
-	/*desktop anki*/
-	body {
-		margin: 0;
-	}
+    /*desktop anki*/
+    body {
+        margin: 0;
+    }
 
-	/*ankidroid*/
-	#content {
-		margin: 0;
+    /*ankidroid*/
+    #content {
+        margin: 0;
 	}
 </style>
+
 <script>
-	if (!document.querySelector('#import-script')) {
+	if (!customElements.get('material-beautify-chinese-study')) {
+		console.log('custom element does not exist - creating script to pull it in');
 		var script = document.createElement('script');
 		script.setAttribute('id', 'import-script');
 		script.setAttribute('type', 'module');
-		script.setAttribute('src', 'https://cdn.jsdelivr.net/npm/beautify-chinese-study@1.0.0/dist/beautify-chinese-study/beautify-chinese-study.esm.js');
+		script.setAttribute('src', 'https://cdn.jsdelivr.net/npm/beautify-chinese-study/dist/beautify-chinese-study/beautify-chinese-study.esm.js');
+		document.body.appendChild(script);
+	} else {
+		console.log('Custom Element exists.');
+	}
+
+	var beautify = document.querySelector('material-beautify-chinese-study');
+	if (beautify !== null) {
+		beautify.remove();
+	}
+
+	var beautify = document.createElement('material-beautify-chinese-study');
+	beautify.setAttribute('id', 'beautify');
+	beautify.setAttribute('simplified', '{{text:Simplified}}');
+	beautify.setAttribute('traditional', '{{text:Traditional}}');
+	beautify.setAttribute('numbered-pinyin', "{{text:Pinyin.2}}");
+    beautify.setAttribute('simplified-sentence', '{{text:SentenceSimplified}}');
+	beautify.setAttribute('traditional-sentence', '{{text:SentenceTraditional}}');
+    beautify.setAttribute('sentence-numbered-pinyin', "{{text:SentencePinyin.2}}");
+	beautify.setAttribute('meaning', "{{text:Meaning}}");
+	beautify.setAttribute('card-type', 'recognition');
+	beautify.setAttribute('card-orientation', 'question');
+	beautify.setAttribute('preferred-phonic', 'zhuyin');
+	document.body.appendChild(beautify);
+</script>
+
+<div style="display:none;">{{Audio}}{{SentenceAudio}}</div>
+```
+
+A full example of the Back of the card is found below:
+```html
+<style>
+    /*desktop anki*/
+    body {
+        margin: 0;
+    }
+
+    /*ankidroid*/
+    #content {
+        margin: 0;
+		}
+</style>
+
+<script>
+	if (!customElements.get('material-beautify-chinese-study')) {
+		var script = document.createElement('script');
+		script.setAttribute('id', 'import-script');
+		script.setAttribute('type', 'module');
+		script.setAttribute('src', 'https://cdn.jsdelivr.net/npm/beautify-chinese-study/dist/beautify-chinese-study/beautify-chinese-study.esm.js');
 		document.body.appendChild(script);
 	}
+
+	var beautify = document.querySelector('#beautify');
+	if (!beautify) {
+		var beautify = document.createElement('material-beautify-chinese-study');
+		beautify.setAttribute('id', 'beautify');
+		beautify.setAttribute('simplified', '{{text:Simplified}}');
+		beautify.setAttribute('writing', '{{text:Traditional}}');
+		beautify.setAttribute('numbered-pinyin', "{{text:Pinyin.2}}");
+		beautify.setAttribute('simplified-sentence', '{{text:SentenceSimplified}}');
+		beautify.setAttribute('traditional-sentence', '{{text:SentenceTraditional}}');
+		beautify.setAttribute('sentence-numbered-pinyin', "{{text:SentencePinyin.2}}");
+		beautify.setAttribute('meaning', "{{text:Meaning}}");
+		beautify.setAttribute('card-type', 'recognition');
+		beautify.setAttribute('card-orientation', 'answer');
+		beautify.setAttribute('preferred-phonic', 'zhuyin');
+		document.body.appendChild(beautify);
+	} else {
+		beautify.setAttribute('card-type', 'recognition');
+		beautify.setAttribute('card-orientation', 'answer');
+	}
 </script>
-<material-beautify-chinese-study simplified='{{text:Simplified}}'
-	traditional='{{text:Traditional}}'
-	numbered-pinyin='{{text:Pinyin}}'
-	meaning='{{text:Meaning}}'
-	card-type='tones'
-	card-orientation='question' 
-	preferred-phonic='zhuyin' />
+
+<div style="display:none;">{{Audio}}{{SentenceAudio}}</div>
 ```
 
 # How
