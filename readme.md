@@ -21,12 +21,12 @@ This project can make your Chinese flashcards look nice by copying/pasting a few
 
 A full example of the Front of the card is found below:
 ```html
+<!--Styling may be placed in the Styling Anki tab - but for ease of use let's add it here only-->
 <style>
 	/*desktop anki*/
 	body {
 		margin: 0;
 	}
-
 	/*ankidroid*/
 	#content {
 		margin: 0;
@@ -34,22 +34,28 @@ A full example of the Front of the card is found below:
 </style>
 
 <script>
+	// if the custom element material-beautify-chinese-study is not a known element
+	//// manually create the html script to import the module so one can be created
 	if (!customElements.get('material-beautify-chinese-study')) {
-		console.log('custom element does not exist - creating script to pull it in');
+		console.log('Custom element does not exist - Creating script to pull it in');
 		var script = document.createElement('script');
 		script.setAttribute('id', 'import-script');
 		script.setAttribute('type', 'module');
 		script.setAttribute('src', 'https://cdn.jsdelivr.net/npm/beautify-chinese-study/dist/beautify-chinese-study/beautify-chinese-study.esm.js');
 		document.body.appendChild(script);
 	} else {
-		console.log('Custom Element exists.');
+		console.log('Custom element exists.');
 	}
 
+	// locate the custom element material-beautify-chinese-study on the DOM
+	//// if it has data - remove everything
 	var beautify = document.querySelector('material-beautify-chinese-study');
 	if (beautify !== null) {
 		beautify.remove();
 	}
 
+	// create a brand new material-beautify-chinese-study element and define
+	//// its attributes and attribute values
 	var beautify = document.createElement('material-beautify-chinese-study');
 	beautify.setAttribute('id', 'beautify');
 	beautify.setAttribute('simplified', '{{text:Simplified}}');
@@ -62,20 +68,22 @@ A full example of the Front of the card is found below:
 	beautify.setAttribute('card-type', 'recognition');
 	beautify.setAttribute('card-orientation', 'question');
 	beautify.setAttribute('preferred-phonic', 'zhuyin');
+	// add the element to the DOM body
 	document.body.appendChild(beautify);
 </script>
 
+<!--Always add audio and keep it invisible-->
 <div style="display:none;">{{Audio}}{{SentenceAudio}}</div>
 ```
 
 A full example of the Back of the card is found below:
 ```html
+<!--Styling may be placed in the Styling Anki tab - but for ease of use let's add it here only-->
 <style>
 	/*desktop anki*/
 	body {
 		margin: 0;
 	}
-
 	/*ankidroid*/
 	#content {
 		margin: 0;
@@ -83,6 +91,8 @@ A full example of the Back of the card is found below:
 </style>
 
 <script>
+	// if the custom element material-beautify-chinese-study is not a known element
+	//// manually create the html script to import the module so one can be created
 	if (!customElements.get('material-beautify-chinese-study')) {
 		var script = document.createElement('script');
 		script.setAttribute('id', 'import-script');
@@ -91,8 +101,13 @@ A full example of the Back of the card is found below:
 		document.body.appendChild(script);
 	}
 
+	// since we are on the back of the card the custom element from the front of the card
+	//// may have been retained - in instances of AnkiDroid a new webview is created and
+	//// the element will need to be recreated from scratch
 	var beautify = document.querySelector('#beautify');
 	if (!beautify) {
+		// probably executing because on AnkiDroid
+		// recreating element from scratch
 		var beautify = document.createElement('material-beautify-chinese-study');
 		beautify.setAttribute('id', 'beautify');
 		beautify.setAttribute('simplified', '{{text:Simplified}}');
@@ -107,11 +122,15 @@ A full example of the Back of the card is found below:
 		beautify.setAttribute('preferred-phonic', 'zhuyin');
 		document.body.appendChild(beautify);
 	} else {
+		// element already exist
+		// redefine verify the card type just for safe keeping
+		// redefine the card orientation to display the answer logic
 		beautify.setAttribute('card-type', 'recognition');
 		beautify.setAttribute('card-orientation', 'answer');
 	}
 </script>
 
+<!--Always add audio and keep it invisible-->
 <div style="display:none;">{{Audio}}{{SentenceAudio}}</div>
 ```
 
