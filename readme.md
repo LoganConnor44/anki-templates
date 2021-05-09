@@ -17,11 +17,13 @@ This codebase is a solution for making Chinese study, through Anki, more enjoyab
 
 # tl;dr
 
-This project can make your Chinese flashcards look nice by copying/pasting a few lines of logic in your Anki template and exchanging the default value of `YOUR_FIELD_NAME` with the names defined in your deck (see {{text:YOUR_FIELD_NAME}}).
+This project can make your Chinese flashcards look nice by copying/pasting a few lines of logic in your Anki template. Copy and paste the below code snippets into their respective card templates. Once you've done that  and exchange the default value of `YOUR_FIELD_NAME` with the names defined in your deck (see {{text:YOUR_FIELD_NAME}}). The last step is to decide which card type you want to create and update that attribute value as well.
+
+# Code Snippets
 
 ## Front
 
-A full example of the Front of the card is found below:
+A full example of the Front of a recognition card is found below:
 ```html
 <!--Styling may be placed in the Styling Anki tab - but for ease of use let's add it here only-->
 <style>
@@ -89,7 +91,7 @@ A full example of the Front of the card is found below:
 
 ## Back
 
-A full example of the Back of the card is found below:
+A full example of the Back of a recognition card is found below:
 ```html
 <!--Styling may be placed in the Styling Anki tab - but for ease of use let's add it here only-->
 <style>
@@ -211,7 +213,7 @@ Aside from making your flashcards look beautiful, this project has three note-wo
 3. Zhuyin Characters
 	* The project can convert your numbered pinyin into zhuyin characters.
 4. Traditional Characters
-	* Due to the prevelance of Taiwanese media in the West, learning to recognize traditional character is a useful skill. The project can programmatically convert Mainland Simplified Characters to Taiwanese Traditional Characters!
+	* Due to the prevelance of Taiwanese media in the West, learning to recognize Traditional Characters is a useful skill. The project can programmatically convert Mainland Simplified Characters to Taiwanese Traditional Characters!
 
 # Contributing
 
