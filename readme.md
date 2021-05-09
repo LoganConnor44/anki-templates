@@ -17,7 +17,7 @@ This codebase is a solution for making Chinese study, through Anki, more enjoyab
 
 # tl;dr
 
-This project can make your Chinese flashcards look nice by copying/pasting a few lines of logic in your Anki template and exchanging my Anki card field names with the yours (see {{text:SOME_VALUE}}).
+This project can make your Chinese flashcards look nice by copying/pasting a few lines of logic in your Anki template and exchanging the default value of `YOUR_FIELD_NAME` with the names defined in your deck (see {{text:YOUR_FIELD_NAME}}).
 
 ## Front
 
@@ -59,23 +59,23 @@ A full example of the Front of the card is found below:
 
 	// create a brand new material-beautify-chinese-study element and define
 	//// its attributes and attribute values
-	// IMPORTANT - the text below that contains {{text:SOME_VALUE}} is meant to be exchanged
+	// IMPORTANT - the text below that contains {{text:YOUR_FIELD_NAME}} is meant to be exchanged
 	//// with the field names on your Anki card fields
 	//// eg if the english translation field on your Anki card is called EngLish the value you type below 
 	//// would be
 	//// beautify.setAttribute('meaning', "{{text:EngLish}}")
 	var beautify = document.createElement('material-beautify-chinese-study');
 	beautify.setAttribute('id', 'beautify');
-	beautify.setAttribute('simplified', '{{text:Simplified}}');
-	beautify.setAttribute('traditional', '{{text:Traditional}}');
+	beautify.setAttribute('simplified', '{{text:YOUR_FIELD_NAME}}');
+	beautify.setAttribute('traditional', '{{text:YOUR_FIELD_NAME}}');
 	// double quotes intentional do to the value containing a single quote
-	beautify.setAttribute('numbered-pinyin', "{{text:Pinyin.2}}");
-	beautify.setAttribute('simplified-sentence', '{{text:SentenceSimplified}}');
-	beautify.setAttribute('traditional-sentence', '{{text:SentenceTraditional}}');
+	beautify.setAttribute('numbered-pinyin', "{{text:YOUR_FIELD_NAME}}");
+	beautify.setAttribute('simplified-sentence', '{{text:YOUR_FIELD_NAME}}');
+	beautify.setAttribute('traditional-sentence', '{{text:YOUR_FIELD_NAME}}');
 	// double quotes intentional do to the value containing a single quote
-	beautify.setAttribute('sentence-numbered-pinyin', "{{text:SentencePinyin.2}}");
+	beautify.setAttribute('sentence-numbered-pinyin', "{{text:YOUR_FIELD_NAME}}");
 	// double quotes intentional do to the value containing a single quote
-	beautify.setAttribute('meaning', "{{text:Meaning}}");
+	beautify.setAttribute('meaning', "{{text:YOUR_FIELD_NAME}}");
 	beautify.setAttribute('card-type', 'recognition');
 	beautify.setAttribute('card-orientation', 'question');
 	beautify.setAttribute('preferred-phonic', 'zhuyin');
@@ -122,23 +122,23 @@ A full example of the Back of the card is found below:
 	if (!beautify) {
 		// probably executing because on AnkiDroid
 		// recreating element from scratch
-		// IMPORTANT - the text below that contains {{text:SOME_VALUE}} is meant to be exchanged
+		// IMPORTANT - the text below that contains {{text:YOUR_FIELD_NAME}} is meant to be exchanged
 		//// with the field names on your Anki card fields
 		//// eg if the english translation field on your Anki card is called EngLish the value you type below 
 		//// would be
 		//// beautify.setAttribute('meaning', "{{text:EngLish}}")
 		var beautify = document.createElement('material-beautify-chinese-study');
 		beautify.setAttribute('id', 'beautify');
-		beautify.setAttribute('simplified', '{{text:Simplified}}');
-		beautify.setAttribute('writing', '{{text:Traditional}}');
+		beautify.setAttribute('simplified', '{{text:YOUR_FIELD_NAME}}');
+		beautify.setAttribute('writing', '{{text:YOUR_FIELD_NAME}}');
 		// double quotes intentional do to the value containing a single quote
-		beautify.setAttribute('numbered-pinyin', "{{text:Pinyin.2}}");
-		beautify.setAttribute('simplified-sentence', '{{text:SentenceSimplified}}');
-		beautify.setAttribute('traditional-sentence', '{{text:SentenceTraditional}}');
+		beautify.setAttribute('numbered-pinyin', "{{text:YOUR_FIELD_NAME}}");
+		beautify.setAttribute('simplified-sentence', '{{text:YOUR_FIELD_NAME}}');
+		beautify.setAttribute('traditional-sentence', '{{text:YOUR_FIELD_NAME}}');
 		// double quotes intentional do to the value containing a single quote
-		beautify.setAttribute('sentence-numbered-pinyin', "{{text:SentencePinyin.2}}");
+		beautify.setAttribute('sentence-numbered-pinyin', "{{text:YOUR_FIELD_NAME}}");
 		// double quotes intentional do to the value containing a single quote
-		beautify.setAttribute('meaning', "{{text:Meaning}}");
+		beautify.setAttribute('meaning', "{{text:YOUR_FIELD_NAME}}");
 		beautify.setAttribute('card-type', 'recognition');
 		beautify.setAttribute('card-orientation', 'answer');
 		beautify.setAttribute('preferred-phonic', 'zhuyin');
