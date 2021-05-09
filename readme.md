@@ -4,7 +4,18 @@ This codebase is a solution for making Chinese study, through Anki, more enjoyab
 
 # Available Card Types And Styling
 
-<script type="module" src="./dist/beautify-chinese-study/beautify-chinese-study.esm.js"></script>
+<script>
+if (!customElements.get('material-beautify-chinese-study')) {
+		console.log('Custom element does not exist - Creating script to pull it in');
+		var script = document.createElement('script');
+		script.setAttribute('id', 'import-script');
+		script.setAttribute('type', 'module');
+		script.setAttribute('src', 'https://cdn.jsdelivr.net/npm/beautify-chinese-study/dist/beautify-chinese-study/beautify-chinese-study.esm.js');
+		document.body.appendChild(script);
+	} else {
+		console.log('Custom element exists.');
+	}
+</script>
 
 
 
