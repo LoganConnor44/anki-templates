@@ -35,7 +35,8 @@ A full example of the Front of the card is found below:
 
 <script>
 	// if the custom element material-beautify-chinese-study is not a known element
-	//// manually create the html script to import the module so one can be created
+	//// manually create the html script to import the module so the browser has
+	//// the necessary logic to create element
 	if (!customElements.get('material-beautify-chinese-study')) {
 		console.log('Custom element does not exist - Creating script to pull it in');
 		var script = document.createElement('script');
@@ -92,7 +93,8 @@ A full example of the Back of the card is found below:
 
 <script>
 	// if the custom element material-beautify-chinese-study is not a known element
-	//// manually create the html script to import the module so one can be created
+	//// manually create the html script to import the module so the browser has
+	//// the necessary logic to create element
 	if (!customElements.get('material-beautify-chinese-study')) {
 		var script = document.createElement('script');
 		script.setAttribute('id', 'import-script');
