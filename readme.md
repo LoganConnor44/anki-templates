@@ -211,9 +211,9 @@ The first step for all three of these strategies is to [publish to NPM](https://
 ### Quick Guide For Publishing
 
 Assuming you are already logged in, the steps are below:
-1. ```bash npm version MANUALLY-INCREMENT-VERSION-NUMBER```
+1. ```npm version MANUALLY-INCREMENT-VERSION-NUMBER```
 	* Update will be seen in the `package.json` file
-2. ```bash npm publish --access public```
+2. ```npm publish --access public```
 	* Verify on npm
 
 ### Script tag
