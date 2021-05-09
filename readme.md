@@ -17,7 +17,10 @@ This codebase is a solution for making Chinese study, through Anki, more enjoyab
 
 # tl;dr
 
-This project can make your Chinese flashcards look nice by copying/pasting [a few lines of logic](#Code%20Snippets) in your Anki template. Copy and paste the below code snippets into their respective card templates. Once you've done that  and exchange the default value of `YOUR_FIELD_NAME` with the names defined in your deck (see {{text:YOUR_FIELD_NAME}}). The last step is to decide which card type you want to create and update that attribute value as well.
+This project can make your Chinese flashcards look nice by copying/pasting [a few lines of logic](#Code%20Snippets) in your Anki template. 
+1. Copy and paste the below code snippets into their respective card templates
+2. Exchange the default value of `YOUR_FIELD_NAME` with the names defined in your deck (see {{text:YOUR_FIELD_NAME}})
+3. Decide which card type you want to create and update that attribute value as well.
 
 # Code Snippets
 
