@@ -4,21 +4,270 @@ This codebase is a solution for making Chinese study, through Anki, more enjoyab
 
 # Available Card Types And Styling
 
-| Question                                                      | Answer                                                    |
-| -----------                                                   | -----------                                               |
-| <img src="./images/recognition-question.png" alt="Recognition Question" width="200"/> | <img src="./images/recognition-answer.png" alt="Recognition Answer" width="200"/> |
-| <img src="./images/meaning-question.png" alt="Meaning Question" width="200"/> | <img src="./images/meaning-answer.png" alt="Meaning Answer" width="200"/> |
-| <img src="./images/traditional-question.png" alt="Traditional Question" width="200"/> | <img src="./images/traditional-answer.png" alt="Traditional Answer" width="200"/> |
-| <img src="./images/traditional-sentence-question.png" alt="Traditional Sentence Question" width="200"/> | <img src="./images/traditional-sentence-answer.png" alt="Traditional Sentence Answer" width="200"/> |
-| <img src="./images/tones-question.png" alt="Tones Question" width="200"/> | <img src="./images/tones-answer.png" alt="Tones Answer" width="200"/> |
-| <img src="./images/writing-question.png" alt="Writing Question" width="200"/> | <img src="./images/writing-answer.gif" alt="Writing Answer" width="200"/> |
-| <img src="./images/audio-question-1.gif" alt="Audio 1 Question" width="200"/> | <img src="./images/audio-answer.png" alt="Audio Answer" width="200"/> |
-| <img src="./images/audio-question-2.gif" alt="Audio 2 Question" width="200"/> | <img src="./images/audio-answer.png" alt="Audio Answer" width="200"/> |
+<script type="module" src="https://cdn.jsdelivr.net/npm/beautify-chinese-study/dist/beautify-chinese-study/beautify-chinese-study.esm.js"></script>
+
+
+
+<table style="height:300px;">
+	<tr>
+		<th>Question</th>
+		<th>Answer</th>
+	</tr>
+	<tr>
+		<td>
+			<div style="width:400px">
+				<material-beautify-chinese-study id='au-1-q'
+					simplified='天气'
+					simplified-sentence='今天天气很好'
+					traditional-sentence=''
+					traditional=''
+					numbered-pinyin='tian1qi4'
+					sentence-numbered-pinyin="Jin1tian1 tian1qi4 hen3 hao3"
+					card-type='audio'
+					meaning='weather'
+					sentence-meaning='The weather is nice today.'
+					card-orientation='question'
+					preferred-phonic='zhuyin' />
+			</div>
+			<p>
+				Note: There are two variants of this animation that is randomized. Feel free to refresh the page to possibly view the other version. A force type option is not available.
+			</p>
+		</td>
+		<td>
+			<div style="width:450px">
+				<material-beautify-chinese-study id='au-1-a'
+					simplified='天气'
+					simplified-sentence='今天天气很好'
+					traditional-sentence=''
+					traditional=''
+					numbered-pinyin='tian1qi4'
+					sentence-numbered-pinyin="Jin1tian1 tian1qi4 hen3 hao3"
+					card-type='audio'
+					meaning='weather'
+					sentence-meaning='The weather is nice today.'
+					card-orientation='answer'
+					preferred-phonic='zhuyin' />
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<div style="width:400px">
+				<material-beautify-chinese-study id='rec-q'
+					simplified='天气'
+					simplified-sentence='今天天气很好'
+					traditional-sentence=''
+					traditional=''
+					numbered-pinyin='tian1qi4'
+					sentence-numbered-pinyin="Jin1tian1 tian1qi4 hen3 hao3"
+					card-type='recognition'
+					meaning='weather'
+					sentence-meaning='The weather is nice today.'
+					card-orientation='question'
+					preferred-phonic='zhuyin' />
+			</div>
+		</td>
+		<td>
+			<div style="width:450px">
+				<material-beautify-chinese-study id='rec-a'
+					simplified='天气'
+					simplified-sentence='今天天气很好'
+					traditional-sentence=''
+					traditional=''
+					numbered-pinyin='tian1qi4'
+					sentence-numbered-pinyin="Jin1tian1 tian1qi4 hen3 hao3"
+					card-type='recognition'
+					meaning='weather'
+					sentence-meaning='The weather is nice today.'
+					card-orientation='answer'
+					preferred-phonic='zhuyin' />
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<div style="width:400px">
+				<material-beautify-chinese-study id='ton-q'
+					simplified='天气'
+					simplified-sentence='今天天气很好'
+					traditional-sentence=''
+					traditional=''
+					numbered-pinyin='tian1qi4'
+					sentence-numbered-pinyin="Jin1tian1 tian1qi4 hen3 hao3"
+					card-type='tones'
+					meaning='weather'
+					sentence-meaning='The weather is nice today.'
+					card-orientation='question'
+					preferred-phonic='zhuyin' />
+			</div>
+		</td>
+		<td>
+			<div style="width:450px">
+				<material-beautify-chinese-study id='ton-a'
+					simplified='天气'
+					simplified-sentence='今天天气很好'
+					traditional-sentence=''
+					traditional=''
+					numbered-pinyin='tian1qi4'
+					sentence-numbered-pinyin="Jin1tian1 tian1qi4 hen3 hao3"
+					card-type='tones'
+					meaning='weather'
+					sentence-meaning='The weather is nice today.'
+					card-orientation='answer'
+					preferred-phonic='zhuyin' />
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<div style="width:400px">
+				<material-beautify-chinese-study id='trad-q'
+					simplified='天气'
+					simplified-sentence='今天天气很好'
+					traditional-sentence=''
+					traditional=''
+					numbered-pinyin='tian1qi4'
+					sentence-numbered-pinyin="Jin1tian1 tian1qi4 hen3 hao3"
+					card-type='traditional'
+					meaning='weather'
+					sentence-meaning='The weather is nice today.'
+					card-orientation='question'
+					preferred-phonic='zhuyin' />
+			</div>
+		</td>
+		<td>
+			<div style="width:450px">
+				<material-beautify-chinese-study id='trad-a'
+					simplified='天气'
+					simplified-sentence='今天天气很好'
+					traditional-sentence=''
+					traditional=''
+					numbered-pinyin='tian1qi4'
+					sentence-numbered-pinyin="Jin1tian1 tian1qi4 hen3 hao3"
+					card-type='traditional'
+					meaning='weather'
+					sentence-meaning='The weather is nice today.'
+					card-orientation='answer'
+					preferred-phonic='zhuyin' />
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<div style="width:400px">
+				<material-beautify-chinese-study id='trad-sent-q'
+					simplified='天气'
+					simplified-sentence='今天天气很好'
+					traditional-sentence=''
+					traditional=''
+					numbered-pinyin='tian1qi4'
+					sentence-numbered-pinyin="Jin1tian1 tian1qi4 hen3 hao3"
+					card-type='traditional-sentence'
+					meaning='weather'
+					sentence-meaning='The weather is nice today.'
+					card-orientation='question'
+					preferred-phonic='zhuyin' />
+			</div>
+		</td>
+		<td>
+			<div style="width:450px">
+				<material-beautify-chinese-study id='trad-sent-a'
+					simplified='天气'
+					simplified-sentence='今天天气很好'
+					traditional-sentence=''
+					traditional=''
+					numbered-pinyin='tian1qi4'
+					sentence-numbered-pinyin="Jin1tian1 tian1qi4 hen3 hao3"
+					card-type='traditional-sentence'
+					meaning='weather'
+					sentence-meaning='The weather is nice today.'
+					card-orientation='answer'
+					preferred-phonic='zhuyin' />
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<div style="width:400px">
+				<material-beautify-chinese-study id='writ-q'
+					simplified='天气'
+					simplified-sentence='今天天气很好'
+					traditional-sentence=''
+					traditional=''
+					numbered-pinyin='tian1qi4'
+					sentence-numbered-pinyin="Jin1tian1 tian1qi4 hen3 hao3"
+					card-type='writing'
+					meaning='weather'
+					sentence-meaning='The weather is nice today.'
+					card-orientation='question'
+					preferred-phonic='zhuyin' />
+			</div>
+		</td>
+		<td>
+			<div style="width:450px">
+				<material-beautify-chinese-study id='writ-a'
+					simplified='天气'
+					simplified-sentence='今天天气很好'
+					traditional-sentence=''
+					traditional=''
+					numbered-pinyin='tian1qi4'
+					sentence-numbered-pinyin="Jin1tian1 tian1qi4 hen3 hao3"
+					card-type='writing'
+					meaning='weather'
+					sentence-meaning='The weather is nice today.'
+					card-orientation='answer'
+					preferred-phonic='zhuyin' />
+			</div>
+			<p>
+				Note: This is an animation an may have ended before you scrolled down to this section. Refresh to view animation. Clicking the animation to re-animate is within the library used for animation - just not implemented yet.
+			</p>
+			<p>
+				Note: There's obviously an issue with doubling here, even for single characters. It's a known issue, but not a high priority.
+			</p>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<div style="width:400px">
+				<material-beautify-chinese-study id='mea-sent-q'
+					simplified='天气'
+					simplified-sentence='今天天气很好'
+					traditional-sentence=''
+					traditional=''
+					numbered-pinyin='tian1qi4'
+					sentence-numbered-pinyin="Jin1tian1 tian1qi4 hen3 hao3"
+					card-type='meaning'
+					meaning='weather'
+					sentence-meaning='The weather is nice today.'
+					card-orientation='question'
+					preferred-phonic='zhuyin' />
+			</div>
+		</td>
+		<td>
+			<div style="width:450px">
+				<material-beautify-chinese-study id='mea-sent-a'
+					simplified='天气'
+					simplified-sentence='今天天气很好'
+					traditional-sentence=''
+					traditional=''
+					numbered-pinyin='tian1qi4'
+					sentence-numbered-pinyin="Jin1tian1 tian1qi4 hen3 hao3"
+					card-type='meaning'
+					meaning='weather'
+					sentence-meaning='The weather is nice today.'
+					card-orientation='answer'
+					preferred-phonic='zhuyin' />
+			</div>
+		</td>
+	</tr>
+</table>
+
 
 # tl;dr
 
 This project can make your Chinese flashcards look nice by copying/pasting a few lines of logic in your Anki template.
 
+## Front
 A full example of the Front of the card is found below:
 ```html
 <!--Styling may be placed in the Styling Anki tab - but for ease of use let's add it here only-->
@@ -80,6 +329,7 @@ A full example of the Front of the card is found below:
 <div style="display:none;">{{Audio}}{{SentenceAudio}}</div>
 ```
 
+## Back
 A full example of the Back of the card is found below:
 ```html
 <!--Styling may be placed in the Styling Anki tab - but for ease of use let's add it here only-->
