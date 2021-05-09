@@ -61,10 +61,13 @@ A full example of the Front of the card is found below:
 	beautify.setAttribute('id', 'beautify');
 	beautify.setAttribute('simplified', '{{text:Simplified}}');
 	beautify.setAttribute('traditional', '{{text:Traditional}}');
+	// double quotes intentional do to the value containing a single quote
 	beautify.setAttribute('numbered-pinyin', "{{text:Pinyin.2}}");
 	beautify.setAttribute('simplified-sentence', '{{text:SentenceSimplified}}');
 	beautify.setAttribute('traditional-sentence', '{{text:SentenceTraditional}}');
+	// double quotes intentional do to the value containing a single quote
 	beautify.setAttribute('sentence-numbered-pinyin', "{{text:SentencePinyin.2}}");
+	// double quotes intentional do to the value containing a single quote
 	beautify.setAttribute('meaning', "{{text:Meaning}}");
 	beautify.setAttribute('card-type', 'recognition');
 	beautify.setAttribute('card-orientation', 'question');
@@ -114,10 +117,13 @@ A full example of the Back of the card is found below:
 		beautify.setAttribute('id', 'beautify');
 		beautify.setAttribute('simplified', '{{text:Simplified}}');
 		beautify.setAttribute('writing', '{{text:Traditional}}');
+		// double quotes intentional do to the value containing a single quote
 		beautify.setAttribute('numbered-pinyin', "{{text:Pinyin.2}}");
 		beautify.setAttribute('simplified-sentence', '{{text:SentenceSimplified}}');
 		beautify.setAttribute('traditional-sentence', '{{text:SentenceTraditional}}');
+		// double quotes intentional do to the value containing a single quote
 		beautify.setAttribute('sentence-numbered-pinyin', "{{text:SentencePinyin.2}}");
+		// double quotes intentional do to the value containing a single quote
 		beautify.setAttribute('meaning', "{{text:Meaning}}");
 		beautify.setAttribute('card-type', 'recognition');
 		beautify.setAttribute('card-orientation', 'answer');
