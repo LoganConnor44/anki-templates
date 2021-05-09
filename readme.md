@@ -213,7 +213,7 @@ Aside from making your flashcards look beautiful, this project has three note-wo
 3. Zhuyin Characters
 	* The project can convert your numbered pinyin into zhuyin characters.
 4. Traditional Characters
-	* Due to the prevelance of Taiwanese media in the West, learning to recognize Traditional Characters is a useful skill. The project can programmatically convert Mainland Simplified Characters to Taiwanese Traditional Characters!
+	* Due to the prevalence of Taiwanese media in the West, learning to recognize Traditional Characters is a useful skill. The project can programmatically convert Mainland Simplified Characters to Taiwanese Traditional Characters!
 
 # Contributing
 
