@@ -189,6 +189,9 @@ export class MaterialBeautifyChineseStudy {
 		return phonic;
 	}
 	
+	/**
+	 * Sets the color scheme based on the current card type.
+	 */
 	private setColourSchemes (): void {
 		let body: HTMLElement = this.element.shadowRoot.querySelector('#anki-background');
 		let card: HTMLElement = this.element.shadowRoot.querySelector('#chinese-card');
