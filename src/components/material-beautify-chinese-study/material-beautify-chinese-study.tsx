@@ -15,32 +15,32 @@ export class MaterialBeautifyChineseStudy {
 	/**
 	 *	Recognized card types: `recognition` | `traditional` | `tones` | `writing` | `meaning` | `traditional-sentence` | `audio`
 	 */
-	@Prop() 
+	@Prop()
 	public cardType: string;
 	/**
 	 * Recognized card orientations: `question` | `answer`
 	 */
-	@Prop() 
+	@Prop()
 	public cardOrientation: string;
 	/**
 	 * All characters allowed
 	 */
-	@Prop() 
+	@Prop()
 	public simplified: string;
 	/**
 	 * All characters allowed
 	 */
-	@Prop() 
+	@Prop()
 	public simplifiedSentence: string;
 	/**
 	 * All characters allowed
 	 */
-	@Prop() 
+	@Prop()
 	public traditionalSentence: string;
 	/**
 	 * All characters allowed
 	 */
-	@Prop() 
+	@Prop()
 	public traditional: string;
 	/**
 	 * All English language words allowed
