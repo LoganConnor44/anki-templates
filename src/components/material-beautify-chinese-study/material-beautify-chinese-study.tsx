@@ -16,60 +16,60 @@ export class MaterialBeautifyChineseStudy {
 	 *	Recognized card types: `recognition` | `traditional` | `tones` | `writing` | `meaning` | `traditional-sentence` | `audio`
 	 */
 	@Prop() 
-	cardType: string;
+	public cardType: string;
 	/**
 	 * Recognized card orientations: `question` | `answer`
 	 */
 	@Prop() 
-	cardOrientation: string;
+	public cardOrientation: string;
 	/**
 	 * All characters allowed
 	 */
 	@Prop() 
-	simplified: string;
+	public simplified: string;
 	/**
 	 * All characters allowed
 	 */
 	@Prop() 
-	simplifiedSentence: string;
+	public simplifiedSentence: string;
 	/**
 	 * All characters allowed
 	 */
 	@Prop() 
-	traditionalSentence: string;
+	public traditionalSentence: string;
 	/**
 	 * All characters allowed
 	 */
 	@Prop() 
-	traditional: string;
+	public traditional: string;
 	/**
 	 * All English language words allowed
 	 */
 	@Prop()
-	meaning: string;
+	public meaning: string;
 	/**
 	 * All English language words allowed
 	 */
 	@Prop()
-	sentenceMeaning: string;
+	public sentenceMeaning: string;
 	/**
 	 * Most forms of numbered pinyin allowed
 	 */
 	@Prop()
-	numberedPinyin: string;
+	public numberedPinyin: string;
 	/**
 	 * Most forms of numbered pinyin allowed
 	 */
 	@Prop()
-	sentenceNumberedPinyin: string;
+	public sentenceNumberedPinyin: string;
 	/**
 	 * Recognized phonics: `pinyin` | `zhuyin`
 	 */
 	@Prop()
-	preferredPhonic: string = 'pinyin';
+	public preferredPhonic: string = 'pinyin';
 
 	@Element()
-	element: HTMLElement;
+	private element: HTMLElement;
 
 	private getTraditionalHanziPrimaryElement = (): HTMLElement => this.element.shadowRoot.querySelector('#traditional-hanzi-primary');
 	private getSimplifiedHanziPrimaryElement = (): HTMLElement => this.element.shadowRoot.querySelector('#simplified-hanzi-primary');
@@ -85,35 +85,35 @@ export class MaterialBeautifyChineseStudy {
 	private hasValue = (value: String): Boolean => value !== null && value !== undefined;
 	private isEmptyStringNullOrUndefined = (value: String): Boolean => value === null || value === undefined || value === "";
 
-	getCardType(): string {
+	public getCardType(): string {
 		if (this.hasValue(this.cardType)) {
 			this.cardType = this.cardType.toLowerCase().trim();
 		}
 		return this.cardType;
 	}
 
-	getCardOrientation() {
+	public getCardOrientation(): string {
 		if (this.hasValue(this.cardOrientation)) {
 			this.cardOrientation = this.cardOrientation.toLowerCase().trim();
 		}
 		return this.cardOrientation;
 	}
 
-	getSimplified() {
+	public getSimplified(): string {
 		if (this.hasValue(this.simplified)) {
 			this.simplified.trim();
 		}
 		return this.simplified;
 	}
 
-	getSimplifiedSentence() {
+	public getSimplifiedSentence(): string {
 		if (this.hasValue(this.simplifiedSentence)) {
 			this.simplifiedSentence.trim();
 		}
 		return this.simplifiedSentence;
 	}
 
-	getTraditionalSentence() {
+	public getTraditionalSentence(): string {
 		if (this.hasValue(this.traditionalSentence)) {
 			this.traditionalSentence.trim();
 		}
@@ -124,7 +124,7 @@ export class MaterialBeautifyChineseStudy {
 		return this.traditionalSentence;
 	}
 
-	getTraditional() {
+	public getTraditional(): string {
 		if (this.hasValue(this.traditional)) {
 			this.traditional.trim();
 		}
@@ -135,55 +135,55 @@ export class MaterialBeautifyChineseStudy {
 		return this.traditional;
 	}
 
-	getMeaning() {
+	public getMeaning(): string {
 		if (this.hasValue(this.meaning)) {
 			this.meaning.trim();
 		}
 		return this.meaning;
 	}
 
-	getSentenceMeaning() {
+	public getSentenceMeaning(): string {
 		if (this.hasValue(this.sentenceMeaning)) {
 			this.sentenceMeaning.trim();
 		}
 		return this.sentenceMeaning;
 	}
 
-	getNumberedPinyin() {
+	public getNumberedPinyin(): string {
 		if (this.hasValue(this.numberedPinyin)) {
 			this.numberedPinyin.trim();
 		}
 		return this.numberedPinyin;
 	}
 
-	getSentenceNumberedPinyin() {
+	public getSentenceNumberedPinyin(): string {
 		if (this.hasValue(this.sentenceNumberedPinyin)) {
 			this.sentenceNumberedPinyin.trim();
 		}
 		return this.sentenceNumberedPinyin;
 	}
 
-	getPreferredPhonic() {
+	public getPreferredPhonic(): string {
 		if (this.hasValue(this.preferredPhonic)) {
 			this.preferredPhonic.trim();
 		}
 		return this.preferredPhonic;
 	}
 
-	getPinyin() {
-		return this.createPhonic(PhoneticType.PINYIN, this.numberedPinyin);
+	public getPinyin(): string {
+		return this.createPhonic(PhoneticType.PINYIN, this.getNumberedPinyin());
 	}
 
-	getZhuyin(value: string) {
+	public getZhuyin(value: string): string {
 		return this.createPhonic(PhoneticType.ZHUYIN, value);
 	}
 
-	getPhonic(value: string) {
+	public getPhonic(value: string): string {
 		let phonic;
-		if (this.preferredPhonic === 'pinyin') {
+		if (this.getPreferredPhonic() === 'pinyin') {
 			phonic = this.getPinyin();
 		}
-		if (this.preferredPhonic === 'zhuyin') {
+		if (this.getPreferredPhonic() === 'zhuyin') {
 			phonic = this.getZhuyin(value);
 		}
 		return phonic;
@@ -593,7 +593,7 @@ export class MaterialBeautifyChineseStudy {
 			const randomAnimation: string = availableAnimations[Math.floor(Math.random() * availableAnimations.length)];
 			console.log(randomAnimation);
 			if (randomAnimation === 'audio-line-spinner') {
-				for (var i = 1; i <=5; i++) {
+				for (var i = 1; i <= 5; i++) {
 					let rectangle = document.createElement('div');
 					rectangle.classList.add('rect' + i);
 					audioAnimation.appendChild(rectangle);
@@ -781,7 +781,7 @@ export class MaterialBeautifyChineseStudy {
 		return hanziToPhoneticCharacters(phonicType, phonicValue);
 	}
 
-	createStrokeOrderCharacter() {
+	private createStrokeOrderCharacter(): void {
 		let delayBetweenAnimations: number = 500;
 		let characters: Array<string> = this.simplified.split('');
 		let drawingArea: HTMLElement = this.element.shadowRoot.querySelector('#stroke-order');
@@ -842,7 +842,7 @@ export class MaterialBeautifyChineseStudy {
 		}, delayBetweenAnimations + delayBetweenAnimations);
 	};
 
-	createCard(): HTMLElement {
+	private createCard(): HTMLElement {
 		let template: HTMLElement;
 		const type: string = this.getCardType().toUpperCase();
 
@@ -873,7 +873,7 @@ export class MaterialBeautifyChineseStudy {
 		return template;
 	}
 
-	createCardContent(): HTMLElement {
+	private createCardContent(): HTMLElement {
 		const plecoLink: string = `plecoapi://x-callback-url/df?hw=${this.getSimplified()}`;
 
 		const content: HTMLElement = 
@@ -909,21 +909,21 @@ export class MaterialBeautifyChineseStudy {
 		return content;
 	}
 
-	componentDidLoad() {
+	public componentDidLoad() {
 		this.setColourSchemes();
 		if (this.getCardType() === 'writing' && this.getCardOrientation() === 'answer') {
 			this.createStrokeOrderCharacter();
 		}
 	}
 
-	componentDidRender() {
+	public componentDidRender() {
 		this.processCardContentByCardType();
 		if (this.getCardType() === 'writing' && this.getCardOrientation() === 'answer') {
 			this.createStrokeOrderCharacter();
 		}
 	}
 
-	render() {
+	public render() {
 		const template: HTMLElement = this.createCard();
 
 		return (
