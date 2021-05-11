@@ -69,6 +69,8 @@ A full example of the Front of a recognition card is found below:
 	//// eg if the english translation field on your Anki card is called EngLish the value you type below 
 	//// would be
 	//// beautify.setAttribute('meaning', "{{text:EngLish}}")
+	// Remove the above references to {{text:YOUR_FIELD_NAME}} and {{text:EngLish}} 
+	//// even though they are comments - Anki will still see this as an error
 	var beautify = document.createElement('material-beautify-chinese-study');
 	beautify.setAttribute('id', 'beautify');
 	beautify.setAttribute('simplified', '{{text:YOUR_FIELD_NAME}}');
@@ -132,6 +134,8 @@ A full example of the Back of a recognition card is found below:
 		//// eg if the english translation field on your Anki card is called EngLish the value you type below 
 		//// would be
 		//// beautify.setAttribute('meaning', "{{text:EngLish}}")
+		// Remove the above references to {{text:YOUR_FIELD_NAME}} and {{text:EngLish}} 
+		//// even though they are comments - Anki will still see this as an error
 		var beautify = document.createElement('material-beautify-chinese-study');
 		beautify.setAttribute('id', 'beautify');
 		beautify.setAttribute('simplified', '{{text:YOUR_FIELD_NAME}}');
