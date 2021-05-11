@@ -801,7 +801,7 @@ export class MaterialBeautifyChineseStudy {
 				characters[i], {
 					strokeColor: '#000000',
 					width: 50,
-					height: 50, 
+					height: 50,
 					padding: 1,
 					delayBetweenStrokes: 500,
 				}
@@ -914,9 +914,6 @@ export class MaterialBeautifyChineseStudy {
 
 	public componentDidLoad() {
 		this.setColourSchemes();
-		if (this.getCardType() === 'writing' && this.getCardOrientation() === 'answer') {
-			this.createStrokeOrderCharacter();
-		}
 	}
 
 	public componentDidRender() {
