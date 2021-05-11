@@ -914,13 +914,13 @@ export class MaterialBeautifyChineseStudy {
 
 	public componentDidLoad() {
 		this.setColourSchemes();
+		if (this.getCardType() === 'writing' && this.getCardOrientation() === 'answer') {
+			this.createStrokeOrderCharacter();
+		}
 	}
 
 	public componentDidRender() {
 		this.processCardContentByCardType();
-		if (this.getCardType() === 'writing' && this.getCardOrientation() === 'answer') {
-			this.createStrokeOrderCharacter();
-		}
 	}
 
 	public render() {
