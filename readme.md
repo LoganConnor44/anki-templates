@@ -236,7 +236,7 @@ This project is leveraging the StencilJs library to create Web Components in Typ
 
 1. Inputting *accented* pinyin into the *numbered* pinyin attribute has not been tested. I plan to add this because I'm sure most users have accented pinyin, rather than numbered, but this is something I don't have with my decks and haven't spent time on yet.
 	* This fix would be simple. Just regex for an accented vowel and if one exists pass the translation logic and output the already accented pinyin to the html.
-2. Writing Card Types (Notes) - if it is a single character, it will animate twice and create the character twice. Currently, I'm not using this writing card.
+2. ~~Writing Card Types (Notes) - if it is a single character, it will animate twice and create the character twice. Currently, I'm not using this writing card.~~
 	* Click event on the characters would be nice to restart animations.
 
 # Improvements
