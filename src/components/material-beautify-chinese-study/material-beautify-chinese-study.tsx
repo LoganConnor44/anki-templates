@@ -923,6 +923,7 @@ export class MaterialBeautifyChineseStudy {
 		this.processCardContentByCardType();
 		if (this.getCardType() === 'writing' && this.getCardOrientation() === 'answer') {
 			this.createStrokeOrderCharacter();
+		}
 	}
 
 	public render() {
