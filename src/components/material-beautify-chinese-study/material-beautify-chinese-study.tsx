@@ -788,6 +788,9 @@ export class MaterialBeautifyChineseStudy {
 		let delayBetweenAnimations: number = 500;
 		let characters: Array<string> = this.simplified.split('');
 		let drawingArea: HTMLElement = this.element.shadowRoot.querySelector('#stroke-order');
+		while (drawingArea.firstChild) {
+			drawingArea.removeChild(drawingArea.firstChild);
+		}
 		let strokeOrderCharacters: Array<any> = [];
 
 		for (var i = 0; i < characters.length; i++) {
@@ -914,13 +917,12 @@ export class MaterialBeautifyChineseStudy {
 
 	public componentDidLoad() {
 		this.setColourSchemes();
-		if (this.getCardType() === 'writing' && this.getCardOrientation() === 'answer') {
-			this.createStrokeOrderCharacter();
-		}
 	}
 
 	public componentDidRender() {
 		this.processCardContentByCardType();
+		if (this.getCardType() === 'writing' && this.getCardOrientation() === 'answer') {
+			this.createStrokeOrderCharacter();
 	}
 
 	public render() {
