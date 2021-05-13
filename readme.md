@@ -221,6 +221,10 @@ Aside from making your flashcards look beautiful, this project has three note-wo
 	* The project can convert your numbered pinyin into zhuyin characters.
 4. Traditional Characters
 	* Due to the prevalence of Taiwanese media in the West, learning to recognize Traditional Characters is a useful skill. The project can programmatically convert Mainland Simplified Characters to Taiwanese Traditional Characters!
+5. Automatic Pinyin
+	* If you have a simplified character present and pinyin field is blank or omitted from the web component, an automated one will be created for you. 
+		* Setting preferred phonic to pinyin (default value) will generate accented pinyin
+		* Setting preferred phonic to zhuyin will generate the expected value of bopomofo characters
 
 # Contributing
 
