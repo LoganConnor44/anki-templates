@@ -4,6 +4,7 @@ import Vowel from '../../phonetics/Vowel';
 import Zhuyin from '../../phonetics/Zhuyin';
 import HanziWriter from 'hanzi-writer';
 import * as OpenCC from 'opencc-js';
+import * as PinyinGenerator from 'pinyin';
 
 @Component({
 	tag: 'material-beautify-chinese-study',
@@ -82,96 +83,102 @@ export class MaterialBeautifyChineseStudy {
 	private getTraditionalSentenceElement = (): HTMLElement => this.element.shadowRoot.querySelector('#traditional-hanzi-sentence');
 	private getSimplifiedSentenceElement = (): HTMLElement => this.element.shadowRoot.querySelector('#simplified-hanzi-sentence');
 	private getAudioAnimationElement = (): HTMLElement => this.element.shadowRoot.querySelector('#audio');
-	private hasValue = (value: String): Boolean => value !== null && value !== undefined;
+	private hasValue = (value: String): Boolean => value !== null && value !== undefined && value.trim().length != 0;
 	private isEmptyStringNullOrUndefined = (value: String): Boolean => value === null || value === undefined || value === "";
 
 	public getCardType(): string {
 		if (this.hasValue(this.cardType)) {
-			this.cardType = this.cardType.toLowerCase().trim();
+			return this.cardType.toLowerCase().trim();
 		}
-		return this.cardType;
+		return "";
 	}
 
 	public getCardOrientation(): string {
 		if (this.hasValue(this.cardOrientation)) {
-			this.cardOrientation = this.cardOrientation.toLowerCase().trim();
+			return this.cardOrientation.toLowerCase().trim();
 		}
-		return this.cardOrientation;
+		return "";
 	}
 
 	public getSimplified(): string {
 		if (this.hasValue(this.simplified)) {
-			this.simplified.trim();
+			return this.simplified.trim();
 		}
-		return this.simplified;
+		return "";
 	}
 
 	public getSimplifiedSentence(): string {
 		if (this.hasValue(this.simplifiedSentence)) {
-			this.simplifiedSentence.trim();
+			return this.simplifiedSentence.trim();
 		}
-		return this.simplifiedSentence;
+		return "";
 	}
 
 	public getTraditionalSentence(): string {
 		if (this.hasValue(this.traditionalSentence)) {
-			this.traditionalSentence.trim();
+			return this.traditionalSentence.trim();
 		}
 		if (this.isEmptyStringNullOrUndefined(this.traditionalSentence)) {
 			const converter = OpenCC.Converter({ from: 'cn', to: 'tw' });
-			this.traditionalSentence = converter(this.getSimplifiedSentence());
+			return converter(this.getSimplifiedSentence());
 		}
-		return this.traditionalSentence;
+		return "";
 	}
 
 	public getTraditional(): string {
 		if (this.hasValue(this.traditional)) {
-			this.traditional.trim();
+			return this.traditional.trim();
 		}
 		if (this.isEmptyStringNullOrUndefined(this.traditional)) {
 			const converter = OpenCC.Converter({ from: 'cn', to: 'tw' });
-			this.traditional = converter(this.getSimplified());
+			return converter(this.getSimplified());
 		}
-		return this.traditional;
+		return "";
 	}
 
 	public getMeaning(): string {
 		if (this.hasValue(this.meaning)) {
-			this.meaning.trim();
+			return this.meaning.trim();
 		}
-		return this.meaning;
+		return "";
 	}
 
 	public getSentenceMeaning(): string {
 		if (this.hasValue(this.sentenceMeaning)) {
-			this.sentenceMeaning.trim();
+			return this.sentenceMeaning.trim();
 		}
-		return this.sentenceMeaning;
+		return "";
 	}
 
 	public getNumberedPinyin(): string {
 		if (this.hasValue(this.numberedPinyin)) {
-			this.numberedPinyin.trim();
+			return this.numberedPinyin.trim();
 		}
-		return this.numberedPinyin;
+		return PinyinGenerator.default(
+			this.getSimplified(),
+			{ style: PinyinGenerator.STYLE_TONE2 }
+		).join("");
 	}
 
 	public getSentenceNumberedPinyin(): string {
 		if (this.hasValue(this.sentenceNumberedPinyin)) {
-			this.sentenceNumberedPinyin.trim();
+			return this.sentenceNumberedPinyin.trim();
 		}
-		return this.sentenceNumberedPinyin;
+		return PinyinGenerator.default(
+			this.getSimplifiedSentence(),
+			{ style: PinyinGenerator.STYLE_TONE2 }
+		).join("");
 	}
 
 	public getPreferredPhonic(): string {
 		if (this.hasValue(this.preferredPhonic)) {
-			this.preferredPhonic.trim();
+			return this.preferredPhonic.trim();
 		}
-		return this.preferredPhonic;
+		return "";
 	}
 
-	public getPinyin(): string {
-		return this.createPhonic(PhoneticType.PINYIN, this.getNumberedPinyin());
+	public getPinyin(value: string): string {
+		return this.createPhonic(PhoneticType.PINYIN, value);
 	}
 
 	public getZhuyin(value: string): string {
@@ -179,14 +186,13 @@ export class MaterialBeautifyChineseStudy {
 	}
 
 	public getPhonic(value: string): string {
-		let phonic;
 		if (this.getPreferredPhonic() === 'pinyin') {
-			phonic = this.getPinyin();
+			return this.getPinyin(value);
 		}
 		if (this.getPreferredPhonic() === 'zhuyin') {
-			phonic = this.getZhuyin(value);
+			return this.getZhuyin(value);
 		}
-		return phonic;
+		return "";
 	}
 	
 	/**
