@@ -201,7 +201,6 @@ While this project handles most of the styling for the user, there is styling th
 
 * Have a Chinese deck in Anki with the following fields (field names do not need to match)
 	* Simplified Characters
-	* Traditional Characters
 	* Meaning In English
 * Have the Anki knowledge to set up Card Types (Notes) for the different cards they would like to utilize for their study.
 
