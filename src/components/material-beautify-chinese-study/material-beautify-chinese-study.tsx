@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Element, State } from '@stencil/core';
+import { Component, Host, h, Prop, Element, State, FunctionalComponent } from '@stencil/core';
 import { PhoneticType } from '../../enums/PhoneticType';
 import { HanziType } from '../../enums/HanziType';
 import Vowel from '../../phonetics/Vowel';
@@ -20,7 +20,7 @@ export class MaterialBeautifyChineseStudy {
 	 @Prop()
 	public primaryHanziType: string = 'simplified';
 	/**
-	 *	Recognized card types: `recognition` | `secondary-recognition` | `tones` | `writing` | `meaning` | `secondary-sentence` | `audio`
+	 *	Recognized card types: `recognition` | `sentence` | `tones` | `writing` | `meaning` | `audio` | `secondary-sentence` | `secondary-recognition`
 	 */
 	@Prop()
 	public cardType: string = 'recognition';
@@ -221,7 +221,7 @@ export class MaterialBeautifyChineseStudy {
 		return hanziType;
 	}
 
-	public getConversionConfig() {
+	public getConversionConfig(): object {
 		if (this.getHanziType() === HanziType.TRADITIONAL) {
 			this.conversionConfig = { from: 'tw', to: 'cn' };
 		}
@@ -984,7 +984,7 @@ export class MaterialBeautifyChineseStudy {
 	 * 
 	 * @returns FunctionalComponent<HostAttributes>
 	 */
-	public render() {
+	public render(): FunctionalComponent {
 		return (
 			<Host>
 				{ this.template }
