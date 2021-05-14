@@ -17,7 +17,7 @@ This codebase is a solution for making Chinese study, through Anki, more enjoyab
 
 # tl;dr
 
-This project can make your Chinese flashcards look nice by copying/pasting [a few lines of logic](#Code%20Snippets) in your Anki template. 
+Whether your study involves simplified or traditional characters, this project can make your Chinese flashcards look nice by copying/pasting [a few lines of logic](#Code%20Snippets) in your Anki template. 
 1. Copy and paste the below code snippets into their respective card templates
 2. Exchange the default value of `YOUR_FIELD_NAME` with the names defined in your deck (see {{text:YOUR_FIELD_NAME}})
 3. Decide which card type you want to create and update that attribute value as well.
@@ -73,12 +73,12 @@ A full example of the Front of a recognition card is found below:
 	//// even though they are comments - Anki will still see this as an error
 	var beautify = document.createElement('material-beautify-chinese-study');
 	beautify.setAttribute('id', 'beautify');
-	beautify.setAttribute('simplified', '{{text:YOUR_FIELD_NAME}}');
-	beautify.setAttribute('traditional', '{{text:YOUR_FIELD_NAME}}');
+	beautify.setAttribute('primary-character', '{{text:YOUR_FIELD_NAME}}');
+	beautify.setAttribute('secondary-character', '{{text:YOUR_FIELD_NAME}}');
 	// double quotes intentional do to the value containing a single quote
 	beautify.setAttribute('numbered-pinyin', "{{text:YOUR_FIELD_NAME}}");
-	beautify.setAttribute('simplified-sentence', '{{text:YOUR_FIELD_NAME}}');
-	beautify.setAttribute('traditional-sentence', '{{text:YOUR_FIELD_NAME}}');
+	beautify.setAttribute('primary-character-sentence', '{{text:YOUR_FIELD_NAME}}');
+	beautify.setAttribute('secondary-character-sentence', '{{text:YOUR_FIELD_NAME}}');
 	// double quotes intentional do to the value containing a single quote
 	beautify.setAttribute('sentence-numbered-pinyin', "{{text:YOUR_FIELD_NAME}}");
 	// double quotes intentional do to the value containing a single quote
@@ -138,12 +138,14 @@ A full example of the Back of a recognition card is found below:
 		//// even though they are comments - Anki will still see this as an error
 		var beautify = document.createElement('material-beautify-chinese-study');
 		beautify.setAttribute('id', 'beautify');
-		beautify.setAttribute('simplified', '{{text:YOUR_FIELD_NAME}}');
+		beautify.setAttribute('primary-character', '{{text:YOUR_FIELD_NAME}}');
+		beautify.setAttribute('secondary-character', '{{text:YOUR_FIELD_NAME}}');
+
 		beautify.setAttribute('writing', '{{text:YOUR_FIELD_NAME}}');
 		// double quotes intentional do to the value containing a single quote
 		beautify.setAttribute('numbered-pinyin', "{{text:YOUR_FIELD_NAME}}");
-		beautify.setAttribute('simplified-sentence', '{{text:YOUR_FIELD_NAME}}');
-		beautify.setAttribute('traditional-sentence', '{{text:YOUR_FIELD_NAME}}');
+		beautify.setAttribute('primary-character-sentence', '{{text:YOUR_FIELD_NAME}}');
+		beautify.setAttribute('secondary-character-sentence', '{{text:YOUR_FIELD_NAME}}');
 		// double quotes intentional do to the value containing a single quote
 		beautify.setAttribute('sentence-numbered-pinyin', "{{text:YOUR_FIELD_NAME}}");
 		// double quotes intentional do to the value containing a single quote

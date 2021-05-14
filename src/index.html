@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
-    <title>Stencil Component Starter</title>
 
-    <script type="module" src="/build/beautify-chinese-study.esm.js"></script>
-    <script nomodule src="/build/beautify-chinese-study.js"></script>
-  </head>
-  <body>
-    <style>
-        body {
-            margin: 0;
-            display: flex;
-            min-height: 100vh;
-            flex-direction: column;
-        }
-    </style>
-    <material-beautify-chinese-study id='asdf'
-      simplified='天气'
-      simplified-sentence='今天天气很好'
-      traditional-sentence=''
-      traditional=''
-      numbered-pinyin='tian1qi4'
-      sentence-numbered-pinyin="Jin1tian1 tian1qi4 hen3 hao3"
-      card-type='audio'
-      meaning='weather'
-      sentence-meaning='The weather is nice today.'
-      card-orientation='answer'
-      preferred-phonic='zhuyin' />
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+	<title>Stencil Component Starter</title>
 
-      <script>
+	<script type="module" src="/build/beautify-chinese-study.esm.js"></script>
+	<script nomodule src="/build/beautify-chinese-study.js"></script>
+</head>
+
+<body>
+	<style>
+		body {
+			margin: 0;
+			display: flex;
+			min-height: 100vh;
+			flex-direction: column;
+		}
+	</style>
+	
+	<material-beautify-chinese-study id='asdf'
+		primary-character='天气'
+		primary-character-sentence='今天天气很好'
+		card-type='secondary-recognition'
+		meaning='weather'
+		sentence-meaning='The weather is nice today.'
+		card-orientation='answer'
+		force-auto-generation />
+
+	<script>
         //setTimeout(function(){ document.querySelector('material-beautify-chinese-study').setAttribute('card-orientation', 'answer') }, 3000);
-      </script>  
-  </body>
+	</script>
+</body>
+
 </html>

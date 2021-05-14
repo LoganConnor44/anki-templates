@@ -7,19 +7,21 @@
 
 ## Properties
 
-| Property                 | Attribute                  | Description                                                                                                                     | Type     | Default     |
-| ------------------------ | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | -------- | ----------- |
-| `cardOrientation`        | `card-orientation`         | Recognized card orientations: `question` \| `answer`                                                                            | `string` | `undefined` |
-| `cardType`               | `card-type`                | Recognized card types: `recognition` \| `traditional` \| `tones` \| `writing` \| `meaning` \| `traditional-sentence` \| `audio` | `string` | `undefined` |
-| `meaning`                | `meaning`                  | All English language words allowed                                                                                              | `string` | `undefined` |
-| `numberedPinyin`         | `numbered-pinyin`          | Most forms of numbered pinyin allowed                                                                                           | `string` | `undefined` |
-| `preferredPhonic`        | `preferred-phonic`         | Recognized phonics: `pinyin` \| `zhuyin`                                                                                        | `string` | `'pinyin'`  |
-| `sentenceMeaning`        | `sentence-meaning`         | All English language words allowed                                                                                              | `string` | `undefined` |
-| `sentenceNumberedPinyin` | `sentence-numbered-pinyin` | Most forms of numbered pinyin allowed                                                                                           | `string` | `undefined` |
-| `simplified`             | `simplified`               | All characters allowed                                                                                                          | `string` | `undefined` |
-| `simplifiedSentence`     | `simplified-sentence`      | All characters allowed                                                                                                          | `string` | `undefined` |
-| `traditional`            | `traditional`              | All characters allowed                                                                                                          | `string` | `undefined` |
-| `traditionalSentence`    | `traditional-sentence`     | All characters allowed                                                                                                          | `string` | `undefined` |
+| Property                     | Attribute                      | Description                                                                                                                             | Type      | Default         |
+| ---------------------------- | ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- | --------- | --------------- |
+| `cardOrientation`            | `card-orientation`             | Recognized card orientations: `question` \| `answer`                                                                                    | `string`  | `'question'`    |
+| `cardType`                   | `card-type`                    | Recognized card types: `recognition` \| `secondary-recognition` \| `tones` \| `writing` \| `meaning` \| `secondary-sentence` \| `audio` | `string`  | `'recognition'` |
+| `forceAutoGeneration`        | `force-auto-generation`        | Option to always generate secondary character values and phonic values                                                                  | `boolean` | `false`         |
+| `meaning`                    | `meaning`                      | All English language words allowed                                                                                                      | `string`  | `undefined`     |
+| `numberedPinyin`             | `numbered-pinyin`              | Most forms of numbered pinyin allowed                                                                                                   | `string`  | `undefined`     |
+| `preferredPhonic`            | `preferred-phonic`             | Recognized phonics: `pinyin` \| `zhuyin`                                                                                                | `string`  | `'pinyin'`      |
+| `primaryCharacter`           | `primary-character`            | All characters allowed                                                                                                                  | `string`  | `undefined`     |
+| `primaryCharacterSentence`   | `primary-character-sentence`   | All characters allowed                                                                                                                  | `string`  | `undefined`     |
+| `primaryHanziType`           | `primary-hanzi-type`           | Defines the default primary hanzi type. Recognized hanzi typoes: 'simplified' \| 'traditional'                                          | `string`  | `'simplified'`  |
+| `secondaryCharacter`         | `secondary-character`          | All characters allowed                                                                                                                  | `string`  | `undefined`     |
+| `secondaryCharacterSentence` | `secondary-character-sentence` | All characters allowed                                                                                                                  | `string`  | `undefined`     |
+| `sentenceMeaning`            | `sentence-meaning`             | All English language words allowed                                                                                                      | `string`  | `undefined`     |
+| `sentenceNumberedPinyin`     | `sentence-numbered-pinyin`     | Most forms of numbered pinyin allowed                                                                                                   | `string`  | `undefined`     |
 
 
 ----------------------------------------------

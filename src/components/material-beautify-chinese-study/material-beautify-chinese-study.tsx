@@ -1,5 +1,6 @@
-import { Component, Host, h, Prop, Element } from '@stencil/core';
-import PhoneticType from '../../enums/PhoneticType';
+import { Component, Host, h, Prop, Element, State } from '@stencil/core';
+import { PhoneticType } from '../../enums/PhoneticType';
+import { HanziType } from '../../enums/HanziType';
 import Vowel from '../../phonetics/Vowel';
 import Zhuyin from '../../phonetics/Zhuyin';
 import HanziWriter from 'hanzi-writer';
@@ -14,35 +15,40 @@ import * as PinyinGenerator from 'pinyin';
 export class MaterialBeautifyChineseStudy {
 
 	/**
-	 *	Recognized card types: `recognition` | `traditional` | `tones` | `writing` | `meaning` | `traditional-sentence` | `audio`
+	 * Recognized hanzi typoes: 'simplified' | 'traditional'
+	 */
+	 @Prop()
+	public primaryHanziType: string = 'simplified';
+	/**
+	 *	Recognized card types: `recognition` | `secondary-recognition` | `tones` | `writing` | `meaning` | `secondary-sentence` | `audio`
 	 */
 	@Prop()
-	public cardType: string;
+	public cardType: string = 'recognition';
 	/**
 	 * Recognized card orientations: `question` | `answer`
 	 */
 	@Prop()
-	public cardOrientation: string;
+	public cardOrientation: string = 'question';
 	/**
 	 * All characters allowed
 	 */
 	@Prop()
-	public simplified: string;
+	public primaryCharacter: string;
 	/**
 	 * All characters allowed
 	 */
 	@Prop()
-	public simplifiedSentence: string;
+	public primaryCharacterSentence: string;
 	/**
 	 * All characters allowed
 	 */
 	@Prop()
-	public traditionalSentence: string;
+	public secondaryCharacter: string;
 	/**
 	 * All characters allowed
 	 */
 	@Prop()
-	public traditional: string;
+	public secondaryCharacterSentence: string;
 	/**
 	 * All English language words allowed
 	 */
@@ -68,110 +74,116 @@ export class MaterialBeautifyChineseStudy {
 	 */
 	@Prop()
 	public preferredPhonic: string = 'pinyin';
+	/**
+	 * Option to always generate secondary character values and phonic values
+	 */
+	@Prop()
+	public forceAutoGeneration: boolean = false;
+
+	@State()
+	public phonic: string = '';
+	@State()
+	public sentencePhonic: string = '';
+	@State()
+	public generatedTraditional: string = '';
+	@State()
+	public generatedTraditionalSentence: string = '';
 
 	@Element()
 	private element: HTMLElement;
 
-	private getTraditionalHanziPrimaryElement = (): HTMLElement => this.element.shadowRoot.querySelector('#traditional-hanzi-primary');
-	private getSimplifiedHanziPrimaryElement = (): HTMLElement => this.element.shadowRoot.querySelector('#simplified-hanzi-primary');
-	private getTraditionalHanziSecondaryElement = (): HTMLElement => this.element.shadowRoot.querySelector('#traditional-hanzi-secondary');
-	private getSimplifiedHanziSecondaryElement = (): HTMLElement => this.element.shadowRoot.querySelector('#simplified-hanzi-secondary');
+	private conversionConfig: object = { from: 'cn', to: 'tw' };
+	private template: HTMLElement;
+
+	private getPrimaryHanziPrimaryElement = (): HTMLElement => this.element.shadowRoot.querySelector('#primary-hanzi-primary-element');
+	private getSecondaryHanziPrimaryElement = (): HTMLElement => this.element.shadowRoot.querySelector('#secondary-hanzi-primary-element');
+	private getPrimaryHanziSecondaryElement = (): HTMLElement => this.element.shadowRoot.querySelector('#primary-hanzi-secondary-element');
+	private getSecondaryHanziSecondaryElement = (): HTMLElement => this.element.shadowRoot.querySelector('#secondary-hanzi-secondary-element');
 	private getWordMeaningElement = (): HTMLElement => this.element.shadowRoot.querySelector('#single-word-meaning');
 	private getSentenceMeaningElement = (): HTMLElement => this.element.shadowRoot.querySelector('#sentence-meaning');
 	private getPhoneticElement = (): HTMLElement => this.element.shadowRoot.querySelector('#phonetic');
 	private getSentencePhoneticElement = (): HTMLElement => this.element.shadowRoot.querySelector('#sentence-phonetic');
-	private getTraditionalSentenceElement = (): HTMLElement => this.element.shadowRoot.querySelector('#traditional-hanzi-sentence');
-	private getSimplifiedSentenceElement = (): HTMLElement => this.element.shadowRoot.querySelector('#simplified-hanzi-sentence');
+	private getPrimarySentenceElement = (): HTMLElement => this.element.shadowRoot.querySelector('#primary-hanzi-sentence');
+	private getSecondarySentenceElement = (): HTMLElement => this.element.shadowRoot.querySelector('#secondary-hanzi-sentence');
 	private getAudioAnimationElement = (): HTMLElement => this.element.shadowRoot.querySelector('#audio');
-	private hasValue = (value: String): Boolean => value !== null && value !== undefined && value.trim().length != 0;
-	private isEmptyStringNullOrUndefined = (value: String): Boolean => value === null || value === undefined || value === "";
+	private isEmptyStringBlankStringNullOrUndefined = (value: String): boolean => value === null || value === undefined || value === "" || value.trim().length == 0;
 
 	public getCardType(): string {
-		if (this.hasValue(this.cardType)) {
-			return this.cardType.toLowerCase().trim();
-		}
-		return "";
+		return this.cardType.toLowerCase().trim();
 	}
 
 	public getCardOrientation(): string {
-		if (this.hasValue(this.cardOrientation)) {
+		if (!this.isEmptyStringBlankStringNullOrUndefined(this.cardOrientation)) {
 			return this.cardOrientation.toLowerCase().trim();
 		}
 		return "";
 	}
 
-	public getSimplified(): string {
-		if (this.hasValue(this.simplified)) {
-			return this.simplified.trim();
+	public getPrimaryCharacter(): string {
+		if (!this.isEmptyStringBlankStringNullOrUndefined(this.primaryCharacter)) {
+			return this.primaryCharacter.trim();
 		}
 		return "";
 	}
 
-	public getSimplifiedSentence(): string {
-		if (this.hasValue(this.simplifiedSentence)) {
-			return this.simplifiedSentence.trim();
+	public getPrimaryCharacterSentence(): string {
+		if (!this.isEmptyStringBlankStringNullOrUndefined(this.primaryCharacterSentence)) {
+			return this.primaryCharacterSentence.trim();
 		}
 		return "";
 	}
 
-	public getTraditionalSentence(): string {
-		if (this.hasValue(this.traditionalSentence)) {
-			return this.traditionalSentence.trim();
+	public getSecondaryCharacter(): string {
+		if (!this.isEmptyStringBlankStringNullOrUndefined(this.secondaryCharacter) && !this.forceAutoGeneration) {
+			return this.secondaryCharacter.trim();
 		}
-		if (this.isEmptyStringNullOrUndefined(this.traditionalSentence)) {
-			const converter = OpenCC.Converter({ from: 'cn', to: 'tw' });
-			return converter(this.getSimplifiedSentence());
-		}
-		return "";
+
+		const converter = OpenCC.Converter(this.getConversionConfig());
+		return converter(this.getPrimaryCharacter());
 	}
 
-	public getTraditional(): string {
-		if (this.hasValue(this.traditional)) {
-			return this.traditional.trim();
+	public getSecondaryCharacterSentence(): string {
+		if (!this.isEmptyStringBlankStringNullOrUndefined(this.secondaryCharacterSentence) && !this.forceAutoGeneration) {
+			return this.secondaryCharacterSentence.trim();
 		}
-		if (this.isEmptyStringNullOrUndefined(this.traditional)) {
-			const converter = OpenCC.Converter({ from: 'cn', to: 'tw' });
-			return converter(this.getSimplified());
-		}
-		return "";
+
+		const converter = OpenCC.Converter(this.getConversionConfig());
+		return converter(this.getPrimaryCharacterSentence());
 	}
 
 	public getMeaning(): string {
-		if (this.hasValue(this.meaning)) {
+		if (!this.isEmptyStringBlankStringNullOrUndefined(this.meaning)) {
 			return this.meaning.trim();
 		}
 		return "";
 	}
 
 	public getSentenceMeaning(): string {
-		if (this.hasValue(this.sentenceMeaning)) {
+		if (!this.isEmptyStringBlankStringNullOrUndefined(this.sentenceMeaning)) {
 			return this.sentenceMeaning.trim();
 		}
 		return "";
 	}
 
 	public getNumberedPinyin(): string {
-		if (this.hasValue(this.numberedPinyin)) {
-			return this.numberedPinyin.trim();
-		}
 		return PinyinGenerator.default(
-			this.getSimplified(),
+			this.getPrimaryCharacter(),
 			{ style: PinyinGenerator.STYLE_TONE2 }
 		).join("");
 	}
 
 	public getSentenceNumberedPinyin(): string {
-		if (this.hasValue(this.sentenceNumberedPinyin)) {
+		if (!this.isEmptyStringBlankStringNullOrUndefined(this.sentenceNumberedPinyin)) {
 			return this.sentenceNumberedPinyin.trim();
 		}
 		return PinyinGenerator.default(
-			this.getSimplifiedSentence(),
+			this.getPrimaryCharacterSentence(),
 			{ style: PinyinGenerator.STYLE_TONE2 }
 		).join("");
 	}
 
 	public getPreferredPhonic(): string {
-		if (this.hasValue(this.preferredPhonic)) {
+		if (!this.isEmptyStringBlankStringNullOrUndefined(this.preferredPhonic)) {
 			return this.preferredPhonic.trim();
 		}
 		return "";
@@ -194,6 +206,27 @@ export class MaterialBeautifyChineseStudy {
 		}
 		return "";
 	}
+
+	public getHanziType(): HanziType {
+		let hanziType: HanziType;
+		switch (this.primaryHanziType.trim().toLowerCase()) {
+			case 'traditional':
+				hanziType = HanziType.TRADITIONAL;
+				break;
+			case 'simplified':
+			default:
+				hanziType = HanziType.SIMPLIFIED;
+				break;
+		}
+		return hanziType;
+	}
+
+	public getConversionConfig() {
+		if (this.getHanziType() === HanziType.TRADITIONAL) {
+			this.conversionConfig = { from: 'tw', to: 'cn' };
+		}
+		return this.conversionConfig;
+	}
 	
 	/**
 	 * Sets the color scheme based on the current card type.
@@ -205,8 +238,8 @@ export class MaterialBeautifyChineseStudy {
 		let cardContent: HTMLElement = this.element.shadowRoot.querySelector('#chinese-card-content');
 	
 		switch (this.getCardType()) {
-			case 'traditional':
-			case 'traditional-sentence':
+			case 'secondary-recognition':
+			case 'secondary-sentence':
 				var darkest = '#264653';
 				var darker = '#2A9D8F';
 				var neutral = '#E76F51';
@@ -363,13 +396,13 @@ export class MaterialBeautifyChineseStudy {
 	};
 
 	private processTonesCardType(): void {
-		let traditionalHanziPrimary: HTMLElement = this.getTraditionalHanziPrimaryElement();
-		let traditionalHanziSecondary: HTMLElement = this.getTraditionalHanziSecondaryElement();
+		let traditionalHanziPrimary: HTMLElement = this.getSecondaryHanziPrimaryElement();
+		let traditionalHanziSecondary: HTMLElement = this.getSecondaryHanziSecondaryElement();
 		let wordMeaning: HTMLElement = this.getWordMeaningElement();
-		let simplifiedHanziSecondary: HTMLElement = this.getSimplifiedHanziSecondaryElement();
+		let simplifiedHanziSecondary: HTMLElement = this.getPrimaryHanziSecondaryElement();
 		let phonetic: HTMLElement = this.getPhoneticElement();
 		let sentencePhonetic: HTMLElement = this.getSentencePhoneticElement();
-		let traditionalSentence: HTMLElement = this.getTraditionalSentenceElement();
+		let traditionalSentence: HTMLElement = this.getSecondarySentenceElement();
 		let sentenceMeaning: HTMLElement = this.getSentenceMeaningElement();
 
 		traditionalHanziPrimary.style.display = 'none';
@@ -389,13 +422,13 @@ export class MaterialBeautifyChineseStudy {
 	}
 
 	private processRecognitionCardType(): void {
-		let traditionalHanziPrimary: HTMLElement = this.getTraditionalHanziPrimaryElement();
-		let traditionalHanziSecondary: HTMLElement = this.getTraditionalHanziSecondaryElement();
+		let traditionalHanziPrimary: HTMLElement = this.getSecondaryHanziPrimaryElement();
+		let traditionalHanziSecondary: HTMLElement = this.getSecondaryHanziSecondaryElement();
 		let wordMeaning: HTMLElement = this.getWordMeaningElement();
-		let simplifiedHanziSecondary: HTMLElement = this.getSimplifiedHanziSecondaryElement();
+		let simplifiedHanziSecondary: HTMLElement = this.getPrimaryHanziSecondaryElement();
 		let phonetic: HTMLElement = this.getPhoneticElement();
 		let sentencePhonetic: HTMLElement = this.getSentencePhoneticElement();
-		let traditionalSentence: HTMLElement = this.getTraditionalSentenceElement();
+		let traditionalSentence: HTMLElement = this.getSecondarySentenceElement();
 		let sentenceMeaning: HTMLElement = this.getSentenceMeaningElement();
 
 		traditionalHanziPrimary.style.display = 'none';
@@ -416,16 +449,16 @@ export class MaterialBeautifyChineseStudy {
 	}
 
 	private processWritingCardType(): void {
-		let traditionalHanziPrimary: HTMLElement = this.getTraditionalHanziPrimaryElement();
-		let simplifiedHanziPrimary: HTMLElement = this.getSimplifiedHanziPrimaryElement();
-		let traditionalHanziSecondary: HTMLElement = this.getTraditionalHanziSecondaryElement();
+		let traditionalHanziPrimary: HTMLElement = this.getSecondaryHanziPrimaryElement();
+		let simplifiedHanziPrimary: HTMLElement = this.getPrimaryHanziPrimaryElement();
+		let traditionalHanziSecondary: HTMLElement = this.getSecondaryHanziSecondaryElement();
 		let wordMeaning: HTMLElement = this.getWordMeaningElement();
-		let simplifiedHanziSecondary: HTMLElement = this.getSimplifiedHanziSecondaryElement();
+		let simplifiedHanziSecondary: HTMLElement = this.getPrimaryHanziSecondaryElement();
 		let phonetic: HTMLElement = this.getPhoneticElement();
 		let sentencePhonetic: HTMLElement = this.getSentencePhoneticElement();
-		let traditionalSentence: HTMLElement = this.getTraditionalSentenceElement();
+		let traditionalSentence: HTMLElement = this.getSecondarySentenceElement();
 		let sentenceMeaning: HTMLElement = this.getSentenceMeaningElement();
-		let simplifiedSentence: HTMLElement = this.getSimplifiedSentenceElement();
+		let simplifiedSentence: HTMLElement = this.getPrimarySentenceElement();
 
 		simplifiedHanziPrimary.style.display = 'none';
 		traditionalHanziPrimary.style.display = 'none';
@@ -446,15 +479,15 @@ export class MaterialBeautifyChineseStudy {
 	}
 
 	private processTraditionalCardType(): void {
-		let simplifiedHanziPrimary: HTMLElement = this.getSimplifiedHanziPrimaryElement();
-		let traditionalHanziSecondary: HTMLElement = this.getTraditionalHanziSecondaryElement();
+		let simplifiedHanziPrimary: HTMLElement = this.getPrimaryHanziPrimaryElement();
+		let traditionalHanziSecondary: HTMLElement = this.getSecondaryHanziSecondaryElement();
 		let wordMeaning: HTMLElement = this.getWordMeaningElement();
-		let simplifiedHanziSecondary: HTMLElement = this.getSimplifiedHanziSecondaryElement();
+		let simplifiedHanziSecondary: HTMLElement = this.getPrimaryHanziSecondaryElement();
 		let phonetic: HTMLElement = this.getPhoneticElement();
 		let sentencePhonetic: HTMLElement = this.getSentencePhoneticElement();
-		let traditionalSentence: HTMLElement = this.getTraditionalSentenceElement();
+		let traditionalSentence: HTMLElement = this.getSecondarySentenceElement();
 		let sentenceMeaning: HTMLElement = this.getSentenceMeaningElement();
-		let simplifiedSentence: HTMLElement = this.getSimplifiedSentenceElement();
+		let simplifiedSentence: HTMLElement = this.getPrimarySentenceElement();
 
 		const doesTradSentHaveValue: boolean = traditionalSentence.innerHTML !== '';
 
@@ -481,16 +514,16 @@ export class MaterialBeautifyChineseStudy {
 	}
 
 	private processTraditionalSentenceCardType(): void {
-		let traditionalHanziPrimary: HTMLElement = this.getTraditionalHanziPrimaryElement();
-		let simplifiedHanziPrimary: HTMLElement = this.getSimplifiedHanziPrimaryElement();
-		let traditionalHanziSecondary: HTMLElement = this.getTraditionalHanziSecondaryElement();
+		let traditionalHanziPrimary: HTMLElement = this.getSecondaryHanziPrimaryElement();
+		let simplifiedHanziPrimary: HTMLElement = this.getPrimaryHanziPrimaryElement();
+		let traditionalHanziSecondary: HTMLElement = this.getSecondaryHanziSecondaryElement();
 		let wordMeaning: HTMLElement = this.getWordMeaningElement();
 		let sentenceMeaning: HTMLElement = this.getSentenceMeaningElement();
-		let simplifiedHanziSecondary: HTMLElement = this.getSimplifiedHanziSecondaryElement();
+		let simplifiedHanziSecondary: HTMLElement = this.getPrimaryHanziSecondaryElement();
 		let phonetic: HTMLElement = this.getPhoneticElement();
 		let sentencePhonetic: HTMLElement = this.getSentencePhoneticElement();
-		let traditionalSentence: HTMLElement = this.getTraditionalSentenceElement();
-		let simplifiedSentence: HTMLElement = this.getSimplifiedSentenceElement();
+		let traditionalSentence: HTMLElement = this.getSecondarySentenceElement();
+		let simplifiedSentence: HTMLElement = this.getPrimarySentenceElement();
 
 		traditionalHanziPrimary.style.display = 'none';
 		simplifiedHanziPrimary.style.display = 'none';
@@ -513,13 +546,13 @@ export class MaterialBeautifyChineseStudy {
 	}
 
 	private processMeaningCardType(): void {
-		let traditionalHanziPrimary: HTMLElement = this.getTraditionalHanziPrimaryElement();
-		let traditionalHanziSecondary: HTMLElement = this.getTraditionalHanziSecondaryElement();
+		let traditionalHanziPrimary: HTMLElement = this.getSecondaryHanziPrimaryElement();
+		let traditionalHanziSecondary: HTMLElement = this.getSecondaryHanziSecondaryElement();
 		let wordMeaning: HTMLElement = this.getWordMeaningElement();
-		let simplifiedHanziSecondary: HTMLElement = this.getSimplifiedHanziSecondaryElement();
+		let simplifiedHanziSecondary: HTMLElement = this.getPrimaryHanziSecondaryElement();
 		let phonetic: HTMLElement = this.getPhoneticElement();
 		let sentencePhonetic: HTMLElement = this.getSentencePhoneticElement();
-		let traditionalSentence: HTMLElement = this.getTraditionalSentenceElement();
+		let traditionalSentence: HTMLElement = this.getSecondarySentenceElement();
 		let sentenceMeaning: HTMLElement = this.getSentenceMeaningElement();
 		
 		traditionalHanziPrimary.style.display = 'none';
@@ -540,16 +573,16 @@ export class MaterialBeautifyChineseStudy {
 	}
 
 	private processSentenceCardType(): void {
-		let traditionalHanziPrimary: HTMLElement = this.getTraditionalHanziPrimaryElement();
-		let simplifiedHanziPrimary: HTMLElement = this.getSimplifiedHanziPrimaryElement();
-		let traditionalHanziSecondary: HTMLElement = this.getTraditionalHanziSecondaryElement();
+		let traditionalHanziPrimary: HTMLElement = this.getSecondaryHanziPrimaryElement();
+		let simplifiedHanziPrimary: HTMLElement = this.getPrimaryHanziPrimaryElement();
+		let traditionalHanziSecondary: HTMLElement = this.getSecondaryHanziSecondaryElement();
 		let wordMeaning: HTMLElement = this.getWordMeaningElement();
 		let sentenceMeaning: HTMLElement = this.getSentenceMeaningElement();
-		let simplifiedHanziSecondary: HTMLElement = this.getSimplifiedHanziSecondaryElement();
+		let simplifiedHanziSecondary: HTMLElement = this.getPrimaryHanziSecondaryElement();
 		let phonetic: HTMLElement = this.getPhoneticElement();
 		let sentencePhonetic: HTMLElement = this.getSentencePhoneticElement();
-		let traditionalSentence: HTMLElement = this.getTraditionalSentenceElement();
-		let simplifiedSentence: HTMLElement = this.getSimplifiedSentenceElement();
+		let traditionalSentence: HTMLElement = this.getSecondarySentenceElement();
+		let simplifiedSentence: HTMLElement = this.getPrimarySentenceElement();
 
 		traditionalHanziPrimary.style.display = 'none';
 		simplifiedHanziPrimary.style.display = 'none';
@@ -571,16 +604,16 @@ export class MaterialBeautifyChineseStudy {
 	}
 
 	private processAudioCardType(): void {
-		let traditionalHanziPrimary: HTMLElement = this.getTraditionalHanziPrimaryElement();
-		let simplifiedHanziPrimary: HTMLElement = this.getSimplifiedHanziPrimaryElement();
-		let traditionalHanziSecondary: HTMLElement = this.getTraditionalHanziSecondaryElement();
+		let traditionalHanziPrimary: HTMLElement = this.getSecondaryHanziPrimaryElement();
+		let simplifiedHanziPrimary: HTMLElement = this.getPrimaryHanziPrimaryElement();
+		let traditionalHanziSecondary: HTMLElement = this.getSecondaryHanziSecondaryElement();
 		let wordMeaning: HTMLElement = this.getWordMeaningElement();
 		let sentenceMeaning: HTMLElement = this.getSentenceMeaningElement();
-		let simplifiedHanziSecondary: HTMLElement = this.getSimplifiedHanziSecondaryElement();
+		let simplifiedHanziSecondary: HTMLElement = this.getPrimaryHanziSecondaryElement();
 		let phonetic: HTMLElement = this.getPhoneticElement();
 		let sentencePhonetic: HTMLElement = this.getSentencePhoneticElement();
-		let traditionalSentence: HTMLElement = this.getTraditionalSentenceElement();
-		let simplifiedSentence: HTMLElement = this.getSimplifiedSentenceElement();
+		let traditionalSentence: HTMLElement = this.getSecondarySentenceElement();
+		let simplifiedSentence: HTMLElement = this.getPrimarySentenceElement();
 		let audioAnimation: HTMLElement = this.getAudioAnimationElement();
 
 		traditionalHanziPrimary.style.display = 'none';
@@ -620,10 +653,10 @@ export class MaterialBeautifyChineseStudy {
 
 	private processCardContentByCardType(): void {
 		switch (this.getCardType()) {
-			case 'traditional':
+			case 'secondary-recognition':
 				this.processTraditionalCardType();
 				break;
-			case 'traditional-sentence':
+			case 'secondary-sentence':
 				this.processTraditionalSentenceCardType();
 				break;
 			case 'tones':
@@ -792,7 +825,7 @@ export class MaterialBeautifyChineseStudy {
 
 	private createStrokeOrderCharacter(): void {
 		let delayBetweenAnimations: number = 500;
-		let characters: Array<string> = this.simplified.split('');
+		let characters: Array<string> = this.primaryCharacter.split('');
 		let drawingArea: HTMLElement = this.element.shadowRoot.querySelector('#stroke-order');
 		while (drawingArea.firstChild) {
 			drawingArea.removeChild(drawingArea.firstChild);
@@ -856,15 +889,31 @@ export class MaterialBeautifyChineseStudy {
 
 	private createCard(): HTMLElement {
 		let template: HTMLElement;
-		const type: string = this.getCardType().toUpperCase();
-
+		let secondaryText: string;
+		let type: string = this.getCardType()
+			.toUpperCase()
+			.trim();
+		if (this.getCardType().indexOf('secondary') >= 0) {
+			for (var enumMember in HanziType) {
+				if (this.getHanziType() !== enumMember) {
+					secondaryText = enumMember;
+				}
+			}
+			type = this.getCardType()
+				.toUpperCase()
+				.replace('SECONDARY', secondaryText)
+				.replace('-', ' ')
+				.replace('RECOGNITION', '')
+				.trim();
+		}
+		
 		if (this.cardOrientation === 'question') {
 			template = 
 				<div id='anki-background'>
 					<div id='chinese-card'>
 						{this.createCardContent()}
 						<div id='chinese-card-type'>
-							<p id='colour-scheme'>{type}</p>
+							<p id='colour-scheme'>{ type }</p>
 						</div>
 					</div>
 				</div>
@@ -876,7 +925,7 @@ export class MaterialBeautifyChineseStudy {
 					<div id='chinese-card'>
 						{this.createCardContent()}
 						<div id='chinese-card-type'>
-							<p id="colour-scheme">{type}</p>
+							<p id="colour-scheme">{ type }</p>
 						</div>
 					</div>
 				</div>
@@ -886,26 +935,24 @@ export class MaterialBeautifyChineseStudy {
 	}
 
 	private createCardContent(): HTMLElement {
-		const plecoLink: string = `plecoapi://x-callback-url/df?hw=${this.getSimplified()}`;
+		const plecoLink: string = `plecoapi://x-callback-url/df?hw=${this.getPrimaryCharacter()}`;
 
 		const content: HTMLElement = 
 			<div id='chinese-card-content'>
 				<p>
 					<ruby>
-						<a id='pleco-link' href={plecoLink}>
-							<div id='simplified-hanzi-primary'>{this.getSimplified()}</div>
-							<div id='traditional-hanzi-primary'>{this.getTraditional()}</div>
+						<a id='pleco-link' href={ plecoLink }>
+							<div id='primary-hanzi-primary-element'>{this.getPrimaryCharacter()}</div>
+							<div id='secondary-hanzi-primary-element'>{ this.generatedTraditional }</div>
 						</a>
-						<rt id='phonetic'>
-							{this.getPhonic(this.getNumberedPinyin())}
-						</rt>
+						<rt id='phonetic'>{ this.phonic }</rt>
 					</ruby>
 				</p>
 				<div id='sentence'>
 					<ruby>
-						<div id='simplified-hanzi-sentence'>{this.getSimplifiedSentence()}</div>
-						<div id='traditional-hanzi-sentence'>{this.getTraditionalSentence()}</div>
-						<rt id='sentence-phonetic'>{this.getPhonic(this.getSentenceNumberedPinyin())}</rt>
+						<div id='primary-hanzi-sentence'>{this.getPrimaryCharacterSentence()}</div>
+						<div id='secondary-hanzi-sentence'>{ this.generatedTraditionalSentence }</div>
+						<rt id='sentence-phonetic'>{ this.sentencePhonic }</rt>
 					</ruby>
 				</div>
 				<div id='english'>
@@ -913,32 +960,46 @@ export class MaterialBeautifyChineseStudy {
 					<p id='sentence-meaning'>{this.getSentenceMeaning()}</p>
 				</div>
 				<div id='stroke-order'></div>
-				<div id='simplified-hanzi-secondary'>{this.getSimplified()}</div>
-				<div id='traditional-hanzi-secondary'>{this.getTraditional()}</div>
+				<div id='primary-hanzi-secondary-element'>{this.getPrimaryCharacter()}</div>
+				<div id='secondary-hanzi-secondary-element'>{ this.generatedTraditional }</div>
 				<div id='audio'></div>
 			</div>
 		;
 		return content;
 	}
 
-	public componentDidLoad() {
-		this.setColourSchemes();
+	/**
+	 * Called every time the component is connected to the DOM.
+	 */
+	connectedCallback(): void {
+		this.phonic = this.getPhonic(this.getNumberedPinyin());
+		this.sentencePhonic = this.getPhonic(this.getSentenceNumberedPinyin());
+		this.generatedTraditional = this.getSecondaryCharacter();
+		this.generatedTraditionalSentence = this.getSecondaryCharacterSentence();
+		this.template = this.createCard();
 	}
 
-	public componentDidRender() {
+	/**
+	 *  Returns a tree of components that are rendered to the DOM at runtime.
+	 * 
+	 * @returns FunctionalComponent<HostAttributes>
+	 */
+	public render() {
+		return (
+			<Host>
+				{ this.template }
+			</Host>
+		);
+	}
+
+	/**
+	 * Called after every `render()`.
+	 */
+	 public componentDidRender(): void {
+		this.setColourSchemes();
 		this.processCardContentByCardType();
 		if (this.getCardType() === 'writing' && this.getCardOrientation() === 'answer') {
 			this.createStrokeOrderCharacter();
 		}
-	}
-
-	public render() {
-		const template: HTMLElement = this.createCard();
-
-		return (
-			<Host>
-				{template}
-			</Host>
-		);
 	}
 }
