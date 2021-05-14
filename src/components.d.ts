@@ -12,7 +12,7 @@ export namespace Components {
          */
         "cardOrientation": string;
         /**
-          * Recognized card types: `recognition` | `secondary-recognition` | `tones` | `writing` | `meaning` | `secondary-sentence` | `audio`
+          * Recognized card types: `recognition` | `sentence` | `tones` | `writing` | `meaning` | `audio` | `secondary-sentence` | `secondary-recognition`
          */
         "cardType": string;
         /**
@@ -40,7 +40,7 @@ export namespace Components {
          */
         "primaryCharacterSentence": string;
         /**
-          * Defines the default primary hanzi type. Recognized hanzi typoes: 'simplified' | 'traditional'
+          * Recognized hanzi typoes: 'simplified' | 'traditional'
          */
         "primaryHanziType": string;
         /**
@@ -79,7 +79,7 @@ declare namespace LocalJSX {
          */
         "cardOrientation"?: string;
         /**
-          * Recognized card types: `recognition` | `secondary-recognition` | `tones` | `writing` | `meaning` | `secondary-sentence` | `audio`
+          * Recognized card types: `recognition` | `sentence` | `tones` | `writing` | `meaning` | `audio` | `secondary-sentence` | `secondary-recognition`
          */
         "cardType"?: string;
         /**
@@ -107,7 +107,7 @@ declare namespace LocalJSX {
          */
         "primaryCharacterSentence"?: string;
         /**
-          * Defines the default primary hanzi type. Recognized hanzi typoes: 'simplified' | 'traditional'
+          * Recognized hanzi typoes: 'simplified' | 'traditional'
          */
         "primaryHanziType"?: string;
         /**
