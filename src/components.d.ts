@@ -12,7 +12,7 @@ export namespace Components {
          */
         "cardOrientation": string;
         /**
-          * Recognized card types: `recognition` | `sentence` | `tones` | `writing` | `meaning` | `audio` | `secondary-sentence` | `secondary-recognition`
+          * Recognized card types: `recognition` | `sentence` | `tones` | `writing` | `meaning` | `audio` | `sentence` | `secondary-sentence` | `secondary-recognition`
          */
         "cardType": string;
         /**
@@ -79,7 +79,7 @@ declare namespace LocalJSX {
          */
         "cardOrientation"?: string;
         /**
-          * Recognized card types: `recognition` | `sentence` | `tones` | `writing` | `meaning` | `audio` | `secondary-sentence` | `secondary-recognition`
+          * Recognized card types: `recognition` | `sentence` | `tones` | `writing` | `meaning` | `audio` | `sentence` | `secondary-sentence` | `secondary-recognition`
          */
         "cardType"?: string;
         /**
