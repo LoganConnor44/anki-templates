@@ -9,94 +9,305 @@ This codebase is a solution for making Chinese study, through Anki, more enjoyab
 | <img src="./images/recognition-question.png" alt="Recognition Question" width="200"/> | <img src="./images/recognition-answer.png" alt="Recognition Answer" width="200"/> |
 | <img src="./images/meaning-question.png" alt="Meaning Question" width="200"/> | <img src="./images/meaning-answer.png" alt="Meaning Answer" width="200"/> |
 | <img src="./images/traditional-question.png" alt="Traditional Question" width="200"/> | <img src="./images/traditional-answer.png" alt="Traditional Answer" width="200"/> |
+| <img src="./images/traditional-sentence-question.png" alt="Traditional Sentence Question" width="200"/> | <img src="./images/traditional-sentence-answer.png" alt="Traditional Sentence Answer" width="200"/> |
 | <img src="./images/tones-question.png" alt="Tones Question" width="200"/> | <img src="./images/tones-answer.png" alt="Tones Answer" width="200"/> |
 | <img src="./images/writing-question.png" alt="Writing Question" width="200"/> | <img src="./images/writing-answer.gif" alt="Writing Answer" width="200"/> |
+| <img src="./images/audio-question-1.gif" alt="Audio 1 Question" width="200"/> | <img src="./images/audio-answer.png" alt="Audio Answer" width="200"/> |
+| <img src="./images/audio-question-2.gif" alt="Audio 2 Question" width="200"/> | <img src="./images/audio-answer.png" alt="Audio Answer" width="200"/> |
 
 # tl;dr
 
-This project can make your Chinese cards look nice in three steps by copying/pasting a few lines of code into your Anki template. To do this follow the guide below:
-1. Copy the `script` tag below and paste it into your Anki template.
-    * `<script>if (!document.querySelector('#import-script')) {var script = document.createElement('script');script.setAttribute('id', 'import-script');script.setAttribute('type', 'module');script.setAttribute('src', 'https://cdn.jsdelivr.net/npm/beautify-chinese-study@1.0.0/dist/beautify-chinese-study/beautify-chinese-study.esm.js');document.body.appendChild(script);}</script>`
-        * Normally, this script tag would be shorter, but Anki's Web Viewer doesn't handle scripts like other Web Viewers / browsers.
-2. Copy the `style` tag below and paste it into your template OR paste it the styling section of your Anki Card.
-    * `<style> /*desktop anki*/body {margin: 0;}/*ankidroid*/#content {margin: 0;}</style>`
-3. Copy the below `material-beautify-chinese-study` tag and paste it into your Anki card. Be sure to input your own Anki Field names and take note of the card type that you are creating. Please remember to visit the api documentation [here](./src/components/material-beautify-chinese-study/readme.md) to better understand this element.
-    ```html
-    <material-beautify-chinese-study simplified='{{text:Simplified}}'
-        traditional='{{text:Traditional}}'
-        numbered-pinyin='{{text:Pinyin}}'
-        meaning='{{text:Meaning}}'
-        card-type='tones'
-        card-orientation='question' />
-    ```
+Whether your study involves simplified or traditional characters, this project can make your Chinese flashcards look nice by copying/pasting [a few lines of logic](#Code%20Snippets) in your Anki template. 
+1. Copy and paste the below code snippets into their respective card templates
+2. Exchange the default value of `YOUR_FIELD_NAME` with the names defined in your deck (see {{text:YOUR_FIELD_NAME}})
+3. Decide which card type you want to create and update that attribute value as well.
 
-A full example is found below:
+# Code Snippets
+
+## Front
+
+A full example of the Front of a recognition card is found below:
 ```html
+<!--Styling may be placed in the Styling Anki tab - but for ease of use let's add it here only-->
 <style>
 	/*desktop anki*/
 	body {
 		margin: 0;
 	}
-
 	/*ankidroid*/
 	#content {
 		margin: 0;
 	}
 </style>
+
 <script>
-	if (!document.querySelector('#import-script')) {
+	// if the custom element material-beautify-chinese-study is not a known element
+	//// manually create the html script to import the module so the browser has
+	//// the necessary logic to create element
+	if (!customElements.get('material-beautify-chinese-study')) {
+		console.log('Custom element does not exist - Creating script to pull it in');
 		var script = document.createElement('script');
 		script.setAttribute('id', 'import-script');
 		script.setAttribute('type', 'module');
-		script.setAttribute('src', 'https://cdn.jsdelivr.net/npm/beautify-chinese-study@1.0.0/dist/beautify-chinese-study/beautify-chinese-study.esm.js');
+		script.setAttribute('src', 'https://cdn.jsdelivr.net/npm/beautify-chinese-study/dist/beautify-chinese-study/beautify-chinese-study.esm.js');
 		document.body.appendChild(script);
+	} else {
+		console.log('Custom element exists.');
 	}
+
+	// locate the custom element material-beautify-chinese-study on the DOM
+	//// if it has data - remove everything
+	var beautify = document.querySelector('material-beautify-chinese-study');
+	if (beautify !== null) {
+		beautify.remove();
+	}
+
+	// create a brand new material-beautify-chinese-study element and define
+	//// its attributes and attribute values
+	// IMPORTANT - the text below that contains {{text:YOUR_FIELD_NAME}} is meant to be exchanged
+	//// with the field names on your Anki card fields
+	//// eg if the english translation field on your Anki card is called EngLish the value you type below 
+	//// would be
+	//// beautify.setAttribute('meaning', "{{text:EngLish}}")
+	// Remove the above references to {{text:YOUR_FIELD_NAME}} and {{text:EngLish}} 
+	//// even though they are comments - Anki will still see this as an error
+	var beautify = document.createElement('material-beautify-chinese-study');
+	beautify.setAttribute('id', 'beautify');
+	beautify.setAttribute('primary-character', '{{text:YOUR_FIELD_NAME}}');
+	beautify.setAttribute('secondary-character', '{{text:YOUR_FIELD_NAME}}');
+	// double quotes intentional do to the value containing a single quote
+	beautify.setAttribute('numbered-pinyin', "{{text:YOUR_FIELD_NAME}}");
+	beautify.setAttribute('primary-character-sentence', '{{text:YOUR_FIELD_NAME}}');
+	beautify.setAttribute('secondary-character-sentence', '{{text:YOUR_FIELD_NAME}}');
+	// double quotes intentional do to the value containing a single quote
+	beautify.setAttribute('sentence-numbered-pinyin', "{{text:YOUR_FIELD_NAME}}");
+	// double quotes intentional do to the value containing a single quote
+	beautify.setAttribute('meaning', "{{text:YOUR_FIELD_NAME}}");
+	beautify.setAttribute('card-type', 'recognition');
+	beautify.setAttribute('card-orientation', 'question');
+	beautify.setAttribute('preferred-phonic', 'zhuyin');
+	// add the element to the DOM body
+	document.body.appendChild(beautify);
 </script>
-<material-beautify-chinese-study simplified='{{text:Simplified}}'
-	traditional='{{text:Traditional}}'
-	numbered-pinyin='{{text:Pinyin}}'
-	meaning='{{text:Meaning}}'
-	card-type='tones'
-	card-orientation='question' 
-	preferred-phonic='zhuyin' />
+
+<!--Always add audio and keep it invisible-->
+<div style="display:none;">{{Audio}}{{SentenceAudio}}</div>
 ```
 
-# How
+## Back
 
-Anki utilizes web technologies to generate its flashcards. This codebase is using a technology called Web Components that will allow users to only add three html tags to their Anki card templates, and the rest is handled automatically.
-* `style`
-    * Used to override some top level styling by Anki Desktop and AnkiDroid.
-* `script`
-    * Used to pull in the main logic that powers this project.
-* `material-beautify-chinese-study`
-    * The custom html tag that we have created to have beautiful looking Anki Chinese Flashcards.
+A full example of the Back of a recognition card is found below:
+```html
+<!--Styling may be placed in the Styling Anki tab - but for ease of use let's add it here only-->
+<style>
+	/*desktop anki*/
+	body {
+		margin: 0;
+	}
+	/*ankidroid*/
+	#content {
+		margin: 0;
+	}
+</style>
+
+<script>
+	// if the custom element material-beautify-chinese-study is not a known element
+	//// manually create the html script to import the module so the browser has
+	//// the necessary logic to create element
+	if (!customElements.get('material-beautify-chinese-study')) {
+		var script = document.createElement('script');
+		script.setAttribute('id', 'import-script');
+		script.setAttribute('type', 'module');
+		script.setAttribute('src', 'https://cdn.jsdelivr.net/npm/beautify-chinese-study/dist/beautify-chinese-study/beautify-chinese-study.esm.js');
+		document.body.appendChild(script);
+	}
+
+	// since we are on the back of the card the custom element from the front of the card
+	//// may have been retained - in instances of AnkiDroid a new webview is created and
+	//// the element will need to be recreated from scratch
+	var beautify = document.querySelector('#beautify');
+	if (!beautify) {
+		// probably executing because on AnkiDroid
+		// recreating element from scratch
+		// IMPORTANT - the text below that contains {{text:YOUR_FIELD_NAME}} is meant to be exchanged
+		//// with the field names on your Anki card fields
+		//// eg if the english translation field on your Anki card is called EngLish the value you type below 
+		//// would be
+		//// beautify.setAttribute('meaning', "{{text:EngLish}}")
+		// Remove the above references to {{text:YOUR_FIELD_NAME}} and {{text:EngLish}} 
+		//// even though they are comments - Anki will still see this as an error
+		var beautify = document.createElement('material-beautify-chinese-study');
+		beautify.setAttribute('id', 'beautify');
+		beautify.setAttribute('primary-character', '{{text:YOUR_FIELD_NAME}}');
+		beautify.setAttribute('secondary-character', '{{text:YOUR_FIELD_NAME}}');
+		beautify.setAttribute('writing', '{{text:YOUR_FIELD_NAME}}');
+		// double quotes intentional do to the value containing a single quote
+		beautify.setAttribute('numbered-pinyin', "{{text:YOUR_FIELD_NAME}}");
+		beautify.setAttribute('primary-character-sentence', '{{text:YOUR_FIELD_NAME}}');
+		beautify.setAttribute('secondary-character-sentence', '{{text:YOUR_FIELD_NAME}}');
+		// double quotes intentional do to the value containing a single quote
+		beautify.setAttribute('sentence-numbered-pinyin', "{{text:YOUR_FIELD_NAME}}");
+		// double quotes intentional do to the value containing a single quote
+		beautify.setAttribute('meaning', "{{text:YOUR_FIELD_NAME}}");
+		beautify.setAttribute('card-type', 'recognition');
+		beautify.setAttribute('card-orientation', 'answer');
+		beautify.setAttribute('preferred-phonic', 'zhuyin');
+		document.body.appendChild(beautify);
+	} else {
+		// element already exist
+		// redefine the card type just for safe keeping
+		// redefine the card orientation to display the answer logic
+		beautify.setAttribute('card-type', 'recognition');
+		beautify.setAttribute('card-orientation', 'answer');
+	}
+</script>
+
+<!--Always add audio and keep it invisible-->
+<div style="display:none;">{{Audio}}{{SentenceAudio}}</div>
+```
+
+## What Is Happening In The Above Code Snippet?
+
+The logic attempts to make custom styling and additional logic work the same across Desktop Anki and Anki Droid (ios anki not tested). The [above code snippets](#Code%20Snippets) contain inline comments to address what is being done, but an explanation is also below.
+
+* [Front](##Front)
+	1. Check if the Web View contains logic to *create* our custom element, material-beautify-chinese-study
+		* If it does move on
+		* If it does not, programmatically create the import script tag and pull it in from cdn so the Web View will have the ability to create it
+	2. Check if the Web View's DOM already contains our element, material-beautify-chinese-study
+		* Most likely it will not since we are on the front of the flash card
+			* Depending on which Anki client is being used, the Web View may retain data from prior sessions
+	3. Programmatically create the material-beautify-chinese-study element and define the attribute values with your personal Anki field names
+	4. Add audio to the card, but make it invisible
+* [Back](##Back)
+	1. Check if the Web View contains logic to *create* our custom element, material-beautify-chinese-study
+		* If it does move on
+		* If it does not, programmatically create the import script tag and pull it in from cdn so the Web View will have the ability to create it
+	2. Check if the Web View's DOM already contains our element, material-beautify-chinese-study
+		* If it does, redefine the card orientation to answer
+			* We also redefine the card type - from memory I don't remember the exact use case for this - but it doesn't hurt to do this - so we keep it for now
+		* If it does not, we are most likely on Anki Droid and need to recreate the element entirely
+	3. Add audio to the card, but make it invisible
+
+
+# How Is This Possible?
+
+Anki utilizes web technologies to generate its flashcards. This codebase is using a technology called Web Components that will allow users to add ~~three html tags~~(due to different behaviours between Anki Clients we have to add some logic as a workaround for Anki's inconsistent behaviour) [the above logic](#Code%20Snippets) to their Anki card templates, and the rest is handled automatically by the web component.
 
 ## Styling
 
-While this project handles most of the styling for the user, there is styling that cannot be overridden from Anki Desktop and AnkiDroid (iOS anki app not tested). Fortunately, by adding a few lines this can be fixed. In the [how](#How) section above, it shows inline CSS to fix this. Those few lines of code may also be placed an Anki's Template Styling section. It is up to the user's preference for the placement of the CSS code. Functionality, it makes no difference where it is located.
+While this project handles most of the styling for the user, there is styling that cannot be overridden from Anki Desktop and AnkiDroid (iOS anki app not tested). Fortunately, by adding a few lines this can be fixed. ThEse few lines of code are in the above code snippet, but may also be placed an Anki's Template Styling section. It is up to the user's preference for the placement of the CSS code. Functionality, it makes no difference where it is located.
 
 # Prerequisites
 
+There are currently seven different template types that may be used. The following will be a list of fields that are mandatory to successfully generate the card template; in addition to the mandatory types, please feel free to add any other optional data as they will be available on each card - all available attribute values found [here](./src/components/material-beautify-chinese-study/readme.md):
+
+* Primary Recognition
+	* Primary Character
+	* Meaning Of Character
+
+```html
+<material-beautify-chinese-study primary-character='天'
+	meaning='sky' />
+```
+
+* Primary Tones
+	* Primary Character
+	* Meaning Of Character
+
+```html
+<material-beautify-chinese-study primary-character='天气'
+	meaning='weather'
+	card-type='tones' />
+```
+
+* Primary Writing
+	* Primary Character
+
+```html
+<material-beautify-chinese-study primary-character='天气'
+	card-type='writing' />
+```
+
+* Primary Meaning
+	* Primary Character 
+	* Meaning Of Character
+
+```html
+<material-beautify-chinese-study primary-character='天气'
+	meaning='weather'
+	card-type='meaning' />
+```
+
+* Primary Sentence
+	* Primary Sentence Characters
+	* Meaning Of Sentence
+
+```html
+<material-beautify-chinese-study primary-character-sentence='今天天气很好。'
+	sentence-meaning='The weather is good today.'
+	card-type='sentence' />
+```
+
+* Primary Audio
+	* Primary Sentence Characters
+	* Meaning Of Sentence
+
+```html
+<material-beautify-chinese-study primary-character-sentence='今天天气很好。'
+	card-type='audio' />
+```
+
+* Secondary Character Recognition
+	* Primary Character
+	* Meaning Of Character
+
+```html
+<material-beautify-chinese-study primary-character='天气'
+	meaning='weather'
+	card-type='secondary-recognition' />
+```
+
+* Secondary Character Sentence
+	* Primary Sentence Characters
+	* Meaning Of Sentence
+
+```html
+<material-beautify-chinese-study primary-character-sentence='今天天气很好。'
+	sentence-meaning='The weather is good today.'
+	card-type='secondary-sentence' />
+```
+
+
+
+
+
+
 * Have a Chinese deck in Anki with the following fields (field names do not need to match)
-    * Simplified Characters
-    * Traditional Characters
-    * Meaning In English
-    * Numbered Pinyin
+	* Hanzi (simplified or traditional) Characters
+	* Meaning In Native Language
 * Have the Anki knowledge to set up Card Types (Notes) for the different cards they would like to utilize for their study.
 
 # material-beautify-chinese-study API
-    
+	
 Please follow the link [here](./src/components/material-beautify-chinese-study/readme.md) to read the full documentation of this element. This documentation is autogenerated and more reliable than handwriting it. 
 
 # Features
 
 Aside from making your flashcards look beautiful, this project has three note-worthy features:
 1. Stroke Order Animation
-    * On the answer side of the writing cards, the hanzi will animate the stroke order by default.
+	* On the answer side of the writing cards, the hanzi will animate the stroke order by default.
 2. Pleco Integration - mobile only
-    * At any time, the user can click the hanzi they are shown and the card will automatically open Pleco (very popular dictionary mobile application).
+	* At any time, the user can click the hanzi they are shown and the card will automatically open Pleco (very popular dictionary mobile application).
 3. Zhuyin Characters
-    * The project can convert your numbered pinyin into zhuyin characters.
+	* The project can convert your numbered pinyin into zhuyin characters.
+4. Traditional Characters
+	* Due to the prevalence of Taiwanese media in the West, learning to recognize Traditional Characters is a useful skill. The project can programmatically convert Mainland Simplified Characters to Taiwanese Traditional Characters!
+5. Automatic Pinyin
+	* If you have a simplified character present and pinyin field is blank or omitted from the web component, an automated one will be created for you. 
+		* Setting preferred phonic to pinyin (default value) will generate accented pinyin
+		* Setting preferred phonic to zhuyin will generate the expected value of bopomofo characters
+6. These templates allow for setting either simplified or traditional as the primary character type that will be studied. If the secondary character wanted, the template types `secondary-recognition` and `secondary-sentence` will be automatically generated and created with no additional work on the user side.
 
 # Contributing
 
@@ -114,17 +325,16 @@ This project is leveraging the StencilJs library to create Web Components in Typ
 
 # Current Issues
 
-1. Inputting *accented* pinyin into the *numbered* pinyin attribute has not been tested. I plan to add this because I'm sure most users have accented pinyin, rather than numbered, but this is something I don't have with my decks and haven't spent time on yet.
-	* This fix would be simple. Just regex for an accented vowel and if one exists pass the translation logic and output the already accented pinyin to the html.
-2. Writing Card Types (Notes) - if it is a single character, it will animate twice. Currently, I'm writing this off as a feature because it's an easy issue to fix but don't mind the repeat.
-	* Click event on the characters would be nice to restart animations.
+See [issue tab](https://github.com/LoganConnor44/anki-templates/issues) for more information.
 
 # Improvements
 
 1. A `typing` type card is being developed utilizing Anki's `{{type:FIELD_NAME_HERE}}` functionality.
 2. Ease-in animation and a dark background could be added so users don't occasionally see a flash of default background colour when the application is loading.
 3. A skeleton card could be created (skeleton cards are essentially a newer version of a loading screen). But, the actual delay is minimal at the moment. 
-5. A colour scheme for the web components may be a nice addition. Currently, the colour schemes are defined by question (Anki verbiage is card type or note type) types. Yet, adding a new attribute to define the colour scheme may be a worthwhile feature. This could be achieved, while also having a default scheme for each question type so if the user is okay with the default scheme no additional attributes would need to be set.
+4. A colour scheme for the web components may be a nice addition. Currently, the colour schemes are defined by question (Anki verbiage is card type or note type) types. Yet, adding a new attribute to define the colour scheme may be a worthwhile feature. This could be achieved, while also having a default scheme for each question type so if the user is okay with the default scheme no additional attributes would need to be set.
+5. Adding the ability to change the font size within the custom component would be a nice addition for users that prefer a larger typefont and/or have more screen real estate.
+	* This may include increasing the size of the character stroke animation as well.
 
 ----------------
 # StencilJs Document That Is Helpful
@@ -134,6 +344,14 @@ This project is leveraging the StencilJs library to create Web Components in Typ
 There are three strategies we recommend for using web components built with Stencil.
 
 The first step for all three of these strategies is to [publish to NPM](https://docs.npmjs.com/getting-started/publishing-npm-packages).
+
+### Quick Guide For Publishing
+
+Assuming you are already logged in, the steps are below:
+1. ```npm version MANUALLY-INCREMENT-VERSION-NUMBER```
+	* Update will be seen in the `package.json` file
+2. ```npm publish --access public```
+	* Verify on npm
 
 ### Script tag
 

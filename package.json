@@ -1,6 +1,6 @@
 {
   "name": "beautify-chinese-study",
-  "version": "1.1.36",
+  "version": "1.1.44",
   "description": "A package for making Chinese study more beautiful.",
   "repository": {
     "type": "git",
@@ -41,8 +41,10 @@
     "generate": "stencil generate"
   },
   "dependencies": {
-    "@stencil/core": "^2.0.1",
-    "hanzi-writer": "^2.3.0"
+    "@stencil/core": "^2.4.0",
+    "hanzi-writer": "^2.3.0",
+    "opencc-js": "^1.0.3",
+    "pinyin": "^2.10.2"
   },
   "license": "MIT"
 }

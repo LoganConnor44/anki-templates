@@ -1,7 +1,4 @@
-const enum HanziType {
-	SIMPLIFIED,
-	TRADITIONAL,
-	SIMPLIFIED_AND_TRADITIONAL
+export enum HanziType {
+	SIMPLIFIED = 'SIMPLIFIED',
+	TRADITIONAL = 'TRADITIONAL'
 }
-
-export default HanziType;

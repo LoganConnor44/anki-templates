@@ -12,9 +12,13 @@ export namespace Components {
          */
         "cardOrientation": string;
         /**
-          * Recognized card types: `recognition` | `traditional` | `tones` | `writing` | `meaning`
+          * Recognized card types: `recognition` | `sentence` | `tones` | `writing` | `meaning` | `audio` | `secondary-sentence` | `secondary-recognition`
          */
         "cardType": string;
+        /**
+          * Option to always generate secondary character values and phonic values
+         */
+        "forceAutoGeneration": boolean;
         /**
           * All English language words allowed
          */
@@ -28,6 +32,26 @@ export namespace Components {
          */
         "preferredPhonic": string;
         /**
+          * All characters allowed
+         */
+        "primaryCharacter": string;
+        /**
+          * All characters allowed
+         */
+        "primaryCharacterSentence": string;
+        /**
+          * Recognized hanzi typoes: 'simplified' | 'traditional'
+         */
+        "primaryHanziType": string;
+        /**
+          * All characters allowed
+         */
+        "secondaryCharacter": string;
+        /**
+          * All characters allowed
+         */
+        "secondaryCharacterSentence": string;
+        /**
           * All English language words allowed
          */
         "sentenceMeaning": string;
@@ -35,22 +59,6 @@ export namespace Components {
           * Most forms of numbered pinyin allowed
          */
         "sentenceNumberedPinyin": string;
-        /**
-          * All characters allowed
-         */
-        "simplified": string;
-        /**
-          * All characters allowed
-         */
-        "simplifiedSentence": string;
-        /**
-          * All characters allowed
-         */
-        "traditional": string;
-        /**
-          * All characters allowed
-         */
-        "traditionalSentence": string;
     }
 }
 declare global {
@@ -71,9 +79,13 @@ declare namespace LocalJSX {
          */
         "cardOrientation"?: string;
         /**
-          * Recognized card types: `recognition` | `traditional` | `tones` | `writing` | `meaning`
+          * Recognized card types: `recognition` | `sentence` | `tones` | `writing` | `meaning` | `audio` | `secondary-sentence` | `secondary-recognition`
          */
         "cardType"?: string;
+        /**
+          * Option to always generate secondary character values and phonic values
+         */
+        "forceAutoGeneration"?: boolean;
         /**
           * All English language words allowed
          */
@@ -87,6 +99,26 @@ declare namespace LocalJSX {
          */
         "preferredPhonic"?: string;
         /**
+          * All characters allowed
+         */
+        "primaryCharacter"?: string;
+        /**
+          * All characters allowed
+         */
+        "primaryCharacterSentence"?: string;
+        /**
+          * Recognized hanzi typoes: 'simplified' | 'traditional'
+         */
+        "primaryHanziType"?: string;
+        /**
+          * All characters allowed
+         */
+        "secondaryCharacter"?: string;
+        /**
+          * All characters allowed
+         */
+        "secondaryCharacterSentence"?: string;
+        /**
           * All English language words allowed
          */
         "sentenceMeaning"?: string;
@@ -94,22 +126,6 @@ declare namespace LocalJSX {
           * Most forms of numbered pinyin allowed
          */
         "sentenceNumberedPinyin"?: string;
-        /**
-          * All characters allowed
-         */
-        "simplified"?: string;
-        /**
-          * All characters allowed
-         */
-        "simplifiedSentence"?: string;
-        /**
-          * All characters allowed
-         */
-        "traditional"?: string;
-        /**
-          * All characters allowed
-         */
-        "traditionalSentence"?: string;
     }
     interface IntrinsicElements {
         "material-beautify-chinese-study": MaterialBeautifyChineseStudy;
