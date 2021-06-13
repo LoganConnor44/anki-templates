@@ -1,0 +1,44 @@
+<style>
+    /*desktop anki*/
+    body {
+        margin: 0;
+    }
+
+    /*ankidroid*/
+    #content {
+        margin: 0;
+    }
+</style>
+
+<script>
+
+    if (!customElements.get('material-beautify-chinese-study')) {
+        console.log('custom element does not exist - creating script to pull it in');
+        var script = document.createElement('script');
+        script.setAttribute('id', 'import-script');
+        script.setAttribute('type', 'module');
+        script.setAttribute('src', 'https://cdn.jsdelivr.net/npm/beautify-chinese-study@1.1.48/dist/beautify-chinese-study/beautify-chinese-study.esm.js');
+        document.body.appendChild(script);
+    } else {
+        console.log('Custom Element exists.');
+    }
+
+    var beautify = document.querySelector('material-beautify-chinese-study');
+    if (beautify !== null) {
+        beautify.remove();
+    }
+
+    var beautify = document.createElement('material-beautify-chinese-study');
+    beautify.setAttribute('id', 'beautify-sentence');
+    beautify.setAttribute('primary-character', "{{text:Simplified}}");
+    beautify.setAttribute('primary-character-sentence', "{{text:SentenceSimplified}}");
+    beautify.setAttribute('sentence-meaning', "{{text:SentenceMeaning}}");
+    beautify.setAttribute('card-type', 'sentence');
+    beautify.setAttribute('card-orientation', 'question');
+    beautify.setAttribute('preferred-phonic', 'zhuyin');
+    beautify.setAttribute('force-auto-generation', 'force-auto-generation');
+    document.body.appendChild(beautify);
+
+</script>
+
+<div style="display:none;">{{Audio}}{{SentenceAudio}}</div>
