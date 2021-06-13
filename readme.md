@@ -201,6 +201,14 @@ The logic attempts to make custom styling and additional logic work the same acr
 		* If it does not, we are most likely on Anki Droid and need to recreate the element entirely
 	3. Add audio to the card, but make it invisible
 
+## JSFiddle
+
+Feel free to see this using [JSFiddle](https://jsfiddle.net/loganconnor44/Lnu9jm0f/5/).
+
+## My Personal Cards
+
+Feel free to browse over my personal cards that I have saved in Anki found [here][https://github.com/LoganConnor44/anki-templates/tree/master/anki-templates].
+
 
 # How Is This Possible?
 
