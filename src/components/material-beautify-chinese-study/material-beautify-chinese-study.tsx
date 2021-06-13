@@ -600,7 +600,6 @@ export class MaterialBeautifyChineseStudy {
 		if (this.getCardOrientation() === 'answer') {
 			sentencePhonetic.style.display = 'block';
 			sentenceMeaning.style.display = 'block';
-			phonetic.style.display = 'block';
 		}
 	}
 
@@ -814,7 +813,7 @@ export class MaterialBeautifyChineseStudy {
 			
 			let result: string = '';
 			value = value.trim().toLowerCase();
-			value = value.replace(/[',.!?]/g, '');
+			value = value.replace(/[',。，《》.!?]/g, '');
 			if (isPinyin(value)) {
 				result = processNumberedPinyin(phoneticType, value);
 			}
