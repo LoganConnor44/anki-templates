@@ -26,9 +26,9 @@
     var beautify = document.querySelector('#beautify-recognition');
     if (!beautify) {
         var beautify = document.createElement('material-beautify-chinese-study');
-        beautify.setAttribute('id', 'beautify');
-        beautify.setAttribute('simplified', '{{text:Simplified}}');
-        beautify.setAttribute('simplified-sentence', '{{text:SentenceSimplified}}');
+        beautify.setAttribute('id', 'beautify-recognition');
+        beautify.setAttribute('primary-character', '{{text:Simplified}}');
+        beautify.setAttribute('primary-character-sentence', '{{text:SentenceSimplified}}');
         beautify.setAttribute('meaning', "{{text:Meaning}}");
         beautify.setAttribute('card-type', 'recognition');
         beautify.setAttribute('card-orientation', 'answer');
@@ -38,6 +38,8 @@
     } else {
         beautify.setAttribute('card-orientation', 'answer');
     }
+
+    document.body.appendChild(beautify);
 
 </script>
 
