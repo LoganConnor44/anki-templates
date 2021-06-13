@@ -377,3 +377,7 @@ Assuming you are already logged in, the steps are below:
 
 - Put a script tag similar to this `<script src='https://unpkg.com/my-component@0.0.1/dist/mycomponent.js'></script>` in the head of your index.html
 - Then you can use the element anywhere in your template, JSX, html etc
+
+### Updating The Auto Generated API Documentation
+
+```npm run build```

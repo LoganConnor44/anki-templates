@@ -20,7 +20,7 @@ export class MaterialBeautifyChineseStudy {
 	 @Prop()
 	public primaryHanziType: string = 'simplified';
 	/**
-	 *	Recognized card types: `recognition` | `sentence` | `tones` | `writing` | `meaning` | `audio` | `sentence` | `secondary-sentence` | `secondary-recognition`
+	 *	Recognized card types: `recognition` | `sentence` | `tones` | `writing` | `meaning` | `audio` | `secondary-sentence` | `secondary-recognition`
 	 */
 	@Prop()
 	public cardType: string = 'recognition';
