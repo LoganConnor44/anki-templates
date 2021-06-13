@@ -49,6 +49,12 @@ A full example of the Front of a recognition card is found below:
 		var script = document.createElement('script');
 		script.setAttribute('id', 'import-script');
 		script.setAttribute('type', 'module');
+		// this will retrieve the newest, bleeding edge version of the package
+		// doing this could cause issues if something in the package is updated and the older
+		//// version no longer exists
+		// one solution is to require a specific version by adding @VERSION-NUMBER like the example below
+		//// https://cdn.jsdelivr.net/npm/beautify-chinese-study@1.1.48/dist/beautify-chinese-study/beautify-chinese-study.esm.js
+		// versions can be viewed here https://www.npmjs.com/package/beautify-chinese-study
 		script.setAttribute('src', 'https://cdn.jsdelivr.net/npm/beautify-chinese-study/dist/beautify-chinese-study/beautify-chinese-study.esm.js');
 		document.body.appendChild(script);
 	} else {
@@ -118,6 +124,12 @@ A full example of the Back of a recognition card is found below:
 		var script = document.createElement('script');
 		script.setAttribute('id', 'import-script');
 		script.setAttribute('type', 'module');
+		// this will retrieve the newest, bleeding edge version of the package
+		// doing this could cause issues if something in the package is updated and the older
+		//// version no longer exists
+		// one solution is to require a specific version by adding @VERSION-NUMBER like the example below
+		//// https://cdn.jsdelivr.net/npm/beautify-chinese-study@1.1.48/dist/beautify-chinese-study/beautify-chinese-study.esm.js
+		// versions can be viewed here https://www.npmjs.com/package/beautify-chinese-study
 		script.setAttribute('src', 'https://cdn.jsdelivr.net/npm/beautify-chinese-study/dist/beautify-chinese-study/beautify-chinese-study.esm.js');
 		document.body.appendChild(script);
 	}
