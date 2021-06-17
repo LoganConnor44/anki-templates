@@ -301,7 +301,7 @@ At the time of this writing, there are eight different template types that may b
 
 
 
-
+In addition to the above information needed for particular card types, the following is also needed:
 
 * Have a Chinese deck in Anki with the following fields (field names do not need to match)
 	* Hanzi (simplified or traditional) Characters
