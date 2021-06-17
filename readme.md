@@ -203,7 +203,7 @@ The logic attempts to make custom styling and additional logic work the same acr
 
 ## JSFiddle
 
-Feel free to see this using [JSFiddle](https://jsfiddle.net/loganconnor44/Lnu9jm0f/5/).
+Feel free to this project in action using this [JSFiddle](https://jsfiddle.net/loganconnor44/Lnu9jm0f/5/).
 
 ## My Personal Cards
 
