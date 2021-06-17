@@ -207,7 +207,7 @@ Feel free see to this project in action using this [JSFiddle](https://jsfiddle.n
 
 ## My Personal Cards
 
-Feel free to browse over my personal cards that I have saved in Anki found [here](https://github.com/LoganConnor44/anki-templates/tree/master/anki-templates).
+Feel free to browse over my [personal cards](https://github.com/LoganConnor44/anki-templates/tree/master/anki-templates) that I have saved in Anki.
 
 
 # How Is This Possible?
