@@ -381,3 +381,9 @@ Assuming you are already logged in, the steps are below:
 ## Updating The Auto Generated API Documentation
 
 ```npm run build```
+
+## GitHub Actions
+
+### Release
+
+A release via GitHub will create a git tag and publish a new version to the npm registry. These releases and tags need to be named the version that is intended for npm registry.
