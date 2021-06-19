@@ -12,14 +12,11 @@ jobs:
         with:
           node-version: '12.x'
           registry-url: 'https://registry.npmjs.org'
+      - run: npm version minor
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Incrementing NPM Package Minor Version
-      - run: npm version minor
       - run: npm install
       - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCOUNT_PASSWORD }}
-          
-    
-
