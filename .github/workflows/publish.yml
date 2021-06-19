@@ -14,7 +14,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - run: git config user.email "ci-bot@bots.com"
       - run: git config user.name "CI Bot"
-      - run: npm version ${{ github.event.release.tag_name }}
+      - run: npm --no-git-tag-version version ${{ github.event.release.tag_name }}
       - run: npm install
       - run: npm publish --access public
         env:
