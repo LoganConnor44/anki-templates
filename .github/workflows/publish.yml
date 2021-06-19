@@ -12,11 +12,13 @@ jobs:
         with:
           node-version: '12.x'
           registry-url: 'https://registry.npmjs.org'
-      - run: npm version minor
+      - run: npm version ${{ github.event.release.tag_name }}
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Incrementing NPM Package Minor Version
       - run: npm install
+      - run: git config --global user.name "GitHub CI Bot"
+      - run: git config --global user.email "github-ci-bot@bots.com"
       - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCOUNT_PASSWORD }}
