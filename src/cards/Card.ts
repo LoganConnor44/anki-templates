@@ -1,9 +1,8 @@
-import { h } from '@stencil/core';
 import * as OpenCC from 'opencc-js';
 import { HanziType } from '../enums/HanziType';
 
 abstract class Card {
-	private _primaryVocab: string;ß
+	private _primaryVocab: string;
     private _secondaryVocab: string;
     private _primarySentence: string;
     private _secondarySentence: string;
@@ -15,6 +14,10 @@ abstract class Card {
     private _forceAutoGeneration: boolean = false;
     private _primaryHanziType: string = 'simplified';
     private _conversionConfig: object = { from: 'cn', to: 'tw' };
+
+    private _mainHtmlElement: HTMLElement;
+    private _plecoLinkElement: HTMLLinkElement;
+    private _sentenceElement
     private _html: HTMLElement;
 
     private isEmptyStringBlankStringNullOrUndefined = (value: String): boolean => value === null || value === undefined || value === "" || value.trim().length == 0;
@@ -119,6 +122,18 @@ abstract class Card {
     protected set conversionConfig(value: object) {
         this._conversionConfig = value;
     }
+    protected get plecoLinkElement(): HTMLLinkElement {
+        return this._plecoLinkElement;
+    }
+    protected set plecoLinkElement(value: HTMLLinkElement) {
+        this._plecoLinkElement = value;
+    }
+    protected get mainHtmlElement(): HTMLElement {
+        return this._mainHtmlElement;
+    }
+    protected set mainHtmlElement(value: HTMLElement) {
+        this._mainHtmlElement = value;
+    }
     public get html(): HTMLElement {
         return this._html;
     }
@@ -126,6 +141,9 @@ abstract class Card {
         const plecoLink: string = `plecoapi://x-callback-url/df?hw=${ this.primaryVocab }`;
         const content: HTMLElement = 
 			<div id='chinese-card-content'>
+
+
+                main html element            
 				<p>
 					<ruby>
 						<a id='pleco-link' href={ plecoLink }>
@@ -135,6 +153,11 @@ abstract class Card {
 						<rt id='phonetic'>{ this.vocabPhonic }</rt>
 					</ruby>
 				</p>
+
+
+
+
+                sentence element
 				<div id='sentence'>
 					<ruby>
 						<div id='primary-hanzi-sentence'>{ this.primarySentence }</div>
@@ -159,6 +182,8 @@ abstract class Card {
         return this.html.querySelector('#primary-hanzi-primary-element');
     }
     protected get secondaryHanziPrimaryElement(): HTMLElement {
+        console.log(this.html);
+        
         return this.html.querySelector('#secondary-hanzi-primary-element');
     }
     protected get primaryHanziSecondaryElement(): HTMLElement {

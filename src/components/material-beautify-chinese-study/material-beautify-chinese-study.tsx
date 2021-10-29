@@ -6,7 +6,8 @@ import Zhuyin from '../../phonetics/Zhuyin';
 import HanziWriter from 'hanzi-writer';
 import * as OpenCC from 'opencc-js';
 import * as PinyinGenerator from 'pinyin';
-import Recognition from '../../cards/Recognition';
+import Card  from '../../cards/Card';
+import Recognition  from '../../cards/Recognition';
 
 @Component({
 	tag: 'material-beautify-chinese-study',
@@ -96,7 +97,7 @@ export class MaterialBeautifyChineseStudy {
 	private conversionConfig: object = { from: 'cn', to: 'tw' };
 	private template: HTMLElement;
 
-	private card: HTMLElement;
+	private card: Card;
 
 	private getPrimaryHanziPrimaryElement = (): HTMLElement => this.element.shadowRoot.querySelector('#primary-hanzi-primary-element');
 	private getSecondaryHanziPrimaryElement = (): HTMLElement => this.element.shadowRoot.querySelector('#secondary-hanzi-primary-element');
@@ -235,10 +236,10 @@ export class MaterialBeautifyChineseStudy {
 	 * Sets the color scheme based on the current card type.
 	 */
 	private setColourSchemes (): void {
-		let body: HTMLElement = this.card.querySelector('#anki-background');
-		let card: HTMLElement = this.card.querySelector('#chinese-card');
-		let cardType: HTMLElement = this.card.querySelector('#chinese-card-type');
-		let cardContent: HTMLElement = this.card.querySelector('#chinese-card-content');
+		let body: HTMLElement = this.card.html.querySelector('#anki-background');
+		let card: HTMLElement = this.card.html.querySelector('#chinese-card');
+		let cardType: HTMLElement = this.card.html.querySelector('#chinese-card-type');
+		let cardContent: HTMLElement = this.card.html.querySelector('#chinese-card-content');
 	
 		switch (this.getCardType()) {
 			case 'secondary-recognition':
@@ -431,7 +432,7 @@ export class MaterialBeautifyChineseStudy {
 			this.getSentenceMeaning(),
 			this.getCardOrientation()
 		)
-		this.card = recognition.html;
+		this.card = recognition;
 	}
 
 	private processWritingCardType(): void {
@@ -927,40 +928,6 @@ export class MaterialBeautifyChineseStudy {
 		return template;
 	}
 
-	// private createCardContent(): HTMLElement {
-	// 	const plecoLink: string = `plecoapi://x-callback-url/df?hw=${this.getPrimaryCharacter()}`;
-
-	// 	const content: HTMLElement = 
-	// 		<div id='chinese-card-content'>
-	// 			<p>
-	// 				<ruby>
-	// 					<a id='pleco-link' href={ plecoLink }>
-	// 						<div id='primary-hanzi-primary-element'>{this.getPrimaryCharacter()}</div>
-	// 						<div id='secondary-hanzi-primary-element'>{ this.generatedTraditional }</div>
-	// 					</a>
-	// 					<rt id='phonetic'>{ this.phonic }</rt>
-	// 				</ruby>
-	// 			</p>
-	// 			<div id='sentence'>
-	// 				<ruby>
-	// 					<div id='primary-hanzi-sentence'>{this.getPrimaryCharacterSentence()}</div>
-	// 					<div id='secondary-hanzi-sentence'>{ this.generatedTraditionalSentence }</div>
-	// 					<rt id='sentence-phonetic'>{ this.sentencePhonic }</rt>
-	// 				</ruby>
-	// 			</div>
-	// 			<div id='english'>
-	// 				<p id='single-word-meaning'>{this.getMeaning()}</p>
-	// 				<p id='sentence-meaning'>{this.getSentenceMeaning()}</p>
-	// 			</div>
-	// 			<div id='stroke-order'></div>
-	// 			<div id='primary-hanzi-secondary-element'>{this.getPrimaryCharacter()}</div>
-	// 			<div id='secondary-hanzi-secondary-element'>{ this.generatedTraditional }</div>
-	// 			<div id='audio'></div>
-	// 		</div>
-	// 	;
-	// 	return content;
-	// }
-
 	/**
 	 * Called every time the component is connected to the DOM.
 	 */
@@ -989,6 +956,13 @@ export class MaterialBeautifyChineseStudy {
 	 * Called after every `render()`.
 	 */
 	 public componentDidRender(): void {
+		this.card = new Recognition(
+			this.primaryCharacter,
+			this.primaryCharacterSentence,
+			this.meaning,
+			this.sentenceMeaning,
+			this.getCardOrientation()
+		);
 		this.setColourSchemes();
 		this.processCardContentByCardType();
 		if (this.getCardType() === 'writing' && this.getCardOrientation() === 'answer') {

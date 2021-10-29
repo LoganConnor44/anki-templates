@@ -7,7 +7,6 @@ class Recognition extends Card {
 	}
 
 	protected processAppropriateElements(): void {
-		console.log(this.html);
 		this.secondaryHanziPrimaryElement.style.display = 'none';
 		this.primaryHanziSecondaryElement.style.display = 'none';
 		this.secondaryHanziSecondaryElement.style.display = 'none';
