@@ -6,6 +6,7 @@ import Zhuyin from '../../phonetics/Zhuyin';
 import HanziWriter from 'hanzi-writer';
 import * as OpenCC from 'opencc-js';
 import * as PinyinGenerator from 'pinyin';
+import Recognition from '../../cards/Recognition';
 
 @Component({
 	tag: 'material-beautify-chinese-study',
@@ -17,7 +18,7 @@ export class MaterialBeautifyChineseStudy {
 	/**
 	 * Recognized hanzi typoes: 'simplified' | 'traditional'
 	 */
-	 @Prop()
+	@Prop()
 	public primaryHanziType: string = 'simplified';
 	/**
 	 *	Recognized card types: `recognition` | `sentence` | `tones` | `writing` | `meaning` | `audio` | `secondary-sentence` | `secondary-recognition`
@@ -94,6 +95,8 @@ export class MaterialBeautifyChineseStudy {
 
 	private conversionConfig: object = { from: 'cn', to: 'tw' };
 	private template: HTMLElement;
+
+	private card: HTMLElement;
 
 	private getPrimaryHanziPrimaryElement = (): HTMLElement => this.element.shadowRoot.querySelector('#primary-hanzi-primary-element');
 	private getSecondaryHanziPrimaryElement = (): HTMLElement => this.element.shadowRoot.querySelector('#secondary-hanzi-primary-element');
@@ -232,10 +235,10 @@ export class MaterialBeautifyChineseStudy {
 	 * Sets the color scheme based on the current card type.
 	 */
 	private setColourSchemes (): void {
-		let body: HTMLElement = this.element.shadowRoot.querySelector('#anki-background');
-		let card: HTMLElement = this.element.shadowRoot.querySelector('#chinese-card');
-		let cardType: HTMLElement = this.element.shadowRoot.querySelector('#chinese-card-type');
-		let cardContent: HTMLElement = this.element.shadowRoot.querySelector('#chinese-card-content');
+		let body: HTMLElement = this.card.querySelector('#anki-background');
+		let card: HTMLElement = this.card.querySelector('#chinese-card');
+		let cardType: HTMLElement = this.card.querySelector('#chinese-card-type');
+		let cardContent: HTMLElement = this.card.querySelector('#chinese-card-content');
 	
 		switch (this.getCardType()) {
 			case 'secondary-recognition':
@@ -266,7 +269,6 @@ export class MaterialBeautifyChineseStudy {
 				var neutral = '#EF476F';
 				var brighter = '#06D6A0';
 				var brightest = '#FFD166';
-				//var brightestRBG = 'rgb(255, 209, 102, 0.5)';
 	
 				body.style.backgroundColor = darker;
 	
@@ -422,30 +424,14 @@ export class MaterialBeautifyChineseStudy {
 	}
 
 	private processRecognitionCardType(): void {
-		let traditionalHanziPrimary: HTMLElement = this.getSecondaryHanziPrimaryElement();
-		let traditionalHanziSecondary: HTMLElement = this.getSecondaryHanziSecondaryElement();
-		let wordMeaning: HTMLElement = this.getWordMeaningElement();
-		let simplifiedHanziSecondary: HTMLElement = this.getPrimaryHanziSecondaryElement();
-		let phonetic: HTMLElement = this.getPhoneticElement();
-		let sentencePhonetic: HTMLElement = this.getSentencePhoneticElement();
-		let traditionalSentence: HTMLElement = this.getSecondarySentenceElement();
-		let sentenceMeaning: HTMLElement = this.getSentenceMeaningElement();
-
-		traditionalHanziPrimary.style.display = 'none';
-		simplifiedHanziSecondary.style.display = 'none';
-		traditionalHanziSecondary.style.display = 'none';
-		traditionalSentence.style.display = 'none';
-		sentenceMeaning.style.display = 'none';
-
-		if (this.getCardOrientation() === 'question') {
-			phonetic.style.display = 'none';
-			sentencePhonetic.style.display = 'none'
-			wordMeaning.style.display = 'none';
-		}
-		if (this.getCardOrientation() === 'answer') {
-			phonetic.style.display = 'block';
-			wordMeaning.style.display = 'block';
-		}
+		let recognition: Recognition = new Recognition(
+			this.getPrimaryCharacter(),
+			this.getPrimaryCharacterSentence(),
+			this.getMeaning(), 
+			this.getSentenceMeaning(),
+			this.getCardOrientation()
+		)
+		this.card = recognition.html;
 	}
 
 	private processWritingCardType(): void {
@@ -651,6 +637,10 @@ export class MaterialBeautifyChineseStudy {
 		}
 	}
 
+	private processShadowCardType(): void {
+		
+	}
+
 	private processCardContentByCardType(): void {
 		switch (this.getCardType()) {
 			case 'secondary-recognition':
@@ -671,18 +661,21 @@ export class MaterialBeautifyChineseStudy {
 			case 'meaning':
 				this.processMeaningCardType();
 				break;
-			case 'sentence':
-				this.processSentenceCardType();
-				break;
 			case 'audio':
 				this.processAudioCardType();
+				break;
+			case 'shadow':
+				this.processShadowCardType();
+				break;
+			case 'sentence':
+			default:
+				this.processSentenceCardType();
 				break;
 		}
 	};
 
 	private createPhonic(phonicType: PhoneticType, phonicValue: string): string {
 		const isPinyin = (value: string): boolean => toBoolean(value.search(/^[a-zA-Z0-9\s]*$/));
-		//const containsNumerics = (value: string): boolean => toBoolean(value.search(/\d/));
 		const parseTone = (value: string): number => value === ' ' || value === '' ? 5 : parseInt(value);
 		const toBoolean = (value: number): boolean => value >= 0 ? true : false;
 		
@@ -911,7 +904,7 @@ export class MaterialBeautifyChineseStudy {
 			template = 
 				<div id='anki-background'>
 					<div id='chinese-card'>
-						{this.createCardContent()}
+						{this.card}
 						<div id='chinese-card-type'>
 							<p id='colour-scheme'>{ type }</p>
 						</div>
@@ -923,7 +916,7 @@ export class MaterialBeautifyChineseStudy {
 			template =
 				<div id='anki-background'>
 					<div id='chinese-card'>
-						{this.createCardContent()}
+						{this.card}
 						<div id='chinese-card-type'>
 							<p id="colour-scheme">{ type }</p>
 						</div>
@@ -934,39 +927,39 @@ export class MaterialBeautifyChineseStudy {
 		return template;
 	}
 
-	private createCardContent(): HTMLElement {
-		const plecoLink: string = `plecoapi://x-callback-url/df?hw=${this.getPrimaryCharacter()}`;
+	// private createCardContent(): HTMLElement {
+	// 	const plecoLink: string = `plecoapi://x-callback-url/df?hw=${this.getPrimaryCharacter()}`;
 
-		const content: HTMLElement = 
-			<div id='chinese-card-content'>
-				<p>
-					<ruby>
-						<a id='pleco-link' href={ plecoLink }>
-							<div id='primary-hanzi-primary-element'>{this.getPrimaryCharacter()}</div>
-							<div id='secondary-hanzi-primary-element'>{ this.generatedTraditional }</div>
-						</a>
-						<rt id='phonetic'>{ this.phonic }</rt>
-					</ruby>
-				</p>
-				<div id='sentence'>
-					<ruby>
-						<div id='primary-hanzi-sentence'>{this.getPrimaryCharacterSentence()}</div>
-						<div id='secondary-hanzi-sentence'>{ this.generatedTraditionalSentence }</div>
-						<rt id='sentence-phonetic'>{ this.sentencePhonic }</rt>
-					</ruby>
-				</div>
-				<div id='english'>
-					<p id='single-word-meaning'>{this.getMeaning()}</p>
-					<p id='sentence-meaning'>{this.getSentenceMeaning()}</p>
-				</div>
-				<div id='stroke-order'></div>
-				<div id='primary-hanzi-secondary-element'>{this.getPrimaryCharacter()}</div>
-				<div id='secondary-hanzi-secondary-element'>{ this.generatedTraditional }</div>
-				<div id='audio'></div>
-			</div>
-		;
-		return content;
-	}
+	// 	const content: HTMLElement = 
+	// 		<div id='chinese-card-content'>
+	// 			<p>
+	// 				<ruby>
+	// 					<a id='pleco-link' href={ plecoLink }>
+	// 						<div id='primary-hanzi-primary-element'>{this.getPrimaryCharacter()}</div>
+	// 						<div id='secondary-hanzi-primary-element'>{ this.generatedTraditional }</div>
+	// 					</a>
+	// 					<rt id='phonetic'>{ this.phonic }</rt>
+	// 				</ruby>
+	// 			</p>
+	// 			<div id='sentence'>
+	// 				<ruby>
+	// 					<div id='primary-hanzi-sentence'>{this.getPrimaryCharacterSentence()}</div>
+	// 					<div id='secondary-hanzi-sentence'>{ this.generatedTraditionalSentence }</div>
+	// 					<rt id='sentence-phonetic'>{ this.sentencePhonic }</rt>
+	// 				</ruby>
+	// 			</div>
+	// 			<div id='english'>
+	// 				<p id='single-word-meaning'>{this.getMeaning()}</p>
+	// 				<p id='sentence-meaning'>{this.getSentenceMeaning()}</p>
+	// 			</div>
+	// 			<div id='stroke-order'></div>
+	// 			<div id='primary-hanzi-secondary-element'>{this.getPrimaryCharacter()}</div>
+	// 			<div id='secondary-hanzi-secondary-element'>{ this.generatedTraditional }</div>
+	// 			<div id='audio'></div>
+	// 		</div>
+	// 	;
+	// 	return content;
+	// }
 
 	/**
 	 * Called every time the component is connected to the DOM.
