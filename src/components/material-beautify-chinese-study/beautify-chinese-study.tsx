@@ -227,172 +227,6 @@ export class MaterialBeautifyChineseStudy {
 		}
 		return this.conversionConfig;
 	}
-	
-	/**
-	 * Sets the color scheme based on the current card type.
-	 */
-	// private setColourSchemes (): void {
-	// 	let body: HTMLElement = this.card.shado.querySelector('#anki-background');
-	// 	let card: HTMLElement = this.card.html.querySelector('#chinese-card');
-	// 	let cardType: HTMLElement = this.card.html.querySelector('#chinese-card-type');
-	// 	let cardContent: HTMLElement = this.card.html.querySelector('#chinese-card-content');
-	
-	// 	switch (this.getCardType()) {
-	// 		case 'secondary-recognition':
-	// 		case 'secondary-sentence':
-	// 			var darkest = '#264653';
-	// 			var darker = '#2A9D8F';
-	// 			var neutral = '#E76F51';
-	// 			var brighter = '#F4A261';
-	// 			var brightest = '#E9C46A';
-	
-	// 			body.style.backgroundColor = darker;
-	
-	// 			card.style.color = darkest;
-	// 			card.style.backgroundColor = brightest;
-	// 			card.style.boxShadow = '0px 0px 30px ' + darkest;
-	
-	// 			cardType.style.color = brightest;
-	// 			cardType.style.backgroundColor = neutral;
-	
-	// 			cardContent.style.textShadow = '2px 2px ' + brighter;
-	
-	// 			break;
-	
-	// 		case 'tones':
-	// 			var darkest = '#073B4C';
-	// 			var darkestRBG = 'rgb(7, 59, 76, 0.2)';
-	// 			var darker = '#118AB2';
-	// 			var neutral = '#EF476F';
-	// 			var brighter = '#06D6A0';
-	// 			var brightest = '#FFD166';
-	
-	// 			body.style.backgroundColor = darker;
-	
-	// 			card.style.color = darkest;
-	// 			card.style.backgroundColor = brighter;
-	// 			card.style.boxShadow = '0px 0px 30px ' + darkest;
-	
-	// 			cardType.style.color = brightest;
-	// 			cardType.style.backgroundColor = neutral;
-	
-	// 			cardContent.style.textShadow = '2px 2px ' + darkestRBG;
-	
-	// 			break;
-			
-	// 		case 'writing':
-	// 			var darkest = '#0B132B';
-	// 			var darkestRBG = 'rgb(11, 19, 43, 0.3)';
-	// 			var darker = '#1C2541';
-	// 			var neutral = '#3A506B';
-	// 			var brighter = '#5BC0BE';
-	// 			var brightest = '#6FFFE9';
-	
-	// 			body.style.backgroundColor = darker;
-	
-	// 			card.style.color = darker;
-	// 			card.style.backgroundColor = brightest;
-	// 			card.style.boxShadow = '0px 0px 30px ' + darkest;
-	
-	// 			cardType.style.color = brighter;
-	// 			cardType.style.backgroundColor = neutral;
-	
-	// 			cardContent.style.textShadow = '1.5px 1.5px ' + darkestRBG;
-	
-	// 			break;
-
-	// 		case 'recognition':
-	// 			var darkest = '#1D3557';
-	// 			var darkestRGB = 'rgb(29, 53, 87, 0.3)'
-	// 			var darker = '#E63946';
-	// 			var neutral = '#457B9D';
-	// 			var brighter = '#A8DADC';
-	// 			var brightest = '#F1FAEE';
-	
-	// 			body.style.backgroundColor = neutral;
-	
-	// 			card.style.color = brighter;
-	// 			card.style.backgroundColor = darker;
-	// 			card.style.boxShadow = '0px 0px 30px ' + darkest;
-	
-	// 			cardType.style.color = darkest;
-	// 			cardType.style.backgroundColor = brighter;
-	
-	// 			cardContent.style.textShadow = '2px 2px ' + darkestRGB;
-	
-	// 			break;
-
-	// 		case 'meaning':
-	// 			var darkest = '#555B6E';
-	// 			var darker = '#89B0AE';
-	// 			var neutral = '#FFD6BA';
-	// 			var brighter = '#BEE3DB';
-	// 			var brightest = '#FAF9F9';
-	// 			var brightestRGB = 'rgb(250, 249, 249, 0.5)';
-	
-	// 			body.style.backgroundColor = darker;
-	
-	// 			card.style.color = darkest;
-	// 			card.style.backgroundColor = neutral;
-	// 			card.style.boxShadow = '0px 0px 30px ' + darkest;
-	
-	// 			cardType.style.color = brightest;
-	// 			cardType.style.backgroundColor = darkest;
-	
-	// 			cardContent.style.textShadow = '2px 2px ' + brightestRGB
-	
-	// 			break;
-
-	// 		case 'sentence':
-	// 			var black = '#000000';
-	// 			var darkest = '#3A0CA3';
-	// 			var darkestRBG = 'rgb(58, 12, 163, 0.3)';
-	// 			var darker = '#7209B7';
-	// 			var neutral = '#4361EE';
-	// 			var brighter = '#4CC9F0';
-	// 			var brightest = '#F72585';
-	
-	// 			body.style.backgroundColor = darker;
-	
-	// 			card.style.color = black;
-	// 			card.style.backgroundColor = brightest;
-	// 			card.style.boxShadow = '0px 0px 30px ' + darkest;
-	
-	// 			cardType.style.color = brightest;
-	// 			cardType.style.backgroundColor = neutral;
-	
-	// 			cardContent.style.textShadow = '2px 2px ' + darkestRBG;
-		
-	// 			break;
-
-	// 		case 'audio':
-	// 			var black = '#000000';
-	// 			var blackRgb = 'rgb(0, 0, 0, 0.8)';
-	// 			var darkest = '#352D39';
-	// 			var darkestRBG = 'rgb(53, 45, 57, 0.3)';
-	// 			var darker = '#6D435A';
-	// 			var neutral = '#FF6978';
-	// 			var brighter = '#B1EDE8';
-	// 			var brighterRgb = 'rgb(177, 237, 232, 0.3)';
-	// 			var brightest = '#FFFCF9';
-	
-	// 			body.style.backgroundColor = darkest;
-	
-	// 			card.style.color = darkest;
-	// 			card.style.backgroundColor = neutral;
-	// 			card.style.boxShadow = '0px 0px 30px ' + blackRgb;
-	
-	// 			cardType.style.color = brightest;
-	// 			cardType.style.backgroundColor = darker;
-	
-	// 			cardContent.style.textShadow = '2px 2px ' + brighterRgb;
-		
-	// 			break;
-			
-	// 		default:
-	// 			break;
-	// 	}
-	// };
 
 	private processTonesCardType(): void {
 		let traditionalHanziPrimary: HTMLElement = this.getSecondaryHanziPrimaryElement();
@@ -418,17 +252,6 @@ export class MaterialBeautifyChineseStudy {
 		if (this.getCardOrientation() === 'answer') {
 			phonetic.style.display = 'block';
 		}
-	}
-
-	private processRecognitionCardType(): void {
-		// let recognition: Recognition = new Card(
-		// 	this.getPrimaryCharacter(),
-		// 	this.getPrimaryCharacterSentence(),
-		// 	this.getMeaning(), 
-		// 	this.getSentenceMeaning(),
-		// 	this.getCardOrientation()
-		// )
-		//this.card = new Card(this.primaryCharacter, "tianqi");
 	}
 
 	private processWritingCardType(): void {
@@ -634,10 +457,6 @@ export class MaterialBeautifyChineseStudy {
 		}
 	}
 
-	private processShadowCardType(): void {
-		
-	}
-
 	private processCardContentByCardType(): void {
 		switch (this.getCardType()) {
 			case 'secondary-recognition':
@@ -652,17 +471,11 @@ export class MaterialBeautifyChineseStudy {
 			case 'writing':
 				this.processWritingCardType();
 				break;
-			case 'recognition':
-				this.processRecognitionCardType();
-				break;
 			case 'meaning':
 				this.processMeaningCardType();
 				break;
 			case 'audio':
 				this.processAudioCardType();
-				break;
-			case 'shadow':
-				this.processShadowCardType();
 				break;
 			case 'sentence':
 			default:
@@ -878,14 +691,6 @@ export class MaterialBeautifyChineseStudy {
 	};
 
 	private createCard(): HTMLElement {
-		// this.card = new Recognition(
-		// 	this.primaryCharacter,
-		// 	this.primaryCharacterSentence,
-		// 	this.meaning,
-		// 	this.sentenceMeaning,
-		// 	this.getCardOrientation()
-		// );
-		//this.card = new Card(this.primaryCharacter, "tianqi");
 		let template: HTMLElement;
 		let secondaryText: string;
 		let type: string = this.getCardType()
@@ -907,11 +712,14 @@ export class MaterialBeautifyChineseStudy {
 		
 		template =
 			<div id='anki-background'>
-				<material-beautify-card class='recognition' primaryVocab='天气' 
-					vocabPhonic='tianqi'
-					sentence='今天天气很好。'
-					sentence-phonic='jintian tianqi hen hao'
-					type={type} />
+				<material-beautify-card class={ this.getCardType() }
+					orientation={ this.getCardOrientation() }
+					primaryVocab={ this.getPrimaryCharacter() } 
+					vocabPhonic={ this.phonic }
+					sentence={ this.getPrimaryCharacterSentence() }
+					sentence-phonic={ this.sentencePhonic }
+					type={type} 
+					meaning={ this.getMeaning() } />
 			</div>
 		;
 		return template;
@@ -945,7 +753,6 @@ export class MaterialBeautifyChineseStudy {
 	 * Called after every `render()`.
 	 */
 	 public componentDidRender(): void {
-		//this.setColourSchemes();
 		this.processCardContentByCardType();
 		if (this.getCardType() === 'writing' && this.getCardOrientation() === 'answer') {
 			this.createStrokeOrderCharacter();

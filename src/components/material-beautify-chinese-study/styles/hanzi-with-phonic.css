@@ -1,0 +1,21 @@
+#vocabulary {
+  /* purposefully left undefined - default font size is fine  */
+}
+
+#vocabulary-phonic {
+  font-size: medium;
+}
+
+#sentence {
+  font-size: medium;
+}
+
+#sentence-phonic {
+  font-size: small;
+}
+
+#pleco-link {
+  font-size: xx-large;
+  text-decoration: none; 
+  color: inherit;
+}

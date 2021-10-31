@@ -7,6 +7,8 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface MaterialBeautifyCard {
+        "meaning": string;
+        "orientation": string;
         "primaryVocab": string;
         "sentence": string;
         "sentencePhonic": string;
@@ -68,14 +70,22 @@ export namespace Components {
         "sentenceNumberedPinyin": string;
     }
     interface MaterialBeautifyContent {
+        "meaning": string;
+        "orientation": string;
         "phonic": string;
         "sentence": string;
         "sentencePhonic": string;
         "vocab": string;
     }
-    interface MaterialBeautifySentence {
+    interface MaterialBeautifyHanziWithPhonic {
+        "hanzi": string;
+        "idForStyles": string;
+        "orientation": string;
         "phonic": string;
-        "sentence": string;
+    }
+    interface MaterialBeautifyMeaning {
+        "idForStyles": string;
+        "meaning": string;
     }
     interface MaterialBeautifyType {
         "cardType": string;
@@ -100,11 +110,17 @@ declare global {
         prototype: HTMLMaterialBeautifyContentElement;
         new (): HTMLMaterialBeautifyContentElement;
     };
-    interface HTMLMaterialBeautifySentenceElement extends Components.MaterialBeautifySentence, HTMLStencilElement {
+    interface HTMLMaterialBeautifyHanziWithPhonicElement extends Components.MaterialBeautifyHanziWithPhonic, HTMLStencilElement {
     }
-    var HTMLMaterialBeautifySentenceElement: {
-        prototype: HTMLMaterialBeautifySentenceElement;
-        new (): HTMLMaterialBeautifySentenceElement;
+    var HTMLMaterialBeautifyHanziWithPhonicElement: {
+        prototype: HTMLMaterialBeautifyHanziWithPhonicElement;
+        new (): HTMLMaterialBeautifyHanziWithPhonicElement;
+    };
+    interface HTMLMaterialBeautifyMeaningElement extends Components.MaterialBeautifyMeaning, HTMLStencilElement {
+    }
+    var HTMLMaterialBeautifyMeaningElement: {
+        prototype: HTMLMaterialBeautifyMeaningElement;
+        new (): HTMLMaterialBeautifyMeaningElement;
     };
     interface HTMLMaterialBeautifyTypeElement extends Components.MaterialBeautifyType, HTMLStencilElement {
     }
@@ -116,12 +132,15 @@ declare global {
         "material-beautify-card": HTMLMaterialBeautifyCardElement;
         "material-beautify-chinese-study": HTMLMaterialBeautifyChineseStudyElement;
         "material-beautify-content": HTMLMaterialBeautifyContentElement;
-        "material-beautify-sentence": HTMLMaterialBeautifySentenceElement;
+        "material-beautify-hanzi-with-phonic": HTMLMaterialBeautifyHanziWithPhonicElement;
+        "material-beautify-meaning": HTMLMaterialBeautifyMeaningElement;
         "material-beautify-type": HTMLMaterialBeautifyTypeElement;
     }
 }
 declare namespace LocalJSX {
     interface MaterialBeautifyCard {
+        "meaning"?: string;
+        "orientation"?: string;
         "primaryVocab"?: string;
         "sentence"?: string;
         "sentencePhonic"?: string;
@@ -183,14 +202,22 @@ declare namespace LocalJSX {
         "sentenceNumberedPinyin"?: string;
     }
     interface MaterialBeautifyContent {
+        "meaning"?: string;
+        "orientation"?: string;
         "phonic"?: string;
         "sentence"?: string;
         "sentencePhonic"?: string;
         "vocab"?: string;
     }
-    interface MaterialBeautifySentence {
+    interface MaterialBeautifyHanziWithPhonic {
+        "hanzi"?: string;
+        "idForStyles"?: string;
+        "orientation"?: string;
         "phonic"?: string;
-        "sentence"?: string;
+    }
+    interface MaterialBeautifyMeaning {
+        "idForStyles"?: string;
+        "meaning"?: string;
     }
     interface MaterialBeautifyType {
         "cardType"?: string;
@@ -199,7 +226,8 @@ declare namespace LocalJSX {
         "material-beautify-card": MaterialBeautifyCard;
         "material-beautify-chinese-study": MaterialBeautifyChineseStudy;
         "material-beautify-content": MaterialBeautifyContent;
-        "material-beautify-sentence": MaterialBeautifySentence;
+        "material-beautify-hanzi-with-phonic": MaterialBeautifyHanziWithPhonic;
+        "material-beautify-meaning": MaterialBeautifyMeaning;
         "material-beautify-type": MaterialBeautifyType;
     }
 }
@@ -210,7 +238,8 @@ declare module "@stencil/core" {
             "material-beautify-card": LocalJSX.MaterialBeautifyCard & JSXBase.HTMLAttributes<HTMLMaterialBeautifyCardElement>;
             "material-beautify-chinese-study": LocalJSX.MaterialBeautifyChineseStudy & JSXBase.HTMLAttributes<HTMLMaterialBeautifyChineseStudyElement>;
             "material-beautify-content": LocalJSX.MaterialBeautifyContent & JSXBase.HTMLAttributes<HTMLMaterialBeautifyContentElement>;
-            "material-beautify-sentence": LocalJSX.MaterialBeautifySentence & JSXBase.HTMLAttributes<HTMLMaterialBeautifySentenceElement>;
+            "material-beautify-hanzi-with-phonic": LocalJSX.MaterialBeautifyHanziWithPhonic & JSXBase.HTMLAttributes<HTMLMaterialBeautifyHanziWithPhonicElement>;
+            "material-beautify-meaning": LocalJSX.MaterialBeautifyMeaning & JSXBase.HTMLAttributes<HTMLMaterialBeautifyMeaningElement>;
             "material-beautify-type": LocalJSX.MaterialBeautifyType & JSXBase.HTMLAttributes<HTMLMaterialBeautifyTypeElement>;
         }
     }

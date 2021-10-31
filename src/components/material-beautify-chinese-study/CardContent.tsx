@@ -16,6 +16,10 @@ export class CardContent {
     public sentence: string;
     @Prop()
     public sentencePhonic: string;
+    @Prop()
+    public orientation: string;
+    @Prop()
+    public meaning: string;
 
     private _content: JSXBase.HTMLAttributes<HTMLDivElement>;
     private _plecoLink: JSXBase.HTMLAttributes<HTMLDivElement>;
@@ -25,18 +29,35 @@ export class CardContent {
         return this._content;
     }
     protected setContent() {
-        this._content =
-            <Host>
-                <p>
-                    <ruby>
-                        { this.getPlecoLink() }
-                        { this.getPhonic() }
-                    </ruby>
-                </p>
-                <material-beautify-sentence sentence={ this.sentence }
-                    phonic={ this.sentencePhonic} />
-            </Host>
-        ;
+        if (this.orientation === "question") {
+            this._content =
+                <Host>
+                    <material-beautify-hanzi-with-phonic hanzi={ this.vocab } 
+                        phonic={ this.phonic }
+                        idForStyles='vocabulary'
+                        orientation={ this.orientation } />
+                    <material-beautify-hanzi-with-phonic hanzi={ this.sentence } 
+                        phonic={ this.sentencePhonic }
+                        idForStyles='sentence'
+                        orientation={ this.orientation } />
+                </Host>
+            ;
+        } else {
+            this._content =
+                <Host>
+                    <material-beautify-hanzi-with-phonic hanzi={ this.vocab } 
+                        phonic={ this.phonic }
+                        idForStyles='vocabulary'
+                        orientation={ this.orientation } />
+                    <material-beautify-hanzi-with-phonic hanzi={ this.sentence } 
+                        phonic={ this.sentencePhonic }
+                        idForStyles='sentence'
+                        orientation={ this.orientation } />
+                    <material-beautify-meaning meaning={ this.meaning }
+                        idForStyles='vocabulary' />
+                </Host>
+            ;
+        }
     }
 
     protected getPlecoLink() {
@@ -62,7 +83,9 @@ export class CardContent {
 
     render() {
         this.setPlecoLink();
-        this.setPhonic();  
+        if (this.orientation !== 'question') {
+            this.setPhonic();
+        }
         this.setContent();
 
         return this.getContent();
