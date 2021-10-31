@@ -13,7 +13,6 @@ import * as PinyinGenerator from 'pinyin';
 	shadow: true
 })
 export class MaterialBeautifyChineseStudy {
-
 	/**
 	 * Recognized hanzi typoes: 'simplified' | 'traditional'
 	 */

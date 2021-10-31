@@ -7,7 +7,6 @@ import { JSXBase } from "@stencil/core/internal";
     shadow: true
 })
 export class CardContent {
-
     @Prop()
 	public vocab: string;
     @Prop()

@@ -1,4 +1,4 @@
-import { h, Component, Prop, Host } from "@stencil/core";
+import { h, Component, Prop } from "@stencil/core";
 import { JSXBase } from "@stencil/core/internal";
 
 @Component({
@@ -7,7 +7,6 @@ import { JSXBase } from "@stencil/core/internal";
     shadow: true
 })
 export class Meaning {
-
     @Prop()
 	public meaning: string;
     @Prop()
