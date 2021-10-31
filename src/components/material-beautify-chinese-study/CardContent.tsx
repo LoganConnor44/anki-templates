@@ -21,7 +21,6 @@ export class CardContent {
     public meaning: string;
 
     private _content: JSXBase.HTMLAttributes<HTMLDivElement>;
-    private _plecoLink: JSXBase.HTMLAttributes<HTMLDivElement>;
     private _phonic: JSXBase.HTMLAttributes<HTMLDivElement>;
 
     protected getContent() {
@@ -59,18 +58,6 @@ export class CardContent {
         }
     }
 
-    protected getPlecoLink() {
-        return this._plecoLink;
-    }
-    protected setPlecoLink() {
-        const href = `plecoapi://x-callback-url/df?hw=${ this.vocab }`;
-        this._plecoLink = 
-            <a id='pleco-link' href={ href }>
-                <div id='primary-hanzi-primary-element'>{ this.vocab }</div>
-            </a>
-        ;
-    }
-
     protected getPhonic() {
         return this._phonic;
     }
@@ -81,7 +68,6 @@ export class CardContent {
     }
 
     render() {
-        this.setPlecoLink();
         if (this.orientation !== 'question') {
             this.setPhonic();
         }
