@@ -6,6 +6,13 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface MaterialBeautifyCard {
+        "primaryVocab": string;
+        "sentence": string;
+        "sentencePhonic": string;
+        "type": string;
+        "vocabPhonic": string;
+    }
     interface MaterialBeautifyChineseStudy {
         /**
           * Recognized card orientations: `question` | `answer`
@@ -60,19 +67,67 @@ export namespace Components {
          */
         "sentenceNumberedPinyin": string;
     }
+    interface MaterialBeautifyContent {
+        "phonic": string;
+        "sentence": string;
+        "sentencePhonic": string;
+        "vocab": string;
+    }
+    interface MaterialBeautifySentence {
+        "phonic": string;
+        "sentence": string;
+    }
+    interface MaterialBeautifyType {
+        "cardType": string;
+    }
 }
 declare global {
+    interface HTMLMaterialBeautifyCardElement extends Components.MaterialBeautifyCard, HTMLStencilElement {
+    }
+    var HTMLMaterialBeautifyCardElement: {
+        prototype: HTMLMaterialBeautifyCardElement;
+        new (): HTMLMaterialBeautifyCardElement;
+    };
     interface HTMLMaterialBeautifyChineseStudyElement extends Components.MaterialBeautifyChineseStudy, HTMLStencilElement {
     }
     var HTMLMaterialBeautifyChineseStudyElement: {
         prototype: HTMLMaterialBeautifyChineseStudyElement;
         new (): HTMLMaterialBeautifyChineseStudyElement;
     };
+    interface HTMLMaterialBeautifyContentElement extends Components.MaterialBeautifyContent, HTMLStencilElement {
+    }
+    var HTMLMaterialBeautifyContentElement: {
+        prototype: HTMLMaterialBeautifyContentElement;
+        new (): HTMLMaterialBeautifyContentElement;
+    };
+    interface HTMLMaterialBeautifySentenceElement extends Components.MaterialBeautifySentence, HTMLStencilElement {
+    }
+    var HTMLMaterialBeautifySentenceElement: {
+        prototype: HTMLMaterialBeautifySentenceElement;
+        new (): HTMLMaterialBeautifySentenceElement;
+    };
+    interface HTMLMaterialBeautifyTypeElement extends Components.MaterialBeautifyType, HTMLStencilElement {
+    }
+    var HTMLMaterialBeautifyTypeElement: {
+        prototype: HTMLMaterialBeautifyTypeElement;
+        new (): HTMLMaterialBeautifyTypeElement;
+    };
     interface HTMLElementTagNameMap {
+        "material-beautify-card": HTMLMaterialBeautifyCardElement;
         "material-beautify-chinese-study": HTMLMaterialBeautifyChineseStudyElement;
+        "material-beautify-content": HTMLMaterialBeautifyContentElement;
+        "material-beautify-sentence": HTMLMaterialBeautifySentenceElement;
+        "material-beautify-type": HTMLMaterialBeautifyTypeElement;
     }
 }
 declare namespace LocalJSX {
+    interface MaterialBeautifyCard {
+        "primaryVocab"?: string;
+        "sentence"?: string;
+        "sentencePhonic"?: string;
+        "type"?: string;
+        "vocabPhonic"?: string;
+    }
     interface MaterialBeautifyChineseStudy {
         /**
           * Recognized card orientations: `question` | `answer`
@@ -127,15 +182,36 @@ declare namespace LocalJSX {
          */
         "sentenceNumberedPinyin"?: string;
     }
+    interface MaterialBeautifyContent {
+        "phonic"?: string;
+        "sentence"?: string;
+        "sentencePhonic"?: string;
+        "vocab"?: string;
+    }
+    interface MaterialBeautifySentence {
+        "phonic"?: string;
+        "sentence"?: string;
+    }
+    interface MaterialBeautifyType {
+        "cardType"?: string;
+    }
     interface IntrinsicElements {
+        "material-beautify-card": MaterialBeautifyCard;
         "material-beautify-chinese-study": MaterialBeautifyChineseStudy;
+        "material-beautify-content": MaterialBeautifyContent;
+        "material-beautify-sentence": MaterialBeautifySentence;
+        "material-beautify-type": MaterialBeautifyType;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "material-beautify-card": LocalJSX.MaterialBeautifyCard & JSXBase.HTMLAttributes<HTMLMaterialBeautifyCardElement>;
             "material-beautify-chinese-study": LocalJSX.MaterialBeautifyChineseStudy & JSXBase.HTMLAttributes<HTMLMaterialBeautifyChineseStudyElement>;
+            "material-beautify-content": LocalJSX.MaterialBeautifyContent & JSXBase.HTMLAttributes<HTMLMaterialBeautifyContentElement>;
+            "material-beautify-sentence": LocalJSX.MaterialBeautifySentence & JSXBase.HTMLAttributes<HTMLMaterialBeautifySentenceElement>;
+            "material-beautify-type": LocalJSX.MaterialBeautifyType & JSXBase.HTMLAttributes<HTMLMaterialBeautifyTypeElement>;
         }
     }
 }

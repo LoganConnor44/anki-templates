@@ -1,0 +1,14 @@
+:host {
+  flex: 100 0 0;
+  text-align: center;
+}
+
+#pleco-link {
+  font-size: xx-large;
+  text-decoration: none; 
+  color: inherit;
+}
+
+:host(.recognition) {
+  text-shadow: 2px 2px rgb(29, 53, 87, 0.3);
+}

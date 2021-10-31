@@ -1,0 +1,28 @@
+:host {
+    flex: 0 10 0;
+    align-self: flex-start;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    padding: 0.5em;
+    font-family: "Courier New", Courier, monospace;
+    overflow-wrap: break-word;
+    border-radius: 3px;
+    opacity: 50%;
+    transition: all 500ms linear;
+    -webkit-transition: all 500ms linear;
+    animation: fadeIn 500ms linear;
+    -webkit-animation: fadeIn 500ms linear;
+}
+
+p {
+    font-size: large;
+    margin: 0;
+    padding: 0;
+    transition: all 500ms linear;
+    -webkit-transition: all 500ms linear;
+}
+
+:host(.recognition) {
+    color: #1D3557;
+    background-color: #A8DADC;
+}

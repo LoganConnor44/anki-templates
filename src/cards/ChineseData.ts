@@ -1,7 +1,7 @@
 import * as OpenCC from 'opencc-js';
 import { HanziType } from '../enums/HanziType';
 
-abstract class Card {
+abstract class ChineseData {
 	private _primaryVocab: string;
     private _secondaryVocab: string;
     private _primarySentence: string;
@@ -15,11 +15,6 @@ abstract class Card {
     private _primaryHanziType: string = 'simplified';
     private _conversionConfig: object = { from: 'cn', to: 'tw' };
 
-    private _mainHtmlElement: HTMLElement;
-    private _plecoLinkElement: HTMLLinkElement;
-    private _sentenceElement
-    private _html: HTMLElement;
-
     private isEmptyStringBlankStringNullOrUndefined = (value: String): boolean => value === null || value === undefined || value === "" || value.trim().length == 0;
 
     constructor(primeVocab: string, primeSent: string, vocabDef: string, sentDef: string, orient: string) {
@@ -28,7 +23,6 @@ abstract class Card {
         this.vocabDefinition = vocabDef;
         this.sentenceDefinition = sentDef;
         this.orientation = orient;
-        this.setHtml();
     }
 
     protected get primaryVocab(): string {
@@ -122,21 +116,8 @@ abstract class Card {
     protected set conversionConfig(value: object) {
         this._conversionConfig = value;
     }
-    protected get plecoLinkElement(): HTMLLinkElement {
-        return this._plecoLinkElement;
-    }
-    protected set plecoLinkElement(value: HTMLLinkElement) {
-        this._plecoLinkElement = value;
-    }
-    protected get mainHtmlElement(): HTMLElement {
-        return this._mainHtmlElement;
-    }
-    protected set mainHtmlElement(value: HTMLElement) {
-        this._mainHtmlElement = value;
-    }
-    public get html(): HTMLElement {
-        return this._html;
-    }
+    
+    /**
     private setHtml() {
         const plecoLink: string = `plecoapi://x-callback-url/df?hw=${ this.primaryVocab }`;
         const content: HTMLElement = 
@@ -165,54 +146,63 @@ abstract class Card {
 						<rt id='sentence-phonetic'>{ this.sentencePhonic }</rt>
 					</ruby>
 				</div>
+
+                definition element
 				<div id='english'>
 					<p id='single-word-meaning'>{ this.vocabDefinition }</p>
 					<p id='sentence-meaning'>{ this.sentenceDefinition }</p>
 				</div>
+
+                stroke order element
 				<div id='stroke-order'></div>
+
+                secondary html element
 				<div id='primary-hanzi-secondary-element'>{ this.primaryVocab }</div>
 				<div id='secondary-hanzi-secondary-element'>{ this.secondaryVocab }</div>
+
+                audio element
 				<div id='audio'></div>
 			</div>
 		;
 
         this._html = content;
     }
-    protected get primaryHanziPrimaryElement(): HTMLElement {
-        return this.html.querySelector('#primary-hanzi-primary-element');
-    }
-    protected get secondaryHanziPrimaryElement(): HTMLElement {
-        console.log(this.html);
+    */
+    // protected get primaryHanziPrimaryElement(): HTMLElement {
+    //     return this.html.querySelector('#primary-hanzi-primary-element');
+    // }
+    // protected get secondaryHanziPrimaryElement(): HTMLElement {
+    //     console.log(this.html);
         
-        return this.html.querySelector('#secondary-hanzi-primary-element');
-    }
-    protected get primaryHanziSecondaryElement(): HTMLElement {
-        return this.html.querySelector('#primary-hanzi-secondary-element');
-    }
-    protected get secondaryHanziSecondaryElement(): HTMLElement {
-        return this.html.querySelector('#secondary-hanzi-secondary-element');
-    }
-    protected get wordMeaningElement(): HTMLElement {
-        return this.html.querySelector('#single-word-meaning');
-    }
-    protected get sentenceMeaningElement(): HTMLElement {
-        return this.html.querySelector('#sentence-meaning');
-    }
-    protected get phoneticElement(): HTMLElement {
-        return this.html.querySelector('#phonetic');
-    }
-    protected get sentencePhoneticElement(): HTMLElement {
-        return this.html.querySelector('#sentence-phonetic');
-    }
-    protected get primarySentenceElement(): HTMLElement {
-        return this.html.querySelector('#primary-hanzi-sentence');
-    }
-    protected get secondarySentenceElement(): HTMLElement {
-        return this.html.querySelector('#secondary-hanzi-sentence');
-    }
-    protected get audioAnimationElement(): HTMLElement {
-        return this.html.querySelector('#audio');
-    }
+    //     return this.html.querySelector('#secondary-hanzi-primary-element');
+    // }
+    // protected get primaryHanziSecondaryElement(): HTMLElement {
+    //     return this.html.querySelector('#primary-hanzi-secondary-element');
+    // }
+    // protected get secondaryHanziSecondaryElement(): HTMLElement {
+    //     return this.html.querySelector('#secondary-hanzi-secondary-element');
+    // }
+    // protected get wordMeaningElement(): HTMLElement {
+    //     return this.html.querySelector('#single-word-meaning');
+    // }
+    // protected get sentenceMeaningElement(): HTMLElement {
+    //     return this.html.querySelector('#sentence-meaning');
+    // }
+    // protected get phoneticElement(): HTMLElement {
+    //     return this.html.querySelector('#phonetic');
+    // }
+    // protected get sentencePhoneticElement(): HTMLElement {
+    //     return this.html.querySelector('#sentence-phonetic');
+    // }
+    // protected get primarySentenceElement(): HTMLElement {
+    //     return this.html.querySelector('#primary-hanzi-sentence');
+    // }
+    // protected get secondarySentenceElement(): HTMLElement {
+    //     return this.html.querySelector('#secondary-hanzi-sentence');
+    // }
+    // protected get audioAnimationElement(): HTMLElement {
+    //     return this.html.querySelector('#audio');
+    // }
 
     public getHanziType(): HanziType {
 		let hanziType: HanziType;
@@ -233,4 +223,4 @@ abstract class Card {
     }
 }
 
-export default Card;
+export default ChineseData;
