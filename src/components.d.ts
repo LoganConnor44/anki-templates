@@ -11,6 +11,7 @@ export namespace Components {
         "orientation": string;
         "primaryVocab": string;
         "sentence": string;
+        "sentenceMeaning": string;
         "sentencePhonic": string;
         "type": string;
         "vocabPhonic": string;
@@ -74,6 +75,7 @@ export namespace Components {
         "orientation": string;
         "phonic": string;
         "sentence": string;
+        "sentenceMeaning": string;
         "sentencePhonic": string;
         "type": string;
         "vocab": string;
@@ -144,6 +146,7 @@ declare namespace LocalJSX {
         "orientation"?: string;
         "primaryVocab"?: string;
         "sentence"?: string;
+        "sentenceMeaning"?: string;
         "sentencePhonic"?: string;
         "type"?: string;
         "vocabPhonic"?: string;
@@ -207,6 +210,7 @@ declare namespace LocalJSX {
         "orientation"?: string;
         "phonic"?: string;
         "sentence"?: string;
+        "sentenceMeaning"?: string;
         "sentencePhonic"?: string;
         "type"?: string;
         "vocab"?: string;

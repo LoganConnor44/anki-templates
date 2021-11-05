@@ -21,6 +21,8 @@ export class Card {
     public orientation: string;
     @Prop()
     public meaning: string;
+    @Prop()
+    public sentenceMeaning: string;
 
     private _content: JSXBase.HTMLAttributes<HTMLDivElement>;
 
@@ -37,6 +39,7 @@ export class Card {
                     sentencePhonic={ this.sentencePhonic }
                     orientation={ this.orientation }
                     meaning={ this.meaning }
+                    sentence-meaning={ this.sentenceMeaning }
                     type={ this.type } />
                 <material-beautify-type class={this.type.toLowerCase()} 
                     card-type={ this.type } />

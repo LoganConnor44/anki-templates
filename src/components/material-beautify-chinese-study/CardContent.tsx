@@ -20,6 +20,8 @@ export class CardContent {
     @Prop()
     public meaning: string;
     @Prop()
+    public sentenceMeaning: string;
+    @Prop()
     public type: string;
 
     private _content: JSXBase.HTMLAttributes<HTMLDivElement>;
@@ -44,7 +46,18 @@ export class CardContent {
                 </Host>;
         } else {
             this._content = 
-                <Host></Host>;
+                <Host>
+                    <material-beautify-hanzi-with-phonic hanzi={ this.vocab } 
+                        phonic={ this.phonic }
+                        idForStyles='vocabulary'
+                        orientation={ this.orientation } />
+                    <material-beautify-hanzi-with-phonic hanzi={ this.sentence } 
+                        phonic={ this.sentencePhonic }
+                        idForStyles='sentence'
+                        orientation={ this.orientation } />
+                    <material-beautify-meaning meaning={ this.sentenceMeaning }
+                        idForStyles='sentence' />
+                </Host>;
         }
     }
 
@@ -91,7 +104,10 @@ export class CardContent {
 
     render() {
         this.setPhonic();
-        switch (this.type) {
+        switch (this.type.toLowerCase()) {
+            case "tones" :
+                this.setTones();
+                break;
             case "recognition" :
             default :
                 this.setRecognition();

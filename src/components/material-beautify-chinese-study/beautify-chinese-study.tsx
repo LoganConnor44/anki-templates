@@ -713,12 +713,13 @@ export class MaterialBeautifyChineseStudy {
 			<div id='anki-background'>
 				<material-beautify-card class={ this.getCardType() }
 					orientation={ this.getCardOrientation() }
-					primaryVocab={ this.getPrimaryCharacter() } 
-					vocabPhonic={ this.phonic }
+					primary-vocab={ this.getPrimaryCharacter() } 
+					vocab-phonic={ this.phonic }
 					sentence={ this.getPrimaryCharacterSentence() }
 					sentence-phonic={ this.sentencePhonic }
 					type={type} 
-					meaning={ this.getMeaning() } />
+					meaning={ this.getMeaning() }
+					sentence-meaning={ this.getSentenceMeaning() } />
 			</div>
 		;
 		return template;
