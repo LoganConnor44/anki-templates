@@ -36,7 +36,8 @@ export class Card {
                     sentence={ this.sentence }
                     sentencePhonic={ this.sentencePhonic }
                     orientation={ this.orientation }
-                    meaning={ this.meaning } />
+                    meaning={ this.meaning }
+                    type={ this.type } />
                 <material-beautify-type class={this.type.toLowerCase()} 
                     card-type={ this.type } />
             </Host>

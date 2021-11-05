@@ -75,6 +75,7 @@ export namespace Components {
         "phonic": string;
         "sentence": string;
         "sentencePhonic": string;
+        "type": string;
         "vocab": string;
     }
     interface MaterialBeautifyHanziWithPhonic {
@@ -207,6 +208,7 @@ declare namespace LocalJSX {
         "phonic"?: string;
         "sentence"?: string;
         "sentencePhonic"?: string;
+        "type"?: string;
         "vocab"?: string;
     }
     interface MaterialBeautifyHanziWithPhonic {

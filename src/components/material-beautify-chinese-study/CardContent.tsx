@@ -19,6 +19,8 @@ export class CardContent {
     public orientation: string;
     @Prop()
     public meaning: string;
+    @Prop()
+    public type: string;
 
     private _content: JSXBase.HTMLAttributes<HTMLDivElement>;
     private _phonic: JSXBase.HTMLAttributes<HTMLDivElement>;
@@ -26,7 +28,27 @@ export class CardContent {
     protected getContent() {
         return this._content;
     }
-    protected setContent() {
+
+    protected setTones() {
+        if (this.orientation === "question") {
+            this._content = 
+                <Host>
+                    <material-beautify-hanzi-with-phonic hanzi={ this.vocab } 
+                        phonic={ this.phonic }
+                        idForStyles='vocabulary'
+                        orientation={ this.orientation } />
+                    <material-beautify-hanzi-with-phonic hanzi={ this.sentence } 
+                        phonic={ this.sentencePhonic }
+                        idForStyles='sentence'
+                        orientation={ this.orientation } />
+                </Host>;
+        } else {
+            this._content = 
+                <Host></Host>;
+        }
+    }
+
+    protected setRecognition() {
         if (this.orientation === "question") {
             this._content =
                 <Host>
@@ -68,10 +90,13 @@ export class CardContent {
     }
 
     render() {
-        if (this.orientation !== 'question') {
-            this.setPhonic();
+        this.setPhonic();
+        switch (this.type) {
+            case "recognition" :
+            default :
+                this.setRecognition();
+                break;
         }
-        this.setContent();
 
         return this.getContent();
     }

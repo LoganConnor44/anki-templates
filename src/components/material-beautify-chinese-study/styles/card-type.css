@@ -26,3 +26,8 @@ p {
     color: #1D3557;
     background-color: #A8DADC;
 }
+
+:host(.tones) {
+    color: #FFD166;
+    background-color: #EF476F;
+}
