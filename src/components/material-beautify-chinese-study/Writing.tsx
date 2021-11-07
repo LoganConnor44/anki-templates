@@ -1,4 +1,4 @@
-import { h, Component, Prop, Host, Element } from "@stencil/core";
+import { h, Component, Prop, Element } from "@stencil/core";
 import { JSXBase } from "@stencil/core/internal";
 import HanziWriter from 'hanzi-writer';
 

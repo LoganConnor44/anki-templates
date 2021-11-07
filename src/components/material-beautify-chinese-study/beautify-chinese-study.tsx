@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Element, State, FunctionalComponent } from '@stencil/core';
+import { Component, Host, h, Prop, State, FunctionalComponent } from '@stencil/core';
 import { PhoneticType } from '../../enums/PhoneticType';
 import { HanziType } from '../../enums/HanziType';
 import Vowel from '../../phonetics/Vowel';
