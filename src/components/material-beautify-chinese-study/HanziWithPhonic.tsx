@@ -59,9 +59,9 @@ export class HanziWithPhonic {
 
     render() {
         this.setHanziWithPlecoLink();
-        if (this.orientation !== 'question') {
+        if (this.orientation === 'answer' || this.idForStyles === 'phonic-only') {
             this.setPhonic();
-        } 
+        }
         this.setContent();
 
         return this.getContent();

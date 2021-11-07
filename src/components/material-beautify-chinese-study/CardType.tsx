@@ -21,9 +21,7 @@ export class CardType {
         return this._content;
     }
     protected setContent() {
-        this._content =
-            this.getType()
-        ;
+        this._content = this.getType();
     }
 
     protected getType() {
@@ -47,7 +45,7 @@ export class CardType {
 				.replace('RECOGNITION', '')
 				.trim();
 		}
-        this._type = 
+        this._type =
             <p>{ type }</p>
         ;
     }

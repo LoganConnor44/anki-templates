@@ -3,6 +3,15 @@
   text-align: center;
 }
 
+div {
+  background-color: #333;
+  height: 100%;
+  width: 10px;
+  display: inline-block;
+  -webkit-animation: audio-line-delay 1.2s infinite ease-in-out;
+  animation: audio-line-delay 1.2s infinite ease-in-out;
+}
+
 #pleco-link {
   font-size: xx-large;
   text-decoration: none; 
@@ -29,7 +38,6 @@
   text-shadow: 2px 2px #F4A261;
 }
 
-
 :host(.secondary-sentence) {
   text-shadow: 2px 2px #F4A261;
 }
@@ -50,15 +58,6 @@
   height: 60px;
   text-align: center;
   font-size: 10px;
-}
-
-div {
-  background-color: #333;
-  height: 100%;
-  width: 10px;
-  display: inline-block;
-  -webkit-animation: audio-line-delay 1.2s infinite ease-in-out;
-  animation: audio-line-delay 1.2s infinite ease-in-out;
 }
 
 .rect2 {

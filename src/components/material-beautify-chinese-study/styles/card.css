@@ -17,6 +17,12 @@
   box-shadow: 0px 0px 30px #1D3557;
 }
 
+:host(.writing) {
+  color: #1C2541;
+  background-color: #6FFFE9;
+  box-shadow: 0px 0px 30px #0B132B;
+}
+
 :host(.tones) {
   color: #073B4C;
   background-color: #06D6A0;
