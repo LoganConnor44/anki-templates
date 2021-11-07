@@ -15,9 +15,6 @@ jobs:
       - run: git config user.name "github-actions"
       # this action executes on a release which already creates a tag
       - run: npm --no-git-tag-version version ${{ github.event.release.tag_name }}
-      - run: git add .
-      - run: git commit -m "updating the release version"
-      - run: git push origin HEAD:master
       - run: npm install
       - run: npm publish --access public
         env:
