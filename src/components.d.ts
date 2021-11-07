@@ -9,7 +9,10 @@ export namespace Components {
     interface MaterialBeautifyCard {
         "meaning": string;
         "orientation": string;
+        "primaryHanziType": string;
         "primaryVocab": string;
+        "secondarySentence": string;
+        "secondaryVocab": string;
         "sentence": string;
         "sentenceMeaning": string;
         "sentencePhonic": string;
@@ -74,6 +77,8 @@ export namespace Components {
         "meaning": string;
         "orientation": string;
         "phonic": string;
+        "secondarySentence": string;
+        "secondaryVocab": string;
         "sentence": string;
         "sentenceMeaning": string;
         "sentencePhonic": string;
@@ -92,6 +97,7 @@ export namespace Components {
     }
     interface MaterialBeautifyType {
         "cardType": string;
+        "primaryHanziType": string;
     }
 }
 declare global {
@@ -144,7 +150,10 @@ declare namespace LocalJSX {
     interface MaterialBeautifyCard {
         "meaning"?: string;
         "orientation"?: string;
+        "primaryHanziType"?: string;
         "primaryVocab"?: string;
+        "secondarySentence"?: string;
+        "secondaryVocab"?: string;
         "sentence"?: string;
         "sentenceMeaning"?: string;
         "sentencePhonic"?: string;
@@ -209,6 +218,8 @@ declare namespace LocalJSX {
         "meaning"?: string;
         "orientation"?: string;
         "phonic"?: string;
+        "secondarySentence"?: string;
+        "secondaryVocab"?: string;
         "sentence"?: string;
         "sentenceMeaning"?: string;
         "sentencePhonic"?: string;
@@ -227,6 +238,7 @@ declare namespace LocalJSX {
     }
     interface MaterialBeautifyType {
         "cardType"?: string;
+        "primaryHanziType"?: string;
     }
     interface IntrinsicElements {
         "material-beautify-card": MaterialBeautifyCard;

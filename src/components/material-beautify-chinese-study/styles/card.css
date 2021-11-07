@@ -22,3 +22,21 @@
   background-color: #06D6A0;
   box-shadow: 0px 0px 30px #073B4C;
 }
+
+:host(.sentence) {
+  color: #000000;
+  background-color: #F72585;
+  box-shadow: 0px 0px 30px #3A0CA3;
+}
+
+:host(.audio) {
+  color: #352D39;
+  background-color: #FF6978;
+  box-shadow: 0px 0px 30px rgb(0, 0, 0, 0.8);
+}
+
+:host(.secondary-recognition) {
+  color: #264653;
+  background-color: #E9C46A;
+  box-shadow: 0px 0px 30px #264653;
+}

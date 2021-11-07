@@ -31,3 +31,18 @@ p {
     color: #FFD166;
     background-color: #EF476F;
 }
+
+:host(.sentence) {
+    color: #F72585;
+    background-color: #4361EE;
+}
+
+:host(.audio) {
+    color: #FFFCF9;
+    background-color: #6D435A;
+}
+
+:host(.secondary-recognition) {
+    color: #E9C46A;
+    background-color: #E76F51;
+}

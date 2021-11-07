@@ -2,11 +2,16 @@
   /* purposefully left undefined - default font size is fine  */
 }
 
-#vocabulary-phonic {
+
+#primary-item {
+  font-size: x-large;
+}
+
+#secondary-item {
   font-size: medium;
 }
 
-#sentence {
+#vocabulary-phonic {
   font-size: medium;
 }
 
@@ -15,7 +20,6 @@
 }
 
 #pleco-link {
-  font-size: xx-large;
   text-decoration: none; 
   color: inherit;
 }

@@ -94,17 +94,6 @@ export class MaterialBeautifyChineseStudy {
 	private conversionConfig: object = { from: 'cn', to: 'tw' };
 	private template: HTMLElement;
 
-	private getPrimaryHanziPrimaryElement = (): HTMLElement => this.element.shadowRoot.querySelector('#primary-hanzi-primary-element');
-	private getSecondaryHanziPrimaryElement = (): HTMLElement => this.element.shadowRoot.querySelector('#secondary-hanzi-primary-element');
-	private getPrimaryHanziSecondaryElement = (): HTMLElement => this.element.shadowRoot.querySelector('#primary-hanzi-secondary-element');
-	private getSecondaryHanziSecondaryElement = (): HTMLElement => this.element.shadowRoot.querySelector('#secondary-hanzi-secondary-element');
-	private getWordMeaningElement = (): HTMLElement => this.element.shadowRoot.querySelector('#single-word-meaning');
-	private getSentenceMeaningElement = (): HTMLElement => this.element.shadowRoot.querySelector('#sentence-meaning');
-	private getPhoneticElement = (): HTMLElement => this.element.shadowRoot.querySelector('#phonetic');
-	private getSentencePhoneticElement = (): HTMLElement => this.element.shadowRoot.querySelector('#sentence-phonetic');
-	private getPrimarySentenceElement = (): HTMLElement => this.element.shadowRoot.querySelector('#primary-hanzi-sentence');
-	private getSecondarySentenceElement = (): HTMLElement => this.element.shadowRoot.querySelector('#secondary-hanzi-sentence');
-	private getAudioAnimationElement = (): HTMLElement => this.element.shadowRoot.querySelector('#audio');
 	private isEmptyStringBlankStringNullOrUndefined = (value: String): boolean => value === null || value === undefined || value === "" || value.trim().length == 0;
 
 	public getCardType(): string {
@@ -227,258 +216,29 @@ export class MaterialBeautifyChineseStudy {
 		return this.conversionConfig;
 	}
 
-	private processTonesCardType(): void {
-		let traditionalHanziPrimary: HTMLElement = this.getSecondaryHanziPrimaryElement();
-		let traditionalHanziSecondary: HTMLElement = this.getSecondaryHanziSecondaryElement();
-		let wordMeaning: HTMLElement = this.getWordMeaningElement();
-		let simplifiedHanziSecondary: HTMLElement = this.getPrimaryHanziSecondaryElement();
-		let phonetic: HTMLElement = this.getPhoneticElement();
-		let sentencePhonetic: HTMLElement = this.getSentencePhoneticElement();
-		let traditionalSentence: HTMLElement = this.getSecondarySentenceElement();
-		let sentenceMeaning: HTMLElement = this.getSentenceMeaningElement();
-
-		traditionalHanziPrimary.style.display = 'none';
-		simplifiedHanziSecondary.style.display = 'none';
-		traditionalHanziSecondary.style.display = 'none';
-		wordMeaning.style.display = 'none';
-		traditionalSentence.style.display = 'none';
-		sentenceMeaning.style.display = 'none';
-
-		if (this.getCardOrientation() === 'question') {
-			phonetic.style.display = 'none';
-			sentencePhonetic.style.display = 'none'
-		}
-		if (this.getCardOrientation() === 'answer') {
-			phonetic.style.display = 'block';
-		}
-	}
-
-	private processWritingCardType(): void {
-		let traditionalHanziPrimary: HTMLElement = this.getSecondaryHanziPrimaryElement();
-		let simplifiedHanziPrimary: HTMLElement = this.getPrimaryHanziPrimaryElement();
-		let traditionalHanziSecondary: HTMLElement = this.getSecondaryHanziSecondaryElement();
-		let wordMeaning: HTMLElement = this.getWordMeaningElement();
-		let simplifiedHanziSecondary: HTMLElement = this.getPrimaryHanziSecondaryElement();
-		let phonetic: HTMLElement = this.getPhoneticElement();
-		let sentencePhonetic: HTMLElement = this.getSentencePhoneticElement();
-		let traditionalSentence: HTMLElement = this.getSecondarySentenceElement();
-		let sentenceMeaning: HTMLElement = this.getSentenceMeaningElement();
-		let simplifiedSentence: HTMLElement = this.getPrimarySentenceElement();
-
-		simplifiedHanziPrimary.style.display = 'none';
-		traditionalHanziPrimary.style.display = 'none';
-		wordMeaning.style.display = 'none';
-		traditionalHanziSecondary.style.display = 'none';
-		simplifiedHanziSecondary.style.display = 'none';
-		simplifiedSentence.style.display = 'none';
-		traditionalSentence.style.display = 'none';
-		sentenceMeaning.style.display = 'none';
-
-		if (this.getCardOrientation() === 'question') {
-			phonetic.style.fontSize = 'xx-large';
-		}
-		if (this.getCardOrientation() === 'answer') {
-			phonetic.style.display = 'none';
-			sentencePhonetic.style.display = 'none';
-		}
-	}
-
-	private processTraditionalCardType(): void {
-		let simplifiedHanziPrimary: HTMLElement = this.getPrimaryHanziPrimaryElement();
-		let traditionalHanziSecondary: HTMLElement = this.getSecondaryHanziSecondaryElement();
-		let wordMeaning: HTMLElement = this.getWordMeaningElement();
-		let simplifiedHanziSecondary: HTMLElement = this.getPrimaryHanziSecondaryElement();
-		let phonetic: HTMLElement = this.getPhoneticElement();
-		let sentencePhonetic: HTMLElement = this.getSentencePhoneticElement();
-		let traditionalSentence: HTMLElement = this.getSecondarySentenceElement();
-		let sentenceMeaning: HTMLElement = this.getSentenceMeaningElement();
-		let simplifiedSentence: HTMLElement = this.getPrimarySentenceElement();
-
-		const doesTradSentHaveValue: boolean = traditionalSentence.innerHTML !== '';
-
-		if (doesTradSentHaveValue) {
-			simplifiedSentence.style.display = 'none';
-		}
-
-		simplifiedHanziPrimary.style.display = 'none';
-		wordMeaning.style.display = 'none';
-		traditionalHanziSecondary.style.display = 'none';
-		sentencePhonetic.style.display = 'none';
-		
-		if (this.getCardOrientation() === 'question') {
-			phonetic.style.display = 'none';
-			wordMeaning.style.display = 'none';
-			traditionalHanziSecondary.style.display = 'none';
-			simplifiedHanziSecondary.style.display = 'none';
-			sentenceMeaning.style.display = 'none';
-		}
-		if (this.getCardOrientation() === 'answer') {
-			phonetic.style.display = 'block';
-			simplifiedHanziSecondary.style.display = 'block';
-		}
-	}
-
-	private processTraditionalSentenceCardType(): void {
-		let traditionalHanziPrimary: HTMLElement = this.getSecondaryHanziPrimaryElement();
-		let simplifiedHanziPrimary: HTMLElement = this.getPrimaryHanziPrimaryElement();
-		let traditionalHanziSecondary: HTMLElement = this.getSecondaryHanziSecondaryElement();
-		let wordMeaning: HTMLElement = this.getWordMeaningElement();
-		let sentenceMeaning: HTMLElement = this.getSentenceMeaningElement();
-		let simplifiedHanziSecondary: HTMLElement = this.getPrimaryHanziSecondaryElement();
-		let phonetic: HTMLElement = this.getPhoneticElement();
-		let sentencePhonetic: HTMLElement = this.getSentencePhoneticElement();
-		let traditionalSentence: HTMLElement = this.getSecondarySentenceElement();
-		let simplifiedSentence: HTMLElement = this.getPrimarySentenceElement();
-
-		traditionalHanziPrimary.style.display = 'none';
-		simplifiedHanziPrimary.style.display = 'none';
-		simplifiedHanziSecondary.style.display = 'none';
-		traditionalHanziSecondary.style.display = 'none';
-		traditionalSentence.style.fontSize = 'xx-large';
-		simplifiedSentence.style.display = 'none';
-		wordMeaning.style.display = 'none';
-		phonetic.style.display = 'none';
-
-		if (this.getCardOrientation() === 'question') {
-			sentencePhonetic.style.display = 'none';
-			sentenceMeaning.style.display = 'none';
-		}
-		if (this.getCardOrientation() === 'answer') {
-			sentencePhonetic.style.display = 'block';
-			sentenceMeaning.style.display = 'block';
-			simplifiedSentence.style.display = 'block';
-		}
-	}
-
-	private processMeaningCardType(): void {
-		let traditionalHanziPrimary: HTMLElement = this.getSecondaryHanziPrimaryElement();
-		let traditionalHanziSecondary: HTMLElement = this.getSecondaryHanziSecondaryElement();
-		let wordMeaning: HTMLElement = this.getWordMeaningElement();
-		let simplifiedHanziSecondary: HTMLElement = this.getPrimaryHanziSecondaryElement();
-		let phonetic: HTMLElement = this.getPhoneticElement();
-		let sentencePhonetic: HTMLElement = this.getSentencePhoneticElement();
-		let traditionalSentence: HTMLElement = this.getSecondarySentenceElement();
-		let sentenceMeaning: HTMLElement = this.getSentenceMeaningElement();
-		
-		traditionalHanziPrimary.style.display = 'none';
-		simplifiedHanziSecondary.style.display = 'none';
-		traditionalHanziSecondary.style.display = 'none';
-		traditionalSentence.style.display = 'none';
-
-		if (this.getCardOrientation() === 'question') {
-			phonetic.style.display = 'none';
-			sentencePhonetic.style.display = 'none';
-			wordMeaning.style.display = 'none';
-			sentenceMeaning.style.display = 'none';
-		}
-		if (this.getCardOrientation() === 'answer') {
-			phonetic.style.display = 'block';
-			wordMeaning.style.display = 'block';
-		}
-	}
-
-	private processSentenceCardType(): void {
-		let traditionalHanziPrimary: HTMLElement = this.getSecondaryHanziPrimaryElement();
-		let simplifiedHanziPrimary: HTMLElement = this.getPrimaryHanziPrimaryElement();
-		let traditionalHanziSecondary: HTMLElement = this.getSecondaryHanziSecondaryElement();
-		let wordMeaning: HTMLElement = this.getWordMeaningElement();
-		let sentenceMeaning: HTMLElement = this.getSentenceMeaningElement();
-		let simplifiedHanziSecondary: HTMLElement = this.getPrimaryHanziSecondaryElement();
-		let phonetic: HTMLElement = this.getPhoneticElement();
-		let sentencePhonetic: HTMLElement = this.getSentencePhoneticElement();
-		let traditionalSentence: HTMLElement = this.getSecondarySentenceElement();
-		let simplifiedSentence: HTMLElement = this.getPrimarySentenceElement();
-
-		traditionalHanziPrimary.style.display = 'none';
-		simplifiedHanziPrimary.style.display = 'none';
-		simplifiedHanziSecondary.style.display = 'none';
-		traditionalHanziSecondary.style.display = 'none';
-		traditionalSentence.style.display = 'none';
-		simplifiedSentence.style.fontSize = 'xx-large';
-		wordMeaning.style.display = 'none';
-		phonetic.style.display = 'none';
-
-		if (this.getCardOrientation() === 'question') {
-			sentencePhonetic.style.display = 'none';
-			sentenceMeaning.style.display = 'none';
-		}
-		if (this.getCardOrientation() === 'answer') {
-			sentencePhonetic.style.display = 'block';
-			sentenceMeaning.style.display = 'block';
-		}
-	}
-
-	private processAudioCardType(): void {
-		let traditionalHanziPrimary: HTMLElement = this.getSecondaryHanziPrimaryElement();
-		let simplifiedHanziPrimary: HTMLElement = this.getPrimaryHanziPrimaryElement();
-		let traditionalHanziSecondary: HTMLElement = this.getSecondaryHanziSecondaryElement();
-		let wordMeaning: HTMLElement = this.getWordMeaningElement();
-		let sentenceMeaning: HTMLElement = this.getSentenceMeaningElement();
-		let simplifiedHanziSecondary: HTMLElement = this.getPrimaryHanziSecondaryElement();
-		let phonetic: HTMLElement = this.getPhoneticElement();
-		let sentencePhonetic: HTMLElement = this.getSentencePhoneticElement();
-		let traditionalSentence: HTMLElement = this.getSecondarySentenceElement();
-		let simplifiedSentence: HTMLElement = this.getPrimarySentenceElement();
-		let audioAnimation: HTMLElement = this.getAudioAnimationElement();
-
-		traditionalHanziPrimary.style.display = 'none';
-		simplifiedHanziPrimary.style.display = 'none';
-		simplifiedHanziSecondary.style.display = 'none';
-		traditionalHanziSecondary.style.display = 'none';
-		traditionalSentence.style.display = 'none';
-		simplifiedSentence.style.display = 'none';
-		wordMeaning.style.display = 'none';
-		phonetic.style.display = 'none';
-		sentencePhonetic.style.display = 'none';
-		sentenceMeaning.style.display = 'none';
-
-		if (this.getCardOrientation() === 'question') {
-			const availableAnimations: string[] = [
-				'echo-spinner',
-				'audio-line-spinner'
-			];
-			const randomAnimation: string = availableAnimations[Math.floor(Math.random() * availableAnimations.length)];
-			console.log(randomAnimation);
-			if (randomAnimation === 'audio-line-spinner') {
-				for (var i = 1; i <= 5; i++) {
-					let rectangle = document.createElement('div');
-					rectangle.classList.add('rect' + i);
-					audioAnimation.appendChild(rectangle);
-				}
-			}
-			audioAnimation.className = randomAnimation;
-		}
-		if (this.getCardOrientation() === 'answer') {
-			sentencePhonetic.style.display = 'block';
-			simplifiedSentence.style.display = 'block';
-			simplifiedSentence.style.fontSize = 'x-large';
-			sentenceMeaning.style.display = 'block';
-		}
-	}
-
 	private processCardContentByCardType(): void {
 		switch (this.getCardType()) {
 			case 'secondary-recognition':
-				this.processTraditionalCardType();
+				//this.processTraditionalCardType();
 				break;
 			case 'secondary-sentence':
-				this.processTraditionalSentenceCardType();
+				//this.processTraditionalSentenceCardType();
 				break;
 			case 'tones':
-				this.processTonesCardType();
+				//this.processTonesCardType();
 				break;
 			case 'writing':
-				this.processWritingCardType();
+				//this.processWritingCardType();
 				break;
 			case 'meaning':
-				this.processMeaningCardType();
+				//this.processMeaningCardType();
 				break;
 			case 'audio':
-				this.processAudioCardType();
+				//this.processAudioCardType();
 				break;
 			case 'sentence':
 			default:
-				this.processSentenceCardType();
+				//this.processSentenceCardType();
 				break;
 		}
 	};
@@ -691,35 +451,22 @@ export class MaterialBeautifyChineseStudy {
 
 	private createCard(): HTMLElement {
 		let template: HTMLElement;
-		let secondaryText: string;
-		let type: string = this.getCardType()
-			.toUpperCase()
-			.trim();
-		if (this.getCardType().indexOf('secondary') >= 0) {
-			for (var enumMember in HanziType) {
-				if (this.getHanziType() !== enumMember) {
-					secondaryText = enumMember;
-				}
-			}
-			type = this.getCardType()
-				.toUpperCase()
-				.replace('SECONDARY', secondaryText)
-				.replace('-', ' ')
-				.replace('RECOGNITION', '')
-				.trim();
-		}
+		
 		
 		template =
 			<div id='anki-background'>
-				<material-beautify-card class={ this.getCardType() }
+				<material-beautify-card class={ this.cardType }
 					orientation={ this.getCardOrientation() }
 					primary-vocab={ this.getPrimaryCharacter() } 
+					secondary-vocab={ this.getSecondaryCharacter() }
 					vocab-phonic={ this.phonic }
 					sentence={ this.getPrimaryCharacterSentence() }
+					secondary-sentence={ this.getSecondaryCharacterSentence() }
 					sentence-phonic={ this.sentencePhonic }
-					type={type} 
+					type={ this.cardType } 
 					meaning={ this.getMeaning() }
-					sentence-meaning={ this.getSentenceMeaning() } />
+					sentence-meaning={ this.getSentenceMeaning() }
+					primary-hanzi-type={ this.primaryHanziType.trim().toLowerCase() }/>
 			</div>
 		;
 		return template;
