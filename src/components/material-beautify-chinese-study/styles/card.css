@@ -40,3 +40,10 @@
   background-color: #E9C46A;
   box-shadow: 0px 0px 30px #264653;
 }
+
+
+:host(.secondary-sentence) {
+  color: #264653;
+  background-color: #E9C46A;
+  box-shadow: 0px 0px 30px #264653;
+}

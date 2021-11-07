@@ -69,7 +69,6 @@ export class CardType {
     render() {
         this.setType();
         this.setContent();
-
         return this.getContent();
     }
 }

@@ -46,3 +46,8 @@ p {
     color: #E9C46A;
     background-color: #E76F51;
 }
+
+:host(.secondary-sentence) {
+    color: #E9C46A;
+    background-color: #E76F51;
+}

@@ -34,6 +34,31 @@ export class CardContent {
     protected getContent() {
         return this._content;
     }
+
+    protected setSecondarySentence() {
+        if (this.orientation === "question") {
+            this._content =
+                <Host>
+                    <material-beautify-hanzi-with-phonic hanzi={ this.secondarySentence } 
+                        phonic={ this.sentencePhonic }
+                        idForStyles='primary-item'
+                        orientation={ this.orientation } />
+                </Host>
+            ;
+        } else {
+            this._content =
+                <Host>
+                    <material-beautify-hanzi-with-phonic hanzi={ this.sentence } 
+                        phonic={ this.sentencePhonic }
+                        idForStyles='primary-item'
+                        orientation={ this.orientation } />
+                    <material-beautify-meaning meaning={ this.sentenceMeaning }
+                        idForStyles='sentence' />
+                </Host>
+            ;
+        }
+    }
+
     protected setSecondaryRecognition() {
         if (this.orientation === "question") {
             this._content =
@@ -203,6 +228,7 @@ export class CardContent {
                 this.setSecondaryRecognition();
                 break;
             case "secondary-sentence" :
+                this.setSecondarySentence();
                 break;
             case "audio" :
                 this.setAudio()

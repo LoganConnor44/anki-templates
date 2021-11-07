@@ -216,33 +216,6 @@ export class MaterialBeautifyChineseStudy {
 		return this.conversionConfig;
 	}
 
-	private processCardContentByCardType(): void {
-		switch (this.getCardType()) {
-			case 'secondary-recognition':
-				//this.processTraditionalCardType();
-				break;
-			case 'secondary-sentence':
-				//this.processTraditionalSentenceCardType();
-				break;
-			case 'tones':
-				//this.processTonesCardType();
-				break;
-			case 'writing':
-				//this.processWritingCardType();
-				break;
-			case 'meaning':
-				//this.processMeaningCardType();
-				break;
-			case 'audio':
-				//this.processAudioCardType();
-				break;
-			case 'sentence':
-			default:
-				//this.processSentenceCardType();
-				break;
-		}
-	};
-
 	private createPhonic(phonicType: PhoneticType, phonicValue: string): string {
 		const isPinyin = (value: string): boolean => toBoolean(value.search(/^[a-zA-Z0-9\s]*$/));
 		const parseTone = (value: string): number => value === ' ' || value === '' ? 5 : parseInt(value);
@@ -450,10 +423,7 @@ export class MaterialBeautifyChineseStudy {
 	};
 
 	private createCard(): HTMLElement {
-		let template: HTMLElement;
-		
-		
-		template =
+		const template: HTMLElement =
 			<div id='anki-background'>
 				<material-beautify-card class={ this.cardType }
 					orientation={ this.getCardOrientation() }
@@ -500,7 +470,6 @@ export class MaterialBeautifyChineseStudy {
 	 * Called after every `render()`.
 	 */
 	 public componentDidRender(): void {
-		this.processCardContentByCardType();
 		if (this.getCardType() === 'writing' && this.getCardOrientation() === 'answer') {
 			this.createStrokeOrderCharacter();
 		}

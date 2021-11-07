@@ -58,7 +58,6 @@ export class Card {
 
     public render() {
         this.setContent();
-
         return this.getContent();
     }
 }
