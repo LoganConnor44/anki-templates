@@ -15,9 +15,9 @@ import * as PinyinGenerator from 'pinyin';
 export class MaterialBeautifyChineseStudy {
 
 	/**
-	 * Recognized hanzi typoes: 'simplified' | 'traditional'
+	 * Recognized hanzi typoes: `simplified` | `traditional`
 	 */
-	 @Prop()
+	@Prop()
 	public primaryHanziType: string = 'simplified';
 	/**
 	 *	Recognized card types: `recognition` | `sentence` | `tones` | `writing` | `meaning` | `audio` | `secondary-sentence` | `secondary-recognition`
@@ -980,7 +980,7 @@ export class MaterialBeautifyChineseStudy {
 	}
 
 	/**
-	 *  Returns a tree of components that are rendered to the DOM at runtime.
+	 * Returns a tree of components that are rendered to the DOM at runtime.
 	 * 
 	 * @returns FunctionalComponent<HostAttributes>
 	 */

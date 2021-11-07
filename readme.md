@@ -203,11 +203,11 @@ The logic attempts to make custom styling and additional logic work the same acr
 
 ## JSFiddle
 
-Feel free to see this using [JSFiddle](https://jsfiddle.net/loganconnor44/Lnu9jm0f/5/).
+Feel free see to this project in action using this [JSFiddle](https://jsfiddle.net/loganconnor44/Lnu9jm0f/10/).
 
 ## My Personal Cards
 
-Feel free to browse over my personal cards that I have saved in Anki found [here](https://github.com/LoganConnor44/anki-templates/tree/master/anki-templates).
+Feel free to browse over my [personal cards](https://github.com/LoganConnor44/anki-templates/tree/master/anki-templates) that I have saved in Anki.
 
 
 # How Is This Possible?
@@ -220,7 +220,7 @@ While this project handles most of the styling for the user, there is styling th
 
 # Prerequisites
 
-There are currently seven different template types that may be used. The following will be a list of fields that are mandatory to successfully generate the card template; in addition to the mandatory types, please feel free to add any other optional data as they will be available on each card - all available attribute values found [here](./src/components/material-beautify-chinese-study/readme.md):
+At the time of this writing, there are eight different template types that may be used. The following will be a list of fields that are mandatory to successfully generate the card template; in addition to the mandatory types, please feel free to add any other optional data as they will be available on each card - all available attribute values found [here](./src/components/material-beautify-chinese-study/readme.md):
 
 * Primary Recognition
 	* Primary Character
@@ -301,7 +301,7 @@ There are currently seven different template types that may be used. The followi
 
 
 
-
+In addition to the above information needed for particular card types, the following is also needed:
 
 * Have a Chinese deck in Anki with the following fields (field names do not need to match)
 	* Hanzi (simplified or traditional) Characters
@@ -357,7 +357,7 @@ See [issue tab](https://github.com/LoganConnor44/anki-templates/issues) for more
 	* This may include increasing the size of the character stroke animation as well.
 
 ----------------
-# StencilJs Document That Is Helpful
+# Maintainer Documentation
 
 ## Using this component
 
@@ -365,7 +365,7 @@ There are three strategies we recommend for using web components built with Sten
 
 The first step for all three of these strategies is to [publish to NPM](https://docs.npmjs.com/getting-started/publishing-npm-packages).
 
-### Quick Guide For Publishing
+## Quick Guide For Publishing
 
 Assuming you are already logged in, the steps are below:
 1. ```npm version MANUALLY-INCREMENT-VERSION-NUMBER```
@@ -373,11 +373,17 @@ Assuming you are already logged in, the steps are below:
 2. ```npm publish --access public```
 	* Verify on npm
 
-### Script tag
+## Script tag
 
 - Put a script tag similar to this `<script src='https://unpkg.com/my-component@0.0.1/dist/mycomponent.js'></script>` in the head of your index.html
 - Then you can use the element anywhere in your template, JSX, html etc
 
-### Updating The Auto Generated API Documentation
+## Updating The Auto Generated API Documentation
 
 ```npm run build```
+
+## GitHub Actions
+
+### Release
+
+A release via GitHub will create a git tag and publish a new version to the npm registry. These releases and tags need to be named the version that is intended for npm registry.
