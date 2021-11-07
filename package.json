@@ -46,5 +46,8 @@
     "opencc-js": "^1.0.3",
     "pinyin": "^2.10.2"
   },
+  "publishConfig": {
+    "registry": "git@github.com:LoganConnor44/anki-templates.git"
+  },
   "license": "MIT"
 }
