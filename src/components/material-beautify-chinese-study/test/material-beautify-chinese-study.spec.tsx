@@ -1,5 +1,5 @@
 import { newSpecPage } from '@stencil/core/testing';
-import { MaterialBeautifyChineseStudy } from '../material-beautify-chinese-study';
+import { MaterialBeautifyChineseStudy } from '../beautify-chinese-study';
 
 describe('material-beautify-chinese-study', () => {
   it('renders', async () => {

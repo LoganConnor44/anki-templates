@@ -41,7 +41,7 @@
     "generate": "stencil generate"
   },
   "dependencies": {
-    "@stencil/core": "^2.4.0",
+    "@stencil/core": "^2.9.0",
     "hanzi-writer": "^2.3.0",
     "opencc-js": "^1.0.3",
     "pinyin": "^2.10.2"

@@ -1,0 +1,28 @@
+#phonic-only > ruby > a > div {
+  display: none;
+}
+
+#phonic-only-phonic {
+  font-size: xx-large;
+}
+
+#primary-item {
+  font-size: x-large;
+}
+
+#secondary-item {
+  font-size: medium;
+}
+
+#vocabulary-phonic {
+  font-size: medium;
+}
+
+#sentence-phonic {
+  font-size: small;
+}
+
+#pleco-link {
+  text-decoration: none; 
+  color: inherit;
+}

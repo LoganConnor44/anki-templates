@@ -1,0 +1,115 @@
+:host {
+  flex: 100 0 0;
+  text-align: center;
+}
+
+div {
+  background-color: #333;
+  height: 100%;
+  width: 10px;
+  display: inline-block;
+  -webkit-animation: audio-line-delay 1.2s infinite ease-in-out;
+  animation: audio-line-delay 1.2s infinite ease-in-out;
+}
+
+#pleco-link {
+  font-size: xx-large;
+  text-decoration: none; 
+  color: inherit;
+}
+
+:host(.recognition) {
+  text-shadow: 2px 2px rgb(29, 53, 87, 0.3);
+}
+
+:host(.tones) {
+  text-shadow: 2px 2px rgb(7, 59, 76, 0.2);
+}
+
+:host(.sentence) {
+  text-shadow: 2px 2px rgb(58, 12, 163, 0.3);
+}
+
+:host(.audio) {
+  text-shadow: 2px 2px rgb(177, 237, 232, 0.3);
+}
+
+:host(.secondary-recognition) {
+  text-shadow: 2px 2px #F4A261;
+}
+
+:host(.secondary-sentence) {
+  text-shadow: 2px 2px #F4A261;
+}
+
+:host(.echo-spinner) {
+  width: 200px;
+  height: 200px;
+  margin: 100px auto;
+  background-color: #333;
+  border-radius: 100%;  
+  -webkit-animation: echo-scaleout 1.5s infinite ease-in-out;
+  animation: echo-scaleout 1.5s infinite ease-in-out;
+}
+
+:host(.audio-line-spinner) {
+  margin: 100px auto;
+  width: 50px;
+  height: 60px;
+  text-align: center;
+  font-size: 10px;
+}
+
+.rect2 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+
+.rect3 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+.rect4 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+.rect5 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+@keyframes echo-scaleout {
+  0% { 
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  } 100% {
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes echo-scaleout {
+  0% { -webkit-transform: scale(0) }
+  100% {
+    -webkit-transform: scale(1.0);
+    opacity: 0;
+  }
+}
+
+@keyframes audio-line-delay {
+  0%, 40%, 100% { 
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+  }  20% { 
+    transform: scaleY(1.0);
+    -webkit-transform: scaleY(1.0);
+  }
+}
+
+@-webkit-keyframes audio-line-delay {
+  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  
+  20% { -webkit-transform: scaleY(1.0) }
+}
