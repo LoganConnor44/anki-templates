@@ -4,7 +4,7 @@
   "description": "A package for making Chinese study more beautiful.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/LoganConnor44/anki-templates.git"
+    "url": "git://github.com/LoganConnor44/anki-templates.git"
   },
   "author": {
     "email": "loganconnor44@gmail.com",
@@ -47,7 +47,7 @@
     "pinyin": "^2.10.2"
   },
   "publishConfig": {
-    "registry": "git://github.com/LoganConnor44/anki-templates.git"
+    "registry": "https://npm.pkg.github.com"
   },
   "license": "MIT"
 }
