@@ -307,12 +307,7 @@ export class CardContent {
 		}, delayBetweenAnimations + delayBetweenAnimations);
 	};
 
-    componentDidRender() {
-        this.createStrokeOrderCharacter();
-    }
-
-    render() {
-        this.setPhonic();
+    private processCardContent() {
         switch (this.type.toLowerCase()) {
             case "secondary-recognition" :
                 this.setSecondaryRecognition();
@@ -337,7 +332,17 @@ export class CardContent {
                 this.setRecognition();
                 break;
         }
+    }
+
+    render() {
+        this.setPhonic();
+        this.processCardContent();
 
         return this.getContent();
+    }
+
+    componentDidRender() {
+        this.createStrokeOrderCharacter();
+        this.processCardContent();
     }
 }
