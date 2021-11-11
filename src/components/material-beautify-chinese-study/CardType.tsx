@@ -29,8 +29,7 @@ export class CardType {
     }
     protected setType() {
         let secondaryText: string;
-		let type: string = '';
-		this.cardType
+		let type: string = this.cardType
 			.toUpperCase()
 			.trim();
 		if (this.cardType.indexOf('secondary') >= 0) {
