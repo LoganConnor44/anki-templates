@@ -30,23 +30,21 @@ export class CardType {
     protected setType() {
         let secondaryText: string;
 		let type: string = '';
-		if (this.cardType != null) {
-			this.cardType
-				.toUpperCase()
-				.trim();
-			if (this.cardType.indexOf('secondary') >= 0) {
-				for (var enumMember in HanziType) {
-					if (this.getHanziType() !== enumMember) {
-						secondaryText = enumMember;
-					}
+		this.cardType
+			.toUpperCase()
+			.trim();
+		if (this.cardType.indexOf('secondary') >= 0) {
+			for (var enumMember in HanziType) {
+				if (this.getHanziType() !== enumMember) {
+					secondaryText = enumMember;
 				}
-				type = this.cardType
-					.toUpperCase()
-					.replace('SECONDARY', secondaryText)
-					.replace('-', ' ')
-					.replace('RECOGNITION', '')
-					.trim();
 			}
+			type = this.cardType
+				.toUpperCase()
+				.replace('SECONDARY', secondaryText)
+				.replace('-', ' ')
+				.replace('RECOGNITION', '')
+				.trim();
 		}
 		this._type =
 			<p>{ type }</p>
