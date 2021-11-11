@@ -29,25 +29,28 @@ export class CardType {
     }
     protected setType() {
         let secondaryText: string;
-		let type: string = this.cardType
-			.toUpperCase()
-			.trim();
-		if (this.cardType.indexOf('secondary') >= 0) {
-			for (var enumMember in HanziType) {
-				if (this.getHanziType() !== enumMember) {
-					secondaryText = enumMember;
-				}
-			}
-			type = this.cardType
+		let type: string = '';
+		if (this.cardType != null) {
+			this.cardType
 				.toUpperCase()
-				.replace('SECONDARY', secondaryText)
-				.replace('-', ' ')
-				.replace('RECOGNITION', '')
 				.trim();
+			if (this.cardType.indexOf('secondary') >= 0) {
+				for (var enumMember in HanziType) {
+					if (this.getHanziType() !== enumMember) {
+						secondaryText = enumMember;
+					}
+				}
+				type = this.cardType
+					.toUpperCase()
+					.replace('SECONDARY', secondaryText)
+					.replace('-', ' ')
+					.replace('RECOGNITION', '')
+					.trim();
+			}
 		}
-        this._type =
-            <p>{ type }</p>
-        ;
+		this._type =
+			<p>{ type }</p>
+		;
     }
 
     public getHanziType(): HanziType {

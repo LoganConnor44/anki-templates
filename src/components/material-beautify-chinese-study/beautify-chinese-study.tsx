@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, State, FunctionalComponent } from '@stencil/core';
+import { Component, Host, h, Prop, State, FunctionalComponent, Element } from '@stencil/core';
 import { PhoneticType } from '../../enums/PhoneticType';
 import { HanziType } from '../../enums/HanziType';
 import Vowel from '../../phonetics/Vowel';
@@ -88,6 +88,10 @@ export class MaterialBeautifyChineseStudy {
 	public generatedTraditionalSentence: string = '';
 
 	private conversionConfig: object = { from: 'cn', to: 'tw' };
+
+	@Element()
+	private element: HTMLElement;
+
 	private template: HTMLElement;
 
 	private isEmptyStringBlankStringNullOrUndefined = (value: String): boolean => value === null || value === undefined || value === "" || value.trim().length == 0;
@@ -397,4 +401,9 @@ export class MaterialBeautifyChineseStudy {
 			</Host>
 		);
 	}
+
+	componentDidUpdate() {
+		let card = this.element.shadowRoot.querySelector('material-beautify-card');
+		card.setAttribute('orientation', this.getCardOrientation());
+    }
 }

@@ -21,7 +21,6 @@ export class HanziWithPhonic {
     private _hanzi: JSXBase.HTMLAttributes<HTMLDivElement>;
     private _phonic: JSXBase.HTMLAttributes<HTMLDivElement>;
     
-
     protected getContent() {
         return this._content;
     }
@@ -63,7 +62,6 @@ export class HanziWithPhonic {
             this.setPhonic();
         }
         this.setContent();
-
         return this.getContent();
     }
 }

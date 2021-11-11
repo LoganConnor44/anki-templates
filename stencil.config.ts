@@ -16,7 +16,8 @@ export const config: Config = {
     },
     {
       type: 'www',
+      baseUrl: 'http://beautify-chinese-study',
       serviceWorker: null,
-    }
+    },
   ]
 };
