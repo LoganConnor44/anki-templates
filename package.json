@@ -44,7 +44,8 @@
     "@stencil/core": "^2.9.0",
     "hanzi-writer": "^2.3.0",
     "opencc-js": "^1.0.3",
-    "pinyin": "^2.10.2"
+    "pinyin": "^2.10.2",
+    "react-spring": "^9.3.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"

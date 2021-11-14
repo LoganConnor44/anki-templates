@@ -9,8 +9,6 @@ import HanziWriter from 'hanzi-writer';
 export class Writing {
     @Prop()
 	public hanzi: string;
-    @Prop()
-	public phonic: string;
 
     @Element() 
     private element: HTMLElement;

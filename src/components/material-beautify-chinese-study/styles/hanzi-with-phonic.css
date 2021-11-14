@@ -1,5 +1,5 @@
-#phonic-only > ruby > a > div {
-  display: none;
+ruby {
+  vertical-align: bottom;
 }
 
 #phonic-only-phonic {
@@ -7,22 +7,48 @@
 }
 
 #primary-item {
-  font-size: x-large;
+  font-size: xx-large;
 }
 
 #secondary-item {
-  font-size: medium;
+  font-size: large;
 }
 
 #vocabulary-phonic {
-  font-size: medium;
+  font-size: large;
+  vertical-align: bottom;
 }
 
 #sentence-phonic {
-  font-size: small;
+  font-size: medium;
 }
 
 #pleco-link {
   text-decoration: none; 
   color: inherit;
+}
+
+#hanzi {
+  line-height: 1em;
+  font-size: 2em;
+  vertical-align: middle;
+}
+
+#phonic {
+  line-height: 1em;
+  font-size: 0.8em;
+  vertical-align: middle;
+}
+
+#phonic-only > div {
+  display: none;
+}
+
+.no-show {
+  display: none;
+}
+
+.table-center {
+  margin-left: auto;
+  margin-right: auto;
 }

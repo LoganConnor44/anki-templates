@@ -7,8 +7,6 @@
   flex-flow: row nowrap;
   border-radius: 15px;
   padding: 1em;
-  animation: fadeIn 500ms linear;
-  -webkit-animation: fadeIn 500ms linear;
 }
 
 :host(.recognition) {
