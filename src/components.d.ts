@@ -90,6 +90,7 @@ export namespace Components {
         "idForStyles": string;
         "orientation": string;
         "phonic": string;
+        "phonicOrientation": string;
     }
     interface MaterialBeautifyMeaning {
         "idForStyles": string;
@@ -101,7 +102,6 @@ export namespace Components {
     }
     interface MaterialBeautifyWriting {
         "hanzi": string;
-        "phonic": string;
     }
 }
 declare global {
@@ -242,6 +242,7 @@ declare namespace LocalJSX {
         "idForStyles"?: string;
         "orientation"?: string;
         "phonic"?: string;
+        "phonicOrientation"?: string;
     }
     interface MaterialBeautifyMeaning {
         "idForStyles"?: string;
@@ -253,7 +254,6 @@ declare namespace LocalJSX {
     }
     interface MaterialBeautifyWriting {
         "hanzi"?: string;
-        "phonic"?: string;
     }
     interface IntrinsicElements {
         "material-beautify-card": MaterialBeautifyCard;

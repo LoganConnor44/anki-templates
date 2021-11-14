@@ -8,10 +8,6 @@
     overflow-wrap: break-word;
     border-radius: 3px;
     opacity: 50%;
-    transition: all 500ms linear;
-    -webkit-transition: all 500ms linear;
-    animation: fadeIn 500ms linear;
-    -webkit-animation: fadeIn 500ms linear;
 }
 
 p {
