@@ -1,11 +1,10 @@
 import Tone from '../enums/Tone';
-import Phonetic from './Phonetic';
 
-class Zhuyin extends Phonetic {
+class Zhuyin {
+	private tone: Tone;
 	private pinyin: string;
 	private character: string;
 	constructor(pinyin: string) {
-		super();
 		this.pinyin = pinyin;
 		this.setCharacter();
 	}
@@ -32,6 +31,30 @@ class Zhuyin extends Phonetic {
 			case Tone.FIRST :
 			default : {
 				return this.character;
+			}
+		}
+	}
+	public setTone(number: number): void {
+		switch(number) {
+			case 1:  {
+				this.tone = Tone.FIRST;
+				break;
+			}
+			case 2:  {
+				this.tone = Tone.SECOND;
+				break;
+			}
+			case 3:  {
+				this.tone = Tone.THIRD
+				break;
+			}
+			case 4:  {
+				this.tone = Tone.FORTH;
+				break;
+			}
+			default: {
+				this.tone = Tone.NEUTRAL;
+				break;
 			}
 		}
 	}

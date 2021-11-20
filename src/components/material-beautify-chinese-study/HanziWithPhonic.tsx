@@ -34,18 +34,22 @@ export class HanziWithPhonic {
         this._plecoHref = `plecoapi://x-callback-url/df?hw=${ this.hanzi }`;
     }
 
+    protected getHanziWithoutPunctuation(): Array<string> {
+        return this.hanzi
+            .split('')
+            .filter(char => /\p{Script=Han}/u.test(char));
+    }
+
     render() {
         this.setPlecoHref();
         
-        const hanzisWithoutPunctuation: Array<string> = this.hanzi
-            .split('')
-            .filter(char => /\p{Script=Han}/u.test(char));
+        const hanzisWithoutPunctuation: Array<string> = this.getHanziWithoutPunctuation();
         const phonics: Array<string> = this.phonic.split(',');
+        class HanziAndPhonic {
+            character: string;
+            phonic: string;
+        }
         if (this.phonicOrientation === 'next-to' && phonics.length === hanzisWithoutPunctuation.length) {
-            class HanziAndPhonic {
-                character: string;
-                phonic: string;
-            }
             let hanziAndPhonics: HanziAndPhonic[] = [];
             for (let index = 0; index < hanzisWithoutPunctuation.length; index++) {
                 let hanziAndPhonic: HanziAndPhonic = new HanziAndPhonic();
@@ -78,14 +82,8 @@ export class HanziWithPhonic {
                 </table>
             ;
         } else if (this.phonicOrientation === 'over') {
-            const hanzisWithoutPunctuation: Array<string> = this.hanzi
-                .split('')
-                .filter(char => /\p{Script=Han}/u.test(char));
+            const hanzisWithoutPunctuation: Array<string> = this.getHanziWithoutPunctuation();
             const phonics: Array<string> = this.phonic.split(',');
-            class HanziAndPhonic {
-                character: string;
-                phonic: string;
-            }
             let hanziAndPhonics: HanziAndPhonic[] = [];
             for (let index = 0; index < hanzisWithoutPunctuation.length; index++) {
                 let hanziAndPhonic: HanziAndPhonic = new HanziAndPhonic();
