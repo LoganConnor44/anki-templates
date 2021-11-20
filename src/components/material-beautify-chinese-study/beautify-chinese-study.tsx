@@ -1,10 +1,9 @@
 import { Component, Host, h, Prop, State, FunctionalComponent, Element } from '@stencil/core';
 import { PhoneticType } from '../../enums/PhoneticType';
 import { HanziType } from '../../enums/HanziType';
-import Vowel from '../../phonetics/Vowel';
-import Zhuyin from '../../phonetics/Zhuyin';
 import * as OpenCC from 'opencc-js';
 import * as PinyinGenerator from 'pinyin';
+import Phonetic from '../../phonetics/Phonetic';
 
 @Component({
 	tag: 'material-beautify-chinese-study',
@@ -93,35 +92,32 @@ export class MaterialBeautifyChineseStudy {
 	private element: HTMLElement;
 
 	private template: HTMLElement;
+	private phonetic: Phonetic = new Phonetic();
 
 	private isEmptyStringBlankStringNullOrUndefined = (value: String): boolean => value === null || value === undefined || value === "" || value.trim().length == 0;
 
-	public getCardType(): string {
-		return this.cardType.toLowerCase().trim();
-	}
-
-	public getCardOrientation(): string {
+	private getCardOrientation(): string {
 		if (!this.isEmptyStringBlankStringNullOrUndefined(this.cardOrientation)) {
 			return this.cardOrientation.toLowerCase().trim();
 		}
 		return "";
 	}
 
-	public getPrimaryCharacter(): string {
+	private getPrimaryCharacter(): string {
 		if (!this.isEmptyStringBlankStringNullOrUndefined(this.primaryCharacter)) {
 			return this.primaryCharacter.trim();
 		}
 		return "";
 	}
 
-	public getPrimaryCharacterSentence(): string {
+	private getPrimaryCharacterSentence(): string {
 		if (!this.isEmptyStringBlankStringNullOrUndefined(this.primaryCharacterSentence)) {
 			return this.primaryCharacterSentence.trim();
 		}
 		return "";
 	}
 
-	public getSecondaryCharacter(): string {
+	private getSecondaryCharacter(): string {
 		if (!this.isEmptyStringBlankStringNullOrUndefined(this.secondaryCharacter) && !this.forceAutoGeneration) {
 			return this.secondaryCharacter.trim();
 		}
@@ -130,7 +126,7 @@ export class MaterialBeautifyChineseStudy {
 		return converter(this.getPrimaryCharacter());
 	}
 
-	public getSecondaryCharacterSentence(): string {
+	private getSecondaryCharacterSentence(): string {
 		if (!this.isEmptyStringBlankStringNullOrUndefined(this.secondaryCharacterSentence) && !this.forceAutoGeneration) {
 			return this.secondaryCharacterSentence.trim();
 		}
@@ -139,28 +135,28 @@ export class MaterialBeautifyChineseStudy {
 		return converter(this.getPrimaryCharacterSentence());
 	}
 
-	public getMeaning(): string {
+	private getMeaning(): string {
 		if (!this.isEmptyStringBlankStringNullOrUndefined(this.meaning)) {
 			return this.meaning.trim();
 		}
 		return "";
 	}
 
-	public getSentenceMeaning(): string {
+	private getSentenceMeaning(): string {
 		if (!this.isEmptyStringBlankStringNullOrUndefined(this.sentenceMeaning)) {
 			return this.sentenceMeaning.trim();
 		}
 		return "";
 	}
 
-	public getNumberedPinyin(): string {
+	private getNumberedPinyin(): string {
 		return PinyinGenerator.default(
 			this.getPrimaryCharacter(),
 			{ style: PinyinGenerator.STYLE_TONE2 }
 		).join("");
 	}
 
-	public getSentenceNumberedPinyin(): string {
+	private getSentenceNumberedPinyin(): string {
 		if (!this.isEmptyStringBlankStringNullOrUndefined(this.sentenceNumberedPinyin)) {
 			return this.sentenceNumberedPinyin.trim();
 		}
@@ -170,22 +166,22 @@ export class MaterialBeautifyChineseStudy {
 		).join("");
 	}
 
-	public getPreferredPhonic(): string {
+	private getPreferredPhonic(): string {
 		if (!this.isEmptyStringBlankStringNullOrUndefined(this.preferredPhonic)) {
 			return this.preferredPhonic.trim();
 		}
 		return "";
 	}
 
-	public getPinyin(value: string): Array<string> {
-		return this.createPhonic(PhoneticType.PINYIN, value);
+	private getPinyin(value: string): Array<string> {
+		return this.phonetic.create(PhoneticType.PINYIN, value);
 	}
 
-	public getZhuyin(value: string): Array<string> {
-		return this.createPhonic(PhoneticType.ZHUYIN, value);
+	private getZhuyin(value: string): Array<string> {
+		return this.phonetic.create(PhoneticType.ZHUYIN, value);
 	}
 
-	public getPhonic(value: string): Array<string> {
+	private getPhonic(value: string): Array<string> {
 		if (this.getPreferredPhonic() === 'pinyin') {
 			return this.getPinyin(value);
 		}
@@ -195,7 +191,7 @@ export class MaterialBeautifyChineseStudy {
 		return [];
 	}
 
-	public getHanziType(): HanziType {
+	private getHanziType(): HanziType {
 		let hanziType: HanziType;
 		switch (this.primaryHanziType.trim().toLowerCase()) {
 			case 'traditional':
@@ -209,149 +205,11 @@ export class MaterialBeautifyChineseStudy {
 		return hanziType;
 	}
 
-	public getConversionConfig(): object {
+	private getConversionConfig(): object {
 		if (this.getHanziType() === HanziType.TRADITIONAL) {
 			this.conversionConfig = { from: 'tw', to: 'cn' };
 		}
 		return this.conversionConfig;
-	}
-
-	private createPhonic(phonicType: PhoneticType, phonicValue: string): Array<string> {
-		const isPinyin = (value: string): boolean => toBoolean(value.search(/^[a-zA-Z0-9\s]*$/));
-		const parseTone = (value: string): number => value === ' ' || value === '' ? 5 : parseInt(value);
-		const toBoolean = (value: number): boolean => value >= 0 ? true : false;
-		
-		const replaceVowelWithAccentedVowel = (value: string, accentedVowel: Vowel): string => {
-			const valueReversed: string = value.split('').reverse().join('');
-			const valueWithAccentReversed: string = valueReversed.replace(
-				accentedVowel.getVowel(),
-				accentedVowel.getVowelWithTone()
-			);
-			return valueWithAccentReversed.split('').reverse().join('');
-		};
-		
-		const createAppropriateVowelWithAccent = (valueArray: Array<string>, toneNumber: number): Vowel => {
-			let vowels: Vowel[] = new Array<Vowel>();
-			vowels[0] = new Vowel('a');
-			vowels[1] = new Vowel('e');
-			vowels[2] = new Vowel('i');
-			vowels[3] = new Vowel('o');
-			vowels[4] = new Vowel('u');
-		
-			let vowelToBeAccented: string = '';
-			vowels.forEach(vowel => {
-				valueArray.forEach((x: string) => {
-					if (x === vowel.getVowel() && vowelToBeAccented === '') {
-						vowelToBeAccented = vowel.getVowel();
-					}
-				});
-			});
-			const accentedVowel = new Vowel(vowelToBeAccented);
-			accentedVowel.setTone(toneNumber);
-			return accentedVowel;
-		};
-		
-		const retrieveVowelsBeforeNumber = (value: string): Array<string> => {
-			const vowelPattern = /([a|e|i|o|u])/i;
-			const regEx = new RegExp(vowelPattern);
-			const valueArrayReversed = value.split('').reverse();
-			let vowelsPresent: Array<string> = new Array<string>();
-			let initialConsonantsPassed: boolean = false;
-			valueArrayReversed.forEach(x => {
-				if (vowelsPresent.length > 0) {
-					initialConsonantsPassed = true;
-				}
-				if (regEx.test(x) || !initialConsonantsPassed) {
-					vowelsPresent.push(x);
-				}
-			});
-			return vowelsPresent.reverse();
-		};
-		
-		const replaceNumberWithAccentedVowel = (value: string, toneNumber: number): string => {
-			const vowelsImmediatelyBeforeNumber: Array<string> = retrieveVowelsBeforeNumber(value);
-			const vowelAccented: Vowel = createAppropriateVowelWithAccent(vowelsImmediatelyBeforeNumber, toneNumber);
-			return replaceVowelWithAccentedVowel(value, vowelAccented);
-		};
-		
-		/**
-		 * Sets the tone for a syllable even if a light tone syllable is right up against another valid toned syllable.
-		 * 
-		 * @param phonic Zhuyin The new zhuyin character converted from pinyin. 
-		 * @param letters string The remaining pinyin letters after the zhuyin has been created.
-		 * @param tone number The extracted tone number that should only be applied to the last zhuyin.
-		 */
-		const setToneWithPossibleMalformedPinyinHandling = (phonic: Zhuyin, letters: string, tone: number): void => {
-			if (letters === '') {
-				phonic.setTone(tone);
-			} else {
-				phonic.setTone(5);
-			}
-		};
-		
-		const replaceNumberedRomanLettersWithZhuyin = (letters: string, tone: number): string => {
-			let returnValue: string = '';
-			const maxIterations = 25;
-			let iterationCounter = 1;
-			while (letters !== '' && iterationCounter < maxIterations) {
-				for (let i = letters.length; i > -1; i--) {
-					const phonic: Zhuyin = new Zhuyin(letters.substring(0, i).toLowerCase());
-					if (phonic.getCharacter() !== undefined) {
-						letters = letters.substring(phonic.getPinyin().length);
-						setToneWithPossibleMalformedPinyinHandling(phonic, letters, tone);
-						returnValue += phonic.getCharacterWithTone();
-						break;
-					}
-				}
-				iterationCounter++;
-			}
-			return returnValue;
-		};
-		
-		const convertNumberedPinyinTo = (phoneticType: PhoneticType, value: string): Array<string> => {
-			let phonics: Array<string> = [];
-			const minimumOneLetterCaseInsensitive: RegExp = new RegExp(/([a-zA-Z]{1,})/);
-			const numbersOneThroughFiveOrSpaceIndicatingLightTone: RegExp = new RegExp(/([1-5]|\s*)/);
-			const zeroOrOneSpaceCharacterNonToneRelated: RegExp = new RegExp(/(\s*)/);
-			const finalRegEx: RegExp = new RegExp(
-				minimumOneLetterCaseInsensitive.source +
-				numbersOneThroughFiveOrSpaceIndicatingLightTone.source +
-				zeroOrOneSpaceCharacterNonToneRelated.source
-			);
-			let results: RegExpExecArray;
-			while ((results = finalRegEx.exec(value)) !== null) {
-				value = value.substring(results.index + results[0].length);
-				//const originalText: string = results[0];
-				const romanLetters: string = results[1];
-				const tone: number = parseTone(results[2]);
-				const spaceCharacter: string = results[3];
-				let phonic: string;
-				if (phoneticType === PhoneticType.ZHUYIN) {
-					phonic = replaceNumberedRomanLettersWithZhuyin(romanLetters, tone);
-				}
-				if (phoneticType === PhoneticType.PINYIN) {
-					phonic = replaceNumberWithAccentedVowel(romanLetters, tone);
-				}
-				phonics.push(phonic + spaceCharacter);
-			}
-			return phonics;
-		};
-		
-		const hanziToPhoneticCharacters = (phoneticType: PhoneticType, value: string): Array<string> => {
-			if (value === undefined || value === null || value === '') {
-				return [];
-			}
-			
-			let result: Array<string> = [];
-			value = value.trim().toLowerCase();
-			value = value.replace(/[',。，《》.!?]/g, '');
-			if (isPinyin(value)) {
-				result = convertNumberedPinyinTo(phoneticType, value);
-			}
-			return result;
-		};
-
-		return hanziToPhoneticCharacters(phonicType, phonicValue);
 	}
 
 	private createCard(): HTMLElement {
@@ -368,7 +226,7 @@ export class MaterialBeautifyChineseStudy {
 					type={ this.cardType } 
 					meaning={ this.getMeaning() }
 					sentence-meaning={ this.getSentenceMeaning() }
-					primary-hanzi-type={ this.primaryHanziType.trim().toLowerCase() }/>
+					primary-hanzi-type={ this.primaryHanziType.trim().toLowerCase() } />
 			</div>
 		;
 		return template;
@@ -377,7 +235,7 @@ export class MaterialBeautifyChineseStudy {
 	/**
 	 * Called every time the component is connected to the DOM.
 	 */
-	connectedCallback(): void {
+	public connectedCallback(): void {
 		this.phonic = this.getPhonic(this.getNumberedPinyin());
 		this.sentencePhonic = this.getPhonic(this.getSentenceNumberedPinyin());
 		this.generatedTraditional = this.getSecondaryCharacter();
@@ -398,7 +256,7 @@ export class MaterialBeautifyChineseStudy {
 		);
 	}
 
-	componentDidUpdate() {
+	public componentDidUpdate() {
 		let card = this.element.shadowRoot.querySelector('material-beautify-card');
 		card.setAttribute('orientation', this.getCardOrientation());
     }

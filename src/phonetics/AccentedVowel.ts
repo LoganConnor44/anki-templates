@@ -1,10 +1,10 @@
-import Tone from '../enums/Tone';
-import Phonetic from './Phonetic';
+import Tone from "../enums/Tone";
 
-class Vowel extends Phonetic {
+class AccentedVowel {
 	private letter: string;
+	protected tone: Tone;
+
 	public constructor(letter: string) {
-		super();
 		this.letter = letter;
 	}
 	public getVowel(): string {
@@ -109,6 +109,31 @@ class Vowel extends Phonetic {
 			}
 		}
 	}
+	
+	public setTone(number: number): void {
+		switch(number) {
+			case 1:  {
+				this.tone = Tone.FIRST;
+				break;
+			}
+			case 2:  {
+				this.tone = Tone.SECOND;
+				break;
+			}
+			case 3:  {
+				this.tone = Tone.THIRD
+				break;
+			}
+			case 4:  {
+				this.tone = Tone.FORTH;
+				break;
+			}
+			default: {
+				this.tone = Tone.NEUTRAL;
+				break;
+			}
+		}
+	}
 }
 
-export default Vowel;
+export default AccentedVowel;
