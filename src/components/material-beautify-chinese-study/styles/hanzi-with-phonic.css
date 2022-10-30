@@ -3,24 +3,24 @@ ruby {
 }
 
 #phonic-only-phonic {
-  font-size: xx-large;
+  font-size: 5vw;
 }
 
 #primary-item {
-  font-size: xx-large;
+  font-size: 6vw;
 }
 
 #secondary-item {
-  font-size: large;
+  font-size: 4vw;
 }
 
 #vocabulary-phonic {
-  font-size: large;
+  font-size: 5vw;
   vertical-align: bottom;
 }
 
 #sentence-phonic {
-  font-size: medium;
+  font-size: 4vw;
 }
 
 #pleco-link {
@@ -30,12 +30,12 @@ ruby {
 
 #hanzi {
   line-height: 1em;
-  font-size: 2em;
+  font-size: 5vw;
   vertical-align: middle;
 }
 
 #phonic {
-  line-height: 1em;
+  line-height: 2vw;
   font-size: 0.8em;
   vertical-align: middle;
 }

@@ -19,7 +19,7 @@ export class Meaning {
     }
     protected setContent() {
         this._content =
-            <p id={ this.idForStyles + '-meaing' }>{ this.meaning }</p>
+            <p id={ this.idForStyles + '-meaning' }>{ this.meaning }</p>
         ;
     }
 
