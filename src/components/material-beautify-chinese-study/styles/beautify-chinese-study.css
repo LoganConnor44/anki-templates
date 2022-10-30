@@ -8,8 +8,6 @@
 #anki-background {
   display: flex;
   flex-grow: 1;
-  padding-left: 3em;
-  padding-right: 3em;
 }
 
 @media (max-width: 600px) { 

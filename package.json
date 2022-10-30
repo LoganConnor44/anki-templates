@@ -41,6 +41,7 @@
     "generate": "stencil generate"
   },
   "dependencies": {
+    "@fontsource/noto-sans-sc": "^4.5.12",
     "@stencil/core": "^2.9.0",
     "hanzi-writer": "^2.3.0",
     "opencc-js": "^1.0.3",

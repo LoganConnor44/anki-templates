@@ -8,6 +8,7 @@
   border-radius: 15px;
   padding: 1em;
   animation: fadeIn 1s;
+  font-family: "Noto Sans SC", sans-serif;
 }
 
 :host(.recognition) {
