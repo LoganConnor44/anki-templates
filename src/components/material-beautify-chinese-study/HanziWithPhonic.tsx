@@ -21,17 +21,20 @@ export class HanziWithPhonic {
 
     private _content: JSXBase.HTMLAttributes<HTMLDivElement>;
 
-    private _plecoHref: string;
+    private _dictionaryLink: string;
     
     protected getContent() {
         return this._content;
     }
 
-    protected getPlecoHref() {
-        return this._plecoHref;
+    protected getDictionaryLink() {
+        return this._dictionaryLink;
     }
-    protected setPlecoHref() {
-        this._plecoHref = `plecoapi://x-callback-url/df?hw=${ this.hanzi }`;
+    protected setDictionaryLink() {
+        this._dictionaryLink = `http://www.hanzii.net/search/word/${ this.hanzi }`;
+        if ( navigator.userAgent.indexOf("Mobile") > 0 ) {
+            this._dictionaryLink = `plecoapi://x-callback-url/df?hw=${ this.hanzi }`;
+        }
     }
 
     protected getHanziWithoutPunctuation(): Array<string> {
@@ -41,7 +44,7 @@ export class HanziWithPhonic {
     }
 
     render() {
-        this.setPlecoHref();
+        this.setDictionaryLink();
         
         const hanzisWithoutPunctuation: Array<string> = this.getHanziWithoutPunctuation();
         const phonics: Array<string> = this.phonic.split(',');
@@ -61,7 +64,7 @@ export class HanziWithPhonic {
             this._content = 
                 <table class='table-center'>
                     <tbody>
-                        <a id='pleco-link' href={ this.getPlecoHref() }>
+                        <a id='dictionary-link' href={ this.getDictionaryLink() }>
                             <tr>
                                 { 
                                     hanziAndPhonics.map((x: HanziAndPhonic) => {
@@ -93,7 +96,7 @@ export class HanziWithPhonic {
             }
 
             this._content = 
-                <a id='pleco-link' href={ this.getPlecoHref() }>
+                <a id='dictionary-link' href={ this.getDictionaryLink() }>
                     <ruby id={ this.idForStyles }>
                         { 
                             hanziAndPhonics.map((x: HanziAndPhonic) => {
