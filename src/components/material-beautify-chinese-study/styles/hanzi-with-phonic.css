@@ -8,6 +8,7 @@ ruby {
 
 #primary-item {
   font-size: 6vw;
+  font-weight: bold;
 }
 
 #secondary-item {
