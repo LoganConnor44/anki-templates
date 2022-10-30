@@ -11,3 +11,45 @@
   padding-left: 3em;
   padding-right: 3em;
 }
+
+@media (max-width: 600px) { 
+  #anki-background{
+    padding-left: 3em;
+    padding-right: 3em;
+  }
+}
+
+@media (min-width: 601px) { 
+  #anki-background{
+     padding-left: 5em;
+     padding-right: 5em;
+  }
+}
+
+@media (min-width: 800px) { 
+  #anki-background{
+     padding-left: 7em;
+     padding-right: 7em;
+  }
+}
+
+@media (min-width: 1000px) { 
+  #anki-background{
+     padding-left: 10em;
+     padding-right: 10em;
+  }
+}
+
+@media (min-width: 1200px) { 
+  #anki-background{
+     padding-left: 14em;
+     padding-right: 14em;
+  }
+}
+
+@media (min-width: 1500px) { 
+  #anki-background{
+     padding-left: 18em;
+     padding-right: 18em;
+  }
+}

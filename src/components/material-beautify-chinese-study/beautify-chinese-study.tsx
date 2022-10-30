@@ -243,6 +243,12 @@ export class MaterialBeautifyChineseStudy {
 		this.template = this.createCard();
 	}
 
+	public componentDidLoad() {
+		let card = this.element.shadowRoot.querySelector('material-beautify-card');
+		console.log(card);
+		card.classList.add("face-in");
+	}
+
 	/**
 	 *  Returns a tree of components that are rendered to the DOM at runtime.
 	 * 
