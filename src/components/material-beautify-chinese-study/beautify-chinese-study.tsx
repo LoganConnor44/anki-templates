@@ -76,6 +76,11 @@ export class MaterialBeautifyChineseStudy {
 	 */
 	@Prop()
 	public forceAutoGeneration: boolean = false;
+	/**
+	 * Recognized phonic orientations: `over` | `next-to`
+	 */
+	@Prop()
+	public phonicOrientation: string = 'over';
 
 	@State()
 	public phonic: Array<string> = [];
@@ -226,7 +231,8 @@ export class MaterialBeautifyChineseStudy {
 					type={ this.cardType } 
 					meaning={ this.getMeaning() }
 					sentence-meaning={ this.getSentenceMeaning() }
-					primary-hanzi-type={ this.primaryHanziType.trim().toLowerCase() } />
+					primary-hanzi-type={ this.primaryHanziType.trim().toLowerCase() }
+					phonic-orientation={ this.phonicOrientation } />
 			</div>
 		;
 		return template;
@@ -241,12 +247,6 @@ export class MaterialBeautifyChineseStudy {
 		this.generatedTraditional = this.getSecondaryCharacter();
 		this.generatedTraditionalSentence = this.getSecondaryCharacterSentence();
 		this.template = this.createCard();
-	}
-
-	public componentDidLoad() {
-		let card = this.element.shadowRoot.querySelector('material-beautify-card');
-		console.log(card);
-		card.classList.add("face-in");
 	}
 
 	/**

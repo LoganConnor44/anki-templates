@@ -9,6 +9,7 @@ export namespace Components {
     interface MaterialBeautifyCard {
         "meaning": string;
         "orientation": string;
+        "phonicOrientation": string;
         "primaryHanziType": string;
         "primaryVocab": string;
         "secondarySentence": string;
@@ -40,6 +41,10 @@ export namespace Components {
           * Most forms of numbered pinyin allowed
          */
         "numberedPinyin": string;
+        /**
+          * Recognized phonic orientations: `over` | `next-to`
+         */
+        "phonicOrientation": string;
         /**
           * Recognized phonics: `pinyin` | `zhuyin`
          */
@@ -77,6 +82,7 @@ export namespace Components {
         "meaning": string;
         "orientation": string;
         "phonic": string;
+        "phonicOrientation": string;
         "secondarySentence": string;
         "secondaryVocab": string;
         "sentence": string;
@@ -161,6 +167,7 @@ declare namespace LocalJSX {
     interface MaterialBeautifyCard {
         "meaning"?: string;
         "orientation"?: string;
+        "phonicOrientation"?: string;
         "primaryHanziType"?: string;
         "primaryVocab"?: string;
         "secondarySentence"?: string;
@@ -192,6 +199,10 @@ declare namespace LocalJSX {
           * Most forms of numbered pinyin allowed
          */
         "numberedPinyin"?: string;
+        /**
+          * Recognized phonic orientations: `over` | `next-to`
+         */
+        "phonicOrientation"?: string;
         /**
           * Recognized phonics: `pinyin` | `zhuyin`
          */
@@ -229,6 +240,7 @@ declare namespace LocalJSX {
         "meaning"?: string;
         "orientation"?: string;
         "phonic"?: string;
+        "phonicOrientation"?: string;
         "secondarySentence"?: string;
         "secondaryVocab"?: string;
         "sentence"?: string;

@@ -29,6 +29,8 @@ export class Card {
     public sentenceMeaning: string;
     @Prop()
     public primaryHanziType: string;
+    @Prop()
+    public phonicOrientation: string;
 
     private _content: JSXBase.HTMLAttributes<HTMLDivElement>;
 
@@ -48,7 +50,8 @@ export class Card {
                     orientation={ this.orientation }
                     meaning={ this.meaning }
                     sentence-meaning={ this.sentenceMeaning }
-                    type={ this.type } />
+                    type={ this.type }
+                    phonic-orientation={ this.phonicOrientation } />
                 <material-beautify-type class={this.type.toLowerCase()} 
                     card-type={ this.type }
                     primary-hanzi-type={ this.primaryHanziType }/>

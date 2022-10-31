@@ -17,7 +17,7 @@ export class HanziWithPhonic {
     @Prop()
     public idForStyles: string;
     @Prop()
-    public phonicOrientation: string = 'over';
+    public phonicOrientation: string;
 
     private _content: JSXBase.HTMLAttributes<HTMLDivElement>;
 
@@ -45,6 +45,9 @@ export class HanziWithPhonic {
 
     render() {
         this.setDictionaryLink();
+
+        const displayPhonic = (this.orientation === 'question' && this.idForStyles === 'phonic-only') || this.orientation === 'answer';
+        const displayCharacter = this.orientation === 'answer' || this.idForStyles === 'phonic-only';
         
         const hanzisWithoutPunctuation: Array<string> = this.getHanziWithoutPunctuation();
         const phonics: Array<string> = this.phonic.split(',');
@@ -52,6 +55,8 @@ export class HanziWithPhonic {
             character: string;
             phonic: string;
         }
+
+        
         if (this.phonicOrientation === 'next-to' && phonics.length === hanzisWithoutPunctuation.length) {
             let hanziAndPhonics: HanziAndPhonic[] = [];
             for (let index = 0; index < hanzisWithoutPunctuation.length; index++) {
@@ -69,12 +74,23 @@ export class HanziWithPhonic {
                                 { 
                                     hanziAndPhonics.map((x: HanziAndPhonic) => {
                                         return  <Fragment>
-                                                    <td id='hanzi'>
-                                                        <span>{ x.character }</span>
+                                                    <td id={ displayCharacter ? '' : 'no-show'} class={displayCharacter ? 'fade-in' : '' } style={ {lineHeight: '1em', fontSize: '2em', verticalAlign: 'middle'} }>
+                                                        { x.character }
                                                     </td>
-                                                    <td id='phonic' class={ this.orientation === 'question' ? 'no-show' : '' }>
-                                                        <span>{ x.phonic }</span>
+                                                    <td id={ this.idForStyles + '-phonic' } class={displayPhonic ? 'fade-in' : '' } style={ {lineHeight: '1em', fontSize: '0.8em', verticalAlign: 'middle'} }>
+                                                        {
+                                                            displayPhonic ? 
+                                                                x.phonic.split('').map((y: string) => {
+                                                                    return <Fragment>
+                                                                                <span>{y}</span>
+                                                                                <br/>
+                                                                            </Fragment>
+                                                                    ;
+                                                                }) :
+                                                                ''
+                                                        }
                                                     </td>
+                                                    
                                                 </Fragment>
                                         ;
                                     })
@@ -98,15 +114,16 @@ export class HanziWithPhonic {
             this._content = 
                 <a id='dictionary-link' href={ this.getDictionaryLink() }>
                     <ruby id={ this.idForStyles }>
-                        { 
+                        {
                             hanziAndPhonics.map((x: HanziAndPhonic) => {
+                                
                                 return  <Fragment>
-                                            <div id={ this.orientation === 'answer' || this.idForStyles === 'phonic-only' ? '' : 'no-show'}>
+                                            <div id={ displayCharacter ? '' : 'no-show'} class={displayCharacter ? 'fade-in' : '' }>
                                                 { x.character }
                                             </div>
                                             <rp>(</rp>
-                                                <rt id={ this.idForStyles + '-phonic' }>
-                                                    { (this.orientation === 'question' && this.idForStyles === 'phonic-only') || this.orientation === 'answer' ? x.phonic : '' }
+                                                <rt id={ this.idForStyles + '-phonic' } class={displayPhonic ? 'fade-in' : '' }>
+                                                    { displayPhonic ? x.phonic : '' }
                                                 </rt>
                                             <rp>)</rp>
                                         </Fragment>
