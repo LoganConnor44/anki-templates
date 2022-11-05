@@ -43,22 +43,36 @@ export class HanziWithPhonic {
             .filter(char => /\p{Script=Han}/u.test(char));
     }
 
+    private getVerticalNeutralPhonics(): Array <string> {
+        let phonics = this.phonic.split(',');
+        for (let i = 0; i < phonics.length; i++){
+            const lastItem = phonics[i].slice(-1);
+            let deltaPhonic = phonics[i].split('');
+            if (lastItem === '˙') {
+                deltaPhonic.splice(0, 0, lastItem);
+                deltaPhonic.pop();
+            }
+            phonics[i] = deltaPhonic.join('');
+        }
+        return phonics;
+    }
+
     render() {
         this.setDictionaryLink();
 
         const displayPhonic = (this.orientation === 'question' && this.idForStyles === 'phonic-only') || this.orientation === 'answer';
         const displayCharacter = this.orientation === 'answer' || this.idForStyles === 'phonic-only';
-        
         const hanzisWithoutPunctuation: Array<string> = this.getHanziWithoutPunctuation();
-        const phonics: Array<string> = this.phonic.split(',');
+        
         class HanziAndPhonic {
             character: string;
             phonic: string;
         }
 
-        
-        if (this.phonicOrientation === 'next-to' && phonics.length === hanzisWithoutPunctuation.length) {
+        if (this.phonicOrientation === 'next-to' && this.phonic.split(',').length === hanzisWithoutPunctuation.length) {
+            const phonics = this.getVerticalNeutralPhonics();
             let hanziAndPhonics: HanziAndPhonic[] = [];
+            
             for (let index = 0; index < hanzisWithoutPunctuation.length; index++) {
                 let hanziAndPhonic: HanziAndPhonic = new HanziAndPhonic();
                 hanziAndPhonic.character = hanzisWithoutPunctuation[index];
@@ -74,15 +88,21 @@ export class HanziWithPhonic {
                                 { 
                                     hanziAndPhonics.map((x: HanziAndPhonic) => {
                                         return  <Fragment>
-                                                    <td id={ displayCharacter ? '' : 'no-show'} class={displayCharacter ? 'fade-in' : '' } style={ {lineHeight: '1em', fontSize: '2em', verticalAlign: 'middle'} }>
+                                                    <td id='hanzi-with-table' class={displayCharacter ? 'fade-in' : '' } style={ {lineHeight: '1em', fontSize: '2em', verticalAlign: 'middle'} }>
                                                         { x.character }
                                                     </td>
                                                     <td id={ this.idForStyles + '-phonic' } class={displayPhonic ? 'fade-in' : '' } style={ {lineHeight: '1em', fontSize: '0.8em', verticalAlign: 'middle'} }>
                                                         {
                                                             displayPhonic ? 
-                                                                x.phonic.split('').map((y: string) => {
+                                                                x.phonic.split('').map((y: string, index: number) => {
+                                                                    let displayY = y;
+                                                                    if (x.phonic.length - 2 === index && (x.phonic.slice(-1) === 'ˊ' || x.phonic.slice(-1) === 'ˇ' || x.phonic.slice(-1) === 'ˋ')) {
+                                                                        displayY = y + x.phonic.slice(-1);
+                                                                    } else if (y === 'ˊ' || y === 'ˇ' || y === 'ˋ') {
+                                                                        return '';
+                                                                    }
                                                                     return <Fragment>
-                                                                                <span>{y}</span>
+                                                                                <span>{displayY}</span>
                                                                                 <br/>
                                                                             </Fragment>
                                                                     ;
@@ -90,7 +110,6 @@ export class HanziWithPhonic {
                                                                 ''
                                                         }
                                                     </td>
-                                                    
                                                 </Fragment>
                                         ;
                                     })
@@ -118,7 +137,7 @@ export class HanziWithPhonic {
                             hanziAndPhonics.map((x: HanziAndPhonic) => {
                                 
                                 return  <Fragment>
-                                            <div id={ displayCharacter ? '' : 'no-show'} class={displayCharacter ? 'fade-in' : '' }>
+                                            <div id='hanzi-with-ruby' class={displayCharacter ? 'fade-in' : '' }>
                                                 { x.character }
                                             </div>
                                             <rp>(</rp>
