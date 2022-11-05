@@ -17,7 +17,7 @@ export class MaterialBeautifyChineseStudy {
 	@Prop()
 	public primaryHanziType: string = 'simplified';
 	/**
-	 *	Recognized card types: `recognition` | `sentence` | `tones` | `writing` | `meaning` | `audio` | `secondary-sentence` | `secondary-recognition`
+	 *	Recognized card types: `recognition` | `sentence` | `tones` | `writing` | `audio` | `secondary-sentence` | `secondary-recognition`
 	 */
 	@Prop()
 	public cardType: string = 'recognition';
@@ -165,10 +165,13 @@ export class MaterialBeautifyChineseStudy {
 		if (!this.isEmptyStringBlankStringNullOrUndefined(this.sentenceNumberedPinyin)) {
 			return this.sentenceNumberedPinyin.trim();
 		}
-		return PinyinGenerator.default(
+		const isDigit: RegExp = new RegExp(/\d/);
+		const regEx: RegExp = new RegExp(isDigit.source);
+		let temp = PinyinGenerator.default(
 			this.getPrimaryCharacterSentence(),
 			{ style: PinyinGenerator.STYLE_TONE2 }
-		).join("");
+		).map((x: Array<string>) => !regEx.test(x[0].slice(-1)) ? new Array<string>(x[0] += '5') : x);
+		return temp.join("");
 	}
 
 	private getPreferredPhonic(): string {
