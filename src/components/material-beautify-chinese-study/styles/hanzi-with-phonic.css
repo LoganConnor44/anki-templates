@@ -45,6 +45,12 @@ ruby {
   display: none;
 }
 
+#hanzi-with-table {
+  line-height: 1em;
+  font-size: 5vw;
+  vertical-align: middle;
+}
+
 .no-show {
   display: none;
 }
@@ -56,6 +62,12 @@ ruby {
 
 .fade-in {
   animation: fadeIn 1s;
+}
+
+.vertical-phonic {
+  line-height: .80em;
+  font-size: 2vw;
+  vertical-align: middle;
 }
 
 @keyframes fadeIn {

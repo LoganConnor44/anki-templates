@@ -57,6 +57,12 @@ export class HanziWithPhonic {
         return phonics;
     }
 
+    private isPhonicPinyin() {
+        const containsLettersCaseInsensitive: RegExp = new RegExp(/[a-zA-Z]/);
+        const regEx: RegExp = new RegExp(containsLettersCaseInsensitive.source);
+        return regEx.test(this.phonic);
+    }
+
     render() {
         this.setDictionaryLink();
 
@@ -69,7 +75,7 @@ export class HanziWithPhonic {
             phonic: string;
         }
 
-        if (this.phonicOrientation === 'next-to' && this.phonic.split(',').length === hanzisWithoutPunctuation.length) {
+        if (this.phonicOrientation === 'next-to' && !this.isPhonicPinyin() && this.phonic.split(',').length === hanzisWithoutPunctuation.length) {
             const phonics = this.getVerticalNeutralPhonics();
             let hanziAndPhonics: HanziAndPhonic[] = [];
             
@@ -88,10 +94,10 @@ export class HanziWithPhonic {
                                 { 
                                     hanziAndPhonics.map((x: HanziAndPhonic) => {
                                         return  <Fragment>
-                                                    <td id='hanzi-with-table' class={displayCharacter ? 'fade-in' : '' } style={ {lineHeight: '1em', fontSize: '2em', verticalAlign: 'middle'} }>
+                                                    <td id='hanzi' class={displayCharacter ? 'fade-in' : '' } >
                                                         { x.character }
                                                     </td>
-                                                    <td id={ this.idForStyles + '-phonic' } class={displayPhonic ? 'fade-in' : '' } style={ {lineHeight: '1em', fontSize: '0.8em', verticalAlign: 'middle'} }>
+                                                    <td id={ this.idForStyles + '-phonic' } class={(displayPhonic ? 'fade-in' : '') + ' vertical-phonic' }>
                                                         {
                                                             displayPhonic ? 
                                                                 x.phonic.split('').map((y: string, index: number) => {
@@ -119,7 +125,7 @@ export class HanziWithPhonic {
                     </tbody>
                 </table>
             ;
-        } else if (this.phonicOrientation === 'over') {
+        } else {
             const hanzisWithoutPunctuation: Array<string> = this.getHanziWithoutPunctuation();
             const phonics: Array<string> = this.phonic.split(',');
             let hanziAndPhonics: HanziAndPhonic[] = [];
