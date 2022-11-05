@@ -69,13 +69,14 @@ export class HanziWithPhonic {
         const displayPhonic = (this.orientation === 'question' && this.idForStyles === 'phonic-only') || this.orientation === 'answer';
         const displayCharacter = this.orientation === 'answer' || this.idForStyles === 'phonic-only';
         const hanzisWithoutPunctuation: Array<string> = this.getHanziWithoutPunctuation();
+        const buildVerticalPhonicStructure: boolean = this.phonicOrientation === 'next-to' && !this.isPhonicPinyin() && this.phonic.split(',').length === hanzisWithoutPunctuation.length;
         
         class HanziAndPhonic {
             character: string;
             phonic: string;
         }
 
-        if (this.phonicOrientation === 'next-to' && !this.isPhonicPinyin() && this.phonic.split(',').length === hanzisWithoutPunctuation.length) {
+        if (buildVerticalPhonicStructure) {
             const phonics = this.getVerticalNeutralPhonics();
             let hanziAndPhonics: HanziAndPhonic[] = [];
             
