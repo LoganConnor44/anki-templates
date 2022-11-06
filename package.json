@@ -22,10 +22,10 @@
     "flashcards"
   ],
   "main": "dist/index.cjs.js",
-  "module": "dist/custom-elements/index.js",
+  "module": "dist/index.js",
   "es2015": "dist/esm/index.mjs",
   "es2017": "dist/esm/index.mjs",
-  "types": "dist/custom-elements/index.d.ts",
+  "types": "dist/types/components.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
   "unpkg": "dist/beautify-chinese-study/beautify-chinese-study.js",
@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@fontsource/noto-sans-sc": "^4.5.12",
-    "@stencil/core": "^2.9.0",
+    "@stencil/core": "^2.19.0",
     "hanzi-writer": "^2.3.0",
     "opencc-js": "^1.0.3",
     "pinyin": "^2.10.2",
