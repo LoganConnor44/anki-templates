@@ -10,7 +10,6 @@
 | Property | Attribute | Description | Type     | Default     |
 | -------- | --------- | ----------- | -------- | ----------- |
 | `hanzi`  | `hanzi`   |             | `string` | `undefined` |
-| `phonic` | `phonic`  |             | `string` | `undefined` |
 
 
 ## Dependencies
