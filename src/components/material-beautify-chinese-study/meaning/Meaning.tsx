@@ -3,7 +3,7 @@ import { JSXBase } from "@stencil/core/internal";
 
 @Component({
 	tag: 'material-beautify-meaning',
-    styleUrl: 'styles/meaning.css',
+    styleUrl: '../styles/meaning.css',
     shadow: true
 })
 export class Meaning {

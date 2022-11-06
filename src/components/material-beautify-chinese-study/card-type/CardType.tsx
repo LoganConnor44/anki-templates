@@ -1,10 +1,10 @@
 import { h, Component, Prop } from "@stencil/core";
 import { JSXBase } from "@stencil/core/internal";
-import { HanziType } from '../../enums/HanziType';
+import { HanziType } from '../../../enums/HanziType';
 
 @Component({
 	tag: 'material-beautify-type',
-    styleUrl: 'styles/card-type.css',
+    styleUrl: '../styles/card-type.css',
     shadow: true
 })
 export class CardType {

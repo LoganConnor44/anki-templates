@@ -3,7 +3,7 @@ import { JSXBase } from "@stencil/core/internal";
 
 @Component({
 	tag: 'material-beautify-card',
-    styleUrl: 'styles/card.css',
+    styleUrl: '../styles/card.css',
     shadow: true
 })
 export class Card {

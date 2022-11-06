@@ -4,7 +4,7 @@ import HanziWriter from 'hanzi-writer';
 
 @Component({
 	tag: 'material-beautify-content',
-    styleUrl: 'styles/card-content.css',
+    styleUrl: '../styles/card-content.css',
     shadow: true
 })
 export class CardContent {

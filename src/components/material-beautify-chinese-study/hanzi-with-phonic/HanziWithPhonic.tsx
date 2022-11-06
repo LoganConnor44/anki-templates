@@ -3,7 +3,7 @@ import { JSXBase } from "@stencil/core/internal";
 
 @Component({
 	tag: 'material-beautify-hanzi-with-phonic',
-    styleUrl: 'styles/hanzi-with-phonic.css',
+    styleUrl: '../styles/hanzi-with-phonic.css',
     shadow: true
 })
 export class HanziWithPhonic {
