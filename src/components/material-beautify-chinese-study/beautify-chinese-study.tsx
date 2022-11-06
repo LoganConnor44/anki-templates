@@ -80,7 +80,7 @@ export class MaterialBeautifyChineseStudy {
 	 * Recognized phonic orientations: `over` | `next-to`
 	 */
 	@Prop()
-	public phonicOrientation: string = 'over';
+	public phonicOrientation: string = 'next-to';
 
 	@State()
 	public phonic: Array<string> = [];

@@ -11,6 +11,10 @@ ruby {
   font-weight: bold;
 }
 
+#primary-item-phonic {
+  min-width: 11px;
+}
+
 #secondary-item {
   font-size: 4vw;
 }
@@ -69,6 +73,8 @@ ruby {
   font-size: 2vw;
   vertical-align: middle;
 }
+
+
 
 @keyframes fadeIn {
   0% { opacity: 0; }
