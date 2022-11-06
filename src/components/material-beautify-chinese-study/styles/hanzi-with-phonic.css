@@ -1,3 +1,7 @@
+/* table {
+  font-family: "Noto Sans SC", sans-serif;
+} */
+
 ruby {
   vertical-align: bottom;
 }
@@ -33,12 +37,6 @@ ruby {
   color: inherit;
 }
 
-#hanzi {
-  line-height: 1em;
-  font-size: 5vw;
-  vertical-align: middle;
-}
-
 #phonic {
   line-height: 2vw;
   font-size: 0.8em;
@@ -69,7 +67,7 @@ ruby {
 }
 
 .vertical-phonic {
-  line-height: .80em;
+  line-height: 1em;
   font-size: 2vw;
   vertical-align: middle;
 }

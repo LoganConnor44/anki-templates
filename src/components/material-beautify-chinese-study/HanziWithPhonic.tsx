@@ -95,10 +95,10 @@ export class HanziWithPhonic {
                                 { 
                                     hanziAndPhonics.map((x: HanziAndPhonic) => {
                                         return  <Fragment>
-                                                    <td id='hanzi' class={displayCharacter ? 'fade-in' : '' } >
+                                                    <td id='primary-item' class={displayCharacter ? 'fade-in' : '' } >
                                                         { x.character }
                                                     </td>
-                                                    <td id={ this.idForStyles + '-phonic' } class={(displayPhonic ? 'fade-in' : '') + ' vertical-phonic' }>
+                                                    <td id={ this.idForStyles + '-phonic' } class={(displayPhonic ? 'fade-in' : 'no-show') + ' vertical-phonic' }>
                                                         {
                                                             displayPhonic ? 
                                                                 x.phonic.split('').map((y: string, index: number) => {
