@@ -220,7 +220,7 @@ While this project handles most of the styling for the user, there is styling th
 
 # Prerequisites
 
-At the time of this writing, there are eight different template types that may be used. The following will be a list of fields that are mandatory to successfully generate the card template; in addition to the mandatory types, please feel free to add any other optional data as they will be available on each card - all available attribute values found [here](./src/components/material-beautify-chinese-study/readme.md):
+At the time of this writing, there are eight different template types that may be used. The following will be a list of fields that are mandatory to successfully generate the card template; in addition to the mandatory types, please feel free to add any other optional data as they will be available on each card - all available attribute values found [here](./output/components/material-beautify-chinese-study/readme.md):
 
 * Primary Recognition
 	* Primary Character
