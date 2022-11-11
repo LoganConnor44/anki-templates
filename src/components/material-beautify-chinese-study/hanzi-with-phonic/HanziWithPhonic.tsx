@@ -98,7 +98,9 @@ export class HanziWithPhonic {
 		this.setIsPhonicPinyin();
 
 		const hanzisWithoutPunctuation: Array<string> = this.getHanziWithoutPunctuation();
-		const buildVerticalPhonicStructure: boolean = this.phonicOrientation === 'next-to' && !this.getIsPhonicPinyin() && this.phonic.split(',').length === hanzisWithoutPunctuation.length;
+		const buildVerticalPhonicStructure: boolean = this.phonicOrientation === 'next-to' && 
+			!this.getIsPhonicPinyin() && 
+			this.phonic.split(',').length === hanzisWithoutPunctuation.length;
 
 		class HanziAndPhonic {
 			character: string;
@@ -124,28 +126,30 @@ export class HanziWithPhonic {
 								{
 									hanziAndPhonics.map((x: HanziAndPhonic) => {
 										return <Fragment>
-											<td id='primary-item'>
-												{x.character}
-											</td>
-											<td id={this.idForStyles + '-phonic'} class='no-show-vertical vertical-phonic'>
-												{
-													x.phonic.split('').map((y: string, index: number) => {
-														let displayY = y;
-														if (x.phonic.length - 2 === index && (x.phonic.slice(-1) === 'ˊ' || x.phonic.slice(-1) === 'ˇ' || x.phonic.slice(-1) === 'ˋ')) {
-															displayY = y + x.phonic.slice(-1);
-														} else if (y === 'ˊ' || y === 'ˇ' || y === 'ˋ') {
-															return '';
-														}
-														return <Fragment>
-															<span>{displayY}</span>
-															<br />
-														</Fragment>
+												<td id='primary-item'>
+													{x.character}
+												</td>
+												<td id={this.idForStyles + '-phonic'} class='no-show-vertical vertical-phonic'>
+													{
+														x.phonic.split('').map((y: string, index: number) => {
+															let displayY = y;
+															if (x.phonic.length - 2 === index && 
+																(x.phonic.slice(-1) === 'ˊ' || x.phonic.slice(-1) === 'ˇ' || x.phonic.slice(-1) === 'ˋ')
+															) {
+																displayY = y + x.phonic.slice(-1);
+															} else if (y === 'ˊ' || y === 'ˇ' || y === 'ˋ') {
+																return '';
+															}
+															return <Fragment>
+																	<span>{displayY}</span>
+																	<br />
+																</Fragment>
 															;
-													})
-												}
-											</td>
-										</Fragment>
-											;
+														})
+													}
+												</td>
+											</Fragment>
+										;
 									})
 								}
 							</tr>
@@ -169,21 +173,21 @@ export class HanziWithPhonic {
 						{
 							hanziAndPhonics.map((x: HanziAndPhonic) => {
 								return <Fragment>
-									<div id='hanzi-with-ruby'>
-										{x.character}
-									</div>
-									<rp>(</rp>
-									<rt id={this.idForStyles + '-phonic'} class='no-show-horizontal horizontal-phonic'>
-										{x.phonic}
-									</rt>
-									<rp>)</rp>
-								</Fragment>
-									;
+										<div id='hanzi-with-ruby'>
+											{x.character}
+										</div>
+										<rp>(</rp>
+										<rt id={this.idForStyles + '-phonic'} class='no-show-horizontal horizontal-phonic'>
+											{x.phonic}
+										</rt>
+										<rp>)</rp>
+									</Fragment>
+								;
 							})
 						}
 					</ruby>
 				</a>
-				;
+			;
 
 		}
 		return this.getContent();
