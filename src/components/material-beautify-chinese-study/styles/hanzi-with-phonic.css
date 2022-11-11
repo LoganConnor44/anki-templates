@@ -1,9 +1,13 @@
-/* table {
+table {
   font-family: "Noto Sans SC", sans-serif;
-} */
+}
 
 ruby {
   vertical-align: bottom;
+}
+
+td {
+  overflow: hidden;
 }
 
 #phonic-only-phonic {
@@ -16,7 +20,7 @@ ruby {
 }
 
 #primary-item-phonic {
-  min-width: 11px;
+  /* min-width: 11px; */
 }
 
 #secondary-item {
@@ -53,23 +57,40 @@ ruby {
   vertical-align: middle;
 }
 
-.no-show {
-  display: none;
-}
-
 .table-center {
   margin-left: auto;
   margin-right: auto;
 }
 
-.fade-in {
-  animation: fadeIn 1s;
+.no-show-vertical {
+  max-width: 0;
+}
+
+.fade-in-vertical {
+  max-width: 2em;
+  animation: fadeIn .5s ease-in-out;
 }
 
 .vertical-phonic {
   line-height: 1em;
   font-size: 2vw;
   vertical-align: middle;
+  transition: max-width .25s ease-in-out;
+}
+
+.no-show-horizontal {
+  opacity: 0;
+  max-width: 0;
+}
+
+.fade-in-horizontal {
+  opacity: 1;
+  max-width: 3em;
+  animation: fadeIn .5s ease-in-out;
+}
+
+.horizontal-phonic {
+  transition: max-width .4s ease-in-out;
 }
 
 @keyframes fadeIn {

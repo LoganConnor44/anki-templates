@@ -1,5 +1,7 @@
 :host {
-  flex: 100 0 0;
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
   text-align: center;
 }
 

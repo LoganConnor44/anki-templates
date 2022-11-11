@@ -60,68 +60,40 @@ export class CardContent {
     }
 
     protected setSecondarySentence() {
-        if (this.orientation === "question") {
-            this._content =
-                <Host>
-                    <material-beautify-hanzi-with-phonic hanzi={ this.secondarySentence } 
-                        phonic={ this.sentencePhonic }
-                        idForStyles='primary-item'
-                        orientation={ this.orientation }
-                        phonic-orientation={ this.phonicOrientation } />
-                </Host>
-            ;
-        } else {
-            this._content =
-                <Host>
-                    <material-beautify-hanzi-with-phonic hanzi={ this.sentence } 
-                        phonic={ this.sentencePhonic }
-                        idForStyles='primary-item'
-                        orientation={ this.orientation }
-                        phonic-orientation={ this.phonicOrientation } />
-                    <material-beautify-meaning meaning={ this.sentenceMeaning }
-                        idForStyles='sentence' />
-                </Host>
-            ;
-        }
+        this._content =
+            <Host>
+                <material-beautify-hanzi-with-phonic hanzi={ this.sentence } 
+                    phonic={ this.sentencePhonic }
+                    idForStyles='primary-item'
+                    orientation={ this.orientation }
+                    phonic-orientation={ this.phonicOrientation } />
+                <material-beautify-meaning meaning={ this.sentenceMeaning }
+                    orientation={ this.orientation }
+                    idForStyles='sentence' />
+            </Host>
+        ;
     }
 
     protected setSecondaryRecognition() {
-        if (this.orientation === "question") {
-            this._content =
-                <Host>
-                    <material-beautify-hanzi-with-phonic hanzi={ this.secondaryVocab } 
-                        phonic={ this.phonic }
-                        idForStyles='primary-item'
-                        orientation={ this.orientation }
-                        phonic-orientation={ this.phonicOrientation } />
-                    <br />
-                    <br />
-                    <material-beautify-hanzi-with-phonic hanzi={ this.secondarySentence } 
-                        phonic={ this.sentencePhonic }
-                        idForStyles='secondary-item'
-                        orientation={ this.orientation } />
-                </Host>
-            ;
-        } else {
-            this._content =
-                <Host>
-                    <material-beautify-hanzi-with-phonic hanzi={ this.vocab } 
-                        phonic={ this.phonic }
-                        idForStyles='primary-item'
-                        orientation={ this.orientation }
-                        phonic-orientation={ this.phonicOrientation } />
-                    <br />
-                    <br />
-                    <material-beautify-hanzi-with-phonic hanzi={ this.secondarySentence } 
-                        phonic={ this.sentencePhonic }
-                        idForStyles='secondary-item'
-                        orientation={ this.orientation }
-                        phonic-orientation={ this.phonicOrientation } />
-                    <material-beautify-meaning meaning={ this.meaning }
-                        idForStyles='vocabulary' />
-                </Host>
-            ;
-        }
+        this._content =
+            <Host>
+                <material-beautify-hanzi-with-phonic hanzi={ this.vocab } 
+                    phonic={ this.phonic }
+                    idForStyles='primary-item'
+                    orientation={ this.orientation }
+                    phonic-orientation={ this.phonicOrientation } />
+                <br />
+                <br />
+                <material-beautify-hanzi-with-phonic hanzi={ this.secondarySentence } 
+                    phonic={ this.sentencePhonic }
+                    idForStyles='secondary-item'
+                    orientation={ this.orientation }
+                    phonic-orientation={ this.phonicOrientation } />
+                <material-beautify-meaning meaning={ this.meaning }
+                    orientation={ this.orientation }
+                    idForStyles='vocabulary' />
+            </Host>
+        ;
     }
 
     protected setAudio() {
@@ -161,106 +133,62 @@ export class CardContent {
     }
 
     protected setSentence() {
-        if (this.orientation === "question") {
-            this._content =
-                <Host>
-                    <material-beautify-hanzi-with-phonic hanzi={ this.sentence } 
-                        phonic={ this.sentencePhonic }
-                        idForStyles='primary-item'
-                        orientation={ this.orientation }
-                        phonic-orientation={ this.phonicOrientation } />
-                </Host>
-            ;
-        } else {
-            this._content =
-                <Host>
-                    <material-beautify-hanzi-with-phonic hanzi={ this.sentence } 
-                        phonic={ this.sentencePhonic }
-                        idForStyles='primary-item'
-                        orientation={ this.orientation }
-                        phonic-orientation={ this.phonicOrientation } />
-                    <material-beautify-meaning meaning={ this.sentenceMeaning }
-                        idForStyles='sentence' />
-                </Host>
-            ;
-        }
+        this._content =
+            <Host>
+                <material-beautify-hanzi-with-phonic hanzi={ this.sentence } 
+                    phonic={ this.sentencePhonic }
+                    idForStyles='primary-item'
+                    orientation={ this.orientation }
+                    phonic-orientation={ this.phonicOrientation } />
+                <material-beautify-meaning meaning={ this.sentenceMeaning }
+                    orientation={ this.orientation }
+                    idForStyles='sentence' />
+            </Host>
+        ;
     }
 
     protected setTones() {
-        if (this.orientation === "question") {
-            this._content = 
-                <Host>
-                    <material-beautify-hanzi-with-phonic hanzi={ this.vocab } 
-                        phonic={ this.phonic }
-                        idForStyles='primary-item'
-                        orientation={ this.orientation }
-                        phonic-orientation={ this.phonicOrientation } />
-                    <br />
-                    <br />
-                    <material-beautify-hanzi-with-phonic hanzi={ this.sentence } 
-                        phonic={ this.sentencePhonic }
-                        idForStyles='sentence'
-                        orientation={ this.orientation }
-                        phonic-orientation={ this.phonicOrientation } />
-                </Host>;
-        } else {
-            this._content = 
-                <Host>
-                    <material-beautify-hanzi-with-phonic hanzi={ this.vocab } 
-                        phonic={ this.phonic }
-                        idForStyles='primary-item'
-                        orientation={ this.orientation }
-                        phonic-orientation={ this.phonicOrientation } />
-                    <br />
-                    <br />
-                    <material-beautify-hanzi-with-phonic hanzi={ this.sentence } 
-                        phonic={ this.sentencePhonic }
-                        idForStyles='secondary-item'
-                        orientation={ this.orientation }
-                        phonic-orientation={ this.phonicOrientation } />
-                    <material-beautify-meaning meaning={ this.sentenceMeaning }
-                        idForStyles='sentence' />
-                </Host>;
-        }
+        this._content = 
+            <Host>
+                <material-beautify-hanzi-with-phonic hanzi={ this.vocab } 
+                    phonic={ this.phonic }
+                    idForStyles='primary-item'
+                    orientation={ this.orientation }
+                    phonic-orientation={ this.phonicOrientation } />
+                <br />
+                <br />
+                <material-beautify-hanzi-with-phonic hanzi={ this.sentence } 
+                    phonic={ this.sentencePhonic }
+                    idForStyles='secondary-item'
+                    orientation={ this.orientation }
+                    phonic-orientation={ this.phonicOrientation } />
+                <material-beautify-meaning meaning={ this.sentenceMeaning }
+                    orientation={ this.orientation }
+                    idForStyles='sentence' />
+            </Host>
+        ;
     }
 
     protected setRecognition() {
-        if (this.orientation === "question") {
-            this._content =
-                <Host>
-                    <material-beautify-hanzi-with-phonic hanzi={ this.vocab } 
-                        phonic={ this.phonic }
-                        idForStyles='primary-item'
-                        orientation={ this.orientation }
-                        phonic-orientation={ this.phonicOrientation } />
-                    <br />
-                    <material-beautify-hanzi-with-phonic hanzi={ this.sentence } 
-                        phonic={ this.sentencePhonic }
-                        idForStyles='secondary-item'
-                        orientation={ this.orientation }
-                        phonic-orientation={ this.phonicOrientation } />
-                </Host>
-            ;
-        } else {
-            this._content =
-                <Host>
-                    <material-beautify-hanzi-with-phonic hanzi={ this.vocab } 
-                        phonic={ this.phonic }
-                        idForStyles='primary-item'
-                        orientation={ this.orientation }
-                        phonic-orientation={ this.phonicOrientation } />
-                    <br />
-                    <br />
-                    <material-beautify-hanzi-with-phonic hanzi={ this.sentence } 
-                        phonic={ this.sentencePhonic }
-                        idForStyles='secondary-item'
-                        orientation={ this.orientation }
-                        phonic-orientation={ this.phonicOrientation } />
-                    <material-beautify-meaning meaning={ this.meaning }
-                        idForStyles='vocabulary' />
-                </Host>
-            ;
-        }
+        this._content =
+            <Host>
+                <material-beautify-hanzi-with-phonic hanzi={ this.vocab } 
+                    phonic={ this.phonic }
+                    idForStyles='primary-item'
+                    orientation={ this.orientation }
+                    phonic-orientation={ this.phonicOrientation } />
+                {/* <br />
+                <br /> */}
+                <material-beautify-hanzi-with-phonic hanzi={ this.sentence } 
+                    phonic={ this.sentencePhonic }
+                    idForStyles='secondary-item'
+                    orientation={ this.orientation }
+                    phonic-orientation={ this.phonicOrientation } />
+                <material-beautify-meaning meaning={ this.meaning }
+                    orientation={ this.orientation }
+                    idForStyles='vocabulary' />
+            </Host>
+        ;
     }
 
     protected getPhonic() {

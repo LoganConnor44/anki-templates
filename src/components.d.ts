@@ -101,6 +101,7 @@ export namespace Components {
     interface MaterialBeautifyMeaning {
         "idForStyles": string;
         "meaning": string;
+        "orientation": string;
     }
     interface MaterialBeautifyType {
         "cardType": string;
@@ -259,6 +260,7 @@ declare namespace LocalJSX {
     interface MaterialBeautifyMeaning {
         "idForStyles"?: string;
         "meaning"?: string;
+        "orientation"?: string;
     }
     interface MaterialBeautifyType {
         "cardType"?: string;
