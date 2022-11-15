@@ -70,7 +70,7 @@ td {
 
 .vertical-phonic {
   line-height: 1em;
-  font-size: 2vw;
+  font-size: 1.5vw;
   vertical-align: middle;
   transition: max-width .25s ease-in-out;
 }
