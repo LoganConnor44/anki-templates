@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { DisplayType } from "./enums/DisplayType";
 export namespace Components {
     interface MaterialBeautifyCard {
         "meaning": string;
@@ -92,6 +93,7 @@ export namespace Components {
         "vocab": string;
     }
     interface MaterialBeautifyHanziWithPhonic {
+        "displayType": DisplayType;
         "hanzi": string;
         "idForStyles": string;
         "orientation": string;
@@ -251,6 +253,7 @@ declare namespace LocalJSX {
         "vocab"?: string;
     }
     interface MaterialBeautifyHanziWithPhonic {
+        "displayType"?: DisplayType;
         "hanzi"?: string;
         "idForStyles"?: string;
         "orientation"?: string;

@@ -1,6 +1,7 @@
 import { h, Component, Prop, Host, Element } from "@stencil/core";
 import { JSXBase } from "@stencil/core/internal";
 import HanziWriter from 'hanzi-writer';
+import { DisplayType } from "../../../enums/DisplayType";
 
 @Component({
 	tag: 'material-beautify-content',
@@ -64,9 +65,10 @@ export class CardContent {
             <Host>
                 <material-beautify-hanzi-with-phonic hanzi={ this.sentence } 
                     phonic={ this.sentencePhonic }
-                    idForStyles='primary-item'
                     orientation={ this.orientation }
-                    phonic-orientation={ this.phonicOrientation } />
+                    phonic-orientation={ this.phonicOrientation }
+                    display-type={ DisplayType.PRIMARY }
+                    idForStyles='primary-item' />
                 <material-beautify-meaning meaning={ this.sentenceMeaning }
                     orientation={ this.orientation }
                     idForStyles='sentence' />
@@ -174,16 +176,16 @@ export class CardContent {
             <Host>
                 <material-beautify-hanzi-with-phonic hanzi={ this.vocab } 
                     phonic={ this.phonic }
-                    idForStyles='primary-item'
                     orientation={ this.orientation }
-                    phonic-orientation={ this.phonicOrientation } />
-                {/* <br />
-                <br /> */}
+                    phonic-orientation={ this.phonicOrientation }
+                    display-type={ DisplayType.PRIMARY }
+                    idForStyles='primary-item' />
                 <material-beautify-hanzi-with-phonic hanzi={ this.sentence } 
                     phonic={ this.sentencePhonic }
-                    idForStyles='secondary-item'
                     orientation={ this.orientation }
-                    phonic-orientation={ this.phonicOrientation } />
+                    phonic-orientation={ this.phonicOrientation }
+                    display-type={ DisplayType.SECONDARY }
+                    idForStyles='secondary-item' />
                 <material-beautify-meaning meaning={ this.meaning }
                     orientation={ this.orientation }
                     idForStyles='vocabulary' />

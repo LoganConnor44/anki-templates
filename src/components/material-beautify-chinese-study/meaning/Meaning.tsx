@@ -24,6 +24,7 @@ export class Meaning {
      * This method is used it is just not called directly like the IDE may think it should be
      */
      @Watch('orientation')
+     // @ts-ignore
      private showItems() : void {
          const primaryItem = this.element.shadowRoot.querySelector('.meaning');
          primaryItem.className = primaryItem.className.replace('no-show', 'fade-in');

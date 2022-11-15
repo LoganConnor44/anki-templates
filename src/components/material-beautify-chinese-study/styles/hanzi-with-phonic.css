@@ -19,12 +19,9 @@ td {
   font-weight: bold;
 }
 
-#primary-item-phonic {
-  /* min-width: 11px; */
-}
-
 #secondary-item {
   font-size: 4vw;
+  font-weight: normal;
 }
 
 #vocabulary-phonic {

@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@fontsource/noto-sans-sc": "^4.5.12",
-    "@stencil/core": "^2.19.0",
+    "@stencil/core": "^2.19.3",
     "hanzi-writer": "^2.3.0",
     "opencc-js": "^1.0.3",
     "pinyin": "^2.10.2"
@@ -50,5 +50,8 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^29.2.2"
+  }
 }
