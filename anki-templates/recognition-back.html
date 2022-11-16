@@ -1,3 +1,7 @@
+<script>
+    var versionNumber = '1.20.11';
+</script>
+
 <style>
     /*desktop anki*/
     body {
@@ -17,13 +21,13 @@
         var script = document.createElement('script');
         script.setAttribute('id', 'import-script');
         script.setAttribute('type', 'module');
-        script.setAttribute('src', 'https://cdn.jsdelivr.net/npm/beautify-chinese-study@1.1.48/dist/beautify-chinese-study/beautify-chinese-study.esm.js');
+        script.setAttribute('src', `https://cdn.jsdelivr.net/npm/beautify-chinese-study@${versionNumber}/dist/beautify-chinese-study/beautify-chinese-study.esm.js`);
         document.body.appendChild(script);
     } else {
         console.log('Custom Element exists.');
     }
 
-    var beautify = document.querySelector('#beautify-recognition');
+    var beautify = document.querySelector('material-beautify-chinese-study');
     if (!beautify) {
         var beautify = document.createElement('material-beautify-chinese-study');
         beautify.setAttribute('id', 'beautify-recognition');
@@ -31,15 +35,16 @@
         beautify.setAttribute('primary-character-sentence', '{{text:SentenceSimplified}}');
         beautify.setAttribute('meaning', "{{text:Meaning}}");
         beautify.setAttribute('card-type', 'recognition');
-        beautify.setAttribute('card-orientation', 'answer');
+        beautify.setAttribute('card-orientation', 'question');
         beautify.setAttribute('preferred-phonic', 'zhuyin');
         beautify.setAttribute('force-auto-generation', 'force-auto-generation');
         document.body.appendChild(beautify);
+        setTimeout(() => {
+            document.querySelector('material-beautify-chinese-study').setAttribute('card-orientation', 'answer');
+        }, 200);
     } else {
         beautify.setAttribute('card-orientation', 'answer');
     }
-
-    document.body.appendChild(beautify);
 
 </script>
 
