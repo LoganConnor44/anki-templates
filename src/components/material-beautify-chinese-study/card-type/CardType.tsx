@@ -29,6 +29,9 @@ export class CardType {
     }
     protected setType() {
         let secondaryText: string;
+		if (this.cardType === undefined) {
+			return;
+		}
 		let type: string = this.cardType
 			.toUpperCase()
 			.trim();
