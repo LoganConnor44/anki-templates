@@ -6,14 +6,8 @@ class Phonetic {
 	constructor() {
 	}
 
-	private isPinyin(value: string): boolean {
-		return this.toBoolean(value.search(/^[a-zA-Z0-9\s]*$/));
-	}
 	private parseTone(value: string): number {
 		return value === ' ' || value === '' ? 5 : parseInt(value);
-	}
-	private toBoolean(value: number): boolean {
-		return value >= 0 ? true : false;
 	}
 
 	private replaceVowelWithAccentedVowel(value: string, accentedVowel: AccentedVowel): string {
@@ -132,22 +126,40 @@ class Phonetic {
 		return phonics;
 	}
 
-	private hanziToPhoneticCharacters(phoneticType: PhoneticType, value: string): Array<string> {
-		if (value === undefined || value === null || value === '') {
+	private toPhoneticCharacters(phoneticType: PhoneticType, value: Array<string>): Array<string> {
+		if (value === undefined || value === null || value.length === 0) {
 			return [];
 		}
 		
 		let result: Array<string> = [];
-		value = value.trim().toLowerCase();
-		value = value.replace(/[',。，《》.!?]/g, '');
-		if (this.isPinyin(value)) {
-			result = this.convertNumberedPinyinTo(phoneticType, value);
+		const isNotLetterOrDigit: RegExp = new RegExp(/[^a-zA-Z0-9]/g);
+		const regEx: RegExp = new RegExp(isNotLetterOrDigit.source);
+		const indexOfSpecialCharacter: Array<number> = value.reduce((acc: Array<number>, x: string, idx: number) => {
+			if (regEx.test(x)) {
+				acc.push(idx);
+			}
+			return acc;
+		}, []);
+		if (indexOfSpecialCharacter.length === 0) {
+			result = this.convertNumberedPinyinTo(phoneticType, value.join(''));
+		} else {
+			let pointer = 0;
+			while (pointer < value.length) {
+				const end = indexOfSpecialCharacter[0] !== undefined ?
+					indexOfSpecialCharacter[0] + 1 :
+					value.length;
+				const chunk = this.convertNumberedPinyinTo(phoneticType, value.slice(pointer, end).join(''));
+				chunk.map(x => result.push(x));
+				result.splice(indexOfSpecialCharacter[0], 0, '');
+				indexOfSpecialCharacter.shift();
+				pointer = end;
+			}
 		}
 		return result;
 	}
 
-	public create(phonicType: PhoneticType, phonicValue: string) {
-		return this.hanziToPhoneticCharacters(phonicType, phonicValue);
+	public create(phonicType: PhoneticType, phonicValue: Array<string>) {
+		return this.toPhoneticCharacters(phonicType, phonicValue);
 	}
 }
 
