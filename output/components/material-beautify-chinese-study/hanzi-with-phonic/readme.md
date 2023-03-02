@@ -7,13 +7,14 @@
 
 ## Properties
 
-| Property            | Attribute            | Description | Type     | Default     |
-| ------------------- | -------------------- | ----------- | -------- | ----------- |
-| `hanzi`             | `hanzi`              |             | `string` | `undefined` |
-| `idForStyles`       | `id-for-styles`      |             | `string` | `undefined` |
-| `orientation`       | `orientation`        |             | `string` | `undefined` |
-| `phonic`            | `phonic`             |             | `string` | `undefined` |
-| `phonicOrientation` | `phonic-orientation` |             | `string` | `undefined` |
+| Property            | Attribute            | Description | Type                                           | Default     |
+| ------------------- | -------------------- | ----------- | ---------------------------------------------- | ----------- |
+| `displayType`       | `display-type`       |             | `DisplayType.PRIMARY \| DisplayType.SECONDARY` | `undefined` |
+| `hanzi`             | `hanzi`              |             | `string`                                       | `undefined` |
+| `idForStyles`       | `id-for-styles`      |             | `string`                                       | `undefined` |
+| `orientation`       | `orientation`        |             | `string`                                       | `undefined` |
+| `phonic`            | `phonic`             |             | `string`                                       | `undefined` |
+| `phonicOrientation` | `phonic-orientation` |             | `string`                                       | `undefined` |
 
 
 ## Dependencies

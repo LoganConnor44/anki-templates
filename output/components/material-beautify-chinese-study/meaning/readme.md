@@ -11,6 +11,7 @@
 | ------------- | --------------- | ----------- | -------- | ----------- |
 | `idForStyles` | `id-for-styles` |             | `string` | `undefined` |
 | `meaning`     | `meaning`       |             | `string` | `undefined` |
+| `orientation` | `orientation`   |             | `string` | `undefined` |
 
 
 ## Dependencies
