@@ -154,24 +154,27 @@ export class MaterialBeautifyChineseStudy {
 		return "";
 	}
 
-	private getNumberedPinyin(): string {
+	private getNumberedPinyin(): Array<string> {
 		return PinyinGenerator.default(
 			this.getPrimaryCharacter(),
 			{ style: PinyinGenerator.STYLE_TONE2 }
-		).join("");
+		);
 	}
 
-	private getSentenceNumberedPinyin(): string {
+	private getSentenceNumberedPinyin(): Array<string> {
 		if (!this.isEmptyStringBlankStringNullOrUndefined(this.sentenceNumberedPinyin)) {
-			return this.sentenceNumberedPinyin.trim();
+			return [];
 		}
-		const isDigit: RegExp = new RegExp(/\d/);
-		const regEx: RegExp = new RegExp(isDigit.source);
-		let temp = PinyinGenerator.default(
+		const isLetter: RegExp = new RegExp(/[A-Za-z]/g);
+		const regExIsLetter: RegExp = new RegExp(isLetter.source);
+		return PinyinGenerator.default(
 			this.getPrimaryCharacterSentence(),
 			{ style: PinyinGenerator.STYLE_TONE2 }
-		).map((x: Array<string>) => !regEx.test(x[0].slice(-1)) ? new Array<string>(x[0] += '5') : x);
-		return temp.join("");
+		).map((x: Array<string>) => {
+			return regExIsLetter.test(x[0].slice(-1)) ?
+				new Array<string>(x[0] += '5') :
+				x
+		});
 	}
 
 	private getPreferredPhonic(): string {
@@ -181,15 +184,15 @@ export class MaterialBeautifyChineseStudy {
 		return "";
 	}
 
-	private getPinyin(value: string): Array<string> {
+	private getPinyin(value: Array<string>): Array<string> {
 		return this.phonetic.create(PhoneticType.PINYIN, value);
 	}
 
-	private getZhuyin(value: string): Array<string> {
+	private getZhuyin(value: Array<string>): Array<string> {
 		return this.phonetic.create(PhoneticType.ZHUYIN, value);
 	}
 
-	private getPhonic(value: string): Array<string> {
+	private getPhonic(value: Array<string>): Array<string> {
 		if (this.getPreferredPhonic() === 'pinyin') {
 			return this.getPinyin(value);
 		}
