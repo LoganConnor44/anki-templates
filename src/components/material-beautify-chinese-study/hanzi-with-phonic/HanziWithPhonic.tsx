@@ -65,6 +65,9 @@ export class HanziWithPhonic {
 	}
 
 	protected getHanziWithoutPunctuation(): Array<string> {
+		if (this.hanzi === undefined) {
+			return [];
+		}
 		return this.hanzi
 			.split('')
 			.filter(char => /\p{Script=Han}/u.test(char));
@@ -140,7 +143,9 @@ export class HanziWithPhonic {
 	}
 
 	private getHanziWithHorizontalPhonic(hanzisWithoutPunctuation: Array<string>): JSXBase.HTMLAttributes<HTMLDivElement> {
-		const phonics: Array<string> = this.phonic.split(',');
+		const phonics: Array<string> = this.phonic === undefined ?
+			[] :
+			this.phonic.split(',');
 		let hanziAndPhonics: HanziAndPhonic[] = [];
 		for (let index = 0; index < hanzisWithoutPunctuation.length; index++) {
 			let hanziAndPhonic: HanziAndPhonic = new HanziAndPhonic();
@@ -197,14 +202,14 @@ export class HanziWithPhonic {
 		this.setDictionaryLink();
 		this.setIsPhonicPinyin();
 
-		const hanzisWithoutPunctuation: Array<string> = this.getHanziWithoutPunctuation();
+		const hanzis: Array<string> = this.hanzi !== undefined ? this.hanzi.split('') : [];
 		const buildVerticalPhonicStructure: boolean = this.phonicOrientation === 'next-to' && 
 			!this.getIsPhonicPinyin() && 
-			this.phonic.split(',').length === hanzisWithoutPunctuation.length;
+			this.phonic.split(',').length === this.hanzi.length;
 
 		buildVerticalPhonicStructure ?
-			this.setContent(this.getHanziWithVerticalPhonic(hanzisWithoutPunctuation)) :
-			this.setContent(this.getHanziWithHorizontalPhonic(hanzisWithoutPunctuation));
+			this.setContent(this.getHanziWithVerticalPhonic(hanzis)) :
+			this.setContent(this.getHanziWithHorizontalPhonic(hanzis));
 
 		return this.getContent();
 	}
