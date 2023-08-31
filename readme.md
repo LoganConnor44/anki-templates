@@ -31,7 +31,7 @@ Aside from making your flashcards look beautiful, this project has a few note-wo
 
 1. Simplified Or Traditional Character Support
 
-    - This project has a concept which enables the user to defined which character type they would like to make their 'primary' character set. A user may also define an optional 'secondary' character set.
+    - This project has a concept which enables the user to define which character type they would like to make their 'primary' character set. A user may also define an optional 'secondary' character set.
         - This enables a user to become familiar with both character types as it may be helpful to be able to understand all forms and permutations that written language may take.
 
 1. Pinyin Or Zhuyin Phonic Support
@@ -243,7 +243,7 @@ Feel free to browse over my [personal cards](https://github.com/LoganConnor44/an
 
 # How Is This Possible?
 
-Anki utilizes web technologies to generate its flashcards. This codebase is using a technology called Web Components that will allow users to add ~~three html tags~~(due to different behaviours between Anki Clients we have to add some logic as a workaround for Anki's inconsistent behaviour) [the above logic](#code-snippets) to their Anki card templates, and the rest is handled automatically by the web component.
+Anki utilizes web technologies to generate its flashcards. This codebase is using a technology called [Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components) that will allow users to add ~~three html tags~~(due to different behaviours between Anki Clients we have to add some logic as a workaround for Anki's inconsistent behaviour) [the above logic](#code-snippets) to their Anki card templates, and the rest is handled automatically by the web component.
 
 ## Styling
 
