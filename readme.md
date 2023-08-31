@@ -17,11 +17,11 @@ This is a project for making Chinese study, through Anki, more enjoyable by auto
 
 # tl;dr
 
-Whether your study involves simplified or traditional characters, this project can make Chinese flashcards look nice by copying/pasting [a few lines of logic](#Code%20Snippets) in your Anki template. It can also auto-magically generate some data, given you check out [what is available](./output/components/material-beautify-chinese-study/readme.md).
+Whether your study involves simplified or traditional characters, this project can make Chinese flashcards look nice by copying/pasting [a few lines of logic](#code-snippets) in your Anki template. It can also auto-magically generate some data, given you check out [what is available](./output/components/material-beautify-chinese-study/readme.md).
 
 Try it out now by navigating to the [jsFiddle page](#JSFiddle), or follow the instructions below to set this up within your own installation of Anki.
 
-1. Copy and paste the below [code snippets](#Code%20Snippets) into their respective card templates
+1. Copy and paste the below [code snippets](#code-snippets) into their respective card templates
 2. Exchange the default value of `YOUR_FIELD_NAME` with the names defined in your deck (see {{text:YOUR_FIELD_NAME}})
 3. Decide which card type you want to create and update that attribute value as well.
 
@@ -243,7 +243,7 @@ Feel free to browse over my [personal cards](https://github.com/LoganConnor44/an
 
 # How Is This Possible?
 
-Anki utilizes web technologies to generate its flashcards. This codebase is using a technology called Web Components that will allow users to add ~~three html tags~~(due to different behaviours between Anki Clients we have to add some logic as a workaround for Anki's inconsistent behaviour) [the above logic](#Code%20Snippets) to their Anki card templates, and the rest is handled automatically by the web component.
+Anki utilizes web technologies to generate its flashcards. This codebase is using a technology called Web Components that will allow users to add ~~three html tags~~(due to different behaviours between Anki Clients we have to add some logic as a workaround for Anki's inconsistent behaviour) [the above logic](#code-snippets) to their Anki card templates, and the rest is handled automatically by the web component.
 
 ## Styling
 
