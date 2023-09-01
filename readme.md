@@ -2,9 +2,7 @@
 
 This is a project for making Chinese study, through Anki, more enjoyable by automatically styling the flashcards and providing convenience features. This project enables one to focus more on studying rather than perfecting their form of studying.
 
-<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
-<iframe src="https://jsfiddle.net/loganconnor44/Lnu9jm0f/40/" width="100" height="100">
-</svg>
+![](./test.svg)
 
 # Available Card Types And Styling
 
