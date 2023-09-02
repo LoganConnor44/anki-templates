@@ -8,7 +8,7 @@ This is a project for making Chinese study, through Anki, more enjoyable by auto
 | :-----------------------------------------------------------------: | :-----------------------------------------------------------: |
 | <img src="./images/recognition.gif" alt="Recognition" width="400"/> | <img src="./images/sentence.gif" alt="Sentence" width="400"/> |
 
-|                          Tones                          |                       Secondary Recognition (Under Construction)                        |
+|                          Tones                          |                                  Secondary Recognition                                  |
 | :-----------------------------------------------------: | :-------------------------------------------------------------------------------------: |
 | <img src="./images/tones.gif" alt="Tones" width="400"/> | <img src="./images/secondary-recognition.gif" alt="Secondary Recognition" width="400"/> |
 
