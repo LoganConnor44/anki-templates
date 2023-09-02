@@ -254,61 +254,27 @@ While this project handles most of the styling for the user, there is styling th
 
 At the time of this writing, there are seven different template types that may be used. The following will be a list of fields that are mandatory to successfully generate the card template; in addition to the mandatory types, please feel free to add any other optional data as they will be available on each card - all available attribute values found [here](./output/components/material-beautify-chinese-study/readme.md):
 
--   Primary Recognition
+-   Recognition
     -   Primary Character
     -   Meaning Of Character
-
-```html
-<material-beautify-chinese-study primary-character="天" meaning="sky" />
-```
-
--   Primary Tones
+-   Tones
     -   Primary Character
     -   Meaning Of Character
-
-```html
-<material-beautify-chinese-study primary-character="天气" meaning="weather" card-type="tones" />
-```
-
--   Primary Writing
+-   Writing
     -   Primary Character
-
-```html
-<material-beautify-chinese-study primary-character="天气" card-type="writing" />
-```
-
--   Primary Sentence
+-   Sentence
     -   Primary Sentence Characters
     -   Meaning Of Sentence
-
-```html
-<material-beautify-chinese-study primary-character-sentence="今天天气很好。" sentence-meaning="The weather is good today." card-type="sentence" />
-```
-
--   Primary Audio
+-   Audio
     -   Primary Sentence Characters
     -   Meaning Of Sentence
     -   Audio Of The Provided Sentence
-
-```html
-<material-beautify-chinese-study primary-character-sentence="今天天气很好。" card-type="audio" />
-```
-
 -   Secondary Character Recognition
     -   Primary Character
     -   Meaning Of Character
-
-```html
-<material-beautify-chinese-study primary-character="天气" meaning="weather" card-type="secondary-recognition" />
-```
-
 -   Secondary Character Sentence
     -   Primary Sentence Characters
     -   Meaning Of Sentence
-
-```html
-<material-beautify-chinese-study primary-character-sentence="今天天气很好。" sentence-meaning="The weather is good today." card-type="secondary-sentence" />
-```
 
 In addition to the above information needed for particular card types, the following is also needed:
 
