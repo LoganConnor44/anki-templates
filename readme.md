@@ -4,16 +4,72 @@ This is a project for making Chinese study, through Anki, more enjoyable by auto
 
 # Available Card Types And Styling
 
-| Question                                                                                                | Answer                                                                                              |
-| ------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| <img src="./images/recognition-question.png" alt="Recognition Question" width="200"/>                   | <img src="./images/recognition-answer.png" alt="Recognition Answer" width="200"/>                   |
-| <img src="./images/meaning-question.png" alt="Meaning Question" width="200"/>                           | <img src="./images/meaning-answer.png" alt="Meaning Answer" width="200"/>                           |
-| <img src="./images/traditional-question.png" alt="Traditional Question" width="200"/>                   | <img src="./images/traditional-answer.png" alt="Traditional Answer" width="200"/>                   |
-| <img src="./images/traditional-sentence-question.png" alt="Traditional Sentence Question" width="200"/> | <img src="./images/traditional-sentence-answer.png" alt="Traditional Sentence Answer" width="200"/> |
-| <img src="./images/tones-question.png" alt="Tones Question" width="200"/>                               | <img src="./images/tones-answer.png" alt="Tones Answer" width="200"/>                               |
-| <img src="./images/writing-question.png" alt="Writing Question" width="200"/>                           | <img src="./images/writing-answer.gif" alt="Writing Answer" width="200"/>                           |
-| <img src="./images/audio-question-1.gif" alt="Audio 1 Question" width="200"/>                           | <img src="./images/audio-answer.png" alt="Audio Answer" width="200"/>                               |
-| <img src="./images/audio-question-2.gif" alt="Audio 2 Question" width="200"/>                           | <img src="./images/audio-answer.png" alt="Audio Answer" width="200"/>                               |
+<div>
+	<style>
+		video {
+			width: 100%;
+			height: 100%;
+		}
+		.video-row {
+			display: flex;
+			justify-content: space-between;
+			margin-bottom: 20px;
+		}
+		.video-container {
+			position: relative;
+			width: 300px;
+			height: 338px;
+			overflow: hidden;
+		}
+		.under-construction {
+			width: 100%;
+			height: 100%;
+		}
+		.overlay-text {
+			position: absolute;
+			top: 25%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background-color: rgba(0, 0, 0, 0.7);
+			color: white;
+			padding: 10px 20px;
+			font-size: 18px;
+			border-radius: 5px;
+			text-align: center;
+		}
+	</style>
+	<div class="video-row">
+		<div class="video-container">
+			<video autoplay loop muted>
+			<source src="./videos/recognition.mov">
+			</video>
+		</div>
+		<div class="video-container">
+			<video autoplay loop muted>
+			<source src="./videos/secondary-recognition.mov">
+			</video>
+			<div class="overlay-text">Under Construction</div>
+		</div>
+		<div class="video-container">
+			<video class="under-construction" autoplay loop muted>
+			<source src="./videos/sentence.mov">
+			</video>
+		</div>
+		</div>
+	<div class="video-row">
+		<div class="video-container">
+			<video autoplay loop muted>
+			<source src="./videos/tones.mov">
+			</video>
+		</div>
+		<div class="video-container">
+			<video autoplay loop muted>
+			<source src="./videos/secondary-sentence.mov">
+			</video>
+			<div class="overlay-text">Under Construction</div>
+		</div>
+	</div>
+</div>
 
 # tl;dr
 
