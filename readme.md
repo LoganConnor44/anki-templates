@@ -4,36 +4,16 @@ This is a project for making Chinese study, through Anki, more enjoyable by auto
 
 # Available Card Types And Styling
 
-<div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
-	<div style="position: relative; width: 300px; height: 338px; overflow: hidden;">
-		<img src="./images/recognition.gif" alt="Recognition" width="400"/>
-	</div>
-	<div style="position: relative; width: 300px; height: 338px; overflow: hidden;">
-		<img src="./images/sentence.gif" alt="Sentence" width="400"/>
-		<div style="position: absolute; top: 25%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(0, 0, 0, 0.7); color: white; padding: 10px 20px; font-size: 18px; border-radius: 5px; text-align: center;">Under Construction</div>
-	</div>
-	<div style="position: relative; width: 300px; height: 338px; overflow: hidden;">
-		<video autoplay loop muted  style="width: 100%; height: 100%;">
-		<source src="./videos/sentence.mov">
-		</video>
-	</div>
-	</div>
-<div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
-	<div style="position: relative; width: 300px; height: 338px; overflow: hidden;">
-		<video autoplay loop muted  style="width: 100%; height: 100%;">
-		<source src="./videos/tones.mov">
-		</video>
-	</div>
-	<div style="position: relative; width: 300px; height: 338px; overflow: hidden;">
-		<video autoplay loop muted style="width: 100%; height: 100%;">
-		<source src="./videos/secondary-sentence.mov">
-		</video>
-		<div class="overlay-text">Under Construction</div>
-	</div>
-</div>
-
+|                             Recognition                             |                           Sentence                            |
+| :-----------------------------------------------------------------: | :-----------------------------------------------------------: |
 | <img src="./images/recognition.gif" alt="Recognition" width="400"/> | <img src="./images/sentence.gif" alt="Sentence" width="400"/> |
+
+|                          Tones                          |                       Secondary Recognition (Under Construction)                        |
+| :-----------------------------------------------------: | :-------------------------------------------------------------------------------------: |
 | <img src="./images/tones.gif" alt="Tones" width="400"/> | <img src="./images/secondary-recognition.gif" alt="Secondary Recognition" width="400"/> |
+
+|                      Secondary Sentence (Under Construction)                      |
+| :-------------------------------------------------------------------------------: |
 | <img src="./images/secondary-sentence.gif" alt="Secondary Sentence" width="400"/> |
 
 # tl;dr
