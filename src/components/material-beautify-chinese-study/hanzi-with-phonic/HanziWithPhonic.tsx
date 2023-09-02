@@ -1,6 +1,6 @@
-import { h, Component, Prop, Fragment, Element } from "@stencil/core";
-import { JSXBase, Watch } from "@stencil/core/internal";
-import { DisplayType } from "../../../enums/DisplayType";
+import { h, Component, Prop, Fragment, Element } from '@stencil/core';
+import { JSXBase, Watch } from '@stencil/core/internal';
+import { DisplayType } from '../../../enums/DisplayType';
 
 class HanziAndPhonic {
 	character: string;
@@ -10,10 +10,9 @@ class HanziAndPhonic {
 @Component({
 	tag: 'material-beautify-hanzi-with-phonic',
 	styleUrl: '../styles/hanzi-with-phonic.css',
-	shadow: true
+	shadow: true,
 })
 export class HanziWithPhonic {
-
 	@Element()
 	private element: HTMLElement;
 
@@ -49,7 +48,7 @@ export class HanziWithPhonic {
 	}
 	protected setDictionaryLink(): void {
 		this._dictionaryLink = `http://www.hanzii.net/search/word/${this.hanzi}`;
-		if (navigator.userAgent.indexOf("Mobile") > 0) {
+		if (navigator.userAgent.indexOf('Mobile') > 0) {
 			this._dictionaryLink = `plecoapi://x-callback-url/df?hw=${this.hanzi}`;
 		}
 	}
@@ -68,9 +67,7 @@ export class HanziWithPhonic {
 		if (this.hanzi === undefined) {
 			return [];
 		}
-		return this.hanzi
-			.split('')
-			.filter(char => /\p{Script=Han}/u.test(char));
+		return this.hanzi.split('').filter(char => /\p{Script=Han}/u.test(char));
 	}
 
 	private getVerticalNeutralPhonics(): Array<string> {
@@ -87,7 +84,7 @@ export class HanziWithPhonic {
 		return phonics;
 	}
 
-	private getDisplayType() : string {
+	private getDisplayType(): string {
 		return this.displayType;
 	}
 
@@ -102,50 +99,43 @@ export class HanziWithPhonic {
 			hanziAndPhonics.push(hanziAndPhonic);
 		}
 
-		return <table class='table-center'>
+		return (
+			<table class="table-center">
 				<tbody>
-					<a id='dictionary-link' href={this.getDictionaryLink()}>
+					<a id="dictionary-link" href={this.getDictionaryLink()}>
 						<tr>
-							{
-								hanziAndPhonics.map((x: HanziAndPhonic) => {
-									return <Fragment>
-											<td id={ `${this.getDisplayType()}-item` }>
-												{x.character}
-											</td>
-											<td id={this.idForStyles + '-phonic'} class='no-show-vertical vertical-phonic'>
-												{
-													x.phonic.split('').map((y: string, index: number) => {
-														let displayY = y;
-														if (x.phonic.length - 2 === index && 
-															(x.phonic.slice(-1) === 'ˊ' || x.phonic.slice(-1) === 'ˇ' || x.phonic.slice(-1) === 'ˋ')
-														) {
-															displayY = y + x.phonic.slice(-1);
-														} else if (y === 'ˊ' || y === 'ˇ' || y === 'ˋ') {
-															return '';
-														}
-														return <Fragment>
-																<span>{displayY}</span>
-																<br />
-															</Fragment>
-														;
-													})
+							{hanziAndPhonics.map((x: HanziAndPhonic) => {
+								return (
+									<Fragment>
+										<td id={`${this.getDisplayType()}-item`}>{x.character}</td>
+										<td id={this.idForStyles + '-phonic'} class="no-show-vertical vertical-phonic">
+											{x.phonic.split('').map((y: string, index: number) => {
+												let displayY = y;
+												if (x.phonic.length - 2 === index && (x.phonic.slice(-1) === 'ˊ' || x.phonic.slice(-1) === 'ˇ' || x.phonic.slice(-1) === 'ˋ')) {
+													displayY = y + x.phonic.slice(-1);
+												} else if (y === 'ˊ' || y === 'ˇ' || y === 'ˋ') {
+													return '';
 												}
-											</td>
-										</Fragment>
-									;
-								})
-							}
+												return (
+													<Fragment>
+														<span>{displayY}</span>
+														<br />
+													</Fragment>
+												);
+											})}
+										</td>
+									</Fragment>
+								);
+							})}
 						</tr>
 					</a>
 				</tbody>
 			</table>
-		;
+		);
 	}
 
 	private getHanziWithHorizontalPhonic(hanzisWithoutPunctuation: Array<string>): JSXBase.HTMLAttributes<HTMLDivElement> {
-		const phonics: Array<string> = this.phonic === undefined ?
-			[] :
-			this.phonic.split(',');
+		const phonics: Array<string> = this.phonic === undefined ? [] : this.phonic.split(',');
 		let hanziAndPhonics: HanziAndPhonic[] = [];
 		for (let index = 0; index < hanzisWithoutPunctuation.length; index++) {
 			let hanziAndPhonic: HanziAndPhonic = new HanziAndPhonic();
@@ -154,26 +144,24 @@ export class HanziWithPhonic {
 			hanziAndPhonics.push(hanziAndPhonic);
 		}
 
-		return <a id='dictionary-link' href={this.getDictionaryLink()}>
+		return (
+			<a id="dictionary-link" href={this.getDictionaryLink()}>
 				<ruby id={this.idForStyles}>
-					{
-						hanziAndPhonics.map((x: HanziAndPhonic) => {
-							return <Fragment>
-									<div id={ `${this.getDisplayType()}-item hanzi-with-ruby` }>
-										{x.character}
-									</div>
-									<rp>(</rp>
-									<rt id={this.idForStyles + '-phonic'} class='no-show-horizontal horizontal-phonic'>
-										{x.phonic}
-									</rt>
-									<rp>)</rp>
-								</Fragment>
-							;
-						})
-					}
+					{hanziAndPhonics.map((x: HanziAndPhonic) => {
+						return (
+							<Fragment>
+								<div id={`${this.getDisplayType()}-item hanzi-with-ruby`}>{x.character}</div>
+								<rp>(</rp>
+								<rt id={this.idForStyles + '-phonic'} class="no-show-horizontal horizontal-phonic">
+									{x.phonic}
+								</rt>
+								<rp>)</rp>
+							</Fragment>
+						);
+					})}
 				</ruby>
 			</a>
-		;
+		);
 	}
 
 	/**
@@ -182,18 +170,16 @@ export class HanziWithPhonic {
 	@Watch('orientation')
 	// @ts-ignore
 	private showItems(): void {
-		const isHorizontal = this.getIsPhonicPinyin() ?
-			true :
-			this.phonicOrientation == 'over' ? true : false;
+		const isHorizontal = this.getIsPhonicPinyin() ? true : this.phonicOrientation == 'over' ? true : false;
 		const hideClass = isHorizontal ? 'no-show-horizontal' : 'no-show-vertical';
 		const fadeInClass = isHorizontal ? 'fade-in-horizontal' : 'fade-in-vertical';
 
 		const primaryItems = this.element.shadowRoot.querySelectorAll('#primary-item-phonic');
-		Array.from(primaryItems).forEach((el) => {
+		Array.from(primaryItems).forEach(el => {
 			el.className = el.className.replace(hideClass, fadeInClass);
 		});
 		const secondaryItems = this.element.shadowRoot.querySelectorAll('#secondary-item-phonic');
-		Array.from(secondaryItems).forEach((el) => {
+		Array.from(secondaryItems).forEach(el => {
 			el.className = el.className.replace(hideClass, fadeInClass);
 		});
 	}
@@ -203,13 +189,9 @@ export class HanziWithPhonic {
 		this.setIsPhonicPinyin();
 
 		const hanzis: Array<string> = this.hanzi !== undefined ? this.hanzi.split('') : [];
-		const buildVerticalPhonicStructure: boolean = this.phonicOrientation === 'next-to' && 
-			!this.getIsPhonicPinyin() && 
-			this.phonic.split(',').length === this.hanzi.length;
+		const buildVerticalPhonicStructure: boolean = this.phonicOrientation === 'next-to' && !this.getIsPhonicPinyin() && this.phonic.split(',').length === this.hanzi.length;
 
-		buildVerticalPhonicStructure ?
-			this.setContent(this.getHanziWithVerticalPhonic(hanzis)) :
-			this.setContent(this.getHanziWithHorizontalPhonic(hanzis));
+		buildVerticalPhonicStructure ? this.setContent(this.getHanziWithVerticalPhonic(hanzis)) : this.setContent(this.getHanziWithHorizontalPhonic(hanzis));
 
 		return this.getContent();
 	}
