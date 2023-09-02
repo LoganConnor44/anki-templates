@@ -236,7 +236,7 @@ The logic attempts to make custom styling and additional logic work the same acr
 
 ## JSFiddle
 
-Feel free see to this project in action using this [jsFiddle](https://jsfiddle.net/loganconnor44/Lnu9jm0f/40/).
+Feel free see to this project in action using this [jsFiddle](https://jsfiddle.net/loganconnor44/Lnu9jm0f/133/).
 
 ## My Personal Cards
 
