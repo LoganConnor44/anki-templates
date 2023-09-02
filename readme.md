@@ -24,7 +24,7 @@ This is a project for making Chinese study, through Anki, more enjoyable by auto
 
 # tl;dr
 
-Whether your study involves simplified or traditional characters, this project can make Chinese flashcards look nice by copying/pasting [a few lines of logic](#code-snippets) in your Anki template. It can also auto-magically generate some data, given you check out [what is available](./output/components/material-beautify-chinese-study/readme.md).
+Whether your study involves simplified or traditional characters, this project can make Chinese flashcards look nice by copying/pasting [a few lines of logic](#code-snippets) in your Anki template. It can also auto-magically generate some data, please go [here](./output/components/material-beautify-chinese-study/readme.md) to see what is available.
 
 Try it out now by navigating to the [jsFiddle page](#JSFiddle), or follow the instructions below to set this up within your own installation of Anki.
 
