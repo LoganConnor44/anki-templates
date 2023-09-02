@@ -110,23 +110,20 @@ A full example of the Front of a recognition card is found below:
 	//// its attributes and attribute values
 	// IMPORTANT - the text below that contains {{text:YOUR_FIELD_NAME}} is meant to be exchanged
 	//// with the field names on your Anki card fields
-	//// eg if the english translation field on your Anki card is called EngLish the value you type below
+	//// eg if the english translation field on your Anki card is called English the value you type below
 	//// would be
-	//// beautify.setAttribute('meaning', "{{text:EngLish}}")
+	//// beautify.setAttribute('meaning', "{{text:English}}")
 	// Remove the above references to {{text:YOUR_FIELD_NAME}} and {{text:EngLish}}
 	//// even though they are comments - Anki will still see this as an error
 	var beautify = document.createElement('material-beautify-chinese-study');
 	beautify.setAttribute('id', 'beautify');
-	beautify.setAttribute('primary-character', '{{text:YOUR_FIELD_NAME}}');
-	beautify.setAttribute('secondary-character', '{{text:YOUR_FIELD_NAME}}');
-	// double quotes intentional do to the value containing a single quote
-	beautify.setAttribute('numbered-pinyin', '{{text:YOUR_FIELD_NAME}}');
-	beautify.setAttribute('primary-character-sentence', '{{text:YOUR_FIELD_NAME}}');
-	beautify.setAttribute('secondary-character-sentence', '{{text:YOUR_FIELD_NAME}}');
-	// double quotes intentional do to the value containing a single quote
-	beautify.setAttribute('sentence-numbered-pinyin', '{{text:YOUR_FIELD_NAME}}');
-	// double quotes intentional do to the value containing a single quote
-	beautify.setAttribute('meaning', '{{text:YOUR_FIELD_NAME}}');
+	beautify.setAttribute('primary-character', `{{text:YOUR_FIELD_NAME}}`);
+	beautify.setAttribute('secondary-character', `{{text:YOUR_FIELD_NAME}}`);
+	beautify.setAttribute('numbered-pinyin', `{{text:YOUR_FIELD_NAME}}`);
+	beautify.setAttribute('primary-character-sentence', `{{text:YOUR_FIELD_NAME}}`);
+	beautify.setAttribute('secondary-character-sentence', `{{text:YOUR_FIELD_NAME}}`);
+	beautify.setAttribute('sentence-numbered-pinyin', `{{text:YOUR_FIELD_NAME}}`);
+	beautify.setAttribute('meaning', `{{text:YOUR_FIELD_NAME}}`);
 	beautify.setAttribute('card-type', 'recognition');
 	beautify.setAttribute('card-orientation', 'question');
 	beautify.setAttribute('preferred-phonic', 'zhuyin');
@@ -189,17 +186,14 @@ A full example of the Back of a recognition card is found below:
 		//// even though they are comments - Anki will still see this as an error
 		var beautify = document.createElement('material-beautify-chinese-study');
 		beautify.setAttribute('id', 'beautify');
-		beautify.setAttribute('primary-character', '{{text:YOUR_FIELD_NAME}}');
-		beautify.setAttribute('secondary-character', '{{text:YOUR_FIELD_NAME}}');
-		beautify.setAttribute('writing', '{{text:YOUR_FIELD_NAME}}');
-		// double quotes intentional do to the value containing a single quote
-		beautify.setAttribute('numbered-pinyin', '{{text:YOUR_FIELD_NAME}}');
-		beautify.setAttribute('primary-character-sentence', '{{text:YOUR_FIELD_NAME}}');
-		beautify.setAttribute('secondary-character-sentence', '{{text:YOUR_FIELD_NAME}}');
-		// double quotes intentional do to the value containing a single quote
-		beautify.setAttribute('sentence-numbered-pinyin', '{{text:YOUR_FIELD_NAME}}');
-		// double quotes intentional do to the value containing a single quote
-		beautify.setAttribute('meaning', '{{text:YOUR_FIELD_NAME}}');
+		beautify.setAttribute('primary-character', `{{text:YOUR_FIELD_NAME}}`);
+		beautify.setAttribute('secondary-character', `{{text:YOUR_FIELD_NAME}}`);
+		beautify.setAttribute('writing', `{{text:YOUR_FIELD_NAME}}`);
+		beautify.setAttribute('numbered-pinyin', `{{text:YOUR_FIELD_NAME}}`);
+		beautify.setAttribute('primary-character-sentence', `{{text:YOUR_FIELD_NAME}}`);
+		beautify.setAttribute('secondary-character-sentence', `{{text:YOUR_FIELD_NAME}}`);
+		beautify.setAttribute('sentence-numbered-pinyin', `{{text:YOUR_FIELD_NAME}}`);
+		beautify.setAttribute('meaning', `{{text:YOUR_FIELD_NAME}}`);
 		beautify.setAttribute('card-type', 'recognition');
 		beautify.setAttribute('card-orientation', 'answer');
 		beautify.setAttribute('preferred-phonic', 'zhuyin');
