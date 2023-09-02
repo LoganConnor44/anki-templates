@@ -69,6 +69,8 @@ This is a project for making Chinese study, through Anki, more enjoyable by auto
 	</div>
 </div>
 
+| <img src="./images/recognition.gif" alt="Recognition" width="300"/> | <img src="./images/sentence.gif" alt="Sentence" width="300"/>
+
 # tl;dr
 
 Whether your study involves simplified or traditional characters, this project can make Chinese flashcards look nice by copying/pasting [a few lines of logic](#code-snippets) in your Anki template. It can also auto-magically generate some data, given you check out [what is available](./output/components/material-beautify-chinese-study/readme.md).
