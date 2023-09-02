@@ -12,7 +12,7 @@ This is a project for making Chinese study, through Anki, more enjoyable by auto
 | :-----------------------------------------------------: | :-------------------------------------------------------------------------------------: |
 | <img src="./images/tones.gif" alt="Tones" width="400"/> | <img src="./images/secondary-recognition.gif" alt="Secondary Recognition" width="400"/> |
 
-|                      Secondary Sentence (Under Construction)                      |               Audio (Under Construction)                |
+|                                Secondary Sentence                                 |               Audio (Under Construction)                |
 | :-------------------------------------------------------------------------------: | :-----------------------------------------------------: |
 | <img src="./images/secondary-sentence.gif" alt="Secondary Sentence" width="400"/> | <img src="./images/audio.gif" alt="Audio" width="400"/> |
 
