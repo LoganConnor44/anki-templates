@@ -2,7 +2,7 @@
 
 This is a project for making Chinese study, through Anki, more enjoyable by automatically styling the flashcards and providing convenience features. This project enables one to focus more on studying rather than perfecting their form of studying.
 
-# Available Card Types And Styling
+# Available Card Types Showcasing Various Customizations
 
 |                             Recognition                             |                           Sentence                            |
 | :-----------------------------------------------------------------: | :-----------------------------------------------------------: |
