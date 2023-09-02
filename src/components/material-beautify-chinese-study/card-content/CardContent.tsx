@@ -65,7 +65,7 @@ export class CardContent {
 		this._content = (
 			<Host>
 				<material-beautify-hanzi-with-phonic
-					hanzi={this.sentence}
+					hanzi={this.secondarySentence}
 					phonic={this.sentencePhonic}
 					orientation={this.orientation}
 					phonic-orientation={this.phonicOrientation}
