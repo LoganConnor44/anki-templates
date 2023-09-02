@@ -4,7 +4,7 @@ This is a project for making Chinese study, through Anki, more enjoyable by auto
 
 # Available Card Types
 
-Note: The below is showcasing various phonic types and orientations. This may be configured to your preferred study needs. The variety is just for demonstration purposes.
+> The below is showcasing various phonic types and orientations. This may be configured to your preferred study needs. The variety shown is for demonstration purposes.
 
 |                             Recognition                             |                           Sentence                            |
 | :-----------------------------------------------------------------: | :-----------------------------------------------------------: |
