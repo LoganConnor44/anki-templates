@@ -16,9 +16,9 @@ This is a project for making Chinese study, through Anki, more enjoyable by auto
 | :-------------------------------------------------------------------------------: | :-----------------------------------------------------: |
 | <img src="./images/secondary-sentence.gif" alt="Secondary Sentence" width="400"/> | <img src="./images/audio.gif" alt="Audio" width="400"/> |
 
-|                Writing (Under Construction)                 |
-| :---------------------------------------------------------: |
-| <img src="./images/writing.gif" alt="Writing" width="400"/> |
+|                                                                                 Writing (Under Construction)                                                                                 |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| This one has regressed too much. It was left un-maintained after several upgrades and isn't worth showing in its current state. Works fine in prior versions if you are eager to utilize it. |
 
 # tl;dr
 
