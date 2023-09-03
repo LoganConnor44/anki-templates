@@ -19,7 +19,11 @@ export class HanziWithPhonic {
 	@Prop()
 	public hanzi: string;
 	@Prop()
+	public alternativeHanzi: string;
+	@Prop()
 	public phonic: string;
+	@Prop()
+	public alternativePhonic: string;
 	@Prop()
 	public orientation: string;
 	@Prop()
@@ -168,11 +172,17 @@ export class HanziWithPhonic {
 	 * This method is used it is just not called directly like the IDE may think it should be
 	 */
 	@Watch('orientation')
-	// @ts-ignore
-	private showItems(): void {
+	protected showItems(): void {
 		const isHorizontal = this.getIsPhonicPinyin() ? true : this.phonicOrientation == 'over' ? true : false;
 		const hideClass = isHorizontal ? 'no-show-horizontal' : 'no-show-vertical';
 		const fadeInClass = isHorizontal ? 'fade-in-horizontal' : 'fade-in-vertical';
+
+		if (this.displayType === DisplayType.SECONDARY && this.alternativeHanzi !== undefined) {
+			this.hanzi = this.alternativeHanzi;
+			if (this.alternativePhonic !== undefined) {
+				this.phonic = this.alternativePhonic;
+			}
+		}
 
 		const primaryItems = this.element.shadowRoot.querySelectorAll('#primary-item-phonic');
 		Array.from(primaryItems).forEach(el => {
