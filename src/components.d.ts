@@ -93,6 +93,8 @@ export namespace Components {
         "vocab": string;
     }
     interface MaterialBeautifyHanziWithPhonic {
+        "alternativeHanzi": string;
+        "alternativePhonic": string;
         "displayType": DisplayType;
         "hanzi": string;
         "idForStyles": string;
@@ -253,6 +255,8 @@ declare namespace LocalJSX {
         "vocab"?: string;
     }
     interface MaterialBeautifyHanziWithPhonic {
+        "alternativeHanzi"?: string;
+        "alternativePhonic"?: string;
         "displayType"?: DisplayType;
         "hanzi"?: string;
         "idForStyles"?: string;
