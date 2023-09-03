@@ -9,6 +9,8 @@
 
 | Property            | Attribute            | Description | Type                                           | Default     |
 | ------------------- | -------------------- | ----------- | ---------------------------------------------- | ----------- |
+| `alternativeHanzi`  | `alternative-hanzi`  |             | `string`                                       | `undefined` |
+| `alternativePhonic` | `alternative-phonic` |             | `string`                                       | `undefined` |
 | `displayType`       | `display-type`       |             | `DisplayType.PRIMARY \| DisplayType.SECONDARY` | `undefined` |
 | `hanzi`             | `hanzi`              |             | `string`                                       | `undefined` |
 | `idForStyles`       | `id-for-styles`      |             | `string`                                       | `undefined` |
