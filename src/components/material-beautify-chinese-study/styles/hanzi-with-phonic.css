@@ -8,6 +8,7 @@ ruby {
 
 td {
   display: inline-flex;
+  vertical-align: middle;
 }
 
 #phonic-only-phonic {
