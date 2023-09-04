@@ -120,12 +120,7 @@ export class HanziWithPhonic {
 												} else if (y === 'ˊ' || y === 'ˇ' || y === 'ˋ') {
 													return '';
 												}
-												return (
-													<Fragment>
-														<span>{displayY}</span>
-														<br />
-													</Fragment>
-												);
+												return <span>{displayY}</span>;
 											})}
 										</td>
 									</Fragment>
