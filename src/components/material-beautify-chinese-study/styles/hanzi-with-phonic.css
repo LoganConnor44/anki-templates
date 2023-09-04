@@ -7,7 +7,7 @@ ruby {
 }
 
 td {
-  overflow: hidden;
+  display: inline-flex;
 }
 
 #phonic-only-phonic {
@@ -61,6 +61,7 @@ td {
 
 .no-show-vertical {
   max-width: 0;
+  visibility: hidden;
 }
 
 .fade-in-vertical {
@@ -72,6 +73,7 @@ td {
   line-height: 1em;
   font-size: 1.5vw;
   vertical-align: middle;
+  flex-direction: column;
   transition: max-width .25s ease-in-out;
 }
 
@@ -82,7 +84,8 @@ td {
 
 .fade-in-horizontal {
   opacity: 1;
-  max-width: 3em;
+  margin: .4em;
+  transform: translateX(.4em);
   animation: fadeIn .5s ease-in-out;
 }
 
