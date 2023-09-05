@@ -36,10 +36,10 @@ Try it out now by navigating to the [jsFiddle page](#JSFiddle), or follow the in
 
 Aside from making your flashcards look beautiful, this project has a few note-worthy features:
 
-1. Simplified Or Traditional Character Support
+1. Simplified And/Or Traditional Character Support
 
-    - This project has a concept which enables the user to define which character type they would like to make their 'primary' character set. A user may also define an optional 'secondary' character set.
-        - This enables a user to become familiar with both character types as it may be helpful to be able to understand all forms and permutations that written language may take.
+    - This project has a concept which enables the user to define which character type they would like to make their 'primary' character set. A user may also define an optional 'secondary' character set or have one automatically generated from their 'primary' character.
+        - This enables a user to become familiar with both character types as it is be helpful to be able to understand all forms and permutations that written language may take.
 
 1. Pinyin Or Zhuyin Phonic Support
 
@@ -53,11 +53,11 @@ Aside from making your flashcards look beautiful, this project has a few note-wo
         - Setting preferred phonic to zhuyin will generate the expected value of bopomofo characters
     - Users may also force all phonic values, even if values are found in their Anki data. This is recommended.
 
-1. Stroke Order Animation
-    - On the answer side of the writing cards, the hanzi will animate the stroke order by default.
 1. Dictionary Integration
     - At any time, the user can click the hanzi that is shown and the card will automatically open either within Pleco (on mobile) or Hanzii.net (on desktop)
         - Pleco must be pre-installed on your mobile device for this to work as expected.
+1. Stroke Order Animation - Under Construction
+    - On the answer side of the writing cards, the hanzi will animate the stroke order by default.
 
 # Code Snippets
 
