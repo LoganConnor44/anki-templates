@@ -69,7 +69,7 @@ export class CardContent {
 					phonic={this.sentencePhonic}
 					orientation={this.orientation}
 					phonic-orientation={this.phonicOrientation}
-					display-type={DisplayType.SECONDARY}
+					display-type={DisplayType.PRIMARY}
 					idForStyles="primary-item"
 				/>
 				{this.orientation === 'answer' && (
@@ -95,7 +95,7 @@ export class CardContent {
 					phonic={this.phonic}
 					idForStyles="primary-item"
 					orientation={this.orientation}
-					display-type={DisplayType.SECONDARY}
+					display-type={DisplayType.PRIMARY}
 					phonic-orientation={this.phonicOrientation}
 				/>
 				<material-beautify-hanzi-with-phonic
