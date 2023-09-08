@@ -115,25 +115,22 @@ export class CardContent {
 
 	protected setAudio() {
 		if (this.orientation === 'question') {
-			const availableAnimations: string[] = ['echo-spinner', 'audio-line-spinner'];
-			const randomAnimation: string = availableAnimations[Math.floor(Math.random() * availableAnimations.length)];
-			if (randomAnimation === 'audio-line-spinner') {
-				this._content = (
-					<Host class={randomAnimation}>
-						<div class="rect1" />
-						<div class="rect2" />
-						<div class="rect3" />
-						<div class="rect4" />
-						<div class="rect5" />
-					</Host>
-				);
-			} else {
-				this._content = (
-					<Host class={randomAnimation}>
-						<div />
-					</Host>
-				);
-			}
+			this._content = (
+				<Host>
+					<div class="audio-line-spinner">
+						<div class="music-bar 1"></div>
+						<div class="music-bar 2"></div>
+						<div class="music-bar 3"></div>
+						<div class="music-bar 4"></div>
+						<div class="music-bar 5"></div>
+						<div class="music-bar 6"></div>
+						<div class="music-bar 7"></div>
+						<div class="music-bar 8"></div>
+						<div class="music-bar 9"></div>
+						<div class="music-bar 10"></div>
+					</div>
+				</Host>
+			);
 		} else {
 			this._content = (
 				<Host>
