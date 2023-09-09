@@ -2,17 +2,46 @@ import { newSpecPage } from '@stencil/core/testing';
 import { MaterialBeautifyChineseStudy } from '../beautify-chinese-study';
 
 describe('material-beautify-chinese-study', () => {
-  it('renders', async () => {
-    const page = await newSpecPage({
-      components: [MaterialBeautifyChineseStudy],
-      html: `<material-beautify-chinese-study></material-beautify-chinese-study>`,
-    });
-    expect(page.root).toEqualHtml(`
-      <material-beautify-chinese-study>
-        <mock:shadow-root>
-          <slot></slot>
-        </mock:shadow-root>
-      </material-beautify-chinese-study>
-    `);
-  });
+	it('should render', async () => {
+		const page = await newSpecPage({
+			components: [MaterialBeautifyChineseStudy],
+			html: `<material-beautify-chinese-study primary-character='天气'
+						meaning='weather' />`,
+		});
+		expect(page.root).toEqualHtml(`
+			<material-beautify-chinese-study primary-character='天气' meaning='weather'>
+				<mock:shadow-root>
+				<div id="anki-background">
+					<material-beautify-card class="recognition"
+					meaning="weather"
+					orientation="question"
+					phonic-orientation="next-to"
+					primary-hanzi-type="simplified"
+					primary-vocab="天气"
+					secondary-sentence=""
+					secondary-vocab="天氣"
+					sentence=""
+					sentence-meaning=""
+					sentence-phonic=""
+					type="recognition"
+					vocab-phonic="tiān,qì"></material-beautify-card>
+				</div>
+				</mock:shadow-root>
+			</material-beautify-chinese-study>
+    	`);
+	});
+
+	it('should set the provided attributes', async () => {
+		const page = await newSpecPage({
+			components: [MaterialBeautifyChineseStudy],
+			html: `<material-beautify-chinese-study primary-character='刻苦'
+						meaning='hardworking' />`,
+		});
+		const beautifyChineseStudy = page.root;
+
+		const primaryCharacter = beautifyChineseStudy.getAttribute('primary-character');
+		expect(primaryCharacter).toEqual('刻苦');
+		const meaning = beautifyChineseStudy.getAttribute('meaning');
+		expect(meaning).toEqual('hardworking');
+	});
 });
