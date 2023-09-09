@@ -37,11 +37,12 @@ describe('material-beautify-chinese-study', () => {
 			html: `<material-beautify-chinese-study primary-character='刻苦'
 						meaning='hardworking' />`,
 		});
-		const beautifyChineseStudy = page.root;
 
+		const beautifyChineseStudy = page.root;
 		const primaryCharacter = beautifyChineseStudy.getAttribute('primary-character');
-		expect(primaryCharacter).toEqual('刻苦');
 		const meaning = beautifyChineseStudy.getAttribute('meaning');
+
+		expect(primaryCharacter).toEqual('刻苦');
 		expect(meaning).toEqual('hardworking');
 	});
 });
