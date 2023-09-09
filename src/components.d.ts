@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { DisplayType } from "./enums/DisplayType";
+export { DisplayType } from "./enums/DisplayType";
 export namespace Components {
     interface MaterialBeautifyCard {
         "meaning": string;
