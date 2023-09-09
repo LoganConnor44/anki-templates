@@ -1,57 +1,60 @@
 {
-  "name": "beautify-chinese-study",
-  "version": "1.20.24",
-  "description": "A package for making Chinese study more beautiful.",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/LoganConnor44/anki-templates.git"
-  },
-  "author": {
-    "email": "loganconnor44@gmail.com",
-    "name": "Logan Connor"
-  },
-  "bugs": {
-    "url": "https://github.com/LoganConnor44/anki-templates/issues"
-  },
-  "keywords": [
-    "anki",
-    "chinese",
-    "material design",
-    "flash",
-    "cards",
-    "flashcards"
-  ],
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.js",
-  "es2015": "dist/esm/index.mjs",
-  "es2017": "dist/esm/index.mjs",
-  "types": "dist/types/components.d.ts",
-  "collection": "dist/collection/collection-manifest.json",
-  "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/beautify-chinese-study/beautify-chinese-study.js",
-  "files": [
-    "dist/",
-    "loader/"
-  ],
-  "scripts": {
-    "build": "stencil build --docs",
-    "start": "stencil build --dev --watch --serve",
-    "test": "stencil test --spec --e2e",
-    "test.watch": "stencil test --spec --e2e --watchAll",
-    "generate": "stencil generate"
-  },
-  "dependencies": {
-    "@fontsource/noto-sans-sc": "^4.5.12",
-    "@stencil/core": "^2.19.3",
-    "hanzi-writer": "^2.3.0",
-    "opencc-js": "^1.0.3",
-    "pinyin": "^2.10.2"
-  },
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
-  },
-  "license": "MIT",
-  "devDependencies": {
-    "@types/jest": "^29.2.2"
-  }
+	"name": "beautify-chinese-study",
+	"version": "1.20.24",
+	"description": "A package for making Chinese study more beautiful.",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/LoganConnor44/anki-templates.git"
+	},
+	"author": {
+		"email": "loganconnor44@gmail.com",
+		"name": "Logan Connor"
+	},
+	"bugs": {
+		"url": "https://github.com/LoganConnor44/anki-templates/issues"
+	},
+	"keywords": [
+		"anki",
+		"chinese",
+		"material design",
+		"flash",
+		"cards",
+		"flashcards"
+	],
+	"main": "dist/index.cjs.js",
+	"module": "dist/index.js",
+	"es2015": "dist/esm/index.mjs",
+	"es2017": "dist/esm/index.mjs",
+	"types": "dist/types/components.d.ts",
+	"collection": "dist/collection/collection-manifest.json",
+	"collection:main": "dist/collection/index.js",
+	"unpkg": "dist/beautify-chinese-study/beautify-chinese-study.js",
+	"files": [
+		"dist/",
+		"loader/"
+	],
+	"scripts": {
+		"build": "stencil build --docs",
+		"start": "stencil build --dev --watch --serve",
+		"test": "stencil test --spec --e2e",
+		"test.watch": "stencil test --spec --e2e --watchAll",
+		"generate": "stencil generate"
+	},
+	"dependencies": {
+		"@fontsource/noto-sans-sc": "^4.5.12",
+		"@stencil/core": "^4.0.0",
+		"hanzi-writer": "^2.3.0",
+		"opencc-js": "^1.0.3",
+		"pinyin": "^2.10.2"
+	},
+	"publishConfig": {
+		"registry": "https://registry.npmjs.org/"
+	},
+	"license": "MIT",
+	"devDependencies": {
+		"@types/jest": "^27.0.3",
+		"jest": "^27.0.3",
+		"jest-cli": "^27.4.5",
+		"puppeteer": "^20.9.0"
+	}
 }
