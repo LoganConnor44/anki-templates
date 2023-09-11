@@ -93,6 +93,8 @@ export class HanziWithPhonic {
 	}
 
 	private getHanziWithVerticalPhonic(hanzisWithoutPunctuation: Array<string>): JSXBase.HTMLAttributes<HTMLDivElement> {
+		const defaultPhonicAsInvisible: boolean = this.idForStyles === 'phonic-only';
+		const replacePrimaryItemWithBlank: boolean = this.idForStyles === 'phonic-only';
 		const phonics = this.getVerticalNeutralPhonics();
 		let hanziAndPhonics: HanziAndPhonic[] = [];
 
@@ -111,8 +113,8 @@ export class HanziWithPhonic {
 							{hanziAndPhonics.map((x: HanziAndPhonic) => {
 								return (
 									<Fragment>
-										<td id={`${this.getDisplayType()}-item`}>{x.character}</td>
-										<td id={this.idForStyles + '-phonic'} class="no-show-vertical vertical-phonic">
+										<td id={`${this.getDisplayType()}-item`}>{replacePrimaryItemWithBlank ? '▢' : x.character}</td>
+										<td id={this.idForStyles + '-phonic'} class={`vertical-phonic ${defaultPhonicAsInvisible ? 'no-show-vertical-phonic' : this.idForStyles}`}>
 											{x.phonic.split('').map((y: string, index: number) => {
 												let displayY = y;
 												if (x.phonic.length - 2 === index && (x.phonic.slice(-1) === 'ˊ' || x.phonic.slice(-1) === 'ˇ' || x.phonic.slice(-1) === 'ˋ')) {
