@@ -25,6 +25,19 @@
 | `sentenceNumberedPinyin`     | `sentence-numbered-pinyin`     | Most forms of numbered pinyin allowed                                                                                                    | `string`  | `undefined`     |
 
 
+## Methods
+
+### `getVersion() => Promise<string>`
+
+
+
+#### Returns
+
+Type: `Promise<string>`
+
+
+
+
 ## Dependencies
 
 ### Depends on
