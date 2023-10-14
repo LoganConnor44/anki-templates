@@ -1,9 +1,10 @@
-import { Component, Host, h, Prop, State, FunctionalComponent, Element } from '@stencil/core';
+import { Component, Host, h, Prop, State, FunctionalComponent, Element, Method } from '@stencil/core';
 import { PhoneticType } from '../../enums/PhoneticType';
 import { HanziType } from '../../enums/HanziType';
 import * as OpenCC from 'opencc-js';
 import * as PinyinGenerator from 'pinyin';
 import Phonetic from '../../phonetics/Phonetic';
+import { version } from '../../../package.json';
 
 @Component({
 	tag: 'material-beautify-chinese-study',
@@ -98,6 +99,11 @@ export class MaterialBeautifyChineseStudy {
 
 	private template: HTMLElement;
 	private phonetic: Phonetic = new Phonetic();
+
+	@Method()
+	public async getVersion(): Promise<string> {
+		return version;
+	}
 
 	private isEmptyStringBlankStringNullOrUndefined = (value: String): boolean => value === null || value === undefined || value === '' || value.trim().length == 0;
 

@@ -1,0 +1,37 @@
+{{Traditional}}
+
+<script>
+	window.onerror = function (error) {
+		alert(error); // Fire when errors occur. Just a test, not always do this.
+	};
+
+	var versionNumber = '1.20.26';
+	if (!customElements.get('material-beautify-chinese-study')) {
+		var script = document.createElement('script');
+		script.setAttribute('id', 'import-script');
+		script.setAttribute('type', 'module');
+		script.setAttribute('src', `https://cdn.jsdelivr.net/npm/beautify-chinese-study@${versionNumber}/dist/beautify-chinese-study/beautify-chinese-study.esm.js`);
+		document.body.appendChild(script);
+	}
+	setTimeout(function () {
+		var beautify = document.createElement('material-beautify-chinese-study');
+		if (typeof beautify !== 'undefined') {
+			alert('Beautify Loaded');
+
+			try {
+				beautify.setAttribute('id', 'beautify-recognition');
+				beautify.setAttribute('primary-character', `{{text:Simplified}}`);
+				beautify.setAttribute('meaning', `{{text:Meaning}}`);
+				beautify.setAttribute('card-type', 'recognition');
+				beautify.setAttribute('card-orientation', 'question');
+				document.querySelector('#qa').appendChild(beautify);
+			} catch (exception) {
+				alert(exception);
+			}
+
+			alert('After beautify try');
+		} else {
+			alert('Script failed to load.');
+		}
+	}, 2000);
+</script>

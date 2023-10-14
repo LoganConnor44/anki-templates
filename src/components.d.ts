@@ -35,6 +35,7 @@ export namespace Components {
           * Option to always generate secondary character values and phonic values
          */
         "forceAutoGeneration": boolean;
+        "getVersion": () => Promise<string>;
         /**
           * All English language words allowed
          */
