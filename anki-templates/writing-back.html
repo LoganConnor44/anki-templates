@@ -1,5 +1,5 @@
 <script>
-    var versionNumber = '1.20.25';
+	var versionNumber = '1.20.26';
 </script>
 
 <style>
@@ -14,18 +14,17 @@
 </style>
 
 <script>
-
 	if (!customElements.get('material-beautify-chinese-study')) {
 		console.log('Custom element does not exist - Creating script to pull it in');
 		var script = document.createElement('script');
 		script.setAttribute('id', 'import-script');
 		script.setAttribute('type', 'module');
-        script.setAttribute('src', `https://cdn.jsdelivr.net/npm/beautify-chinese-study@${versionNumber}/dist/beautify-chinese-study/beautify-chinese-study.esm.js`);
+		script.setAttribute('src', `https://cdn.jsdelivr.net/npm/beautify-chinese-study@${versionNumber}/dist/beautify-chinese-study/beautify-chinese-study.esm.js`);
 		document.body.appendChild(script);
 	} else {
 		console.log('Custom element exists.');
 	}
-    
+
 	var beautify = document.querySelector('#beautify-writing');
 	if (!beautify) {
 		var beautify = document.createElement('material-beautify-chinese-study');
@@ -37,13 +36,12 @@
 		beautify.setAttribute('preferred-phonic', 'zhuyin');
 		document.body.appendChild(beautify);
 		setTimeout(() => {
-            document.querySelector('material-beautify-chinese-study').setAttribute('card-orientation', 'answer');
-        }, 750);
+			document.querySelector('material-beautify-chinese-study').setAttribute('card-orientation', 'answer');
+		}, 750);
 	} else {
 		beautify.setAttribute('card-orientation', 'answer');
 	}
-
 </script>
 
 <!--Always add audio and keep it invisible-->
-<div style="display:none;">{{Audio}}{{SentenceAudio}}</div>
+<div style="display: none">{{Audio}}{{SentenceAudio}}</div>
