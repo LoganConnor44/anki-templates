@@ -1,3 +1,7 @@
+<script>
+	var versionNumber = '1.20.27';
+</script>
+
 <style>
 	/*desktop anki*/
 	body {
@@ -14,41 +18,32 @@
 </style>
 
 <script>
-	const versionNumber = '1.20.27';
-	const createImportScript = version => {
-		const script = document.createElement('script');
+	if (!customElements.get('material-beautify-chinese-study')) {
+		console.log('custom element does not exist - creating script to pull it in');
+		var script = document.createElement('script');
 		script.setAttribute('id', 'import-script');
 		script.setAttribute('type', 'module');
-		script.setAttribute('src', `https://cdn.jsdelivr.net/npm/beautify-chinese-study@${version}/dist/beautify-chinese-study/beautify-chinese-study.esm.js`);
+		script.setAttribute('src', `https://cdn.jsdelivr.net/npm/beautify-chinese-study@${versionNumber}/dist/beautify-chinese-study/beautify-chinese-study.esm.js`);
 		document.body.appendChild(script);
-	};
-
-	const beautifyElement = customElements.get('material-beautify-chinese-study');
-	if (!beautifyElement) {
-		createImportScript(versionNumber);
+	} else {
+		console.log('Custom Element exists.');
 	}
-	beautifyElement.getVersion(x => {
-		if (x !== versionNumber) {
-			console.log('version does not match retriving newest');
-			beautifyElement.remove();
-			createImportScript(versionNumber);
-		}
-	});
 
-	const setQuestionCard = () => {
-		const beautify = customElements.get('material-beautify-chinese-study');
-		beautify.setAttribute('id', 'beautify-recognition');
-		beautify.setAttribute('primary-character', `{{text:Simplified}}`);
-		beautify.setAttribute('primary-character-sentence', `{{text:SentenceSimplified}}`);
-		beautify.setAttribute('meaning', `{{text:Meaning}}`);
-		beautify.setAttribute('card-type', 'recognition');
-		beautify.setAttribute('card-orientation', 'question');
-		beautify.setAttribute('preferred-phonic', 'zhuyin');
-		beautify.setAttribute('force-auto-generation', 'force-auto-generation');
-		document.body.appendChild(beautify);
-	};
+	var beautify = document.querySelector('material-beautify-chinese-study');
+	if (beautify !== null) {
+		beautify.remove();
+	}
 
-	customElements.whenDefined('material-beautify-chinese-study').then(setQuestionCard);
+	var beautify = document.createElement('material-beautify-chinese-study');
+	beautify.setAttribute('id', 'beautify-recognition');
+	beautify.setAttribute('primary-character', `{{text:Simplified}}`);
+	beautify.setAttribute('primary-character-sentence', `{{text:SentenceSimplified}}`);
+	beautify.setAttribute('meaning', `{{text:Meaning}}`);
+	beautify.setAttribute('card-type', 'recognition');
+	beautify.setAttribute('card-orientation', 'question');
+	beautify.setAttribute('preferred-phonic', 'zhuyin');
+	beautify.setAttribute('force-auto-generation', 'force-auto-generation');
+	document.body.appendChild(beautify);
 </script>
 
 <div style="display: none">{{Audio}}{{SentenceAudio}}</div>
