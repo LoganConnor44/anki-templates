@@ -1,59 +1,51 @@
-import { h, Component, Prop } from "@stencil/core";
-import { JSXBase } from "@stencil/core/internal";
+import { h, Component, Prop } from '@stencil/core';
+import { JSXBase } from '@stencil/core/internal';
 import { HanziType } from '../../../enums/HanziType';
 
 @Component({
 	tag: 'material-beautify-type',
-    styleUrl: '../styles/card-type.css',
-    shadow: true
+	styleUrl: '../styles/card-type.css',
+	shadow: true,
 })
 export class CardType {
-
-    @Prop()
+	@Prop()
 	public cardType: string;
-    @Prop()
+	@Prop()
 	public primaryHanziType: string;
 
-    private _content: JSXBase.HTMLAttributes<HTMLDivElement>;
-    private _type: JSXBase.HTMLAttributes<HTMLDivElement>;
+	private _content: JSXBase.HTMLAttributes<HTMLDivElement>;
+	private _type: JSXBase.HTMLAttributes<HTMLDivElement>;
 
-    protected getContent() {
-        return this._content;
-    }
-    protected setContent() {
-        this._content = this.getType();
-    }
+	protected getContent() {
+		return this._content;
+	}
 
-    protected getType() {
-        return this._type;
-    }
-    protected setType() {
-        let secondaryText: string;
+	protected setContent() {
+		this._content = this.getType();
+	}
+
+	protected getType() {
+		return this._type;
+	}
+
+	protected setType() {
+		let secondaryText: string;
 		if (this.cardType === undefined) {
 			return;
 		}
-		let type: string = this.cardType
-			.toUpperCase()
-			.trim();
+		let type: string = this.cardType.toUpperCase().trim();
 		if (this.cardType.indexOf('secondary') >= 0) {
 			for (var enumMember in HanziType) {
 				if (this.getHanziType() !== enumMember) {
 					secondaryText = enumMember;
 				}
 			}
-			type = this.cardType
-				.toUpperCase()
-				.replace('SECONDARY', secondaryText)
-				.replace('-', ' ')
-				.replace('RECOGNITION', '')
-				.trim();
+			type = this.cardType.toUpperCase().replace('SECONDARY', secondaryText).replace('-', ' ').replace('RECOGNITION', '').trim();
 		}
-		this._type =
-			<p>{ type }</p>
-		;
-    }
+		this._type = <p>{type}</p>;
+	}
 
-    public getHanziType(): HanziType {
+	public getHanziType(): HanziType {
 		let hanziType: HanziType;
 		switch (this.primaryHanziType) {
 			case 'traditional':
@@ -67,9 +59,9 @@ export class CardType {
 		return hanziType;
 	}
 
-    render() {
-        this.setType();
-        this.setContent();
-        return this.getContent();
-    }
+	render() {
+		this.setType();
+		this.setContent();
+		return this.getContent();
+	}
 }
