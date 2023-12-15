@@ -50,6 +50,7 @@ export class HanziWithPhonic {
 	protected getDictionaryLink(): string {
 		return this._dictionaryLink;
 	}
+
 	protected setDictionaryLink(): void {
 		this._dictionaryLink = `http://www.hanzii.net/search/word/${this.hanzi}`;
 		if (navigator.userAgent.indexOf('Mobile') > 0) {
@@ -108,7 +109,8 @@ export class HanziWithPhonic {
 		return (
 			<table class="table-center">
 				<tbody>
-					<a id="dictionary-link" href={this.getDictionaryLink()}>
+					{/* class tappable is needed for AnkiMobile */}
+					<a id="dictionary-link" href={this.getDictionaryLink()} class="tappable">
 						<tr>
 							{hanziAndPhonics.map((x: HanziAndPhonic) => {
 								return (
@@ -146,7 +148,8 @@ export class HanziWithPhonic {
 		}
 
 		return (
-			<a id="dictionary-link" href={this.getDictionaryLink()}>
+			<a id="dictionary-link" href={this.getDictionaryLink()} class="tappable">
+				{/* class tappable is needed for AnkiMobile */}
 				<ruby id={this.idForStyles}>
 					{hanziAndPhonics.map((x: HanziAndPhonic) => {
 						return (
