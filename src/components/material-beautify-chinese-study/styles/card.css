@@ -1,7 +1,7 @@
 :host {
 	display: flex;
 	flex: 1;
-	height: 65vh;
+	height: 65dvh;
 	align-items: center;
 	align-self: center;
 	flex-flow: row nowrap;
@@ -11,46 +11,45 @@
 	font-family: 'Noto Sans SC', sans-serif;
 }
 
+@media only screen and (max-width: 768px) {
+	:host {
+		height: 100dvh;
+	}
+}
+
 :host(.recognition) {
 	color: #404040;
 	background-color: #b2f2bb;
-	box-shadow: 0px 4px 4px rgb(0, 0, 0, 0.25);
 }
 
 :host(.writing) {
 	color: #404040;
 	background-color: #6fffe9;
-	box-shadow: 0px 4px 4px rgb(0, 0, 0, 0.25);
 }
 
 :host(.tones) {
 	color: #404040;
 	background-color: #fff9b0;
-	box-shadow: 0px 4px 4px rgb(0, 0, 0, 0.25);
 }
 
 :host(.sentence) {
 	color: #404040;
 	background-color: #d4b5e6;
-	box-shadow: 0px 4px 4px rgb(0, 0, 0, 0.25);
 }
 
 :host(.audio) {
 	color: #404040;
-	background-color: #A2C8D16;
-	box-shadow: 0px 4px 4px rgb(0, 0, 0, 0.25);
+	background-color: #a2c8d1;
 }
 
 :host(.secondary-recognition) {
 	color: #404040;
 	background-color: #f7b6d2;
-	box-shadow: 0px 4px 4px rgb(0, 0, 0, 0.25);
 }
 
 :host(.secondary-sentence) {
 	color: #404040;
 	background-color: #ffdab9;
-	box-shadow: 0px 4px 4px rgb(0, 0, 0, 0.25);
 }
 
 @keyframes fadeIn {
