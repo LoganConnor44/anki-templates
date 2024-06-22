@@ -12,6 +12,13 @@ div {
 	display: inline-block;
 }
 
+hr {
+	border: none;
+	height: 1px;
+	background-color: #404040;
+	margin: 2rem 0;
+}
+
 #dictionary-link {
 	font-size: 6vw;
 	text-decoration: none;

@@ -197,6 +197,7 @@ export class CardContent {
 					display-type={DisplayType.PRIMARY}
 					idForStyles="primary-item"
 				/>
+				<hr />
 				<material-beautify-hanzi-with-phonic
 					hanzi={this.sentence}
 					phonic={this.sentencePhonic}
