@@ -42,6 +42,7 @@
 	},
 	"dependencies": {
 		"@fontsource/noto-sans-sc": "^4.5.12",
+		"@google/generative-ai": "^0.13.0",
 		"@stencil/core": "^4.5.0",
 		"hanzi-writer": "^2.3.0",
 		"opencc-js": "^1.0.3",
@@ -52,6 +53,7 @@
 	},
 	"license": "MIT",
 	"devDependencies": {
+		"@alepop/stencil-env": "^0.4.1",
 		"@types/jest": "^27.0.3",
 		"jest": "^27.0.3",
 		"jest-cli": "^27.4.5",
