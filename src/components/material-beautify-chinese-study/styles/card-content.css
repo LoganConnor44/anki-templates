@@ -137,3 +137,22 @@ hr {
 		height: 200px;
 	}
 }
+
+.minimal-button {
+	max-width: 50dvw;
+	border: 1px solid #404040;
+	border-radius: 12px;
+	background-color: transparent;
+	color: #404040;
+	padding: 10px 20px;
+	font-size: 0.75rem;
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+	transition: background-color 0.3s, color 0.3s;
+}
+
+.minimal-button:active {
+	background-color: #404040;
+	color: #ffffff;
+}

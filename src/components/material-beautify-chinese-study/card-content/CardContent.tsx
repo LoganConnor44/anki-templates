@@ -1,8 +1,8 @@
 import { h, Component, Prop, Host, Element } from '@stencil/core';
 import { JSXBase } from '@stencil/core/internal';
 import HanziWriter from 'hanzi-writer';
-import { GenerateContentCandidate, GenerateContentResult, GoogleGenerativeAI } from '@google/generative-ai';
 import { DisplayType } from '../../../enums/DisplayType';
+import { CardInsight } from '../card-buttons/insight/Insight';
 
 @Component({
 	tag: 'material-beautify-content',
@@ -149,19 +149,6 @@ export class CardContent {
 		}
 	}
 
-	protected async callOpenAI() {
-		const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
-		const model = genAI.getGenerativeModel({
-			model: 'gemini-1.5-flash',
-			systemInstruction:
-				'You are a Mandarin tutor. Give answers as concisely as possible. Do not provide phonics for characters or explanations of punctuation marks. Render the response as an html table so it can be viewed on a webpage in a modern, minimalist manner.',
-		});
-		const prompt = 'Give a literal translation for each major word in this sentence - provide parts of speech if necessary: ' + this.sentence;
-		const contentResult = await model.generateContent(prompt);
-		const response = await contentResult.response;
-		console.log(response.text());
-	}
-
 	protected setSentence() {
 		this._content = (
 			<Host>
@@ -216,7 +203,6 @@ export class CardContent {
 					idForStyles="primary-item"
 				/>
 				<hr />
-				<button onClick={() => this.callOpenAI()}>Call OpenAI API</button>
 				<material-beautify-hanzi-with-phonic
 					hanzi={this.sentence}
 					phonic={this.sentencePhonic}

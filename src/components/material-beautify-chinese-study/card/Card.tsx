@@ -55,6 +55,7 @@ export class Card {
 					phonic-orientation={this.phonicOrientation}
 				/>
 				<material-beautify-type class={this.type.toLowerCase()} card-type={this.type} primary-hanzi-type={this.primaryHanziType} />
+				<material-beautify-insight contentForInsight="asdf" />
 			</Host>
 		);
 	}

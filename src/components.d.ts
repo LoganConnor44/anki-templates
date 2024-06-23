@@ -104,6 +104,9 @@ export namespace Components {
         "phonic": string;
         "phonicOrientation": string;
     }
+    interface MaterialBeautifyInsight {
+        "contentForInsight": string;
+    }
     interface MaterialBeautifyMeaning {
         "idForStyles": string;
         "meaning": string;
@@ -142,6 +145,12 @@ declare global {
         prototype: HTMLMaterialBeautifyHanziWithPhonicElement;
         new (): HTMLMaterialBeautifyHanziWithPhonicElement;
     };
+    interface HTMLMaterialBeautifyInsightElement extends Components.MaterialBeautifyInsight, HTMLStencilElement {
+    }
+    var HTMLMaterialBeautifyInsightElement: {
+        prototype: HTMLMaterialBeautifyInsightElement;
+        new (): HTMLMaterialBeautifyInsightElement;
+    };
     interface HTMLMaterialBeautifyMeaningElement extends Components.MaterialBeautifyMeaning, HTMLStencilElement {
     }
     var HTMLMaterialBeautifyMeaningElement: {
@@ -165,6 +174,7 @@ declare global {
         "material-beautify-chinese-study": HTMLMaterialBeautifyChineseStudyElement;
         "material-beautify-content": HTMLMaterialBeautifyContentElement;
         "material-beautify-hanzi-with-phonic": HTMLMaterialBeautifyHanziWithPhonicElement;
+        "material-beautify-insight": HTMLMaterialBeautifyInsightElement;
         "material-beautify-meaning": HTMLMaterialBeautifyMeaningElement;
         "material-beautify-type": HTMLMaterialBeautifyTypeElement;
         "material-beautify-writing": HTMLMaterialBeautifyWritingElement;
@@ -266,6 +276,9 @@ declare namespace LocalJSX {
         "phonic"?: string;
         "phonicOrientation"?: string;
     }
+    interface MaterialBeautifyInsight {
+        "contentForInsight"?: string;
+    }
     interface MaterialBeautifyMeaning {
         "idForStyles"?: string;
         "meaning"?: string;
@@ -283,6 +296,7 @@ declare namespace LocalJSX {
         "material-beautify-chinese-study": MaterialBeautifyChineseStudy;
         "material-beautify-content": MaterialBeautifyContent;
         "material-beautify-hanzi-with-phonic": MaterialBeautifyHanziWithPhonic;
+        "material-beautify-insight": MaterialBeautifyInsight;
         "material-beautify-meaning": MaterialBeautifyMeaning;
         "material-beautify-type": MaterialBeautifyType;
         "material-beautify-writing": MaterialBeautifyWriting;
@@ -296,6 +310,7 @@ declare module "@stencil/core" {
             "material-beautify-chinese-study": LocalJSX.MaterialBeautifyChineseStudy & JSXBase.HTMLAttributes<HTMLMaterialBeautifyChineseStudyElement>;
             "material-beautify-content": LocalJSX.MaterialBeautifyContent & JSXBase.HTMLAttributes<HTMLMaterialBeautifyContentElement>;
             "material-beautify-hanzi-with-phonic": LocalJSX.MaterialBeautifyHanziWithPhonic & JSXBase.HTMLAttributes<HTMLMaterialBeautifyHanziWithPhonicElement>;
+            "material-beautify-insight": LocalJSX.MaterialBeautifyInsight & JSXBase.HTMLAttributes<HTMLMaterialBeautifyInsightElement>;
             "material-beautify-meaning": LocalJSX.MaterialBeautifyMeaning & JSXBase.HTMLAttributes<HTMLMaterialBeautifyMeaningElement>;
             "material-beautify-type": LocalJSX.MaterialBeautifyType & JSXBase.HTMLAttributes<HTMLMaterialBeautifyTypeElement>;
             "material-beautify-writing": LocalJSX.MaterialBeautifyWriting & JSXBase.HTMLAttributes<HTMLMaterialBeautifyWritingElement>;
