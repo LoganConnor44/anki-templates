@@ -14,14 +14,14 @@ export class CardType {
 	public primaryHanziType: string;
 
 	private _content: JSXBase.HTMLAttributes<HTMLDivElement>;
-	private _type: JSXBase.HTMLAttributes<HTMLDivElement>;
+	private _type: JSXBase.HTMLAttributes<HTMLParagraphElement>;
 
 	protected getContent() {
 		return this._content;
 	}
 
 	protected setContent() {
-		this._content = this.getType();
+		this._content = <div>{this.getType()}</div>;
 	}
 
 	protected getType() {
