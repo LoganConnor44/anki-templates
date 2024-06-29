@@ -1,0 +1,20 @@
+@import '../styles/colours.css';
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	border-radius: 12px;
+	overflow: hidden;
+}
+
+th,
+td {
+	border: 1px solid #404040;
+	padding: 8px;
+}
+
+th {
+	background-color: #404040;
+	color: var(--recognition-background-colour);
+	text-align: left;
+}

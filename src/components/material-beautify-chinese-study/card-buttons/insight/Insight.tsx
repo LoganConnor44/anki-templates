@@ -1,6 +1,7 @@
 import { h, Component, Prop, Element } from '@stencil/core';
 import { JSXBase, Listen } from '@stencil/core/internal';
 import { GoogleGenerativeAI } from '@google/generative-ai';
+import { GenerativeResults } from '../../card-table/GenerativeResults';
 
 @Component({
 	tag: 'material-beautify-insight',
@@ -47,9 +48,7 @@ export class CardInsight {
 			insightContent.className += 'loading';
 		}
 		setTimeout(() => {
-			insightContent.innerHTML = '';
-
-			console.log([
+			const results = [
 				{ term: '她说', translation: 'She said', partOfSpeech: 'verb phrase' },
 				{ term: '现在', translation: 'now', partOfSpeech: 'adverb' },
 				{ term: '世界', translation: 'world', partOfSpeech: 'noun' },
@@ -61,7 +60,13 @@ export class CardInsight {
 				{ term: '刻苦', translation: 'diligently', partOfSpeech: 'adverb' },
 				{ term: '读书', translation: 'study', partOfSpeech: 'verb' },
 				{ term: '才对', translation: "that's right", partOfSpeech: 'phrase' },
-			]);
+			];
+			insightContent.innerHTML = '';
+
+			const beautifyResults = document.createElement('material-beautify-ai-results');
+			beautifyResults.generatedContent = JSON.stringify(results);
+			insightContent.appendChild(beautifyResults);
+
 			insightContent.className = insightContent.className.replace('loading', '');
 		}, 2000);
 	}
