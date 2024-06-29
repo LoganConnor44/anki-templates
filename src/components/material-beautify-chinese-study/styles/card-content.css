@@ -156,3 +156,40 @@ hr {
 	background-color: #404040;
 	color: #ffffff;
 }
+
+table {
+	min-width: 50dvw;
+	border-collapse: collapse;
+	margin: 1rem 0;
+	font-size: 0.75rem;
+	min-width: 400px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+thead tr {
+	background-color: #009879;
+	color: #ffffff;
+	text-align: left;
+	font-weight: bold;
+}
+
+th,
+td {
+	padding: 12px 15px;
+}
+
+tbody tr {
+	border-bottom: 1px solid #dddddd;
+}
+
+tbody tr:nth-of-type(even) {
+	background-color: #f3f3f3;
+}
+
+tbody tr:last-of-type {
+	border-bottom: 2px solid #009879;
+}
+
+tbody tr:hover {
+	background-color: #f1f1f1;
+}

@@ -8,6 +8,9 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { DisplayType } from "./enums/DisplayType";
 export { DisplayType } from "./enums/DisplayType";
 export namespace Components {
+    interface MaterialBeautifyAiResults {
+        "generatedContent": string;
+    }
     interface MaterialBeautifyCard {
         "meaning": string;
         "orientation": string;
@@ -121,6 +124,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLMaterialBeautifyAiResultsElement extends Components.MaterialBeautifyAiResults, HTMLStencilElement {
+    }
+    var HTMLMaterialBeautifyAiResultsElement: {
+        prototype: HTMLMaterialBeautifyAiResultsElement;
+        new (): HTMLMaterialBeautifyAiResultsElement;
+    };
     interface HTMLMaterialBeautifyCardElement extends Components.MaterialBeautifyCard, HTMLStencilElement {
     }
     var HTMLMaterialBeautifyCardElement: {
@@ -170,6 +179,7 @@ declare global {
         new (): HTMLMaterialBeautifyWritingElement;
     };
     interface HTMLElementTagNameMap {
+        "material-beautify-ai-results": HTMLMaterialBeautifyAiResultsElement;
         "material-beautify-card": HTMLMaterialBeautifyCardElement;
         "material-beautify-chinese-study": HTMLMaterialBeautifyChineseStudyElement;
         "material-beautify-content": HTMLMaterialBeautifyContentElement;
@@ -181,6 +191,9 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface MaterialBeautifyAiResults {
+        "generatedContent"?: string;
+    }
     interface MaterialBeautifyCard {
         "meaning"?: string;
         "orientation"?: string;
@@ -292,6 +305,7 @@ declare namespace LocalJSX {
         "hanzi"?: string;
     }
     interface IntrinsicElements {
+        "material-beautify-ai-results": MaterialBeautifyAiResults;
         "material-beautify-card": MaterialBeautifyCard;
         "material-beautify-chinese-study": MaterialBeautifyChineseStudy;
         "material-beautify-content": MaterialBeautifyContent;
@@ -306,6 +320,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "material-beautify-ai-results": LocalJSX.MaterialBeautifyAiResults & JSXBase.HTMLAttributes<HTMLMaterialBeautifyAiResultsElement>;
             "material-beautify-card": LocalJSX.MaterialBeautifyCard & JSXBase.HTMLAttributes<HTMLMaterialBeautifyCardElement>;
             "material-beautify-chinese-study": LocalJSX.MaterialBeautifyChineseStudy & JSXBase.HTMLAttributes<HTMLMaterialBeautifyChineseStudyElement>;
             "material-beautify-content": LocalJSX.MaterialBeautifyContent & JSXBase.HTMLAttributes<HTMLMaterialBeautifyContentElement>;
