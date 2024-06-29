@@ -11,7 +11,6 @@
 }
 
 #insight-content {
-	// position: relative;
 	padding: 10px 20px;
 	max-height: 75dvh;
 	min-width: 50dvw;
@@ -21,22 +20,25 @@
 	background: var(--recognition-background-colour);
 	border-radius: 24px;
 }
-
 #insight-content::before,
 #insight-content::after {
 	content: '';
 	position: absolute;
 	inset: -0.1rem;
 	z-index: -1;
-	background: conic-gradient(from var(--gradient-angle), red, orange, yellow, lime, green, aqua, cyan, blue, indigo, violet, magenta, pink, red);
+	background: #404040;
 	border-radius: inherit;
 	animation: rotation 5s linear infinite;
 }
 
-#insight-content::after {
+#insight-content.loading::before,
+#insight-content.loading::after {
+	background: conic-gradient(from var(--gradient-angle), red, orange, yellow, lime, green, aqua, cyan, blue, indigo, violet, magenta, pink, red);
+}
+
+.loading::after {
+	//safari is the worst browser in existence
 	-webkit-backdrop-filter: blur(1.5rem);
-	backdrop-filter: blur(1.5rem);
-	-webkit-filter: blur(1.5rem);
 	filter: blur(1.5rem);
 }
 

@@ -17,11 +17,10 @@ export class GenerativeResults {
 	}
 
 	protected setContent() {
-		this._content = <table>{}</table>;
+		this._content = <table>{this.generatedContent}</table>;
 	}
 
 	render() {
-		// this.setType();
 		this.setContent();
 		return this.getContent();
 	}
