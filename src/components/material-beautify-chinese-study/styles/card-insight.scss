@@ -1,10 +1,16 @@
 @import '../styles/colours.css';
 
+:host {
+	background-color: inherit;
+}
+
 #insight-container {
 	position: absolute;
 	bottom: 3dvh;
 	left: 50%;
 	transform: translateX(-50%);
+
+	background-color: inherit;
 
 	cursor: pointer;
 	user-select: none;
@@ -17,7 +23,7 @@
 	color: #404040;
 	font-size: 0.75rem;
 	text-align: center;
-	background: var(--recognition-background-colour);
+	background-color: inherit;
 	border-radius: 24px;
 }
 #insight-content::before,

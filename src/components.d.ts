@@ -12,6 +12,7 @@ export namespace Components {
         "generatedContent": string;
     }
     interface MaterialBeautifyCard {
+        "geminiApiKey": string;
         "meaning": string;
         "orientation": string;
         "phonicOrientation": string;
@@ -195,6 +196,7 @@ declare namespace LocalJSX {
         "generatedContent"?: string;
     }
     interface MaterialBeautifyCard {
+        "geminiApiKey"?: string;
         "meaning"?: string;
         "orientation"?: string;
         "phonicOrientation"?: string;

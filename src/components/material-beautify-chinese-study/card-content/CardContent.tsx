@@ -2,7 +2,6 @@ import { h, Component, Prop, Host, Element } from '@stencil/core';
 import { JSXBase } from '@stencil/core/internal';
 import HanziWriter from 'hanzi-writer';
 import { DisplayType } from '../../../enums/DisplayType';
-import { CardInsight } from '../card-buttons/insight/Insight';
 
 @Component({
 	tag: 'material-beautify-content',

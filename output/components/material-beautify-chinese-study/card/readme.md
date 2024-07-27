@@ -33,15 +33,18 @@
 
 - [material-beautify-content](../card-content)
 - [material-beautify-type](../card-type)
+- [material-beautify-insight](../card-buttons/insight)
 
 ### Graph
 ```mermaid
 graph TD;
   material-beautify-card --> material-beautify-content
   material-beautify-card --> material-beautify-type
+  material-beautify-card --> material-beautify-insight
   material-beautify-content --> material-beautify-hanzi-with-phonic
   material-beautify-content --> material-beautify-writing
   material-beautify-content --> material-beautify-meaning
+  material-beautify-insight --> material-beautify-ai-results
   material-beautify-chinese-study --> material-beautify-card
   style material-beautify-card fill:#f9f,stroke:#333,stroke-width:4px
 ```

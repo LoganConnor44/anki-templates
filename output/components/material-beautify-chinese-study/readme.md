@@ -50,9 +50,11 @@ graph TD;
   material-beautify-chinese-study --> material-beautify-card
   material-beautify-card --> material-beautify-content
   material-beautify-card --> material-beautify-type
+  material-beautify-card --> material-beautify-insight
   material-beautify-content --> material-beautify-hanzi-with-phonic
   material-beautify-content --> material-beautify-writing
   material-beautify-content --> material-beautify-meaning
+  material-beautify-insight --> material-beautify-ai-results
   style material-beautify-chinese-study fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
