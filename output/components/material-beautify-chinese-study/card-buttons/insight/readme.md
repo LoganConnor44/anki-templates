@@ -4,9 +4,10 @@
 
 ## Properties
 
-| Property            | Attribute             | Description | Type     | Default |
-| ------------------- | --------------------- | ----------- | -------- | ------- |
-| `contentForInsight` | `content-for-insight` |             | `string` | `''`    |
+| Property            | Attribute             | Description | Type     | Default     |
+| ------------------- | --------------------- | ----------- | -------- | ----------- |
+| `contentForInsight` | `content-for-insight` |             | `string` | `''`        |
+| `geminiApiKey`      | `gemini-api-key`      |             | `string` | `undefined` |
 
 
 ## Dependencies

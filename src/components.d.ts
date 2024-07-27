@@ -110,6 +110,7 @@ export namespace Components {
     }
     interface MaterialBeautifyInsight {
         "contentForInsight": string;
+        "geminiApiKey": string;
     }
     interface MaterialBeautifyMeaning {
         "idForStyles": string;
@@ -293,6 +294,7 @@ declare namespace LocalJSX {
     }
     interface MaterialBeautifyInsight {
         "contentForInsight"?: string;
+        "geminiApiKey"?: string;
     }
     interface MaterialBeautifyMeaning {
         "idForStyles"?: string;

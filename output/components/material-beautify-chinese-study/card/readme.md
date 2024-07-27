@@ -9,6 +9,7 @@
 
 | Property            | Attribute            | Description | Type     | Default     |
 | ------------------- | -------------------- | ----------- | -------- | ----------- |
+| `geminiApiKey`      | `gemini-api-key`     |             | `string` | `undefined` |
 | `meaning`           | `meaning`            |             | `string` | `undefined` |
 | `orientation`       | `orientation`        |             | `string` | `undefined` |
 | `phonicOrientation` | `phonic-orientation` |             | `string` | `undefined` |
