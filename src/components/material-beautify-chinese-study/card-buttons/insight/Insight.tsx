@@ -12,6 +12,8 @@ export class CardInsight {
 	private element: Element;
 	@Prop()
 	public contentForInsight: string = '';
+	@Prop()
+	public geminiApiKey: string;
 
 	private _content: JSXBase.HTMLAttributes<HTMLDivElement>;
 
@@ -64,7 +66,7 @@ export class CardInsight {
 		}
 
 		const beautifyResults = document.createElement('material-beautify-ai-results');
-		const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
+		const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY || this.geminiApiKey);
 		const model = genAI.getGenerativeModel({
 			model: 'gemini-1.5-flash',
 			systemInstruction:

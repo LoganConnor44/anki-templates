@@ -55,10 +55,9 @@ export class Card {
 					sentence-meaning={this.sentenceMeaning}
 					type={this.type}
 					phonic-orientation={this.phonicOrientation}
-					gemini-api-key={this.geminiApiKey}
 				/>
 				<material-beautify-type class={this.type.toLowerCase()} card-type={this.type} primary-hanzi-type={this.primaryHanziType} />
-				<material-beautify-insight contentForInsight={this.sentence} />
+				<material-beautify-insight contentForInsight={this.sentence} gemini-api-key={this.geminiApiKey} />
 			</Host>
 		);
 	}
