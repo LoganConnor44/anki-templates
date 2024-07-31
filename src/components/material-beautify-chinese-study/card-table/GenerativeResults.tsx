@@ -17,7 +17,7 @@ export class GenerativeResults {
 	}
 
 	private getHeaders(results: any[]) {
-		if (results.length === 0) {
+		if (results === undefined || results.length === 0) {
 			return [];
 		}
 		return Object.keys(results[0]);

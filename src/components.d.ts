@@ -39,6 +39,10 @@ export namespace Components {
           * Option to always generate secondary character values and phonic values
          */
         "forceAutoGeneration": boolean;
+        /**
+          * If AI generated insights are wanted a gemini API key must be provided
+         */
+        "geminiApiKey": string;
         "getVersion": () => Promise<string>;
         /**
           * All English language words allowed
@@ -224,6 +228,10 @@ declare namespace LocalJSX {
           * Option to always generate secondary character values and phonic values
          */
         "forceAutoGeneration"?: boolean;
+        /**
+          * If AI generated insights are wanted a gemini API key must be provided
+         */
+        "geminiApiKey"?: string;
         /**
           * All English language words allowed
          */

@@ -1,5 +1,6 @@
 <script>
-	var versionNumber = '1.20.27';
+	var versionNumber = '1.21.0';
+	var geminiApiKey = '';
 </script>
 
 <style>
@@ -40,6 +41,7 @@
 		beautify.setAttribute('card-orientation', 'answer');
 		beautify.setAttribute('preferred-phonic', 'zhuyin');
 		beautify.setAttribute('force-auto-generation', 'force-auto-generation');
+		beautify.setAttribute('gemini-api-key', geminiApiKey);
 		document.body.appendChild(beautify);
 	} else {
 		beautify.setAttribute('card-orientation', 'answer');

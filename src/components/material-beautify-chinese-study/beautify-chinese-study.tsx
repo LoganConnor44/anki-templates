@@ -82,6 +82,11 @@ export class MaterialBeautifyChineseStudy {
 	 */
 	@Prop()
 	public phonicOrientation: string = 'next-to';
+	/**
+	 * If AI generated insights are wanted a gemini API key must be provided
+	 */
+	@Prop()
+	public geminiApiKey: string = process.env.GOOGLE_API_KEY || '';
 
 	@State()
 	public phonic: Array<string> = [];
@@ -238,6 +243,7 @@ export class MaterialBeautifyChineseStudy {
 					sentence-meaning={this.getSentenceMeaning()}
 					primary-hanzi-type={this.primaryHanziType.trim().toLowerCase()}
 					phonic-orientation={this.phonicOrientation}
+					gemini-api-key={this.geminiApiKey}
 				/>
 			</div>
 		);
