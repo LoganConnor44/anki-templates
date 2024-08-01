@@ -31,7 +31,7 @@ export class GenerativeResults {
 		const results = this.parseResults();
 		const headers = this.getHeaders(results);
 		this._content = (
-			<table>
+			<table id="generative-results">
 				<thead>
 					<tr>
 						{headers.map(header => (

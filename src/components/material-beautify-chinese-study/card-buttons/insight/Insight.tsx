@@ -54,9 +54,13 @@ export class CardInsight {
 				.find(x => x);
 		};
 		if (hasGenerativeContent(insightContent.children)) {
-			let button: Node = new Node();
-			button = <p id="button-text">insight</p>;
-			insightContent.appendChild(button as Node);
+			while (insightContent.firstChild) {
+				insightContent.removeChild(insightContent.firstChild);
+			}
+			let button: HTMLElement = document.createElement('p');
+			button.id = 'button-text';
+			button.innerText = 'insight';
+			insightContent.appendChild(button);
 			return;
 		}
 
