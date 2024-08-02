@@ -28,9 +28,10 @@
 	}
 
 	var beautify = document.querySelector('material-beautify-chinese-study');
-	if (beautify == null) {
-		beautify = document.createElement('material-beautify-chinese-study');
+	if (beautify !== null) {
+		beautify.remove();
 	}
+	beautify = document.createElement('material-beautify-chinese-study');
 	beautify.setAttribute('id', 'beautify-recognition');
 	beautify.setAttribute('primary-character', `{{text:Simplified}}`);
 	beautify.setAttribute('primary-character-sentence', `{{text:SentenceSimplified}}`);
