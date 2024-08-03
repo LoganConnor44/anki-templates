@@ -18,6 +18,13 @@ export class CardInsight {
 	private _content: JSXBase.HTMLAttributes<HTMLDivElement>;
 
 	componentDidLoad() {
+		console.log = (function (oldLog) {
+			return function (message) {
+				oldLog.apply(console, arguments);
+				window.webkit.messageHandlers.consoleLog.postMessage(message);
+			};
+		})(console.log);
+
 		if (!CSS.supports('property', '--gradient-angle')) {
 			window.CSS.registerProperty({
 				name: '--gradient-angle',
