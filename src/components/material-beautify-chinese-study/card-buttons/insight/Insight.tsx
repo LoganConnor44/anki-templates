@@ -34,7 +34,7 @@ export class CardInsight {
 
 	protected setContent() {
 		this._content = (
-			<div id="insight-container" onTouchStart={() => {}}>
+			<div id="insight-container" class="tappable" onTouchStart={() => {}}>
 				<div id="insight-content">
 					<p id="button-text">insight</p>
 				</div>
