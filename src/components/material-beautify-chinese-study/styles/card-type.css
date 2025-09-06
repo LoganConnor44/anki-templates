@@ -8,10 +8,10 @@ div {
 	min-width: 50dvw;
 	padding: 10px 20px;
 
-	border: 1px solid #404040;
+	border: 1px solid var(--card-fg, var(--surface-fg, #404040));
 	border-radius: 24px;
-	background-color: transparent;
-	color: #404040;
+	background-color: var(--card-bg, var(--surface-bg, transparent));
+	color: var(--card-fg, var(--surface-fg, #404040));
 	font-size: 0.75rem;
 	text-align: center;
 
