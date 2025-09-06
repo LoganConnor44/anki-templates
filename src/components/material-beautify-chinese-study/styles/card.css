@@ -18,38 +18,52 @@
 }
 
 :host(.recognition) {
-	color: #404040;
-	background-color: #b2f2bb;
+	--card-fg: #404040;
+	--card-bg: #b2f2bb;
+	color: var(--card-fg);
+	background-color: var(--card-bg);
 }
 
 :host(.writing) {
-	color: #404040;
-	background-color: #6fffe9;
+	--card-fg: #404040;
+	--card-bg: #6fffe9;
+	color: var(--card-fg);
+	background-color: var(--card-bg);
 }
 
 :host(.tones) {
-	color: #404040;
-	background-color: #fff9b0;
+	--card-fg: #404040;
+	--card-bg: #fff9b0;
+	color: var(--card-fg);
+	background-color: var(--card-bg);
 }
 
 :host(.sentence) {
-	color: #404040;
-	background-color: #d4b5e6;
+	--card-fg: #404040;
+	--card-bg: #d4b5e6;
+	color: var(--card-fg);
+	background-color: var(--card-bg);
 }
 
 :host(.audio) {
-	color: #404040;
-	background-color: #a2c8d1;
+	--card-fg: #404040;
+	--card-bg: #a2c8d1;
+	color: var(--card-fg);
+	background-color: var(--card-bg);
 }
 
 :host(.secondary-recognition) {
-	color: #404040;
-	background-color: #f7b6d2;
+	--card-fg: #404040;
+	--card-bg: #f7b6d2;
+	color: var(--card-fg);
+	background-color: var(--card-bg);
 }
 
 :host(.secondary-sentence) {
-	color: #404040;
-	background-color: #ffdab9;
+	--card-fg: #404040;
+	--card-bg: #ffdab9;
+	color: var(--card-fg);
+	background-color: var(--card-bg);
 }
 
 @keyframes fadeIn {

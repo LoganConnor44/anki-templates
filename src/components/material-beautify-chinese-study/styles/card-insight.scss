@@ -1,7 +1,7 @@
 @import '../styles/colours.css';
 
 :host {
-	background-color: inherit;
+	background-color: transparent;
 }
 
 #insight-container {
@@ -20,10 +20,10 @@
 	padding: 10px 20px;
 	max-height: 75dvh;
 	min-width: 50dvw;
-	color: #404040;
+	color: var(--card-fg, var(--surface-fg, #404040));
 	font-size: 0.75rem;
 	text-align: center;
-	background-color: inherit;
+	background-color: var(--card-bg, var(--surface-bg, transparent));
 	border-radius: 24px;
 }
 #insight-content::before,
