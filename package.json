@@ -1,6 +1,6 @@
 {
 	"name": "beautify-chinese-study",
-	"version": "2.1.0",
+	"version": "v2.0.0-0",
 	"description": "A package for making Chinese study more beautiful.",
 	"repository": {
 		"type": "git",
@@ -46,7 +46,7 @@
 		"@stencil/core": "^4.5.0",
 		"hanzi-writer": "^2.3.0",
 		"opencc-js": "^1.0.3",
-		"pinyin": "^2.10.2"
+		"pinyin": "^4.0.0"
 	},
 	"publishConfig": {
 		"registry": "https://registry.npmjs.org/"

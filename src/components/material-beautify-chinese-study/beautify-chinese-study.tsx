@@ -2,7 +2,7 @@ import { Component, Host, h, Prop, State, FunctionalComponent, Element, Method }
 import { PhoneticType } from '../../enums/PhoneticType';
 import { HanziType } from '../../enums/HanziType';
 import * as OpenCC from 'opencc-js';
-import * as PinyinGenerator from 'pinyin';
+import pinyin from 'pinyin';
 import Phonetic from '../../phonetics/Phonetic';
 import { version } from '../../../package.json';
 
@@ -166,17 +166,25 @@ export class MaterialBeautifyChineseStudy {
 	}
 
 	private getNumberedPinyin(): Array<string> {
-		return PinyinGenerator.default(this.getPrimaryCharacter(), { style: PinyinGenerator.STYLE_TONE2 });
+		return pinyin(this.getPrimaryCharacter(), {
+			style: pinyin.STYLE_TONE2,
+		}).flat();
 	}
 
 	private getSentenceNumberedPinyin(): Array<string> {
 		if (!this.isEmptyStringBlankStringNullOrUndefined(this.sentenceNumberedPinyin)) {
 			return [];
 		}
-		const isLetter: RegExp = new RegExp(/[A-Za-z]/g);
+
+		const isLetter: RegExp = /[A-Za-z]/g;
 		const regExIsLetter: RegExp = new RegExp(isLetter.source);
-		return PinyinGenerator.default(this.getPrimaryCharacterSentence(), { style: PinyinGenerator.STYLE_TONE2 }).map((x: Array<string>) => {
-			return regExIsLetter.test(x[0].slice(-1)) ? new Array<string>((x[0] += '5')) : x;
+
+		return pinyin(this.getPrimaryCharacterSentence(), { style: pinyin.STYLE_TONE2 }).map((x: Array<string>) => {
+			// Append '5' if the last char is a letter
+			if (regExIsLetter.test(x[0].slice(-1))) {
+				x[0] += '5';
+			}
+			return x[0]; // Extract the string, so final result is string[]
 		});
 	}
 
