@@ -41,7 +41,7 @@ class Phonetic {
 	}
 
 	private retrieveVowelsBeforeNumber(value: string): Array<string> {
-		const vowelPattern = /([a|e|i|o|u])/i;
+		const vowelPattern = /([aeiou])/i;
 		const regEx = new RegExp(vowelPattern);
 		const valueArrayReversed = value.split('').reverse();
 		let vowelsPresent: Array<string> = new Array<string>();
