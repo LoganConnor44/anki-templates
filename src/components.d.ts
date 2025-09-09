@@ -8,7 +8,11 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { DisplayType } from "./enums/DisplayType";
 export { DisplayType } from "./enums/DisplayType";
 export namespace Components {
+    interface MaterialBeautifyAiResults {
+        "generatedContent": string;
+    }
     interface MaterialBeautifyCard {
+        "geminiApiKey": string;
         "meaning": string;
         "orientation": string;
         "phonicOrientation": string;
@@ -35,6 +39,10 @@ export namespace Components {
           * Option to always generate secondary character values and phonic values
          */
         "forceAutoGeneration": boolean;
+        /**
+          * If AI generated insights are wanted a gemini API key must be provided
+         */
+        "geminiApiKey": string;
         "getVersion": () => Promise<string>;
         /**
           * All English language words allowed
@@ -104,6 +112,10 @@ export namespace Components {
         "phonic": string;
         "phonicOrientation": string;
     }
+    interface MaterialBeautifyInsight {
+        "contentForInsight": string;
+        "geminiApiKey": string;
+    }
     interface MaterialBeautifyMeaning {
         "idForStyles": string;
         "meaning": string;
@@ -118,6 +130,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLMaterialBeautifyAiResultsElement extends Components.MaterialBeautifyAiResults, HTMLStencilElement {
+    }
+    var HTMLMaterialBeautifyAiResultsElement: {
+        prototype: HTMLMaterialBeautifyAiResultsElement;
+        new (): HTMLMaterialBeautifyAiResultsElement;
+    };
     interface HTMLMaterialBeautifyCardElement extends Components.MaterialBeautifyCard, HTMLStencilElement {
     }
     var HTMLMaterialBeautifyCardElement: {
@@ -142,6 +160,12 @@ declare global {
         prototype: HTMLMaterialBeautifyHanziWithPhonicElement;
         new (): HTMLMaterialBeautifyHanziWithPhonicElement;
     };
+    interface HTMLMaterialBeautifyInsightElement extends Components.MaterialBeautifyInsight, HTMLStencilElement {
+    }
+    var HTMLMaterialBeautifyInsightElement: {
+        prototype: HTMLMaterialBeautifyInsightElement;
+        new (): HTMLMaterialBeautifyInsightElement;
+    };
     interface HTMLMaterialBeautifyMeaningElement extends Components.MaterialBeautifyMeaning, HTMLStencilElement {
     }
     var HTMLMaterialBeautifyMeaningElement: {
@@ -161,17 +185,23 @@ declare global {
         new (): HTMLMaterialBeautifyWritingElement;
     };
     interface HTMLElementTagNameMap {
+        "material-beautify-ai-results": HTMLMaterialBeautifyAiResultsElement;
         "material-beautify-card": HTMLMaterialBeautifyCardElement;
         "material-beautify-chinese-study": HTMLMaterialBeautifyChineseStudyElement;
         "material-beautify-content": HTMLMaterialBeautifyContentElement;
         "material-beautify-hanzi-with-phonic": HTMLMaterialBeautifyHanziWithPhonicElement;
+        "material-beautify-insight": HTMLMaterialBeautifyInsightElement;
         "material-beautify-meaning": HTMLMaterialBeautifyMeaningElement;
         "material-beautify-type": HTMLMaterialBeautifyTypeElement;
         "material-beautify-writing": HTMLMaterialBeautifyWritingElement;
     }
 }
 declare namespace LocalJSX {
+    interface MaterialBeautifyAiResults {
+        "generatedContent"?: string;
+    }
     interface MaterialBeautifyCard {
+        "geminiApiKey"?: string;
         "meaning"?: string;
         "orientation"?: string;
         "phonicOrientation"?: string;
@@ -198,6 +228,10 @@ declare namespace LocalJSX {
           * Option to always generate secondary character values and phonic values
          */
         "forceAutoGeneration"?: boolean;
+        /**
+          * If AI generated insights are wanted a gemini API key must be provided
+         */
+        "geminiApiKey"?: string;
         /**
           * All English language words allowed
          */
@@ -266,6 +300,10 @@ declare namespace LocalJSX {
         "phonic"?: string;
         "phonicOrientation"?: string;
     }
+    interface MaterialBeautifyInsight {
+        "contentForInsight"?: string;
+        "geminiApiKey"?: string;
+    }
     interface MaterialBeautifyMeaning {
         "idForStyles"?: string;
         "meaning"?: string;
@@ -279,10 +317,12 @@ declare namespace LocalJSX {
         "hanzi"?: string;
     }
     interface IntrinsicElements {
+        "material-beautify-ai-results": MaterialBeautifyAiResults;
         "material-beautify-card": MaterialBeautifyCard;
         "material-beautify-chinese-study": MaterialBeautifyChineseStudy;
         "material-beautify-content": MaterialBeautifyContent;
         "material-beautify-hanzi-with-phonic": MaterialBeautifyHanziWithPhonic;
+        "material-beautify-insight": MaterialBeautifyInsight;
         "material-beautify-meaning": MaterialBeautifyMeaning;
         "material-beautify-type": MaterialBeautifyType;
         "material-beautify-writing": MaterialBeautifyWriting;
@@ -292,10 +332,12 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "material-beautify-ai-results": LocalJSX.MaterialBeautifyAiResults & JSXBase.HTMLAttributes<HTMLMaterialBeautifyAiResultsElement>;
             "material-beautify-card": LocalJSX.MaterialBeautifyCard & JSXBase.HTMLAttributes<HTMLMaterialBeautifyCardElement>;
             "material-beautify-chinese-study": LocalJSX.MaterialBeautifyChineseStudy & JSXBase.HTMLAttributes<HTMLMaterialBeautifyChineseStudyElement>;
             "material-beautify-content": LocalJSX.MaterialBeautifyContent & JSXBase.HTMLAttributes<HTMLMaterialBeautifyContentElement>;
             "material-beautify-hanzi-with-phonic": LocalJSX.MaterialBeautifyHanziWithPhonic & JSXBase.HTMLAttributes<HTMLMaterialBeautifyHanziWithPhonicElement>;
+            "material-beautify-insight": LocalJSX.MaterialBeautifyInsight & JSXBase.HTMLAttributes<HTMLMaterialBeautifyInsightElement>;
             "material-beautify-meaning": LocalJSX.MaterialBeautifyMeaning & JSXBase.HTMLAttributes<HTMLMaterialBeautifyMeaningElement>;
             "material-beautify-type": LocalJSX.MaterialBeautifyType & JSXBase.HTMLAttributes<HTMLMaterialBeautifyTypeElement>;
             "material-beautify-writing": LocalJSX.MaterialBeautifyWriting & JSXBase.HTMLAttributes<HTMLMaterialBeautifyWritingElement>;

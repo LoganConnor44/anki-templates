@@ -1,38 +1,40 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+		<title>Stencil Component Starter</title>
 
-<head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
-	<title>Stencil Component Starter</title>
+		<script type="module" src="/build/beautify-chinese-study.esm.js"></script>
+		<script nomodule src="/build/beautify-chinese-study.js"></script>
+	</head>
 
-	<script type="module" src="/build/beautify-chinese-study.esm.js"></script>
-	<script nomodule src="/build/beautify-chinese-study.js"></script>
-</head>
+	<body>
+		<style>
+			body {
+				margin: 0;
+				display: flex;
+				min-height: 100dvh;
+				flex-direction: column;
+			}
+		</style>
 
-<body>
-	<style>
-		body {
-			margin: 0;
-			display: flex;
-			min-height: 100vh;
-			flex-direction: column;
-		}
-	</style>
-	
-	<material-beautify-chinese-study id='asdf'
-		primary-character='刻苦'
-		primary-character-sentence="她说现在世界和平了，武术没用了，应该刻苦读书才对！"
-		card-type='recognition'
-		meaning='Hardworking'
-		sentence-meaning="She says that now the world is peaceful and there's no use for martial arts, that we be hardworking students."
-		card-orientation='question'
-		preferred-phonic='zhuyin'
-		force-auto-generation />
+		<material-beautify-chinese-study
+			id="asdf"
+			primary-character="刻苦"
+			primary-character-sentence="她说现在世界和平了，武术没用了，应该刻苦读书才对！"
+			card-type="tones"
+			meaning="Hardworking"
+			sentence-meaning="She says that now the world is peaceful and there's no use for martial arts, that we be hardworking students."
+			card-orientation="question"
+			preferred-phonic="zhuyin"
+			force-auto-generation
+		/>
 
-	<script>
-        setTimeout(() => { document.querySelector('material-beautify-chinese-study').setAttribute('card-orientation', 'answer') }, 2000);
-	</script>
-</body>
-
+		<script>
+			setTimeout(() => {
+				document.querySelector('material-beautify-chinese-study').setAttribute('card-orientation', 'answer');
+			}, 4000);
+		</script>
+	</body>
 </html>

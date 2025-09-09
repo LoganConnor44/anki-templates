@@ -1,130 +1,195 @@
 :host {
-  display: flex;
-  flex: 1 0 0;
-  flex-direction: column;
-  text-align: center;
+	display: flex;
+	flex: 1 0 0;
+	flex-direction: column;
+	text-align: center;
 }
 
 div {
-  background-color: #333;
-  height: 100%;
-  width: 10px;
-  display: inline-block;
+	background-color: #333;
+	height: 100%;
+	width: 10px;
+	display: inline-block;
+}
+
+hr {
+	border: none;
+	height: 1px;
+	background-color: #404040;
+	margin: 2rem 0;
 }
 
 #dictionary-link {
-  font-size: 6vw;
-  text-decoration: none; 
-  color: inherit;
+	font-size: 6vw;
+	text-decoration: none;
+	color: inherit;
 }
 
 :host(.recognition) {
-  text-shadow: 2px 2px rgb(29, 53, 87, 0.3);
+	text-shadow: 0px 2px 2px rgb(0, 0, 0, 0.25);
 }
 
 :host(.tones) {
-  text-shadow: 2px 2px rgb(7, 59, 76, 0.2);
+	text-shadow: 0px 2px 2px rgb(0, 0, 0, 0.25);
 }
 
 :host(.sentence) {
-  text-shadow: 2px 2px rgb(58, 12, 163, 0.3);
+	text-shadow: 0px 2px 2px rgb(0, 0, 0, 0.25);
 }
 
 :host(.audio) {
-  text-shadow: 2px 2px rgb(177, 237, 232, 0.3);
-  flex-direction: row;
-  margin-left: 1em;
+	text-shadow: 0px 2px 2px rgb(0, 0, 0, 0.25);
+	flex-direction: row;
+	margin-left: 1em;
 }
 
 :host(.secondary-recognition) {
-  text-shadow: 2px 2px #F4A261;
+	text-shadow: 0px 2px 2px rgb(0, 0, 0, 0.25);
 }
 
 :host(.secondary-sentence) {
-  text-shadow: 2px 2px #F4A261;
+	text-shadow: 0px 2px 2px rgb(0, 0, 0, 0.25);
 }
 
 .audio-line-spinner {
-  display: flex;
-  background-color: transparent;
-  flex: 1;
-  justify-content: space-between;
-  width: 50%;
-  align-items: center;
+	display: flex;
+	background-color: transparent;
+	flex: 1;
+	justify-content: space-between;
+	width: 50%;
+	align-items: center;
 }
 
 .audio-line-spinner .music-bar {
-  background: #b65252;
-  width: 1em;
-  height: 35px;
-  border-radius: 25%;
-  animation: play-music 2s ease-in-out infinite;
+	background: #b65252;
+	width: 1em;
+	height: 35px;
+	border-radius: 25%;
+	animation: play-music 2s ease-in-out infinite;
 }
 
 .music-bar:nth-child(1) {
-  background: #ece4db;
-  animation-delay: 1s;
+	background: #ece4db;
+	animation-delay: 1s;
 }
 
 .music-bar:nth-child(2) {
-  background: #d8e2dc;
-  animation-delay: 0.8s;
+	background: #d8e2dc;
+	animation-delay: 0.8s;
 }
 
 .music-bar:nth-child(3) {
-  background: #e8e8e4;
-  animation-delay: 0.6s;
+	background: #e8e8e4;
+	animation-delay: 0.6s;
 }
 
 .music-bar:nth-child(4) {
-  background: #f8edeb;
-  animation-delay: 0.4s;
+	background: #f8edeb;
+	animation-delay: 0.4s;
 }
 
 .music-bar:nth-child(5) {
-  background: #fae1dd;
-  animation-delay: 0.2s;
+	background: #fae1dd;
+	animation-delay: 0.2s;
 }
 
 .music-bar:nth-child(6) {
-  background: #fcd5ce;
-  animation-delay: 0.2s;
+	background: #fcd5ce;
+	animation-delay: 0.2s;
 }
 
 .music-bar:nth-child(7) {
-  background: #e0b1cb;
-  animation-delay: 0.4s;
+	background: #e0b1cb;
+	animation-delay: 0.4s;
 }
 
 .music-bar:nth-child(8) {
-  background: #e0b1cb;
-  animation-delay: 0.6s;
+	background: #e0b1cb;
+	animation-delay: 0.6s;
 }
 
 .music-bar:nth-child(9) {
-  background: #e7c6ff;
-  animation-delay: 0.8s;
+	background: #e7c6ff;
+	animation-delay: 0.8s;
 }
 
 .music-bar:nth-child(10) {
-  background: #c8b6ff;
-  animation-delay: 1s;
+	background: #c8b6ff;
+	animation-delay: 1s;
 }
 
 @keyframes play-music {
-  0%, 100% {
-    height: 35px;
-  }
-  50% {
-    height: 200px;
-  }
+	0%,
+	100% {
+		height: 35px;
+	}
+	50% {
+		height: 200px;
+	}
 }
 
 @-webkit-keyframes play-music {
-  0%, 100% {
-    height: 35px;
-  }
-  50% {
-    height: 200px;
-  }
+	0%,
+	100% {
+		height: 35px;
+	}
+	50% {
+		height: 200px;
+	}
+}
+
+.minimal-button {
+	max-width: 50dvw;
+	border: 1px solid #404040;
+	border-radius: 12px;
+	background-color: transparent;
+	color: #404040;
+	padding: 10px 20px;
+	font-size: 0.75rem;
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+	transition: background-color 0.3s, color 0.3s;
+}
+
+.minimal-button:active {
+	background-color: #404040;
+	color: #ffffff;
+}
+
+table {
+	min-width: 50dvw;
+	border-collapse: collapse;
+	margin: 1rem 0;
+	font-size: 0.75rem;
+	min-width: 400px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+thead tr {
+	background-color: #009879;
+	color: #ffffff;
+	text-align: left;
+	font-weight: bold;
+}
+
+th,
+td {
+	padding: 12px 15px;
+}
+
+tbody tr {
+	border-bottom: 1px solid #dddddd;
+}
+
+tbody tr:nth-of-type(even) {
+	background-color: #f3f3f3;
+}
+
+tbody tr:last-of-type {
+	border-bottom: 2px solid #009879;
+}
+
+tbody tr:hover {
+	background-color: #f1f1f1;
 }

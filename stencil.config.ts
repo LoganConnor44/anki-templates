@@ -1,4 +1,6 @@
 import { Config } from '@stencil/core';
+import { env } from '@alepop/stencil-env';
+import { sass } from '@stencil/sass';
 
 export const config: Config = {
 	namespace: 'beautify-chinese-study',
@@ -20,4 +22,5 @@ export const config: Config = {
 			serviceWorker: null,
 		},
 	],
+	plugins: [env(), sass()],
 };

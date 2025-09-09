@@ -31,6 +31,8 @@ export class Card {
 	public primaryHanziType: string;
 	@Prop()
 	public phonicOrientation: string;
+	@Prop()
+	public geminiApiKey: string;
 
 	private _content: JSXBase.HTMLAttributes<HTMLDivElement>;
 
@@ -55,6 +57,7 @@ export class Card {
 					phonic-orientation={this.phonicOrientation}
 				/>
 				<material-beautify-type class={this.type.toLowerCase()} card-type={this.type} primary-hanzi-type={this.primaryHanziType} />
+				{this.geminiApiKey !== '' && this.orientation === 'answer' && <material-beautify-insight contentForInsight={this.sentence} gemini-api-key={this.geminiApiKey} />}
 			</Host>
 		);
 	}

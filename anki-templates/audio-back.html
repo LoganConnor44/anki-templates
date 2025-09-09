@@ -1,5 +1,6 @@
 <script>
-	var versionNumber = '1.20.27';
+	var versionNumber = 'v2.0.0-0';
+	var geminiApiKey = '';
 </script>
 
 <style>
@@ -19,17 +20,14 @@
 
 <script>
 	if (!customElements.get('material-beautify-chinese-study')) {
-		console.log('custom element does not exist - creating script to pull it in');
 		var script = document.createElement('script');
 		script.setAttribute('id', 'import-script');
 		script.setAttribute('type', 'module');
 		script.setAttribute('src', `https://cdn.jsdelivr.net/npm/beautify-chinese-study@${versionNumber}/dist/beautify-chinese-study/beautify-chinese-study.esm.js`);
 		document.body.appendChild(script);
-	} else {
-		console.log('Custom Element exists.');
 	}
 
-	var beautify = document.querySelector('material-beautify-chinese-study');
+	var beautify = document.querySelector('#beautify-audio');
 	if (!beautify) {
 		var beautify = document.createElement('material-beautify-chinese-study');
 		beautify.setAttribute('id', 'beautify-audio');
@@ -40,6 +38,7 @@
 		beautify.setAttribute('card-orientation', 'answer');
 		beautify.setAttribute('preferred-phonic', 'zhuyin');
 		beautify.setAttribute('force-auto-generation', 'force-auto-generation');
+		beautify.setAttribute('gemini-api-key', geminiApiKey);
 		document.body.appendChild(beautify);
 	} else {
 		beautify.setAttribute('card-orientation', 'answer');

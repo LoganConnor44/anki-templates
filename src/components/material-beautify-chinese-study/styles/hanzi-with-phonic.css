@@ -1,105 +1,118 @@
 table {
-  font-family: "Noto Sans SC", sans-serif;
+	font-family: 'Noto Sans SC', sans-serif;
 }
 
 ruby {
-  vertical-align: bottom;
+	vertical-align: bottom;
 }
 
 td {
-  display: inline-flex;
-  vertical-align: middle;
+	display: inline-flex;
+	vertical-align: middle;
 }
 
 #phonic-only-phonic {
-  font-size: 5vw;
+	font-size: 5vw;
 }
 
 #primary-item {
-  font-size: 6vw;
-  font-weight: bold;
+	font-size: 4rem;
+	font-weight: bold;
 }
 @media only screen and (max-width: 768px) and (orientation: portrait) {
-  #primary-item {
-    font-size: 8vw;
-  }
+	#primary-item {
+		font-size: 3rem;
+	}
+}
+
+#primary-item-phonic.vertical-phonic {
+	font-size: 1.5rem;
+}
+@media only screen and (max-width: 768px) and (orientation: portrait) {
+	#primary-item-phonic.vertical-phonic {
+		font-size: 1rem;
+	}
 }
 
 #secondary-item {
-  font-size: 4vw;
-  font-weight: normal;
+	font-size: 4dvw;
+	font-weight: normal;
 }
 
 #vocabulary-phonic {
-  font-size: 5vw;
-  vertical-align: bottom;
+	font-size: 5vw;
+	vertical-align: bottom;
 }
 
 #sentence-phonic {
-  font-size: 4vw;
+	font-size: 4vw;
 }
 
 #dictionary-link {
-  text-decoration: none; 
-  color: inherit;
+	text-decoration: none;
+	color: inherit;
 }
 
 #phonic {
-  line-height: 2vw;
-  font-size: 0.8em;
-  vertical-align: middle;
+	line-height: 2vw;
+	font-size: 0.8em;
+	vertical-align: middle;
 }
 
 #phonic-only > div {
-  display: none;
+	display: none;
 }
 
 #hanzi-with-table {
-  line-height: 1em;
-  font-size: 5vw;
-  vertical-align: middle;
+	line-height: 1em;
+	font-size: 5vw;
+	vertical-align: middle;
 }
 
 .table-center {
-  margin-left: auto;
-  margin-right: auto;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .no-show-vertical {
-  max-width: 0;
-  visibility: hidden;
+	max-width: 0;
+	visibility: hidden;
 }
 
 .fade-in-vertical {
-  max-width: 2em;
-  animation: fadeIn .5s ease-in-out;
+	max-width: 2em;
+	animation: fadeIn 0.5s ease-in-out;
 }
 
 .vertical-phonic {
-  line-height: 1em;
-  font-size: 1.5vw;
-  vertical-align: middle;
-  flex-direction: column;
-  transition: max-width .25s ease-in-out;
+	line-height: 1em;
+	font-size: 1.5vw;
+	vertical-align: middle;
+	flex-direction: column;
+	transition: max-width 0.25s ease-in-out;
 }
 
 .no-show-horizontal {
-  opacity: 0;
-  max-width: 0;
+	opacity: 0;
+	max-width: 0;
 }
 
 .fade-in-horizontal {
-  opacity: 1;
-  margin: .4em;
-  transform: translateX(.4em);
-  animation: fadeIn .5s ease-in-out;
+	opacity: 1;
+	margin: 0.4em;
+	transform: translateX(0.4em);
+	animation: fadeIn 0.5s ease-in-out;
 }
 
 .horizontal-phonic {
-  transition: max-width .4s ease-in-out;
+	transition: max-width 0.4s ease-in-out;
 }
 
 @keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }

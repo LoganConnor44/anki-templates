@@ -72,6 +72,7 @@ export class CardContent {
 					display-type={DisplayType.PRIMARY}
 					idForStyles="primary-item"
 				/>
+				<hr />
 				{this.orientation === 'answer' && (
 					<material-beautify-hanzi-with-phonic
 						hanzi={this.sentence}
@@ -98,6 +99,7 @@ export class CardContent {
 					display-type={DisplayType.PRIMARY}
 					phonic-orientation={this.phonicOrientation}
 				/>
+				<hr />
 				<material-beautify-hanzi-with-phonic
 					hanzi={this.secondarySentence}
 					alternativeHanzi={this.vocab}
@@ -157,6 +159,7 @@ export class CardContent {
 					display-type={DisplayType.PRIMARY}
 					phonic-orientation={this.phonicOrientation}
 				/>
+
 				<material-beautify-meaning meaning={this.sentenceMeaning} orientation={this.orientation} display-type={DisplayType.SECONDARY} idForStyles="sentence" />
 			</Host>
 		);
@@ -173,6 +176,7 @@ export class CardContent {
 					display-type={DisplayType.PRIMARY}
 					phonic-orientation={this.phonicOrientation}
 				/>
+				<hr />
 				<material-beautify-hanzi-with-phonic
 					hanzi={this.sentence}
 					phonic={this.sentencePhonic}
@@ -197,6 +201,7 @@ export class CardContent {
 					display-type={DisplayType.PRIMARY}
 					idForStyles="primary-item"
 				/>
+				<hr />
 				<material-beautify-hanzi-with-phonic
 					hanzi={this.sentence}
 					phonic={this.sentencePhonic}
