@@ -58,6 +58,9 @@ export class HanziWithPhonic {
 		}
 	}
 
+	/**
+	 * Detects if the phonic appears to be pinyin (letters) rather than zhuyin.
+	 */
 	private setIsPhonicPinyin(): void {
 		const containsLettersCaseInsensitive: RegExp = new RegExp(/[a-zA-Z]/);
 		const regEx: RegExp = new RegExp(containsLettersCaseInsensitive.source);
@@ -93,6 +96,11 @@ export class HanziWithPhonic {
 		return this.displayType;
 	}
 
+	/**
+	 * Builds a table layout with vertical zhuyin next to each hanzi.
+	 *
+	 * @param hanzisWithoutPunctuation Array<string> The characters to display without punctuation.
+	 */
 	private getHanziWithVerticalPhonic(hanzisWithoutPunctuation: Array<string>): JSXBase.HTMLAttributes<HTMLDivElement> {
 		const defaultPhonicAsInvisible: boolean = this.idForStyles !== 'phonic-only';
 		const replacePrimaryItemWithBlank: boolean = this.idForStyles === 'phonic-only';
@@ -137,6 +145,11 @@ export class HanziWithPhonic {
 		);
 	}
 
+	/**
+	 * Builds a ruby layout with horizontal phonics above each hanzi.
+	 *
+	 * @param hanzisWithoutPunctuation Array<string> The characters to display without punctuation.
+	 */
 	private getHanziWithHorizontalPhonic(hanzisWithoutPunctuation: Array<string>): JSXBase.HTMLAttributes<HTMLDivElement> {
 		const phonics: Array<string> = this.phonic === undefined ? [] : this.phonic.split(',');
 		let hanziAndPhonics: HanziAndPhonic[] = [];

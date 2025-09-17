@@ -17,6 +17,9 @@ export class CardInsight {
 
 	private _content: JSXBase.HTMLAttributes<HTMLDivElement>;
 
+	/**
+	 * Registers CSS custom property used by the animated gradient border.
+	 */
 	componentDidLoad() {
 		try {
 			window.CSS.registerProperty({
@@ -42,6 +45,9 @@ export class CardInsight {
 		);
 	}
 
+	/**
+	 * Handles toggling the insight UI and fetching AI-generated results.
+	 */
 	@Listen('click')
 	protected async handleClick() {
 		const insightContent: HTMLDivElement = this.element.shadowRoot.querySelector('#insight-content');

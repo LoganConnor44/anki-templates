@@ -4,12 +4,23 @@ class AccentedVowel {
 	private letter: string;
 	protected tone: Tone;
 
+	/**
+	 * Represents a single vowel and exposes its tone-marked variant for pinyin.
+	 *
+	 * @param letter string The base vowel to accent (a|e|i|o|u).
+	 */
 	public constructor(letter: string) {
 		this.letter = letter;
 	}
+	/**
+	 * Returns the base vowel without any tone.
+	 */
 	public getVowel(): string {
 		return this.letter;
 	}
+	/**
+	 * Returns the vowel with the currently assigned tone mark.
+	 */
 	public getVowelWithTone(): string {
 		switch (this.letter) {
 			case 'a': {
@@ -110,6 +121,11 @@ class AccentedVowel {
 		}
 	}
 	
+	/**
+	 * Sets the tone number (1-4, or neutral) used when generating accented vowels.
+	 *
+	 * @param number number The numeric tone to apply to this vowel.
+	 */
 	public setTone(number: number): void {
 		switch(number) {
 			case 1:  {

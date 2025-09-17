@@ -112,6 +112,9 @@ export class MaterialBeautifyChineseStudy {
 
 	private isEmptyStringBlankStringNullOrUndefined = (value: String): boolean => value === null || value === undefined || value === '' || value.trim().length == 0;
 
+	/**
+	 * Normalizes the `cardOrientation` prop.
+	 */
 	private getCardOrientation(): string {
 		if (!this.isEmptyStringBlankStringNullOrUndefined(this.cardOrientation)) {
 			return this.cardOrientation.toLowerCase().trim();
@@ -165,12 +168,22 @@ export class MaterialBeautifyChineseStudy {
 		return '';
 	}
 
+	/**
+	 * Generates numbered pinyin for the primary character string.
+	 *
+	 * @param this.primaryCharacter string The source hanzi to romanize.
+	 */
 	private getNumberedPinyin(): Array<string> {
 		return pinyin(this.getPrimaryCharacter(), {
 			style: pinyin.STYLE_TONE2,
 		}).flat();
 	}
 
+	/**
+	 * Generates numbered pinyin for the sentence, ensuring a trailing neutral tone when needed.
+	 *
+	 * @param this.primaryCharacterSentence string The sentence hanzi to romanize.
+	 */
 	private getSentenceNumberedPinyin(): Array<string> {
 		if (!this.isEmptyStringBlankStringNullOrUndefined(this.sentenceNumberedPinyin)) {
 			return [];
@@ -195,14 +208,29 @@ export class MaterialBeautifyChineseStudy {
 		return '';
 	}
 
+	/**
+	 * Converts numbered pinyin into accented pinyin.
+	 *
+	 * @param value Array<string> The numbered pinyin split into characters.
+	 */
 	private getPinyin(value: Array<string>): Array<string> {
 		return this.phonetic.create(PhoneticType.PINYIN, value);
 	}
 
+	/**
+	 * Converts numbered pinyin into zhuyin.
+	 *
+	 * @param value Array<string> The numbered pinyin split into characters.
+	 */
 	private getZhuyin(value: Array<string>): Array<string> {
 		return this.phonetic.create(PhoneticType.ZHUYIN, value);
 	}
 
+	/**
+	 * Routes conversion to the preferred phonetic system.
+	 *
+	 * @param value Array<string> The numbered pinyin split into characters.
+	 */
 	private getPhonic(value: Array<string>): Array<string> {
 		if (this.getPreferredPhonic() === 'pinyin') {
 			return this.getPinyin(value);

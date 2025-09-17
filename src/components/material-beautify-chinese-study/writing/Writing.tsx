@@ -25,6 +25,9 @@ export class Writing {
         ;
     }
 
+    /**
+     * Creates and animates stroke order diagrams for the provided `hanzi`.
+     */
     private createStrokeOrderCharacter(): void {
 		let delayBetweenAnimations: number = 500;
 		let characters: Array<string> = this.hanzi.split('');

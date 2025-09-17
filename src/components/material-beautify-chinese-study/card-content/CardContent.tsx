@@ -222,6 +222,9 @@ export class CardContent {
 		this._phonic = <rt id="phonetic">{this.phonic}</rt>;
 	}
 
+	/**
+	 * Creates and animates stroke order diagrams for the current `vocab`.
+	 */
 	private createStrokeOrderCharacter(): void {
 		let delayBetweenAnimations: number = 500;
 		let characters: Array<string> = this.vocab.split('');
@@ -283,6 +286,9 @@ export class CardContent {
 		}, delayBetweenAnimations + delayBetweenAnimations);
 	}
 
+	/**
+	 * Selects and renders the appropriate content layout based on the card `type`.
+	 */
 	private processCardContent() {
 		switch (this.type.toLowerCase()) {
 			case 'secondary-recognition':

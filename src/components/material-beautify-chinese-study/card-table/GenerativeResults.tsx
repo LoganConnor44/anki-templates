@@ -12,10 +12,18 @@ export class GenerativeResults {
 
 	private _content: JSXBase.HTMLAttributes<HTMLTableElement>;
 
+	/**
+	 * Parses the `generatedContent` JSON string into row objects.
+	 */
 	private parseResults() {
 		return JSON.parse(this.generatedContent);
 	}
 
+	/**
+	 * Derives table headers from the first result object.
+	 *
+	 * @param results any[] The parsed array of row data objects.
+	 */
 	private getHeaders(results: any[]) {
 		if (results === undefined || results.length === 0) {
 			return [];
@@ -27,6 +35,9 @@ export class GenerativeResults {
 		return this._content;
 	}
 
+	/**
+	 * Renders a simple table with headers and rows from generated content.
+	 */
 	protected setContent() {
 		const results = this.parseResults();
 		const headers = this.getHeaders(results);
