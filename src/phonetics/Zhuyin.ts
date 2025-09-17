@@ -4,16 +4,30 @@ class Zhuyin {
 	private tone: Tone;
 	private pinyin: string;
 	private character: string;
+	/**
+	 * Represents a zhuyin syllable derived from pinyin input.
+	 *
+	 * @param pinyin string The source pinyin letters for this syllable.
+	 */
 	constructor(pinyin: string) {
 		this.pinyin = pinyin;
 		this.setCharacter();
 	}
+	/**
+	 * Gets the pinyin letters that produced this zhuyin.
+	 */
 	public getPinyin(): string {
 		return this.pinyin;
 	}
+	/**
+	 * Gets the zhuyin character(s) without tone mark.
+	 */
 	public getCharacter(): string {
 		return this.character;
 	}
+	/**
+	 * Gets the zhuyin character(s) with the applied tone mark.
+	 */
 	public getCharacterWithTone(): string {
 		switch (this.tone) {
 			case Tone.SECOND : {
@@ -34,6 +48,11 @@ class Zhuyin {
 			}
 		}
 	}
+	/**
+	 * Sets the tone number (1-4, or neutral) for this zhuyin syllable.
+	 *
+	 * @param number number The numeric tone to assign to this zhuyin.
+	 */
 	public setTone(number: number): void {
 		switch(number) {
 			case 1:  {
@@ -58,6 +77,9 @@ class Zhuyin {
 			}
 		}
 	}
+	/**
+	 * Looks up and assigns the zhuyin character(s) corresponding to the pinyin.
+	 */
 	private setCharacter(): void {
 		interface ZhinyinCharacterMap {
 			[key: string]: string

@@ -3,13 +3,27 @@ import AccentedVowel from './AccentedVowel';
 import Zhuyin from './Zhuyin';
 
 class Phonetic {
+	/**
+	 * Core utilities for converting numbered pinyin into pinyin with accents or zhuyin.
+	 */
 	constructor() {
 	}
 
+	/**
+	 * Parses a tone value from text, mapping blank/space to neutral tone (5).
+	 *
+	 * @param value string The raw tone input, like '1'-'5' or a space.
+	 */
 	private parseTone(value: string): number {
 		return value === ' ' || value === '' ? 5 : parseInt(value);
 	}
 
+	/**
+	 * Replaces the target vowel in a syllable with its accented equivalent.
+	 *
+	 * @param value string The original pinyin letters to modify.
+	 * @param accentedVowel AccentedVowel The vowel/tone combination to insert.
+	 */
 	private replaceVowelWithAccentedVowel(value: string, accentedVowel: AccentedVowel): string {
 		const valueReversed: string = value.split('').reverse().join('');
 		const valueWithAccentReversed: string = valueReversed.replace(
@@ -19,6 +33,12 @@ class Phonetic {
 		return valueWithAccentReversed.split('').reverse().join('');
 	}
 
+	/**
+	 * Chooses which vowel to accent based on pinyin rules and assigns the tone.
+	 *
+	 * @param valueArray Array<string> The letters preceding the tone number.
+	 * @param toneNumber number The numeric tone to apply (1-4, 5 for neutral).
+	 */
 	private createAppropriateVowelWithAccent(valueArray: Array<string>, toneNumber: number): AccentedVowel {
 		let vowels: Array<AccentedVowel> = new Array<AccentedVowel>();
 		vowels[0] = new AccentedVowel('a');
@@ -40,6 +60,11 @@ class Phonetic {
 		return accentedVowel;
 	}
 
+	/**
+	 * Retrieves the contiguous vowel cluster immediately before the tone number.
+	 *
+	 * @param value string The numbered pinyin syllable (e.g., "hao3").
+	 */
 	private retrieveVowelsBeforeNumber(value: string): Array<string> {
 		const vowelPattern = /([aeiou])/i;
 		const regEx = new RegExp(vowelPattern);
@@ -57,6 +82,12 @@ class Phonetic {
 		return vowelsPresent.reverse();
 	}
 
+	/**
+	 * Converts numbered pinyin syllable to accented pinyin by replacing the target vowel.
+	 *
+	 * @param value string The numbered pinyin letters like 'hao3'.
+	 * @param toneNumber number The parsed tone number to apply to the syllable.
+	 */
 	private replaceNumberWithAccentedVowel(value: string, toneNumber: number): string {
 		const vowelsImmediatelyBeforeNumber: Array<string> = this.retrieveVowelsBeforeNumber(value);
 		const vowelAccented: AccentedVowel = this.createAppropriateVowelWithAccent(vowelsImmediatelyBeforeNumber, toneNumber);
@@ -78,6 +109,12 @@ class Phonetic {
 		}
 	}
 
+	/**
+	 * Converts romanized letters into zhuyin characters for a syllable sequence.
+	 *
+	 * @param letters string The remaining numbered pinyin letters to convert.
+	 * @param tone number The tone number to apply to the final syllable in sequence.
+	 */
 	replaceNumberedRomanLettersWithZhuyin(letters: string, tone: number): string {
 		let returnValue: string = '';
 		const maxIterations = 25;
@@ -97,6 +134,12 @@ class Phonetic {
 		return returnValue;
 	}
 
+	/**
+	 * Converts a chunk of numbered pinyin into the requested phonetic representation.
+	 *
+	 * @param phoneticType PhoneticType The target phonetic system to convert to.
+	 * @param value string The chunk of numbered pinyin to be converted.
+	 */
 	convertNumberedPinyinTo(phoneticType: PhoneticType, value: string): Array<string> {
 		let phonics: Array<string> = [];
 		const minimumOneLetterCaseInsensitive: RegExp = new RegExp(/([a-zA-Z]{1,})/);
@@ -126,6 +169,12 @@ class Phonetic {
 		return phonics;
 	}
 
+	/**
+	 * Converts a mixed array of characters and punctuation into phonetic strings.
+	 *
+	 * @param phoneticType PhoneticType The target phonetic system to convert to.
+	 * @param value Array<string> The source characters split into an array.
+	 */
 	private toPhoneticCharacters(phoneticType: PhoneticType, value: Array<string>): Array<string> {
 		if (value === undefined || value === null || value.length === 0) {
 			return [];
@@ -158,6 +207,12 @@ class Phonetic {
 		return result;
 	}
 
+	/**
+	 * Creates phonetic strings from numbered pinyin for the configured target type.
+	 *
+	 * @param phonicType PhoneticType The output phonetic system.
+	 * @param phonicValue Array<string> The input numbered pinyin split into chars.
+	 */
 	public create(phonicType: PhoneticType, phonicValue: Array<string>) {
 		return this.toPhoneticCharacters(phonicType, phonicValue);
 	}
