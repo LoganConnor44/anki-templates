@@ -115,10 +115,10 @@ export class HanziWithPhonic {
 		}
 
 		return (
-			<table class="table-center">
-				<tbody>
-					{/* class tappable is needed for AnkiMobile */}
-					<a id="dictionary-link" href={this.getDictionaryLink()} class="tappable">
+			<a id="dictionary-link" href={this.getDictionaryLink()} class="tappable">
+				<table class="table-center">
+					<tbody>
+						{/* class tappable is needed for AnkiMobile */}
 						<tr>
 							{hanziAndPhonics.map((x: HanziAndPhonic) => {
 								return (
@@ -139,9 +139,9 @@ export class HanziWithPhonic {
 								);
 							})}
 						</tr>
-					</a>
-				</tbody>
-			</table>
+					</tbody>
+				</table>
+			</a>
 		);
 	}
 
@@ -167,7 +167,7 @@ export class HanziWithPhonic {
 					{hanziAndPhonics.map((x: HanziAndPhonic) => {
 						return (
 							<Fragment>
-								<div id={`${this.getDisplayType()}-item hanzi-with-ruby`}>{x.character}</div>
+									<div id={`${this.getDisplayType()}-item`} class="hanzi-with-ruby">{x.character}</div>
 								<rp>(</rp>
 								<rt id={this.idForStyles + '-phonic'} class="no-show-horizontal horizontal-phonic">
 									{x.phonic}

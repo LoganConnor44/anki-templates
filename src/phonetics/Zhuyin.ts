@@ -136,7 +136,7 @@ class Zhuyin {
 			chuo : 'ㄔㄨㄛ',
 			ci : 'ㄘ',
 			cong : 'ㄘㄨㄥ',
-			cou : 'ㄔㄡ',
+			cou : 'ㄘㄡ',
 			cu : 'ㄘㄨ',
 			cuan : 'ㄘㄨㄢ',
 			cui : 'ㄘㄨㄟ',
