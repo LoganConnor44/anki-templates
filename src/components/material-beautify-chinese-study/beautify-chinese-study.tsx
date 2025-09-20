@@ -58,12 +58,12 @@ export class MaterialBeautifyChineseStudy {
 	@Prop()
 	public sentenceMeaning: string;
 	/**
-	 * Most forms of numbered pinyin allowed
+	 * Most forms of numbered pinyin allowed; ignored when `forceAutoGeneration` is true.
 	 */
 	@Prop()
 	public numberedPinyin: string;
 	/**
-	 * Most forms of numbered pinyin allowed
+	 * Most forms of numbered pinyin allowed; ignored when `forceAutoGeneration` is true.
 	 */
 	@Prop()
 	public sentenceNumberedPinyin: string;
@@ -73,7 +73,7 @@ export class MaterialBeautifyChineseStudy {
 	@Prop()
 	public preferredPhonic: string = 'pinyin';
 	/**
-	 * Option to always generate secondary character values and phonic values
+	 * Option to always generate secondary characters and phonics, ignoring provided overrides.
 	 */
 	@Prop()
 	public forceAutoGeneration: boolean = false;
@@ -111,6 +111,20 @@ export class MaterialBeautifyChineseStudy {
 	}
 
 	private isEmptyStringBlankStringNullOrUndefined = (value: String): boolean => value === null || value === undefined || value === '' || value.trim().length == 0;
+
+	/**
+	 * Parses a provided numbered pinyin string into tokens, normalizing neutral tones when missing.
+	 *
+	 * @param value string The raw numbered pinyin input.
+	 */
+	private parseProvidedNumberedPinyin(value: string): Array<string> {
+		const regExIsLetter: RegExp = /[A-Za-z]/;
+		const rawTokens = value.includes(',') ? value.split(',') : value.split(/\s+/);
+		return rawTokens
+			.map(token => token.trim())
+			.filter(token => token.length > 0)
+			.map(token => (regExIsLetter.test(token.slice(-1)) ? token + '5' : token));
+	}
 
 	/**
 	 * Normalizes the `cardOrientation` prop.
@@ -174,6 +188,10 @@ export class MaterialBeautifyChineseStudy {
 	 * @param this.primaryCharacter string The source hanzi to romanize.
 	 */
 	private getNumberedPinyin(): Array<string> {
+		if (!this.forceAutoGeneration && !this.isEmptyStringBlankStringNullOrUndefined(this.numberedPinyin)) {
+			return this.parseProvidedNumberedPinyin(this.numberedPinyin);
+		}
+
 		return pinyin(this.getPrimaryCharacter(), {
 			style: pinyin.STYLE_TONE2,
 		}).flat();
@@ -185,12 +203,11 @@ export class MaterialBeautifyChineseStudy {
 	 * @param this.primaryCharacterSentence string The sentence hanzi to romanize.
 	 */
 	private getSentenceNumberedPinyin(): Array<string> {
-		if (!this.isEmptyStringBlankStringNullOrUndefined(this.sentenceNumberedPinyin)) {
-			return [];
-		}
+		const regExIsLetter: RegExp = /[A-Za-z]/;
 
-		const isLetter: RegExp = /[A-Za-z]/g;
-		const regExIsLetter: RegExp = new RegExp(isLetter.source);
+		if (!this.forceAutoGeneration && !this.isEmptyStringBlankStringNullOrUndefined(this.sentenceNumberedPinyin)) {
+			return this.parseProvidedNumberedPinyin(this.sentenceNumberedPinyin);
+		}
 
 		return pinyin(this.getPrimaryCharacterSentence(), { style: pinyin.STYLE_TONE2 }).map((x: Array<string>) => {
 			// Append '5' if the last char is a letter
