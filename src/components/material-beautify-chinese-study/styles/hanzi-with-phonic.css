@@ -12,40 +12,32 @@ td {
 }
 
 #phonic-only-phonic {
-	font-size: 5vw;
+	font-size: clamp(1.8rem, 11vw, 2.4rem);
 }
 
 #primary-item {
-	font-size: 4rem;
-	font-weight: bold;
-}
-@media only screen and (max-width: 768px) and (orientation: portrait) {
-	#primary-item {
-		font-size: 3rem;
-	}
+	font-size: clamp(2rem, 12vw, 2.75rem);
+	font-weight: 600;
 }
 
-#primary-item-phonic.vertical-phonic {
-	font-size: 1.5rem;
-}
-@media only screen and (max-width: 768px) and (orientation: portrait) {
-	#primary-item-phonic.vertical-phonic {
-		font-size: 1rem;
-	}
+#primary-item-phonic.vertical-phonic,
+#secondary-item-phonic.vertical-phonic {
+	font-size: clamp(1rem, 6vw, 1.25rem);
+	line-height: 1.15;
 }
 
 #secondary-item {
-	font-size: 4dvw;
-	font-weight: normal;
+	font-size: clamp(1.4rem, 8.5vw, 2rem);
+	font-weight: 500;
 }
 
 #vocabulary-phonic {
-	font-size: 5vw;
+	font-size: clamp(1.3rem, 8vw, 1.8rem);
 	vertical-align: bottom;
 }
 
 #sentence-phonic {
-	font-size: 4vw;
+	font-size: clamp(1.2rem, 7vw, 1.6rem);
 }
 
 #dictionary-link {
@@ -54,8 +46,8 @@ td {
 }
 
 #phonic {
-	line-height: 2vw;
-	font-size: 0.8em;
+	font-size: clamp(0.95rem, 5vw, 1.2rem);
+	line-height: 1.35;
 	vertical-align: middle;
 }
 
@@ -105,6 +97,8 @@ td {
 }
 
 .horizontal-phonic {
+	font-size: clamp(0.95rem, 5vw, 1.2rem);
+	line-height: 1.35;
 	transition: max-width 0.4s ease-in-out;
 }
 
@@ -114,5 +108,25 @@ td {
 	}
 	100% {
 		opacity: 1;
+	}
+}
+
+@media (min-width: 900px) {
+	#primary-item {
+		font-size: clamp(2.4rem, 6vw, 3rem);
+	}
+
+	#secondary-item {
+		font-size: clamp(1.6rem, 4vw, 2.3rem);
+	}
+
+	#primary-item-phonic.vertical-phonic,
+	#secondary-item-phonic.vertical-phonic {
+		font-size: clamp(1.1rem, 3vw, 1.5rem);
+	}
+
+	.horizontal-phonic,
+	#phonic {
+		font-size: clamp(1rem, 3vw, 1.35rem);
 	}
 }
