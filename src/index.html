@@ -12,7 +12,6 @@
 	<body>
 		<style>
 			body {
-				background-color: black;
 				margin: 0;
 				display: flex;
 				min-height: 100dvh;
@@ -33,89 +32,9 @@
 		/>
 
 		<script>
-			let previewElement = document.querySelector('material-beautify-chinese-study');
-			const dynamicAttributes = new Set(['card-type', 'card-orientation']);
-			const baseAttributes = {};
-			if (previewElement) {
-				Array.from(previewElement.attributes).forEach(attr => {
-					if (!dynamicAttributes.has(attr.name)) {
-						baseAttributes[attr.name] = attr.value;
-					}
-				});
-			}
-
-			const cardTypes = ['recognition', 'sentence', 'tones', 'writing', 'audio', 'secondary-sentence', 'secondary-recognition'];
-			const playableCardTypes = cardTypes.filter(type => type !== 'writing' && type !== 'audio');
-			const orientations = ['question', 'answer'];
-			let cardTypeIndex = 0;
-			let orientationIndex = 0;
-			let lastOrientation = null;
-
-			let statusBadge;
-			if (previewElement) {
-				statusBadge = document.createElement('div');
-				statusBadge.id = 'card-preview-status';
-				statusBadge.style.position = 'fixed';
-				statusBadge.style.top = '1rem';
-				statusBadge.style.right = '1rem';
-				statusBadge.style.padding = '0.5rem 0.75rem';
-				statusBadge.style.background = 'rgba(0, 0, 0, 0.65)';
-				statusBadge.style.color = '#fff';
-				statusBadge.style.fontFamily = 'system-ui, sans-serif';
-				statusBadge.style.fontSize = '0.9rem';
-				statusBadge.style.borderRadius = '0.5rem';
-				statusBadge.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.25)';
-				document.body.appendChild(statusBadge);
-			}
-
-			const recreatePreviewElement = () => {
-				if (!previewElement) {
-					return;
-				}
-				const parent = previewElement.parentElement;
-				if (!parent) {
-					return;
-				}
-				const newElement = document.createElement('material-beautify-chinese-study');
-				Object.entries(baseAttributes).forEach(([name, value]) => {
-					if (name === 'id') {
-						newElement.id = value;
-					} else {
-						newElement.setAttribute(name, value);
-					}
-				});
-				parent.replaceChild(newElement, previewElement);
-				previewElement = newElement;
-			};
-
-			const cycleCards = () => {
-				if (!previewElement) {
-					return;
-				}
-				const currentCardType = playableCardTypes[cardTypeIndex];
-				const currentOrientation = orientations[orientationIndex];
-
-				if (lastOrientation === 'answer' && currentOrientation === 'question') {
-					recreatePreviewElement();
-				}
-
-				previewElement.setAttribute('card-type', currentCardType);
-				previewElement.setAttribute('card-orientation', currentOrientation);
-
-				if (statusBadge) {
-					statusBadge.textContent = `${currentCardType} – ${currentOrientation}`;
-				}
-
-				lastOrientation = currentOrientation;
-
-				orientationIndex = (orientationIndex + 1) % orientations.length;
-				if (orientationIndex === 0) {
-					cardTypeIndex = (cardTypeIndex + 1) % playableCardTypes.length;
-				}
-			};
-
-			cycleCards();
-			setInterval(cycleCards, 4000);
+			setTimeout(() => {
+				document.querySelector('material-beautify-chinese-study').setAttribute('card-orientation', 'answer');
+			}, 4000);
 		</script>
 	</body>
 </html>
