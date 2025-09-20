@@ -36,7 +36,7 @@ export namespace Components {
          */
         "cardType": string;
         /**
-          * Option to always generate secondary characters and phonics, ignoring provided overrides.
+          * Option to always generate secondary character values and phonic values
          */
         "forceAutoGeneration": boolean;
         /**
@@ -49,7 +49,7 @@ export namespace Components {
          */
         "meaning": string;
         /**
-          * Most forms of numbered pinyin allowed; ignored when `forceAutoGeneration` is true.
+          * Most forms of numbered pinyin allowed
          */
         "numberedPinyin": string;
         /**
@@ -85,7 +85,7 @@ export namespace Components {
          */
         "sentenceMeaning": string;
         /**
-          * Most forms of numbered pinyin allowed; ignored when `forceAutoGeneration` is true.
+          * Most forms of numbered pinyin allowed
          */
         "sentenceNumberedPinyin": string;
     }
