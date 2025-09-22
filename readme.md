@@ -22,6 +22,20 @@ This is a project for making Chinese study, through Anki, more enjoyable by auto
 | :-------------------------------------------------------------------------------------------------------------------------------------------: |
 | On the answer side of the writing card, the stroke order animates (powered by HanziWriter). Mobile sizing and performance may vary by device. |
 
+## All Cards - Mobile Device
+
+### Zhuyin
+
+#### Vertical Orientation
+
+<img src="./images/all-cards-vertical-zhuyin.gif" alt="all-cards-vertical-zhuyin" style="max-width: 200px; width: 100%; height: auto;"/>
+
+#### Horizontal Orientation
+
+<img src="./images/all-cards-horizontal-zhuyin.gif" alt="all-cards-horizontal-zhuyin" style="max-width: 200px; width: 100%; height: auto;"/>
+
+---
+
 # tl;dr
 
 Whether your study involves simplified or traditional characters, this project can make Chinese flashcards look nice by copying/pasting [a few lines of logic](#code-snippets) in your Anki template. It can also auto-magically generate some data, please go [here](./output/components/material-beautify-chinese-study/readme.md) to see what is available.
