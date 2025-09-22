@@ -23,4 +23,11 @@ export const config: Config = {
 		},
 	],
 	plugins: [env(), sass()],
+	testing: {
+		// Opt into the new headless mode and filter noisy warnings
+		puppeteerLaunchOptions: {
+			headless: 'new' as any,
+		},
+		setupFilesAfterEnv: ['<rootDir>/test/setupTests.ts'],
+	},
 };

@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, State, FunctionalComponent, Element, Method } from '@stencil/core';
+import { Component, Host, h, Prop, State, FunctionalComponent, Element, Method, Watch } from '@stencil/core';
 import { PhoneticType } from '../../enums/PhoneticType';
 import { HanziType } from '../../enums/HanziType';
 import * as OpenCC from 'opencc-js';
@@ -86,7 +86,7 @@ export class MaterialBeautifyChineseStudy {
 	 * If AI generated insights are wanted a gemini API key must be provided
 	 */
 	@Prop()
-	public geminiApiKey: string = process.env.GOOGLE_API_KEY || '';
+	public geminiApiKey: string;
 
 	@State()
 	public phonic: Array<string> = [];
@@ -104,6 +104,19 @@ export class MaterialBeautifyChineseStudy {
 
 	private template: HTMLElement;
 	private phonetic: Phonetic = new Phonetic();
+	private hasLoaded: boolean = false;
+
+	private parseProvidedNumberedPinyin(value: string): Array<string> {
+		if (this.isEmptyStringBlankStringNullOrUndefined(value)) {
+			return [];
+		}
+		const isLetter: RegExp = /[A-Za-z]/;
+		return value
+			.split(/[,\s]+/)
+			.map(token => token.trim())
+			.filter(token => token.length > 0)
+			.map(token => (isLetter.test(token.slice(-1)) ? `${token}5` : token));
+	}
 
 	@Method()
 	public async getVersion(): Promise<string> {
@@ -174,6 +187,9 @@ export class MaterialBeautifyChineseStudy {
 	 * @param this.primaryCharacter string The source hanzi to romanize.
 	 */
 	private getNumberedPinyin(): Array<string> {
+		if (!this.forceAutoGeneration && !this.isEmptyStringBlankStringNullOrUndefined(this.numberedPinyin)) {
+			return this.parseProvidedNumberedPinyin(this.numberedPinyin);
+		}
 		return pinyin(this.getPrimaryCharacter(), {
 			style: pinyin.STYLE_TONE2,
 		}).flat();
@@ -185,8 +201,8 @@ export class MaterialBeautifyChineseStudy {
 	 * @param this.primaryCharacterSentence string The sentence hanzi to romanize.
 	 */
 	private getSentenceNumberedPinyin(): Array<string> {
-		if (!this.isEmptyStringBlankStringNullOrUndefined(this.sentenceNumberedPinyin)) {
-			return [];
+		if (!this.forceAutoGeneration && !this.isEmptyStringBlankStringNullOrUndefined(this.sentenceNumberedPinyin)) {
+			return this.parseProvidedNumberedPinyin(this.sentenceNumberedPinyin);
 		}
 
 		const isLetter: RegExp = /[A-Za-z]/g;
@@ -263,6 +279,7 @@ export class MaterialBeautifyChineseStudy {
 	}
 
 	private createCard(): HTMLElement {
+		const geminiKey = (this.geminiApiKey ?? process.env.GOOGLE_API_KEY ?? '').trim();
 		const template: HTMLElement = (
 			<div id="anki-background">
 				<material-beautify-card
@@ -279,22 +296,49 @@ export class MaterialBeautifyChineseStudy {
 					sentence-meaning={this.getSentenceMeaning()}
 					primary-hanzi-type={this.primaryHanziType.trim().toLowerCase()}
 					phonic-orientation={this.phonicOrientation}
-					gemini-api-key={this.geminiApiKey}
+					gemini-api-key={geminiKey ? geminiKey : undefined}
 				/>
 			</div>
 		);
 		return template;
 	}
 
-	/**
-	 * Called every time the component is connected to the DOM.
-	 */
-	public connectedCallback(): void {
+	private refreshCard(): void {
 		this.phonic = this.getPhonic(this.getNumberedPinyin());
 		this.sentencePhonic = this.getPhonic(this.getSentenceNumberedPinyin());
 		this.generatedTraditional = this.getSecondaryCharacter();
 		this.generatedTraditionalSentence = this.getSecondaryCharacterSentence();
 		this.template = this.createCard();
+	}
+
+	/**
+	 * Called every time the component is connected to the DOM.
+	 */
+	public connectedCallback(): void {
+		this.hasLoaded = true;
+		this.refreshCard();
+	}
+
+	@Watch('cardType')
+	@Watch('cardOrientation')
+	@Watch('preferredPhonic')
+	@Watch('primaryCharacter')
+	@Watch('primaryCharacterSentence')
+	@Watch('secondaryCharacter')
+	@Watch('secondaryCharacterSentence')
+	@Watch('numberedPinyin')
+	@Watch('sentenceNumberedPinyin')
+	@Watch('forceAutoGeneration')
+	@Watch('meaning')
+	@Watch('sentenceMeaning')
+	@Watch('primaryHanziType')
+	@Watch('phonicOrientation')
+	@Watch('geminiApiKey')
+	protected handlePropChange(): void {
+		if (!this.hasLoaded) {
+			return;
+		}
+		this.refreshCard();
 	}
 
 	public render(): FunctionalComponent {
