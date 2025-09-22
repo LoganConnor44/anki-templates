@@ -22,7 +22,7 @@ This is a project for making Chinese study, through Anki, more enjoyable by auto
 | :-------------------------------------------------------------------------------------------------------------------------------------------: |
 | On the answer side of the writing card, the stroke order animates (powered by HanziWriter). Mobile sizing and performance may vary by device. |
 
-## All Cards - Mobile Device
+## All Cards (Mobile Device)
 
 ### Zhuyin
 
