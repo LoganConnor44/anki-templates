@@ -28,11 +28,11 @@ This is a project for making Chinese study, through Anki, more enjoyable by auto
 
 #### Vertical Orientation
 
-<img src="./images/all-cards-vertical-zhuyin.gif" alt="all-cards-vertical-zhuyin" style="max-width: 200px; width: 100%; height: auto;"/>
+<img src="./images/all-cards-vertical-zhuyin.gif" alt="all-cards-vertical-zhuyin" style="width: 300px; height: auto;"/>
 
 #### Horizontal Orientation
 
-<img src="./images/all-cards-horizontal-zhuyin.gif" alt="all-cards-horizontal-zhuyin" style="max-width: 200px; width: 100%; height: auto;"/>
+<img src="./images/all-cards-horizontal-zhuyin.gif" alt="all-cards-horizontal-zhuyin" style="width: 300px; height: auto;"/>
 
 ---
 
